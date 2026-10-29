@@ -464,6 +464,7 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
     <div class="kv"><span>Total profit</span><b class="pos" id="pprof">0.00</b></div>
     <div class="kv"><span>Team size</span><b id="pteam">0</b></div>
     <div class="kv"><span>Energy</span><b id="pen">0</b></div>
+    <div class="kv"><span>App version</span><b id="pver">-</b></div>
   </div>
 
   <div class="card">
@@ -495,22 +496,33 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq46eaVaUEYxgsVHWj1bxMs5bdH3EBTyD6kNhh7Hrmjgjz9Z1hYBnqakVAHveTm7G39bJbY__gId18CW8ddRp7v40SP-eZnmDvxyrmrn22mwtXdw8i8UdkrzLBabtOodc-YMepdNiHMSvpRyiJIIO1qp9O55-3RhjYmdAGH5ttTLQqme_7LO3KxNKmAUhqpSxcIeTC";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq47CBIfGC5xMPKDFEz5aNhWCdBAg8zjMq5MML6_K4xZ_jL83ue0u8Kz_zbdf3StxD4uwvuEia-ovmfKGfelRv0XT5Tnr19kWJRtJTbP7-ZobBBY-AGzqMeF9WgRe2RMF0VpgPQ67dt8SCAhC7e7ebwMeDg9McKATtPsZd2M-dBJCRtEYQem7S2_LopbwVf1KoScKR";
+var BUILD = "v3.2";
 var BOTU = "greenearnevbot";
 function tgApp(){
   try { if (window.Telegram && window.Telegram.WebApp) { return window.Telegram.WebApp; } } catch(e){ }
   return null;
 }
-function urlInit(){
+function urlParam(name){
   try {
     var q = window.location.search || "";
-    var i = q.indexOf("initData=");
-    if (i < 0) { return ""; }
-    var v = q.substring(i + 9);
-    var a = v.indexOf("&");
-    if (a >= 0) { v = v.substring(0, a); }
-    return decodeURIComponent(v);
-  } catch(e){ return ""; }
+    if (q.charAt(0) === "?") { q = q.substring(1); }
+    var parts = q.split("&");
+    for (var i = 0; i < parts.length; i++) {
+      var kv = parts[i].split("=");
+      if (kv.length < 2) { continue; }
+      if (kv[0] === name) {
+        var v = kv.slice(1).join("=");
+        try { return decodeURIComponent(v); } catch(e){ return v; }
+      }
+    }
+  } catch(e){ }
+  return "";
+}
+function urlInit(){
+  var v = urlParam("tgWebAppInitData");
+  if (v && v.length > 10) { return v; }
+  return urlParam("initData");
 }
 function getInit(){
   var t = tgApp();
@@ -605,10 +617,30 @@ function api(action, data, cb){
   try { xhr.send(body); } catch(e) { if (cb) { cb({ "ok":false, "e":"Network error." }); } }
 }
 
-function fatal(msg){
+function diagText(){
+  var t = tgApp();
+  var bits = [];
+  bits.push("build " + BUILD);
+  bits.push("telegram lib " + (t ? "loaded" : "MISSING"));
+  try { bits.push("page " + window.location.href.substring(0, 60)); } catch(e){}
+  try {
+    var p = urlParam("tgWebAppVersion");
+    if (p) { bits.push("webapp " + p); }
+  } catch(e){}
+  return bits.join(" · ");
+}
+
+function fatal(msg, detail){
   var d = document.createElement("div");
   d.style.cssText = "position:fixed;inset:0;background:#070A0F;z-index:9999;display:flex;align-items:center;justify-content:center;padding:26px;text-align:center";
-  d.innerHTML = "<div><div style='font-size:40px;margin-bottom:12px'>🔒</div><div style='font-size:15px;font-weight:800;margin-bottom:7px'>Cannot open the app</div><div style='font-size:12.5px;color:#8A97A8;line-height:1.6'>" + E(msg) + "</div></div>";
+  var h = "<div><div style='font-size:40px;margin-bottom:12px'>🔒</div>" +
+    "<div style='font-size:15px;font-weight:800;margin-bottom:7px'>Cannot open the app</div>" +
+    "<div style='font-size:12.5px;color:#8A97A8;line-height:1.6'>" + E(msg) + "</div>";
+  if (detail) {
+    h += "<div style='margin-top:14px;font-family:monospace;font-size:10px;color:#5F6B7A;line-height:1.7;word-break:break-all;background:#0D1319;border:1px solid #1F2833;border-radius:10px;padding:9px;text-align:left'>" + E(detail) + "</div>";
+  }
+  h += "<div style='margin-top:14px'><button onclick='location.reload()' style='padding:10px 18px;border-radius:11px;background:#00E676;color:#04150C;font-weight:800;border:0'>Reload</button></div></div>";
+  d.innerHTML = h;
   document.body.appendChild(d);
 }
 
@@ -1853,6 +1885,7 @@ function paint(){
   setT("pprof", M(u.profit));
   setT("pteam", N(u.team.total));
   setT("pen", N(u.energy));
+  setT("pver", BUILD);
   setV("fname", u.name || "");
   setV("fwallet", u.wallet || "");
   safe(paintDaily);
@@ -1888,7 +1921,7 @@ function bootApp(){
     return;
   }
   if (!init) {
-    fatal("Telegram did not hand this page a login token. Close it with the X and open it again from the button in the bot chat. Telegram library: " + (t ? "loaded" : "not loaded"));
+    fatal("Telegram did not hand this page a login token. Close it with the X at the top right and open it again from the button in the bot chat.", diagText());
     return;
   }
   try {
