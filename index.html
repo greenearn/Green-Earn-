@@ -455,7 +455,7 @@ font-weight:700;z-index:200;opacity:0;transition:all .25s;pointer-events:none;ma
    CONFIG  —  paste your bot endpoint between the quotes below
    Get it by sending /apiurl to your bot.
    ============================================================ */
-const API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq40sqvHFefvZrJRlvYYp1YuL0TBWJdLKYiH6Gqv1ZobRM7Lr7DOK70DCtk9yrheHxerd_RCruH8h4P-jq6B0B4z3v6MWjymtoo4v3Jk0LLAIaU5VPdT2clTVA5tC_oq_5OMGTUXHXtdJOD-_yzeCMESFnrwEyTV8PceM4jhjQNzyEy_zXgd8jiRpp0FPWG0AOPuT4";
+const API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq42QIKphCdBKpyIDfCPqLSNMVCJL48XgXkllm10zDzMl76ofH_1lmRA3i8hmPax9-JHsvpwvmayeDn5kVawbMZiHsryZLkzQ8diNLFb8UFWOxpdLiGKsvp-CWgiz8u_fl2U0UbEo2fgfMJaEg75V_EBsDSz5GkJMtyi4Pc1pgir7A-1SG-S27Yb-jXQQC2z6sfCxv";
 
 /* Your bot's @username without the @ — used to build referral links */
 const BOTUSER = "greenearnevbot";
@@ -497,11 +497,18 @@ function api(a, d, cb){
     if(cb) cb({ok:false, e:"API endpoint missing"});
     return;
   }
+  var inner = {};
+  inner["a"] = a;
+  inner["init"] = INIT;
+  inner["d"] = d || {};
   var body;
-  try{ body = b64(JSON.stringify({a:a, init:INIT, d:d||{}})); }
-  catch(e){ body = JSON.stringify({a:a, init:INIT, d:d||{}}); }
+  try{
+    var outer = {};
+    outer["p"] = b64(JSON.stringify(inner));
+    body = JSON.stringify(outer);
+  }catch(e){ body = JSON.stringify(inner); }
   var done = false;
-  fetch(API, {method:"POST", headers:{"Content-Type":"text/plain;charset=UTF-8"}, body:body})
+  fetch(API, {method:"POST", headers:{"Content-Type":"application/json"}, body:body})
     .then(function(r){ return r.text(); })
     .then(function(txt){
       if(done) return; done = true;
