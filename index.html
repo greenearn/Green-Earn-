@@ -495,12 +495,34 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq46HdPf3ijSpI5tSetUC4530t05qpA7O9QSxrcf4_sA8Jx-l7DjNGbclz0sqtnacoaDY6iz-VSPK3dKXEhPygtBL1qesetDdd77fexQDZ4OJS9scMf6mWFC8A_8HSZvhSwm3VUPDk_w900uuXUyN0zdLUYsBaYwLod_YAwjB_HLe43bJ-YzhRGxfZdNFP5Guu0A9o";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq46eaVaUEYxgsVHWj1bxMs5bdH3EBTyD6kNhh7Hrmjgjz9Z1hYBnqakVAHveTm7G39bJbY__gId18CW8ddRp7v40SP-eZnmDvxyrmrn22mwtXdw8i8UdkrzLBabtOodc-YMepdNiHMSvpRyiJIIO1qp9O55-3RhjYmdAGH5ttTLQqme_7LO3KxNKmAUhqpSxcIeTC";
 var BOTU = "greenearnevbot";
-var TG = null;
-try { if (window.Telegram && window.Telegram.WebApp) { TG = window.Telegram.WebApp; } } catch(e){ TG = null; }
-var INIT = "";
-if (TG && TG.initData) { INIT = TG.initData; }
+function tgApp(){
+  try { if (window.Telegram && window.Telegram.WebApp) { return window.Telegram.WebApp; } } catch(e){ }
+  return null;
+}
+function urlInit(){
+  try {
+    var q = window.location.search || "";
+    var i = q.indexOf("initData=");
+    if (i < 0) { return ""; }
+    var v = q.substring(i + 9);
+    var a = v.indexOf("&");
+    if (a >= 0) { v = v.substring(0, a); }
+    return decodeURIComponent(v);
+  } catch(e){ return ""; }
+}
+function getInit(){
+  var t = tgApp();
+  if (t && t.initData && t.initData.length > 10) { return t.initData; }
+  return urlInit();
+}
+function tgUser(){
+  var t = tgApp();
+  try { if (t && t.initDataUnsafe && t.initDataUnsafe.user) { return t.initDataUnsafe.user; } } catch(e){ }
+  return null;
+}
+var TG = tgApp();
 
 var S = { "cfg":null, "u":null, "tab":"home", "cat":0, "proj":null, "term":null, "amt":0, "tcat":"all", "adm":null, "pw":"", "busy":false };
 
@@ -508,9 +530,9 @@ function $(id){ return document.getElementById(id); }
 function E(v){ return String(v === null || v === undefined ? "" : v).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split(String.fromCharCode(34)).join("&quot;"); }
 function M(v){ var n = parseFloat(v); if (isNaN(n)) { n = 0; } return n.toFixed(2); }
 function N(v){ var n = parseFloat(v); if (isNaN(n)) { n = 0; } return "" + Math.round(n); }
-function HAS(){ try { if (TG) { TG.HapticFeedback.impactOccurred("medium"); } } catch(e){} }
-function OKH(){ try { if (TG) { TG.HapticFeedback.notificationOccurred("success"); } } catch(e){} }
-function BADH(){ try { if (TG) { TG.HapticFeedback.notificationOccurred("warning"); } } catch(e){} }
+function HAS(){ try { var t = tgApp(); if (t) { t.HapticFeedback.impactOccurred("medium"); } } catch(e){} }
+function OKH(){ try { var t = tgApp(); if (t) { t.HapticFeedback.notificationOccurred("success"); } } catch(e){} }
+function BADH(){ try { var t = tgApp(); if (t) { t.HapticFeedback.notificationOccurred("warning"); } } catch(e){} }
 
 function toast(msg, bad){
   var t = $("toast");
@@ -559,7 +581,7 @@ function api(action, data, cb){
   if (!API) { toast("Setup missing: the API link is not in this file", true); if (cb) { cb({ "ok":false, "e":"API missing" }); } return; }
   var inner = {};
   inner["a"] = action;
-  inner["init"] = INIT;
+  inner["init"] = getInit();
   inner["d"] = data || {};
   var body = "";
   try {
@@ -1421,7 +1443,12 @@ function shareRef(){
   var v = $("reflink").value;
   var txt = "Join me on Green Earn and earn daily profit from solar, EV, mining and AI projects:";
   var sh = "https://t.me/share/url?url=" + encodeURIComponent(v) + "&text=" + encodeURIComponent(txt);
-  try { if (TG) { TG.openTelegramLink(sh); } else { window.open(sh, "_blank"); } } catch(e){ window.open(sh, "_blank"); }
+  try {
+    var t = tgApp();
+    if (t && sh.indexOf("t.me/") >= 0 && sh.indexOf("/share/url") < 0) { t.openTelegramLink(sh); }
+    else if (t) { t.openLink(sh); }
+    else { window.open(sh, "_blank"); }
+  } catch(e){ window.open(sh, "_blank"); }
 }
 
 function makeDep(){
@@ -1515,7 +1542,8 @@ function setLang(lc){
 
 function doLogout(){
   try { localStorage.clear(); } catch(e){}
-  if (TG) { try { TG.close(); } catch(e){} }
+  var t = tgApp();
+  if (t) { try { t.close(); } catch(e){} }
   document.body.innerHTML = "<div style='padding:44px 24px;text-align:center'><div style='font-size:38px'>👋</div><div style='font-size:15px;font-weight:800;margin-top:10px'>You are logged out</div><div class='note' style='margin-top:7px'>Open the app again from your bot chat to come back. Your balance is safe.</div></div>";
 }
 
@@ -1843,24 +1871,30 @@ function paint(){
 }
 
 /* ---------------- start ---------------- */
+var _tries = 0;
 function bootApp(){
-  if (TG) {
-    try { TG.ready(); } catch(e){}
-    try { TG.expand(); } catch(e){}
-    try { TG.setHeaderColor("#070A0F"); } catch(e){}
-    try { TG.setBackgroundColor("#070A0F"); } catch(e){}
-    try { TG.enableClosingConfirmation(); } catch(e){}
+  _tries = _tries + 1;
+  var t = tgApp();
+  var init = getInit();
+  if (t) {
+    try { t.ready(); } catch(e){}
+    try { t.expand(); } catch(e){}
+    try { t.setHeaderColor("#070A0F"); } catch(e){}
+    try { t.setBackgroundColor("#070A0F"); } catch(e){}
   }
-  if (!INIT) {
-    fatal("Please open this app from inside Telegram — tap the button in your bot chat.");
+  if (!init && _tries < 30) { setTimeout(bootApp, 120); return; }
+  if (!API) {
+    fatal("The API link was not written into this file. Send /getapp to your bot and upload the file it returns.");
     return;
   }
-  if (!API) {
-    fatal("Setup missing: the API link was not written into this file. Send /getapp to your bot to get a ready file.");
+  if (!init) {
+    fatal("Telegram did not hand this page a login token. Close it with the X and open it again from the button in the bot chat. Telegram library: " + (t ? "loaded" : "not loaded"));
     return;
   }
   try {
-    var sp = TG && TG.initDataUnsafe ? TG.initDataUnsafe.start_param : "";
+    var uu = tgUser();
+    if (uu && uu.id) { localStorage.setItem("tguser", "" + uu.id); }
+    var sp = t && t.initDataUnsafe ? t.initDataUnsafe.start_param : "";
     if (sp) { localStorage.setItem("ref", sp); }
   } catch(e){}
   loadApp();
