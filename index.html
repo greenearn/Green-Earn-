@@ -451,11 +451,26 @@ font-weight:700;z-index:200;opacity:0;transition:all .25s;pointer-events:none;ma
 
 <script>
 
+/* ---- error trap: if anything below breaks, say so on screen ---- */
+window.onerror = function(m, s, l, c, err){
+  try{
+    var d = document.getElementById("errbox");
+    if(!d){
+      d = document.createElement("div");
+      d.id = "errbox";
+      d.style.cssText = "position:fixed;left:10px;right:10px;top:10px;z-index:9000;background:#2a1416;border:1px solid #FF5252;border-radius:12px;padding:11px 13px;font-size:11.5px;color:#ffb3b3;line-height:1.5;font-family:monospace;word-break:break-all";
+      (document.body || document.documentElement).appendChild(d);
+    }
+    d.textContent = "Script error: " + m + " (line " + l + ")";
+  }catch(e){}
+  return false;
+};
+
 /* ============================================================
    CONFIG  —  paste your bot endpoint between the quotes below
    Get it by sending /apiurl to your bot.
    ============================================================ */
-const API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq42QIKphCdBKpyIDfCPqLSNMVCJL48XgXkllm10zDzMl76ofH_1lmRA3i8hmPax9-JHsvpwvmayeDn5kVawbMZiHsryZLkzQ8diNLFb8UFWOxpdLiGKsvp-CWgiz8u_fl2U0UbEo2fgfMJaEg75V_EBsDSz5GkJMtyi4Pc1pgir7A-1SG-S27Yb-jXQQC2z6sfCxv";
+const API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq44C-efKVf1230mMbvkugNgDmXl78y8_UINujBo7rI4o4OB308el6xUiUr8KMNUJANC1RN8bjeUHRUE51wlZaEvUZB3J7IxQe1aHhj7UImnXXJBvmLx38H4j8Opddd-w-rLL8tOh1Tqw36QBXYUnqIXeoqMdFYdWeltbUsnEI9pc4sguFnaC_q2LSRFvDjPAAj4HI";
 
 /* Your bot's @username without the @ — used to build referral links */
 const BOTUSER = "greenearnevbot";
@@ -518,7 +533,17 @@ function api(a, d, cb){
         if(cb) cb({ok:false, e:"Server returned an unexpected answer. Try again."});
         return;
       }
-      if(cb) cb(j);
+      var p = j;
+      if(j.result !== undefined && j.result !== null){
+        if(typeof j.result === "string"){
+          try{ p = JSON.parse(j.result); }catch(e2){ p = j; }
+        } else if(typeof j.result === "object"){
+          p = j.result;
+        }
+      }
+      if(!p || typeof p !== "object"){ p = {ok:false, e:"Empty answer from the server."}; }
+      if(!p.ok && !p.e){ p.e = "The server refused this action."; }
+      if(cb) cb(p);
     })
     .catch(function(){
       if(done) return; done = true;
@@ -539,6 +564,10 @@ function load(cb){
   api("boot", bd, function(j){
     if(!j.ok){
       showFatal(j.e || "Could not load your account.");
+      return;
+    }
+    if(!j.r || !j.r.cfg || !j.r.u){
+      showFatal("The server sent an incomplete answer. Send /check to your bot and tell the owner what it says.");
       return;
     }
     S.cfg = j.r.cfg; S.u = j.r.u;
