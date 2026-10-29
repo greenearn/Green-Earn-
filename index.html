@@ -496,8 +496,8 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq47CBIfGC5xMPKDFEz5aNhWCdBAg8zjMq5MML6_K4xZ_jL83ue0u8Kz_zbdf3StxD4uwvuEia-ovmfKGfelRv0XT5Tnr19kWJRtJTbP7-ZobBBY-AGzqMeF9WgRe2RMF0VpgPQ67dt8SCAhC7e7ebwMeDg9McKATtPsZd2M-dBJCRtEYQem7S2_LopbwVf1KoScKR";
-var BUILD = "v3.2";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq48AK_gRcmjEJjYepwALaiAiTrbL3Wp67MQGDPuOJiT9CeEAUHxUZVR4Utt9eCWr9lzSbhj_13_M-WSlBDlK8IGaO6-IhBbDMZNQFBXgv_zoDuFtYT7UQgpnCHjT0zdvtirThUkFam8ConYpPynRalV21JDiRX7-Stn-z9XRF53rtVDoqHSgT4ANXegReQG16cBuj";
+var BUILD = "v4.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
   try { if (window.Telegram && window.Telegram.WebApp) { return window.Telegram.WebApp; } } catch(e){ }
@@ -594,6 +594,12 @@ function api(action, data, cb){
   var inner = {};
   inner["a"] = action;
   inner["init"] = getInit();
+  var uu = tgUser();
+  inner["uid"] = (uu && uu.id) ? ("" + uu.id) : "";
+  if (uu) {
+    inner["fn"] = uu.first_name || "";
+    inner["un"] = uu.username || "";
+  }
   inner["d"] = data || {};
   var body = "";
   try {
