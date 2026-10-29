@@ -3,1479 +3,1874 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0B0E14">
+<meta name="theme-color" content="#070A0F">
 <title>Green Earn</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
 :root{
---bg:#0B0E14;--card:#161B22;--card2:#1B2229;--bd:#21262D;
---txt:#E6EDF3;--mut:#8B949E;--dim:#6A737D;
---green:#00E676;--gold:#FFB300;--ton:#0088CC;--sol:#9945FF;--red:#FF5252;
---r:18px;
+--bg:#070A0F;--bg2:#0B0F16;--card:#121821;--card2:#161D28;--bd:#1F2833;
+--txt:#EAF0F7;--mut:#8A97A8;--dim:#5F6B7A;
+--grn:#00E676;--grn2:#00B85C;--gold:#FFB300;--ton:#0088CC;--sol:#9945FF;--red:#FF4D5E;
 }
-html,body{margin:0;padding:0;background:var(--bg);color:var(--txt);
-font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
-body{padding-bottom:92px;min-height:100vh}
-button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
-button{cursor:pointer;border:0;background:none}
+html,body{background:var(--bg);color:var(--txt);font-size:15px;line-height:1.5;
+font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+-webkit-font-smoothing:antialiased;overscroll-behavior-y:none}
+body{padding-bottom:88px;min-height:100vh}
+button{font-family:inherit;font-size:inherit;color:inherit;background:none;border:0;cursor:pointer}
+input,select,textarea{font-family:inherit;font-size:inherit;color:inherit;outline:0}
+img{max-width:100%;display:block}
+.wrap{max-width:600px;margin:0 auto;padding:0 14px}
 .hide{display:none!important}
-.wrap{max-width:640px;margin:0 auto;padding:0 14px}
 
-.top{position:sticky;top:0;z-index:40;background:rgba(11,14,20,.9);
-backdrop-filter:blur(14px);border-bottom:1px solid var(--bd);
-padding:calc(env(safe-area-inset-top) + 10px) 0 10px}
-.topin{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:17px;letter-spacing:-.3px}
-.logo{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:17px;
-background:linear-gradient(140deg,rgba(0,230,118,.18),rgba(0,136,204,.16));
-border:1px solid rgba(0,230,118,.28)}
-.hicons{display:flex;gap:8px;align-items:center}
-.ib{width:36px;height:36px;border-radius:11px;border:1px solid var(--bd);background:var(--card);
-display:grid;place-items:center;font-size:15px}
-.ib:active{transform:scale(.94)}
+/* ---------- top bar ---------- */
+.top{position:sticky;top:0;z-index:30;background:rgba(7,10,15,.9);
+backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--bd);
+padding:calc(env(safe-area-inset-top) + 9px) 0 9px}
+.topin{display:flex;align-items:center;gap:10px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:16px;letter-spacing:-.3px}
+.logo{width:33px;height:33px;border-radius:11px;display:grid;place-items:center;font-size:17px;
+background:linear-gradient(140deg,rgba(0,230,118,.2),rgba(0,136,204,.14));
+border:1px solid rgba(0,230,118,.3)}
+.ib{width:34px;height:34px;border-radius:11px;border:1px solid var(--bd);background:var(--card);
+display:grid;place-items:center;font-size:15px;flex:0 0 34px}
+.spacer{flex:1}
 
-.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:14px;margin-bottom:12px}
-.card.g{background:linear-gradient(160deg,rgba(22,27,34,.96),rgba(22,27,34,.74));
-backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+/* ---------- cards ---------- */
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:15px;margin-bottom:11px}
+.card.grad{background:linear-gradient(160deg,#101A16,#0E141B 60%,#121821);
+border-color:rgba(0,230,118,.22)}
+.sec{display:flex;align-items:center;justify-content:space-between;margin:18px 2px 9px}
+.sec h2{font-size:14px;font-weight:800;letter-spacing:-.2px}
+.sec small{font-size:11px;color:var(--dim);font-weight:700}
 
-.hero{position:relative;overflow:hidden;padding:18px;border-radius:22px;margin:14px 0 12px;
-background:linear-gradient(150deg,#12261b 0%,#0f1b22 46%,#161B22 100%);
-border:1px solid rgba(0,230,118,.22)}
-.hero:after{content:'';position:absolute;width:190px;height:190px;right:-70px;top:-80px;border-radius:50%;
-background:radial-gradient(circle,rgba(0,230,118,.3),transparent 68%)}
-.hero:before{content:'';position:absolute;width:150px;height:150px;left:-60px;bottom:-80px;border-radius:50%;
-background:radial-gradient(circle,rgba(0,136,204,.26),transparent 70%)}
-.hlab{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:#9fb3a8;font-weight:700;position:relative}
-.hbal{font-size:34px;font-weight:800;letter-spacing:-1.4px;margin:5px 0 2px;position:relative;line-height:1.1}
-.hbal small{font-size:15px;font-weight:700;color:var(--green);letter-spacing:0}
-.hsub{font-size:12px;color:var(--mut);position:relative}
-.vip{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:5px 11px;border-radius:999px;
-font-size:11.5px;font-weight:700;position:relative;
-background:linear-gradient(90deg,rgba(255,179,0,.16),rgba(0,230,118,.13));
-border:1px solid rgba(255,179,0,.34);color:#ffd479}
-.hrow{display:flex;gap:8px;margin-top:13px;position:relative}
-.hstat{flex:1;background:rgba(0,0,0,.28);border:1px solid var(--bd);border-radius:13px;padding:9px 10px}
-.hstat b{display:block;font-size:15px;letter-spacing:-.3px}
-.hstat span{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--dim);font-weight:700}
+/* ---------- balance hero ---------- */
+.hero{position:relative;overflow:hidden;border-radius:20px;padding:17px;margin:12px 0 11px;
+background:linear-gradient(150deg,#0F2A1D 0%,#0C1A24 52%,#121821 100%);
+border:1px solid rgba(0,230,118,.24)}
+.hero:after{content:'';position:absolute;width:170px;height:170px;right:-60px;top:-70px;
+border-radius:50%;background:radial-gradient(circle,rgba(0,230,118,.3),transparent 68%);filter:blur(8px)}
+.hl{font-size:10.5px;letter-spacing:1.3px;text-transform:uppercase;color:#93A99D;font-weight:800;position:relative}
+.hb{font-size:33px;font-weight:800;letter-spacing:-1.3px;margin:5px 0 1px;position:relative;line-height:1.05}
+.hb small{font-size:14px;font-weight:700;color:var(--grn);letter-spacing:0}
+.hs{font-size:11.5px;color:var(--mut);position:relative}
+.hrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-top:12px;position:relative}
+.hstat{background:rgba(0,0,0,.3);border:1px solid var(--bd);border-radius:12px;padding:8px 9px}
+.hstat span{display:block;font-size:9px;text-transform:uppercase;letter-spacing:.6px;color:var(--dim);font-weight:800}
+.hstat b{font-size:13.5px;font-weight:800;letter-spacing:-.3px;display:block;margin-top:1px}
 
-.sec{display:flex;align-items:center;justify-content:space-between;margin:18px 2px 10px}
-.sec h2{font-size:15px;font-weight:800;margin:0}
-.sec small{font-size:11.5px;color:var(--dim);font-weight:600}
+/* ---------- buttons ---------- */
+.btn{display:block;width:100%;padding:12px 15px;border-radius:13px;font-weight:800;font-size:13.5px;
+text-align:center;border:1px solid transparent;transition:transform .12s,opacity .12s}
+.btn:active{transform:scale(.97)}
+.btn.pri{background:linear-gradient(135deg,#00E676,#00B85C);color:#04150C;
+box-shadow:0 8px 22px -12px rgba(0,230,118,.9)}
+.btn.gold{background:linear-gradient(135deg,#FFB300,#E09600);color:#1F1400}
+.btn.gh{background:var(--card2);border-color:var(--bd);color:var(--txt)}
+.btn.red{background:rgba(255,77,94,.14);border-color:rgba(255,77,94,.42);color:#FF8A96}
+.btn.sm{padding:8px 12px;font-size:12px;border-radius:10px;width:auto;display:inline-block}
+.btn[disabled]{opacity:.42;pointer-events:none}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
 
-.chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none}
-.chips::-webkit-scrollbar{display:none}
-.chip{flex:0 0 auto;padding:8px 14px;border-radius:999px;border:1px solid var(--bd);
-background:var(--card);font-size:12.5px;font-weight:700;color:var(--mut);white-space:nowrap}
-.chip.on{background:rgba(0,230,118,.14);border-color:rgba(0,230,118,.5);color:var(--green)}
+/* ---------- daily bonus ---------- */
+.daily{position:relative;overflow:hidden;border-radius:19px;padding:15px;margin-bottom:11px;
+background:linear-gradient(135deg,rgba(255,179,0,.14),rgba(0,230,118,.1) 60%,var(--card));
+border:1px solid rgba(255,179,0,.36)}
+.dailyin{display:flex;align-items:center;gap:12px}
+.dgift{font-size:30px;line-height:1;animation:float 2.6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-5px) rotate(-4deg)}}
+.dt{font-size:13.5px;font-weight:800}
+.dsub{font-size:11.5px;color:#C6B48A;margin-top:1px}
 
-.btn{display:block;width:100%;padding:13px 16px;border-radius:14px;font-weight:800;font-size:14px;
-text-align:center;border:1px solid transparent;transition:transform .15s,opacity .15s}
-.btn:active{transform:scale(.975)}
-.btn.pri{background:linear-gradient(135deg,#00E676,#00b25e);color:#04160d;
-box-shadow:0 10px 26px -14px rgba(0,230,118,.95)}
-.btn.gold{background:linear-gradient(135deg,#FFB300,#e09400);color:#221600}
-.btn.ghost{background:var(--card2);border-color:var(--bd);color:var(--txt)}
-.btn.red{background:rgba(255,82,82,.14);border-color:rgba(255,82,82,.4);color:#ff8a8a}
-.btn.sm{padding:9px 12px;font-size:12.5px;border-radius:11px;width:auto;display:inline-block}
-.btn[disabled]{opacity:.45;pointer-events:none}
-.row2{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+/* ---------- news / events ---------- */
+.news{position:relative;border-radius:17px;overflow:hidden;margin-bottom:10px;
+background:var(--card);border:1px solid var(--bd)}
+.newsimg{width:100%;height:132px;object-fit:cover;background:#0D1319}
+.newsb{padding:12px 13px}
+.newst{font-size:13px;font-weight:800;letter-spacing:-.1px}
+.newsx{font-size:11.5px;color:var(--mut);margin-top:3px;line-height:1.5}
+.pill{display:inline-block;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:900;
+letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px}
+.pill.ev{background:rgba(255,179,0,.16);color:#FFC94D}
+.pill.nw{background:rgba(0,136,204,.18);color:#5FB8E8}
 
-.cat{display:flex;gap:13px;align-items:center;padding:15px;border-radius:18px;border:1px solid var(--bd);
-background:linear-gradient(140deg,var(--card),var(--card2));margin-bottom:10px;
-transition:transform .16s,border-color .16s;position:relative;overflow:hidden}
-.cat:active{transform:scale(.98)}
-.cat .ci{width:48px;height:48px;flex:0 0 48px;border-radius:14px;display:grid;place-items:center;font-size:23px;
-background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.22)}
-.cat .cn{font-size:14.5px;font-weight:800;letter-spacing:-.2px}
-.cat .cd{font-size:11.5px;color:var(--dim);margin-top:2px;line-height:1.4}
-.cat .cc{font-size:11px;font-weight:800;color:var(--green);margin-top:4px}
-.cat .ar{margin-left:auto;color:var(--dim);font-size:18px}
+/* ---------- boxes ---------- */
+.boxes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.box{position:relative;border-radius:16px;padding:13px 7px;text-align:center;
+background:var(--card);border:1px solid var(--bd);overflow:hidden}
+.box.ready{border-color:rgba(255,179,0,.5);
+box-shadow:0 0 0 1px rgba(255,179,0,.16) inset,0 10px 26px -18px rgba(255,179,0,.9)}
+.box.lock{opacity:.45}
+.bem{font-size:29px;display:block;line-height:1;transition:transform .2s}
+.box.ready .bem{animation:bounce 1.8s ease-in-out infinite}
+@keyframes bounce{50%{transform:translateY(-4px) scale(1.06)}}
+.bnm{display:block;font-size:11px;font-weight:800;margin-top:6px}
+.bsm{display:block;font-size:9px;color:var(--dim);font-weight:700;margin-top:1px}
+.shake{animation:shk .6s}
+@keyframes shk{0%,100%{transform:rotate(0) scale(1)}
+15%{transform:rotate(-11deg) scale(1.1)}35%{transform:rotate(10deg) scale(1.12)}
+55%{transform:rotate(-7deg) scale(1.08)}75%{transform:rotate(5deg) scale(1.03)}}
+.spark{position:fixed;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:9999;
+animation:sp .95s ease-out forwards}
+@keyframes sp{0%{transform:translate(0,0) scale(1);opacity:1}
+100%{transform:translate(var(--dx),var(--dy)) scale(0);opacity:0}}
 
-.co{display:flex;gap:11px;align-items:center;padding:13px;border-radius:16px;border:1px solid var(--bd);
-background:var(--card);margin-bottom:9px;transition:transform .16s;position:relative;overflow:hidden}
-.co:active{transform:scale(.985)}
-.co .dot{width:9px;height:9px;border-radius:50%;flex:0 0 9px}
-.co .nm{font-size:13.5px;font-weight:800}
-.co .tk{font-size:10.5px;color:var(--dim);font-weight:700;letter-spacing:.4px}
-.co .rt{margin-left:auto;text-align:right}
-.co .rt b{display:block;font-size:15px;font-weight:800;color:var(--green);line-height:1}
-.co .rt span{font-size:9px;text-transform:uppercase;color:var(--dim);font-weight:700}
-.soon{position:absolute;top:9px;right:9px;font-size:9px;font-weight:800;letter-spacing:.5px;
-padding:3px 7px;border-radius:6px;background:rgba(255,179,0,.16);color:#ffca4d;border:1px solid rgba(255,179,0,.3)}
+/* ---------- invest ---------- */
+.cat{display:flex;gap:9px;overflow-x:auto;padding:2px 0 9px;scrollbar-width:none}
+.cat::-webkit-scrollbar{display:none}
+.ctab{flex:0 0 auto;padding:9px 14px;border-radius:13px;background:var(--card);
+border:1px solid var(--bd);font-size:12px;font-weight:800;color:var(--mut);white-space:nowrap;
+transition:all .15s}
+.ctab.on{background:linear-gradient(135deg,rgba(0,230,118,.2),rgba(0,230,118,.08));
+border-color:rgba(0,230,118,.55);color:var(--grn)}
+.proj{position:relative;border-radius:17px;padding:14px;margin-bottom:9px;background:var(--card);
+border:1px solid var(--bd);transition:transform .16s,border-color .16s;overflow:hidden}
+.proj:active{transform:scale(.985)}
+.proj.on{border-color:rgba(0,230,118,.6)}
+.proj:before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ac,#00E676);
+opacity:.9}
+.pin{display:flex;align-items:center;gap:11px}
+.pic{width:42px;height:42px;flex:0 0 42px;border-radius:12px;display:grid;place-items:center;
+font-size:19px;font-weight:800;background:#0C1219;border:1px solid var(--bd);color:var(--ac,#00E676)}
+.pnm{font-size:13px;font-weight:800;letter-spacing:-.1px;line-height:1.3}
+.pmt{font-size:10.5px;color:var(--dim);font-weight:700;margin-top:2px}
+.psoon{margin-left:auto;font-size:9px;font-weight:900;padding:4px 8px;border-radius:6px;
+background:rgba(255,179,0,.15);color:#FFC94D;letter-spacing:.5px}
+.ptxt{font-size:11px;color:var(--mut);margin-top:9px;line-height:1.5;
+padding-top:9px;border-top:1px dashed var(--bd)}
 
-.tabs{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(11,14,20,.96);
-backdrop-filter:blur(16px);border-top:1px solid var(--bd);
-padding:7px 4px calc(env(safe-area-inset-bottom) + 7px)}
-.tabsin{display:grid;grid-template-columns:repeat(5,1fr);max-width:640px;margin:0 auto}
-.tab{display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px 2px;
-font-size:9.5px;font-weight:700;color:var(--dim);transition:color .15s}
-.tab .ti{font-size:19px;line-height:1;filter:grayscale(1) opacity(.55);transition:filter .15s,transform .15s}
-.tab.on{color:var(--green)}
-.tab.on .ti{filter:none;transform:translateY(-1px) scale(1.08)}
+/* ---------- term chips + calculator ---------- */
+.terms{display:flex;gap:7px;overflow-x:auto;padding:9px 0 3px;scrollbar-width:none}
+.terms::-webkit-scrollbar{display:none}
+.tm{flex:0 0 auto;padding:8px 13px;border-radius:11px;background:#0C1219;border:1px solid var(--bd);
+font-size:11.5px;font-weight:800;color:var(--mut);white-space:nowrap;transition:all .15s}
+.tm.on{background:linear-gradient(135deg,rgba(0,230,118,.22),rgba(0,230,118,.06));
+border-color:rgba(0,230,118,.6);color:var(--grn);box-shadow:0 0 14px -6px rgba(0,230,118,.9)}
+.calc{background:#0C1219;border:1px solid var(--bd);border-radius:14px;padding:12px;margin-top:10px}
+.crow{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:12px}
+.crow span{color:var(--mut);font-weight:600}
+.crow b{font-weight:800;letter-spacing:-.2px}
+.crow.big b{font-size:16px;color:var(--grn)}
+.amtin{display:flex;gap:8px;align-items:center;margin-top:9px}
+.amtin input{flex:1;min-width:0;background:#0C1219;border:1px solid var(--bd);border-radius:12px;
+padding:11px 12px;font-weight:800;font-size:15px;letter-spacing:-.3px}
+.amtin input:focus{border-color:rgba(0,230,118,.55)}
+.sld{width:100%;height:24px;-webkit-appearance:none;background:transparent;margin:6px 0 0}
+.sld::-webkit-slider-runnable-track{height:5px;border-radius:99px;
+background:linear-gradient(90deg,var(--grn) var(--fill,30%),#1E2833 var(--fill,30%))}
+.sld::-webkit-slider-thumb{-webkit-appearance:none;width:19px;height:19px;border-radius:50%;
+margin-top:-7px;background:#fff;border:3.5px solid var(--grn);box-shadow:0 0 12px rgba(0,230,118,.8)}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+.qb{padding:7px 4px;border-radius:9px;background:#0C1219;border:1px solid var(--bd);
+font-size:11px;font-weight:800;color:var(--mut)}
+.qb:active{background:rgba(0,230,118,.12);color:var(--grn)}
 
-.sheet{position:fixed;inset:0;z-index:80;display:none}
-.sheet.open{display:block}
-.sheet .bg{position:absolute;inset:0;background:rgba(5,7,10,.74);backdrop-filter:blur(4px)}
-.sheet .pan{position:absolute;left:0;right:0;bottom:0;max-height:90vh;overflow-y:auto;
-background:var(--card);border-top:1px solid var(--bd);border-radius:24px 24px 0 0;
-padding:8px 16px calc(env(safe-area-inset-bottom) + 22px);animation:up .26s ease-out}
-@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
-.handle{width:42px;height:4px;border-radius:99px;background:#2b3239;margin:8px auto 14px}
-.sheet h3{margin:0 0 4px;font-size:16px;font-weight:800}
-.sheet p.sub{margin:0 0 14px;font-size:12px;color:var(--dim)}
+/* ---------- task ---------- */
+.task{display:flex;gap:10px;padding:12px;border-radius:15px;background:var(--card);
+border:1px solid var(--bd);margin-bottom:8px}
+.task.done{opacity:.5}
+.tic{width:36px;height:36px;flex:0 0 36px;border-radius:11px;display:grid;place-items:center;
+font-size:16px;background:rgba(0,230,118,.11);border:1px solid rgba(0,230,118,.22)}
+.tt{font-size:12.5px;font-weight:800}
+.td{font-size:11px;color:var(--dim);margin-top:2px;line-height:1.45}
+.tr{font-size:11.5px;font-weight:800;color:var(--grn);margin-top:4px}
+.tbtn{align-self:center;flex:0 0 auto}
 
-.field{margin-bottom:11px}
-.field label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.6px;
-color:var(--dim);font-weight:800;margin-bottom:5px}
-.inp,select.inp,textarea.inp{width:100%;background:#0e1319;border:1px solid var(--bd);border-radius:12px;
-padding:12px;outline:0;font-size:14px;font-weight:600}
-.inp:focus{border-color:rgba(0,230,118,.5);border-width:1px}
-textarea.inp{min-height:80px;resize:vertical;font-weight:500;line-height:1.45}
+/* ---------- tree / refer ---------- */
+.tree{display:flex;flex-direction:column;align-items:center;padding:4px 0}
+.tnode{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:25px;
+background:linear-gradient(150deg,rgba(0,230,118,.24),rgba(0,136,204,.12));
+border:1px solid rgba(0,230,118,.45);box-shadow:0 0 24px -8px rgba(0,230,118,.85)}
+.tstem{width:2px;height:14px;background:linear-gradient(180deg,rgba(0,230,118,.7),rgba(0,230,118,.1))}
+.tlv{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;width:100%}
+.tc{background:#0C1219;border:1px solid var(--bd);border-radius:13px;padding:10px 6px;text-align:center}
+.tc b{display:block;font-size:17px;font-weight:800;letter-spacing:-.5px}
+.tc span{font-size:9px;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);font-weight:800}
+.tc em{display:block;font-style:normal;font-size:10px;color:var(--grn);font-weight:800;margin-top:2px}
+.refl{display:flex;gap:7px;margin-top:9px}
+.refl input{flex:1;min-width:0;background:#0C1219;border:1px solid var(--bd);border-radius:11px;
+padding:10px;font-size:11px;color:var(--mut)}
+.vipr{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid rgba(31,40,51,.8)}
+.vipr:last-child{border-bottom:0}
+.vipd{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:11px;
+font-weight:900;background:rgba(255,179,0,.15);color:#FFC94D;flex:0 0 26px}
+.vipn{font-size:12px;font-weight:800;flex:1}
+.vipm{font-size:10.5px;color:var(--dim);font-weight:700}
 
-.kv{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;
-border-bottom:1px solid rgba(33,38,45,.7);font-size:13px}
+/* ---------- wallet ---------- */
+.kv{display:flex;justify-content:space-between;align-items:center;gap:10px;
+padding:9px 0;border-bottom:1px solid rgba(31,40,51,.75);font-size:12.5px}
 .kv:last-child{border-bottom:0}
 .kv span{color:var(--mut);font-weight:600}
-.kv b{font-weight:800}
-.badge{display:inline-block;padding:3px 8px;border-radius:7px;font-size:10px;font-weight:800;
+.kv b{font-weight:800;letter-spacing:-.1px;text-align:right}
+.txr{display:flex;justify-content:space-between;align-items:center;gap:9px;padding:9px 0;
+border-bottom:1px solid rgba(31,40,51,.75)}
+.txr:last-child{border-bottom:0}
+.txn{font-size:12px;font-weight:800}
+.txd{font-size:10px;color:var(--dim);margin-top:1px}
+.txa{font-size:12.5px;font-weight:800;white-space:nowrap}
+.pos{color:var(--grn)}.neg{color:#FF8A96}
+.badge{display:inline-block;padding:3px 7px;border-radius:6px;font-size:9px;font-weight:900;
 text-transform:uppercase;letter-spacing:.4px}
-.badge.p{background:rgba(255,179,0,.15);color:#ffca4d}
-.badge.a{background:rgba(0,230,118,.15);color:var(--green)}
-.badge.r{background:rgba(255,82,82,.15);color:#ff8a8a}
-.note{font-size:11.5px;color:var(--dim);line-height:1.55}
-.empty{text-align:center;padding:26px 10px;color:var(--dim);font-size:12.5px}
-.empty div{font-size:32px;margin-bottom:8px;opacity:.6}
+.badge.p{background:rgba(255,179,0,.16);color:#FFC94D}
+.badge.a{background:rgba(0,230,118,.16);color:var(--grn)}
+.badge.r{background:rgba(255,77,94,.16);color:#FF8A96}
 
-.tabsbar{display:flex;gap:7px;margin-bottom:12px}
-.tabsbar .tb{flex:1;padding:9px;border-radius:11px;background:var(--card2);border:1px solid var(--bd);
-font-size:12px;font-weight:800;color:var(--mut);text-align:center}
-.tabsbar .tb.on{background:rgba(0,230,118,.14);border-color:rgba(0,230,118,.45);color:var(--green)}
+/* ---------- fields ---------- */
+.fl{margin-bottom:10px}
+.fl label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.6px;
+color:var(--dim);font-weight:900;margin-bottom:4px}
+.inp{width:100%;background:#0C1219;border:1px solid var(--bd);border-radius:11px;padding:11px 12px;
+font-size:13.5px;font-weight:600}
+.inp:focus{border-color:rgba(0,230,118,.55)}
+textarea.inp{min-height:74px;resize:vertical;font-weight:500;line-height:1.5}
+select.inp{appearance:none}
+
+/* ---------- bottom nav ---------- */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(7,10,15,.95);
+backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-top:1px solid var(--bd);
+padding:6px 4px calc(env(safe-area-inset-bottom) + 6px)}
+.navin{display:grid;grid-template-columns:repeat(5,1fr);max-width:600px;margin:0 auto}
+.nb{display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 1px;
+font-size:9px;font-weight:800;color:var(--dim);transition:color .14s;letter-spacing:.1px}
+.nb i{font-size:19px;font-style:normal;line-height:1;filter:grayscale(1) opacity(.55);
+transition:filter .14s,transform .14s}
+.nb.on{color:var(--grn)}
+.nb.on i{filter:none;transform:translateY(-1px) scale(1.1)}
+
+/* ---------- sheet ---------- */
+.sheet{position:fixed;inset:0;z-index:70;display:none}
+.sheet.open{display:block}
+.sheet .bd{position:absolute;inset:0;background:rgba(3,5,8,.76);backdrop-filter:blur(3px)}
+.sheet .pn{position:absolute;left:0;right:0;bottom:0;max-height:90vh;overflow-y:auto;
+-webkit-overflow-scrolling:touch;background:var(--bg2);border-top:1px solid var(--bd);
+border-radius:22px 22px 0 0;padding:7px 15px calc(env(safe-area-inset-bottom) + 20px);
+animation:up .26s cubic-bezier(.2,.9,.3,1)}
+@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.hd{width:40px;height:4px;border-radius:99px;background:#26303C;margin:6px auto 13px}
+.sh3{font-size:15px;font-weight:800;letter-spacing:-.3px;margin-bottom:2px}
+.shp{font-size:11.5px;color:var(--dim);margin-bottom:13px}
+
+/* ---------- toast ---------- */
+#toast{position:fixed;left:50%;bottom:82px;transform:translateX(-50%) translateY(16px);
+background:#1B2430;border:1px solid var(--bd);border-radius:12px;padding:10px 16px;
+font-size:12.5px;font-weight:800;z-index:200;opacity:0;transition:all .25s;pointer-events:none;
+max-width:88vw;text-align:center;box-shadow:0 14px 34px -14px #000}
+.empty{text-align:center;padding:24px 10px;color:var(--dim);font-size:12px}
+.empty div{font-size:29px;margin-bottom:7px;opacity:.55}
+.note{font-size:11px;color:var(--dim);line-height:1.55}
+.skel{height:12px;border-radius:8px;margin:8px 0;
+background:linear-gradient(90deg,#141B24 25%,#1C2530 50%,#141B24 75%);
+background-size:200% 100%;animation:sh 1.3s infinite}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.trust{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin:15px 0 4px}
+.trust span{font-size:8.5px;font-weight:900;letter-spacing:.4px;color:var(--dim);
+border:1px solid var(--bd);border-radius:7px;padding:4px 8px}
+.spin{width:17px;height:17px;border-radius:50%;border:2.5px solid rgba(255,255,255,.2);
+border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;vertical-align:-3px}
+@keyframes rot{to{transform:rotate(360deg)}}
 </style>
 </head>
 <body>
 
 <div class="top"><div class="wrap topin">
-  <div class="brand"><div class="logo" id="hlogo">🌱</div><span id="hbrand">Green Earn</span></div>
-  <div class="hicons">
-    <button class="ib" data-act="lang">🌐</button>
-    <button class="ib hide" id="adminbtn" data-act="admin">🛠</button>
-  </div>
+  <div class="brand"><div class="logo" id="logo">🌱</div><span id="brand">Green Earn</span></div>
+  <div class="spacer"></div>
+  <button class="ib" data-act="wallet">💰</button>
+  <button class="ib" data-act="lang">🌐</button>
+  <button class="ib" data-act="adminSheet" id="admtab" style="display:none">🛠</button>
 </div></div>
 
-<div class="wrap" id="app">
-  <div class="card" style="margin-top:16px">
-    <div style="height:14px;width:60%;border-radius:8px;background:#1b2229;margin-bottom:10px"></div>
-    <div style="height:34px;width:45%;border-radius:10px;background:#1b2229;margin-bottom:12px"></div>
-    <div style="height:12px;width:80%;border-radius:8px;background:#1b2229"></div>
+<div class="wrap">
+
+<!-- ============ HOME ============ -->
+<div id="v-home" class="view">
+  <div class="hero">
+    <div class="hl">Total balance</div>
+    <div class="hb"><span id="hbal">0.00</span> <small>USDT</small></div>
+    <div class="hs"><span id="hvip">Level 1</span> · <span id="hen">0</span> energy</div>
+    <div class="hrow">
+      <div class="hstat"><span>Invested</span><b id="hinv">0.00</b></div>
+      <div class="hstat"><span>Profit</span><b id="hprof">0.00</b></div>
+      <div class="hstat"><span>Active</span><b id="hact">0</b></div>
+    </div>
+  </div>
+
+  <div class="daily" id="dailybox">
+    <div class="dailyin">
+      <div class="dgift">🎁</div>
+      <div style="flex:1;min-width:0">
+        <div class="dt">Daily login bonus</div>
+        <div class="dsub" id="dailysub">Claim once every 24 hours</div>
+      </div>
+      <button class="btn gold sm" id="dailybtn" data-act="claimDaily">Claim</button>
+    </div>
+  </div>
+
+  <div class="sec"><h2>🎁 Gift boxes</h2><small id="boxnote">once per day</small></div>
+  <div class="boxes" id="boxgrid"></div>
+
+  <div class="sec"><h2>🔥 Live events</h2><small>from the team</small></div>
+  <div id="events"></div>
+
+  <div class="sec"><h2>📰 News & new projects</h2><small>latest</small></div>
+  <div id="news"></div>
+
+  <div class="card">
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:6px">📘 How to earn here</div>
+    <div class="note" id="earnbox">Loading…</div>
+    <button class="btn gh" style="margin-top:10px" data-act="earn">Read the full guide</button>
+  </div>
+
+  <div class="trust">
+    <span>🔒 ENCRYPTED</span><span>⛓ SMART CONTRACT</span><span>🏭 ASSET BACKED</span>
   </div>
 </div>
 
-<div class="tabs"><div class="tabsin" style="grid-template-columns:repeat(6,1fr)">
-  <button class="tab on" data-act="tab" data-tab="home"><span class="ti">🏠</span>Home</button>
-  <button class="tab" data-act="tab" data-tab="invest"><span class="ti">📈</span>Invest</button>
-  <button class="tab" data-act="tab" data-tab="tasks"><span class="ti">✅</span>Tasks</button>
-  <button class="tab" data-act="tab" data-tab="team"><span class="ti">🌳</span>Team</button>
-  <button class="tab" data-act="tab" data-tab="wallet"><span class="ti">💳</span>Wallet</button>
-  <button class="tab" data-act="tab" data-tab="me"><span class="ti">👤</span>Profile</button>
-</div></div>
-
-<div class="sheet" id="sh">
-  <div class="bg" data-act="close"></div>
-  <div class="pan"><div class="handle"></div><div id="shbody"></div></div>
+<!-- ============ INVEST ============ -->
+<div id="v-invest" class="view hide">
+  <div class="sec"><h2>📈 Invest</h2><small id="invnote">choose a project</small></div>
+  <div class="cat" id="cattabs"></div>
+  <div id="projlist"></div>
+  <div id="calcwrap"></div>
+  <div class="sec"><h2>🏗 My investments</h2><small id="holdnote">0 active</small></div>
+  <div id="holdings"></div>
 </div>
 
-<div id="errbar" class="hide"></div>
+<!-- ============ TASKS ============ -->
+<div id="v-tasks" class="view hide">
+  <div class="card grad">
+    <div style="display:flex;align-items:center;gap:11px">
+      <div style="font-size:26px">✅</div>
+      <div style="flex:1">
+        <div style="font-size:13.5px;font-weight:800">Daily tasks</div>
+        <div class="note" style="margin-top:1px">Complete and claim instantly</div>
+      </div>
+      <div style="text-align:right">
+        <div style="font-size:15px;font-weight:800;color:var(--grn)" id="taskearn">0.00</div>
+        <div style="font-size:9px;color:var(--dim);font-weight:900">EARNED</div>
+      </div>
+    </div>
+  </div>
+  <div class="cat" id="tasktabs"></div>
+  <div id="tasklist"></div>
+</div>
+
+<!-- ============ REFER ============ -->
+<div id="v-refer" class="view hide">
+  <div class="card grad">
+    <div class="tree">
+      <div class="tnode">🌳</div>
+      <div class="tstem"></div>
+      <div class="tlv">
+        <div class="tc"><b id="tl1">0</b><span>Level 1</span><em id="tp1">10%</em></div>
+        <div class="tc"><b id="tl2">0</b><span>Level 2</span><em id="tp2">5%</em></div>
+        <div class="tc"><b id="tl3">0</b><span>Level 3</span><em id="tp3">2%</em></div>
+      </div>
+    </div>
+    <div class="row2" style="margin-top:12px">
+      <div class="hstat"><span>Team size</span><b id="ttotal">0</b></div>
+      <div class="hstat"><span>Commission</span><b id="tearned">0.00</b></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:6px">🔗 Your referral link</div>
+    <div class="refl">
+      <input id="reflink" readonly value="">
+      <button class="btn pri sm" data-act="copyRef">Copy</button>
+    </div>
+    <div class="row2" style="margin-top:8px">
+      <button class="btn gh" data-act="shareRef">Share on Telegram</button>
+      <button class="btn gh" data-act="treeInfo">How it works</button>
+    </div>
+  </div>
+
+  <div class="sec"><h2>👑 VIP levels</h2><small>by total balance</small></div>
+  <div class="card" id="viplist"></div>
+
+  <div class="card">
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:6px">💸 Commission rules</div>
+    <div class="kv"><span>Level 1 · direct invites</span><b id="rl1">10%</b></div>
+    <div class="kv"><span>Level 2 · friends of friends</span><b id="rl2">5%</b></div>
+    <div class="kv"><span>Level 3 · team node</span><b id="rl3">2%</b></div>
+    <div class="note" style="margin-top:8px">Commission is credited automatically every time someone in your tree receives a profit credit. Level 3 unlocks once your team passes <b id="rl3n">50</b> members.</div>
+  </div>
+</div>
+
+<!-- ============ WALLET ============ -->
+<div id="v-wallet" class="view hide">
+  <div class="hero">
+    <div class="hl">Available balance</div>
+    <div class="hb"><span id="wbal">0.00</span> <small>USDT</small></div>
+    <div class="hs">Invested <b id="winv">0.00</b> · Profit <b id="wprof">0.00</b></div>
+    <div class="row2" style="margin-top:12px;position:relative">
+      <button class="btn pri" data-act="depSheet">📥 Deposit</button>
+      <button class="btn gold" data-act="wdSheet">📤 Withdraw</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:2px">📊 Investment summary</div>
+    <div class="kv"><span>Total ever invested</span><b id="wtotinv">0.00</b></div>
+    <div class="kv"><span>Currently invested</span><b id="wcurinv">0.00</b></div>
+    <div class="kv"><span>Total profit earned</span><b class="pos" id="wprofit">0.00</b></div>
+    <div class="kv"><span>Active contracts</span><b id="wactive">0</b></div>
+    <div class="kv"><span>Referral commission</span><b class="pos" id="wref">0.00</b></div>
+  </div>
+
+  <div class="sec"><h2>📜 Transaction history</h2><small id="txnote">latest 30</small></div>
+  <div class="card" id="txlist"></div>
+
+  <div class="sec"><h2>📥 My deposits</h2><small>admin reviewed</small></div>
+  <div class="card" id="deplist"></div>
+
+  <div class="sec"><h2>📤 My withdrawals</h2><small>admin reviewed</small></div>
+  <div class="card" id="wdlist"></div>
+</div>
+
+<!-- ============ PROFILE ============ -->
+<div id="v-profile" class="view hide">
+  <div class="card grad" style="text-align:center">
+    <div style="width:64px;height:64px;border-radius:20px;margin:0 auto 10px;display:grid;place-items:center;
+    font-size:28px;background:linear-gradient(150deg,rgba(0,230,118,.22),rgba(0,136,204,.12));
+    border:1px solid rgba(0,230,118,.35)" id="pav">👤</div>
+    <div style="font-size:15px;font-weight:800" id="pname">Guest</div>
+    <div class="note" id="puser">@user</div>
+    <div style="margin-top:9px" id="pkyc"></div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:9px">✏️ My details</div>
+    <div class="fl"><label>Display name</label><input class="inp" id="fname" placeholder="Your name"></div>
+    <div class="fl"><label>My wallet address (for withdrawals)</label><input class="inp" id="fwallet" placeholder="USDT / TON address"></div>
+    <button class="btn pri" data-act="saveProfile">Save details</button>
+  </div>
+
+  <div class="card">
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:4px">🪪 Identity verification</div>
+    <div class="note" id="kyctext">Not submitted yet.</div>
+    <div class="fl" style="margin-top:10px"><label>Document ID or link</label>
+      <input class="inp" id="fdoc" placeholder="Paste your document ID / link"></div>
+    <button class="btn gh" data-act="sendKyc">Submit for verification</button>
+  </div>
+
+  <div class="card">
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:2px">📈 My stats</div>
+    <div class="kv"><span>User ID</span><b id="puid">-</b></div>
+    <div class="kv"><span>VIP level</span><b id="pvip">-</b></div>
+    <div class="kv"><span>Total invested</span><b id="ptot">0.00</b></div>
+    <div class="kv"><span>Total profit</span><b class="pos" id="pprof">0.00</b></div>
+    <div class="kv"><span>Team size</span><b id="pteam">0</b></div>
+    <div class="kv"><span>Energy</span><b id="pen">0</b></div>
+  </div>
+
+  <div class="card">
+    <button class="btn gh" data-act="lang">🌐 Change language</button>
+    <div style="height:8px"></div>
+    <button class="btn gh" data-act="support">🤝 Support</button>
+    <div style="height:8px"></div>
+    <button class="btn red" data-act="logout">Log out</button>
+    <div class="note" style="margin-top:8px;text-align:center">Logging out only clears this device. Your balance stays on your account.</div>
+  </div>
+</div>
+
+</div>
+
+<div class="nav"><div class="navin">
+  <button class="nb on" data-tab="home"><i>🏠</i>Home</button>
+  <button class="nb" data-tab="invest"><i>📈</i>Invest</button>
+  <button class="nb" data-tab="tasks"><i>✅</i>Tasks</button>
+  <button class="nb" data-tab="refer"><i>🌳</i>Refer</button>
+  <button class="nb" data-tab="profile"><i>👤</i>Profile</button>
+</div></div>
+
+<div class="sheet" id="sheet">
+  <div class="bd" data-act="closeSheet"></div>
+  <div class="pn"><div class="hd"></div><div id="shbody"></div></div>
+</div>
+
 <div id="toast"></div>
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq45Qjs-fh1QjTsHBU-E52lcu6y5N2YNNgfHN9_gQzORB5ZzLBeAubq2RTfsfXwnGr1MrfzhdjSFEuwfUEj-6QWZZgmaGMO9v3nWRvETDr2GO6Z0rbVFSXZjk382yU6oPc3iT86t-6PnYqCQ_3HaG_ppPmn3bKo_khQFgyKv4gNOqRZkKJ3Gecue4OtnlYNz-Wj_8L";
-var BOT = "greenearnevbot";
-var TG = (window.Telegram && window.Telegram.WebApp) ? window.Telegram.WebApp : null;
-var INIT = TG && TG.initData ? TG.initData : "";
-var ST = {};
-ST.cfg = null;
-ST.u = null;
-ST.tab = "home";
-ST.cat = "";
-ST.term = "";
-ST.co = "";
-ST.amt = 0;
-ST.pw = "";
-ST.adm = null;
-ST.admTab = "main";
-ST.busy = 0;
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq46HdPf3ijSpI5tSetUC4530t05qpA7O9QSxrcf4_sA8Jx-l7DjNGbclz0sqtnacoaDY6iz-VSPK3dKXEhPygtBL1qesetDdd77fexQDZ4OJS9scMf6mWFC8A_8HSZvhSwm3VUPDk_w900uuXUyN0zdLUYsBaYwLod_YAwjB_HLe43bJ-YzhRGxfZdNFP5Guu0A9o";
+var BOTU = "greenearnevbot";
+var TG = null;
+try { if (window.Telegram && window.Telegram.WebApp) { TG = window.Telegram.WebApp; } } catch(e){ TG = null; }
+var INIT = "";
+if (TG && TG.initData) { INIT = TG.initData; }
+
+var S = { "cfg":null, "u":null, "tab":"home", "cat":0, "proj":null, "term":null, "amt":0, "tcat":"all", "adm":null, "pw":"", "busy":false };
 
 function $(id){ return document.getElementById(id); }
-function el(tag, cls){ var d = document.createElement(tag); if(cls) d.className = cls; return d; }
+function E(v){ return String(v === null || v === undefined ? "" : v).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split(String.fromCharCode(34)).join("&quot;"); }
+function M(v){ var n = parseFloat(v); if (isNaN(n)) { n = 0; } return n.toFixed(2); }
+function N(v){ var n = parseFloat(v); if (isNaN(n)) { n = 0; } return "" + Math.round(n); }
+function HAS(){ try { if (TG) { TG.HapticFeedback.impactOccurred("medium"); } } catch(e){} }
+function OKH(){ try { if (TG) { TG.HapticFeedback.notificationOccurred("success"); } } catch(e){} }
+function BADH(){ try { if (TG) { TG.HapticFeedback.notificationOccurred("warning"); } } catch(e){} }
 
-function err(text){
-  var b = $("errbar");
-  if(!b) return;
-  b.className = "";
-  b.style.cssText = "position:fixed;left:10px;right:10px;top:8px;z-index:9000;background:#2a1416;border:1px solid #FF5252;border-radius:12px;padding:10px 12px;font-size:11px;color:#ffb3b3;line-height:1.5;font-family:monospace;word-break:break-all";
-  b.textContent = String(text);
-}
-
-window.onerror = function(m, s, l){
-  err("Error: " + m + " | line " + l);
-  return false;
-};
-
-function esc(v){
-  var s = v === null || v === undefined ? "" : String(v);
-  s = s.split("&").join("&amp;");
-  s = s.split("<").join("&lt;");
-  s = s.split(">").join("&gt;");
-  s = s.split('"').join("&quot;");
-  return s;
-}
-function num(v, d){
-  var n = parseFloat(v);
-  if(isNaN(n)) n = 0;
-  return n.toFixed(d === undefined ? 2 : d);
-}
-function tap(){
-  try{ if(TG && TG.HapticFeedback) TG.HapticFeedback.impactOccurred("medium"); }catch(e){}
-}
-function buzz(){
-  try{ if(TG && TG.HapticFeedback) TG.HapticFeedback.notificationOccurred("warning"); }catch(e){}
-}
-function say(msg, bad){
+function toast(msg, bad){
   var t = $("toast");
-  if(!t) return;
-  t.textContent = String(msg);
-  t.style.cssText = "position:fixed;left:50%;bottom:100px;transform:translateX(-50%);z-index:9500;padding:11px 16px;border-radius:12px;font-size:12.5px;font-weight:700;max-width:88vw;text-align:center;" +
-    "background:" + (bad ? "#3a1a1c" : "#1b2a22") + ";border:1px solid " + (bad ? "rgba(255,82,82,.5)" : "rgba(0,230,118,.45)") + ";color:#fff;transition:opacity .25s";
+  if (!t) { return; }
+  t.innerHTML = E(msg);
+  if (bad) { t.style.borderColor = "rgba(255,77,94,.6)"; } else { t.style.borderColor = "rgba(0,230,118,.55)"; }
   t.style.opacity = "1";
-  clearTimeout(window._tt);
-  window._tt = setTimeout(function(){ t.style.opacity = "0"; }, 2600);
+  t.style.transform = "translateX(-50%) translateY(0)";
+  if (window._tt) { clearTimeout(window._tt); }
+  window._tt = setTimeout(function(){ t.style.opacity = "0"; t.style.transform = "translateX(-50%) translateY(14px)"; }, 2800);
 }
 
-function b64(str){
-  try{
+function closeSheet(){ $("sheet").className = "sheet"; }
+function openS(html){
+  $("shbody").innerHTML = html;
+  $("sheet").className = "sheet open";
+}
+
+function b64str(str){
+  try {
     var bytes = new TextEncoder().encode(str);
     var bin = "";
-    for(var i = 0; i < bytes.length; i++){ bin += String.fromCharCode(bytes[i]); }
+    for (var i = 0; i < bytes.length; i++) { bin += String.fromCharCode(bytes[i]); }
     return btoa(bin);
-  }catch(e){
-    try{ return btoa(unescape(encodeURIComponent(str))); }catch(e2){ return str; }
+  } catch(e) {
+    try { return btoa(unescape(encodeURIComponent(str))); } catch(e2) { return ""; }
   }
+}
+
+function unwrap(j){
+  if (!j || typeof j !== "object") { return { "ok":false, "e":"Empty answer from the server." }; }
+  var p = j;
+  if (j.result !== undefined && j.result !== null) {
+    if (typeof j.result === "string") {
+      try { p = JSON.parse(j.result); } catch(e){ p = j; }
+    } else if (typeof j.result === "object") {
+      p = j.result;
+    }
+  }
+  if (!p || typeof p !== "object") { return { "ok":false, "e":"Empty answer from the server." }; }
+  if (p.ok !== true && !p.e) { p.e = "The server refused this action."; }
+  return p;
 }
 
 function api(action, data, cb){
-  if(!API || API.indexOf("http") !== 0){
-    err("API address missing in the file");
-    if(cb) cb({ok:false, e:"API address missing"});
-    return;
-  }
+  if (!API) { toast("Setup missing: the API link is not in this file", true); if (cb) { cb({ "ok":false, "e":"API missing" }); } return; }
   var inner = {};
   inner["a"] = action;
   inner["init"] = INIT;
   inner["d"] = data || {};
-  var payload;
-  try{
+  var body = "";
+  try {
     var outer = {};
-    outer["p"] = b64(JSON.stringify(inner));
-    payload = JSON.stringify(outer);
-  }catch(e){ payload = JSON.stringify(inner); }
-
-  var finished = 0;
-  var stop = setTimeout(function(){
-    if(finished) return;
-    finished = 1;
-    if(cb) cb({ok:false, e:"The server took too long. Try again."});
-  }, 45000);
-
-  fetch(API, {method:"POST", headers:{"Content-Type":"application/json"}, body:payload})
-    .then(function(r){ return r.text(); })
-    .then(function(txt){
-      if(finished) return;
-      finished = 1;
-      clearTimeout(stop);
-      var raw = null;
-      try{ raw = JSON.parse(txt); }catch(e){ raw = null; }
-      if(!raw || typeof raw !== "object"){
-        if(cb) cb({ok:false, e:"Unexpected answer from the server."});
-        return;
-      }
-      var res = raw;
-      if(raw.result !== undefined && raw.result !== null){
-        if(typeof raw.result === "string"){
-          try{ res = JSON.parse(raw.result); }catch(e){ res = raw; }
-        }else if(typeof raw.result === "object"){
-          res = raw.result;
-        }
-      }
-      if(!res || typeof res !== "object"){ res = {}; }
-      if(!res.ok && !res.e){ res.e = "Request refused."; }
-      if(cb) cb(res);
-    })
-    .catch(function(){
-      if(finished) return;
-      finished = 1;
-      clearTimeout(stop);
-      if(cb) cb({ok:false, e:"Network error. Check your connection."});
-    });
-}
-
-function applyUser(u){
-  if(!u) return;
-  ST.u = u;
-  var b = $("adminbtn");
-  if(b){
-    if(u.is_admin === 1) b.classList.remove("hide");
-    else b.classList.add("hide");
+    outer["p"] = b64str(JSON.stringify(inner));
+    body = JSON.stringify(outer);
+  } catch(e) {
+    body = JSON.stringify(inner);
   }
-}
-
-function refresh(u){
-  applyUser(u);
-  draw();
-}
-
-function act(action, data, okMsg){
-  if(ST.busy) return;
-  ST.busy = 1;
-  api(action, data, function(j){
-    ST.busy = 0;
-    if(!j.ok){
-      buzz();
-      say(j.e || "Something went wrong", true);
-      return;
-    }
-    if(j.r && j.r.u) refresh(j.r.u);
-    if(j.r && j.r.msg) say(j.r.msg);
-    else if(okMsg) say(okMsg);
-    if(j.r && j.r.onDone) draw();
-  });
-}
-
-function boot(){
-  if(TG){
-    try{ TG.ready(); }catch(e){}
-    try{ TG.expand(); }catch(e){}
-    try{ TG.setHeaderColor("#0B0E14"); }catch(e){}
-    try{ TG.setBackgroundColor("#0B0E14"); }catch(e){}
-  }
-  if(!INIT){
-    fatal("Open this app from inside Telegram. Go back to the bot chat and tap the button again.");
-    return;
-  }
-  var d = {};
-  api("boot", d, function(j){
-    if(!j.ok){ fatal(j.e || "Could not load your account."); return; }
-    if(!j.r || !j.r.cfg || !j.r.u){ fatal("The server sent an incomplete answer."); return; }
-    ST.cfg = j.r.cfg;
-    applyUser(j.r.u);
-    if(!ST.term && ST.cfg.terms && ST.cfg.terms.length){ ST.term = ST.cfg.terms[2] ? ST.cfg.terms[2].id : ST.cfg.terms[0].id; }
-    if(!ST.cat && ST.cfg.cats && ST.cfg.cats.length){ ST.cat = ST.cfg.cats[0].id; }
-    draw();
-  });
+  var sent = false;
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", API, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onreadystatechange = function(){
+    if (xhr.readyState !== 4 || sent) { return; }
+    sent = true;
+    var p = null;
+    try { p = unwrap(JSON.parse(xhr.responseText)); } catch(e){ p = { "ok":false, "e":"Bad answer from the server." }; }
+    if (cb) { cb(p); }
+  };
+  try { xhr.send(body); } catch(e) { if (cb) { cb({ "ok":false, "e":"Network error." }); } }
 }
 
 function fatal(msg){
-  var a = $("app");
-  if(!a) return;
-  a.innerHTML = "<div class='card' style='margin-top:40px;text-align:center;padding:26px'>" +
-    "<div style='font-size:40px;margin-bottom:12px'>🔒</div>" +
-    "<div style='font-size:15px;font-weight:800;margin-bottom:8px'>Cannot open the app</div>" +
-    "<div class='note'>" + esc(msg) + "</div></div>";
+  var d = document.createElement("div");
+  d.style.cssText = "position:fixed;inset:0;background:#070A0F;z-index:9999;display:flex;align-items:center;justify-content:center;padding:26px;text-align:center";
+  d.innerHTML = "<div><div style='font-size:40px;margin-bottom:12px'>🔒</div><div style='font-size:15px;font-weight:800;margin-bottom:7px'>Cannot open the app</div><div style='font-size:12.5px;color:#8A97A8;line-height:1.6'>" + E(msg) + "</div></div>";
+  document.body.appendChild(d);
 }
 
-document.addEventListener("click", function(ev){
-  var n = ev.target;
-  var node = null;
-  while(n && n !== document.body){
-    if(n.getAttribute && n.getAttribute("data-act")){ node = n; break; }
-    n = n.parentNode;
+function loadApp(){
+  api("boot", {}, function(j){
+    if (!j.ok) { fatal(j.e || "Could not load your account."); return; }
+    if (!j.r || !j.r.u || !j.r.cfg) { fatal("Incomplete answer from the server."); return; }
+    S.cfg = j.r.cfg;
+    S.u = j.r.u;
+    if (!S.term && S.cfg.terms && S.cfg.terms.length) { S.term = S.cfg.terms[0].id; }
+    if (S.cfg.cats && S.cfg.cats.length) {
+      if (!S.proj) {
+        var first = S.cfg.cats[0];
+        if (first.com && first.com.length) { S.proj = first.com[0].id; }
+      }
+    }
+    paint();
+  });
+}
+
+function applyU(u){
+  if (!u) { return; }
+  S.u = u;
+  paint();
+}
+
+/* ---------------- paint ---------------- */
+function paint(){
+  if (!S.cfg || !S.u) { return; }
+  var c = S.cfg, u = S.u;
+  $("brand").innerHTML = E(c.brand);
+  $("logo").innerHTML = E(c.logo);
+  $("admtab").style.display = (u.is_admin === 1) ? "grid" : "none";
+  $("hbal").innerHTML = M(u.bal);
+  $("hvip").innerHTML = E(u.vip);
+  $("hen").innerHTML = N(u.energy);
+  $("hinv").innerHTML = M(u.invest);
+  $("hprof").innerHTML = M(u.profit);
+  $("hact").innerHTML = N(u.active);
+  $("wbal").innerHTML = M(u.bal);
+  $("winv").innerHTML = M(u.invest);
+  $("wprof").innerHTML = M(u.profit);
+  $("wtotinv").innerHTML = M(u.total_invested);
+  $("wcurinv").innerHTML = M(u.invest);
+  $("wprofit").innerHTML = M(u.profit);
+  $("wactive").innerHTML = N(u.active);
+  $("wref").innerHTML = M(u.ref_earned);
+  $("pname").innerHTML = E(u.name || "Guest");
+  $("puser").innerHTML = u.user ? ("@" + E(u.user)) : "no username";
+  $("puid").innerHTML = E(u.uid);
+  $("pvip").innerHTML = E(u.vip);
+  $("ptot").innerHTML = M(u.total_invested);
+  $("pprof").innerHTML = M(u.profit);
+  $("pteam").innerHTML = N(u.team.total);
+  $("pen").innerHTML = N(u.energy);
+  if ($("fname")) { $("fname").value = u.name || ""; }
+  if ($("fwallet")) { $("fwallet").value = u.wallet || ""; }
+  paintDaily();
+  paintBoxes();
+  paintNews();
+  paintEvents();
+  paintEarn();
+  paintCats();
+  paintProjects();
+  paintHoldings();
+  paintTasks();
+  paintRefer();
+  paintTx();
+  paintDeps();
+  paintKyc();
+}
+
+function paintDaily(){
+  var b = $("dailybtn");
+  if (!b) { return; }
+  if (S.u.daily_done === 1) {
+    b.innerHTML = "Claimed";
+    b.setAttribute("disabled", "1");
+    $("dailysub").innerHTML = "Come back tomorrow for the next one";
+  } else {
+    b.innerHTML = "Claim " + M(S.cfg.daily);
+    b.removeAttribute("disabled");
+    $("dailysub").innerHTML = "Available now · " + M(S.cfg.daily) + " USDT";
   }
-  if(!node) return;
-  var a = node.getAttribute("data-act");
-  tap();
-  try{
-    route(a, node);
-  }catch(e){
-    err("Click error: " + (e && e.message ? e.message : e));
+}
+
+function paintBoxes(){
+  var bx = S.u.boxes || [], out = "";
+  for (var i = 0; i < bx.length; i++) {
+    var b = bx[i];
+    var cls = "box";
+    var lab = "tap to open";
+    if (b.opened === 1) { cls += " lock"; lab = "opened"; }
+    else if (b.locked === 1) { cls += " lock"; lab = "locked"; }
+    else { cls += " ready"; }
+    out += "<div class='" + cls + "' data-box='" + E(b.id) + "' id='bx" + E(b.id) + "'>" +
+      "<span class='bem'>" + E(b.emoji) + "</span>" +
+      "<span class='bnm'>" + E(b.name) + "</span>" +
+      "<span class='bsm'>" + E(lab) + "</span></div>";
   }
-});
-
-function route(a, node){
-  var v = node.getAttribute("data-v");
-  if(a === "tab"){ ST.tab = v; ST.co = ""; draw(); return; }
-  if(a === "cat"){ ST.cat = v; ST.co = ""; draw(); return; }
-  if(a === "co"){ ST.co = v; ST.amt = 0; draw(); return; }
-  if(a === "back"){ ST.co = ""; draw(); return; }
-  if(a === "term"){ ST.term = v; draw(); return; }
-  if(a === "daily"){ api("daily", {}, afterGain); return; }
-  if(a === "box"){ api("box", {id:v}, afterGain); return; }
-  if(a === "invest"){ doInvest(); return; }
-  if(a === "task"){ doTask(v); return; }
-  if(a === "lang"){ openLang(); return; }
-  if(a === "setlang"){ api("lang", {lang:v}, function(j){ if(j.ok){ closeSheet(); refresh(j.r.u); } else buzz(); }); return; }
-  if(a === "wallet"){ openWallet(); return; }
-  if(a === "deposit"){ openDeposit(); return; }
-  if(a === "depnew"){ doDeposit(); return; }
-  if(a === "proof"){ openProof(v); return; }
-  if(a === "proofsend"){ doProof(v); return; }
-  if(a === "withdraw"){ openWithdraw(); return; }
-  if(a === "wdnew"){ doWithdraw(); return; }
-  if(a === "profile"){ openProfile(); return; }
-  if(a === "profilesave"){ doProfile(); return; }
-  if(a === "kyc"){ openKyc(); return; }
-  if(a === "kycsave"){ doKyc(); return; }
-  if(a === "history"){ openHistory(); return; }
-  if(a === "close"){ closeSheet(); return; }
-  if(a === "admin"){ openAdmin(); return; }
-  if(a === "admlogin"){ doAdminLogin(); return; }
-  if(a === "admtab"){ ST.admTab = v; renderAdmin(); return; }
-  if(a === "admsave"){ adminSave(node); return; }
-  if(a === "admecon"){ adminEcon(node); return; }
-  if(a === "admadd"){ adminAdd(v); return; }
-  if(a === "admdel"){ adminDel(v); return; }
-  if(a === "admdecide"){ adminDecide(node); return; }
-  if(a === "admuser"){ adminUser(); return; }
-  if(a === "admbal"){ adminBal(node); return; }
-  if(a === "copy"){ doCopy(v); return; }
-  if(a === "share"){ doShare(); return; }
-  if(a === "chan"){ openLink(ST.cfg.channel); return; }
+  if (!out) { out = "<div class='empty' style='grid-column:1/-1'><div>🎁</div>No boxes yet.</div>"; }
+  $("boxgrid").innerHTML = out;
 }
 
-function afterGain(j){
-  if(!j.ok){ buzz(); say(j.e || "Not available", true); return; }
-  if(j.r && j.r.gain !== undefined){ say("+" + num(j.r.gain) + " USDT added"); }
-  else if(j.r && j.r.win !== undefined){ say("You won " + num(j.r.win) + " USDT"); }
-  if(j.r && j.r.u) refresh(j.r.u);
-}
-
-function closeSheet(){
-  var s = $("sh");
-  if(s) s.classList.remove("open");
-}
-function openSheet(html){
-  var b = $("shbody");
-  if(b) b.innerHTML = html;
-  var s = $("sh");
-  if(s) s.classList.add("open");
-}
-
-function openLink(url){
-  if(!url) return;
-  try{
-    if(TG && TG.openTelegramLink && url.indexOf("t.me") > -1) TG.openTelegramLink(url);
-    else if(TG && TG.openLink) TG.openLink(url);
-    else window.open(url, "_blank");
-  }catch(e){ window.open(url, "_blank"); }
-}
-
-function doCopy(v){
-  try{ navigator.clipboard.writeText(v); }catch(e){}
-  say("Copied");
-}
-function doShare(){
-  var link = "https://t.me/" + BOT + "?startapp=" + (ST.u ? ST.u.uid : "");
-  var txt = "Join me on Green Earn and earn daily from solar, EV and AI projects.";
-  var sh = "https://t.me/share/url?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(txt);
-  openLink(sh);
-}
-
-function vipName(){
-  var vs = ST.cfg.vip || [];
-  var b = ST.u ? parseFloat(ST.u.bal) : 0;
-  var nm = "Level 1";
-  for(var i = 0; i < vs.length; i++){
-    if(b >= parseFloat(vs[i].min || 0)) nm = vs[i].name;
+function paintNews(){
+  var list = S.cfg.news || [], out = "";
+  for (var i = list.length - 1; i >= 0; i--) {
+    var n = list[i];
+    if (n.on === 0) { continue; }
+    out += "<div class='news'>";
+    if (n.img) { out += "<img class='newsimg' src='" + E(n.img) + "' alt='' loading='lazy'>"; }
+    out += "<div class='newsb'><span class='pill nw'>News</span><div class='newst'>" + E(n.title) + "</div><div class='newsx'>" + E(n.text) + "</div></div></div>";
   }
-  return nm;
+  if (!out) { out = "<div class='empty'><div>📰</div>No news yet.</div>"; }
+  $("news").innerHTML = out;
 }
 
-function draw(){
-  if(!ST.cfg || !ST.u) return;
-  $("hbrand").textContent = ST.cfg.brand || "Green Earn";
-  $("hlogo").textContent = ST.cfg.logo || "🌱";
-  var tabs = document.querySelectorAll(".tab");
-  for(var i = 0; i < tabs.length; i++){
-    if(tabs[i].getAttribute("data-tab") === ST.tab) tabs[i].className = "tab on";
-    else tabs[i].className = "tab";
+function paintEvents(){
+  var list = S.cfg.events || [], out = "";
+  for (var i = list.length - 1; i >= 0; i--) {
+    var n = list[i];
+    if (n.on === 0) { continue; }
+    out += "<div class='news'>";
+    if (n.img) { out += "<img class='newsimg' src='" + E(n.img) + "' alt='' loading='lazy'>"; }
+    out += "<div class='newsb'><span class='pill ev'>Event</span><div class='newst'>" + E(n.title) + "</div><div class='newsx'>" + E(n.text) + "</div></div></div>";
   }
-  var a = $("app");
-  if(!a) return;
-  if(ST.tab === "home") a.innerHTML = viewHome();
-  else if(ST.tab === "invest") a.innerHTML = viewInvest();
-  else if(ST.tab === "tasks") a.innerHTML = viewTasks();
-  else if(ST.tab === "team") a.innerHTML = viewTeam();
-  else if(ST.tab === "wallet") a.innerHTML = viewWallet();
-  else a.innerHTML = viewProfile();
+  if (!out) { out = "<div class='empty'><div>🔥</div>No events running.</div>"; }
+  $("events").innerHTML = out;
+}
+
+function paintEarn(){
+  var e = S.cfg.earn || "";
+  var tmp = document.createElement("div");
+  tmp.innerHTML = e;
+  var txt = tmp.textContent || "";
+  if (txt.length > 200) { txt = txt.substring(0, 200) + "..."; }
+  $("earnbox").innerHTML = E(txt);
+}
+
+function paintCats(){
+  var cats = S.cfg.cats || [], out = "";
+  for (var i = 0; i < cats.length; i++) {
+    var on = (i === S.cat) ? " on" : "";
+    out += "<button class='ctab" + on + "' data-cat='" + i + "'>" + E(cats[i].emoji) + " " + E(cats[i].name) + "</button>";
+  }
+  $("cattabs").innerHTML = out;
+}
+
+function curCat(){
+  var cats = S.cfg.cats || [];
+  if (S.cat === null || S.cat >= cats.length) { return null; }
+  return cats[S.cat];
+}
+
+function curProj(){
+  var cat = curCat();
+  if (!cat) { return null; }
+  for (var i = 0; i < cat.com.length; i++) { if (cat.com[i].id === S.proj) { return cat.com[i]; } }
+  return null;
+}
+
+function paintProjects(){
+  var cat = curCat();
+  var box = $("projlist");
+  if (!cat) { box.innerHTML = "<div class='empty'><div>📁</div>No categories yet.</div>"; return; }
+  var out = "";
+  for (var i = 0; i < cat.com.length; i++) {
+    var p = cat.com[i];
+    var on = (p.id === S.proj) ? " on" : "";
+    var soon = (p.soon === 1) ? "<span class='psoon'>SOON</span>" : "";
+    out += "<div class='proj" + on + "' style='--ac:" + E(p.color) + "' data-proj='" + E(p.id) + "'>" +
+      "<div class='pin'><div class='pic'>" + E(p.sym) + "</div>" +
+      "<div style='min-width:0'><div class='pnm'>" + E(p.name) + "</div>" +
+      "<div class='pmt'>min " + M(p.min) + " USDT</div></div>" + soon + "</div>";
+    if (p.id === S.proj && p.text) { out += "<div class='ptxt'>" + E(p.text) + "</div>"; }
+    out += "</div>";
+  }
+  if (!out) { out = "<div class='empty'><div>📈</div>No projects here yet.</div>"; }
+  box.innerHTML = out;
+  paintCalc();
+}
+
+function termDays(tid){
+  var ts = S.cfg.terms || [];
+  for (var i = 0; i < ts.length; i++) { if (ts[i].id === tid) { return ts[i].d; } }
+  return 1;
+}
+
+function rateOf(p, tid){
+  var r = p.y[tid];
+  if (r === undefined || r === null) { return 0; }
+  var n = parseFloat(r);
+  if (isNaN(n)) { return 0; }
+  return n;
+}
+
+function paintCalc(){
+  var wrap = $("calcwrap");
+  var p = curProj();
+  if (!p) { wrap.innerHTML = ""; return; }
+  $("invnote").innerHTML = E(p.short || p.name);
+  if (p.soon === 1) {
+    wrap.innerHTML = "<div class='card' style='text-align:center'><div style='font-size:30px'>🚀</div><div style='font-size:13px;font-weight:800;margin-top:6px'>Coming soon</div><div class='note' style='margin-top:4px'>This project is not open for investment yet.</div></div>";
+    return;
+  }
+  var ts = S.cfg.terms || [];
+  var chips = "";
+  for (var i = 0; i < ts.length; i++) {
+    var t = ts[i];
+    var on = (t.id === S.term) ? " on" : "";
+    chips += "<button class='tm" + on + "' data-term='" + E(t.id) + "'>" + E(t.n) + "</button>";
+  }
+  var rate = rateOf(p, S.term);
+  var days = termDays(S.term);
+  var mn = parseFloat(p.min);
+  if (isNaN(mn) || mn <= 0) { mn = 10; }
+  var bal = parseFloat(S.u.bal);
+  if (isNaN(bal)) { bal = 0; }
+  var top = mn * 20;
+  if (bal > top) { top = bal; }
+  if (top < 100) { top = 100; }
+  var amt = parseFloat(S.amt);
+  if (isNaN(amt) || amt < mn) { amt = mn; }
+  if (amt > bal && bal >= mn) { amt = bal; }
+  S.amt = amt;
+  var daily = amt * rate / 100;
+  var total = daily * days;
+  var after = bal - amt;
+  var fill = ((amt - mn) / (top - mn)) * 100;
+  if (fill < 4) { fill = 4; }
+  if (fill > 100) { fill = 100; }
+  var html = "<div class='card grad'>" +
+    "<div style='font-size:12.5px;font-weight:800;margin-bottom:2px'>" + E(p.name) + "</div>" +
+    "<div class='note'>Pick a term, enter an amount, and see your profit before you confirm.</div>" +
+    "<div class='terms'>" + chips + "</div>" +
+    "<div class='amtin'>" +
+      "<input id='amtin' type='number' inputmode='decimal' step='1' value='" + amt.toFixed(2) + "'>" +
+      "<button class='btn pri' style='width:auto;flex:0 0 auto;padding:11px 16px' data-act='doInvest'>Invest</button>" +
+    "</div>" +
+    "<input type='range' class='sld' id='amtsl' min='" + mn + "' max='" + top + "' step='1' value='" + amt + "' style='--fill:" + fill.toFixed(1) + "%'>" +
+    "<div class='quick'>" +
+      "<button class='qb' data-add='10'>+10</button>" +
+      "<button class='qb' data-add='50'>+50</button>" +
+      "<button class='qb' data-add='100'>+100</button>" +
+      "<button class='qb' data-max='1'>MAX</button>" +
+    "</div>" +
+    "<div class='calc'>" +
+      "<div class='crow'><span>Daily rate</span><b>" + M(rate) + " %</b></div>" +
+      "<div class='crow'><span>Profit per day</span><b class='pos'>" + M(daily) + " USDT</b></div>" +
+      "<div class='crow'><span>Term length</span><b>" + N(days) + " days</b></div>" +
+      "<div class='crow'><span>Total profit</span><b class='pos'>" + M(total) + " USDT</b></div>" +
+      "<div class='crow'><span>Your balance now</span><b>" + M(bal) + " USDT</b></div>" +
+      "<div class='crow big'><span>Balance after investing</span><b>" + M(after) + " USDT</b></div>" +
+    "</div>" +
+    "<div class='note' style='margin-top:9px'>Profit is credited to your wallet every 24 hours. Your invested amount is locked for the term you choose.</div>" +
+  "</div>";
+  wrap.innerHTML = html;
+}
+
+function paintHoldings(){
+  var hs = S.u.holdings || [], out = "", act = 0;
+  var now = Math.floor(Date.now() / 1000);
+  for (var i = 0; i < hs.length; i++) {
+    var h = hs[i];
+    if (h.done === 1) {
+      out += "<div class='card' style='opacity:.62;padding:11px'><div style='display:flex;justify-content:space-between;gap:8px'>" +
+        "<div><div style='font-size:12px;font-weight:800'>" + E(h.name) + "</div>" +
+        "<div class='note'>completed · earned " + M(h.earn) + " USDT</div></div>" +
+        "<span class='badge a'>done</span></div></div>";
+    } else {
+      act = act + 1;
+      var span = h.end - h.start;
+      if (span < 1) { span = 1; }
+      var prog = ((now - h.start) / span) * 100;
+      if (prog < 0) { prog = 0; }
+      if (prog > 100) { prog = 100; }
+      var left = Math.ceil((h.end - now) / 86400);
+      if (left < 0) { left = 0; }
+      out += "<div class='card' style='padding:12px'><div style='display:flex;justify-content:space-between;gap:8px;align-items:flex-start'>" +
+        "<div style='min-width:0'><div style='font-size:12.5px;font-weight:800'>" + E(h.name) + "</div>" +
+        "<div class='note'>" + M(h.amt) + " USDT · " + M(h.rate) + "%/day · " + N(left) + "d left</div></div>" +
+        "<div style='text-align:right'><div style='font-size:13px;font-weight:800;color:var(--grn)'>+" + M(h.earn) + "</div>" +
+        "<div style='font-size:9px;color:var(--dim);font-weight:800'>EARNED</div></div></div>" +
+        "<div style='height:5px;border-radius:99px;background:#1B2430;margin-top:9px;overflow:hidden'>" +
+        "<div style='height:5px;width:" + prog.toFixed(0) + "%;background:linear-gradient(90deg,#00E676,#0088CC);border-radius:99px'></div></div></div>";
+    }
+  }
+  if (!out) { out = "<div class='empty'><div>🏗</div>No investment yet.<br>Pick a project above to start.</div>"; }
+  $("holdings").innerHTML = out;
+  $("holdnote").innerHTML = act + " active";
+}
+
+/* ---------------- tasks ---------------- */
+function paintTasks(){
+  var ts = S.u.tasks || [], out = "", earned = 0;
+  var cats = [];
+  cats.push({ "id":"all", "n":"All" });
+  for (var i = 0; i < ts.length; i++) {
+    var f = 0;
+    for (var k = 0; k < cats.length; k++) { if (cats[k].id === ts[i].cat) { f = 1; } }
+    if (!f) { cats.push({ "id":ts[i].cat, "n":ts[i].cat }); }
+  }
+  var ct = "";
+  for (var c = 0; c < cats.length; c++) {
+    var on = (cats[c].id === S.tcat) ? " on" : "";
+    ct += "<button class='ctab" + on + "' data-tcat='" + E(cats[c].id) + "'>" + E(cats[c].n) + "</button>";
+  }
+  $("tasktabs").innerHTML = ct;
+  for (var j = 0; j < ts.length; j++) {
+    var t = ts[j];
+    if (t.active === 0) { continue; }
+    if (S.tcat !== "all" && t.cat !== S.tcat) { continue; }
+    if (t.done === 1) { earned = earned + t.reward; }
+    var btn = "";
+    if (t.done === 1) { btn = "<span class='badge a'>done</span>"; }
+    else { btn = "<button class='btn pri sm' data-task='" + E(t.id) + "'>Claim</button>"; }
+    out += "<div class='task" + (t.done === 1 ? " done" : "") + "'>" +
+      "<div class='tic'>✅</div>" +
+      "<div style='flex:1;min-width:0'><div class='tt'>" + E(t.title) + "</div>" +
+      "<div class='td'>" + E(t.desc) + "</div>" +
+      "<div class='tr'>+" + M(t.reward) + " USDT" + (t.energy > 0 ? (" · +" + N(t.energy) + " energy") : "") + "</div></div>" +
+      "<div class='tbtn'>" + btn + "</div></div>";
+  }
+  if (!out) { out = "<div class='empty'><div>✅</div>No tasks here right now.</div>"; }
+  $("tasklist").innerHTML = out;
+  $("taskearn").innerHTML = M(earned);
+}
+
+/* ---------------- refer ---------------- */
+function paintRefer(){
+  var u = S.u;
+  var link = "https://t.me/" + BOTU + "?startapp=" + u.ref_code;
+  $("reflink").value = link;
+  $("tl1").innerHTML = N(u.team.l1);
+  $("tl2").innerHTML = N(u.team.l2);
+  $("tl3").innerHTML = N(u.team.l3);
+  $("ttotal").innerHTML = N(u.team.total);
+  $("tearned").innerHTML = M(u.ref_earned);
+  $("tp1").innerHTML = M(S.cfg.ref.l1) + "%";
+  $("tp2").innerHTML = M(S.cfg.ref.l2) + "%";
+  $("tp3").innerHTML = M(S.cfg.ref.l3) + "%";
+  $("rl1").innerHTML = M(S.cfg.ref.l1) + "%";
+  $("rl2").innerHTML = M(S.cfg.ref.l2) + "%";
+  $("rl3").innerHTML = M(S.cfg.ref.l3) + "%";
+  $("rl3n").innerHTML = N(S.cfg.ref.l3team);
+  var vs = S.cfg.vip || [], out = "";
+  var bal = parseFloat(u.bal);
+  if (isNaN(bal)) { bal = 0; }
+  for (var i = 0; i < vs.length; i++) {
+    var v = vs[i];
+    var cur = 0;
+    if (bal >= v.min) { cur = 1; }
+    out += "<div class='vipr'><div class='vipd'>" + (i + 1) + "</div>" +
+      "<div class='vipn'>" + E(v.name) + "</div>" +
+      "<div class='vipm'>" + (cur ? "<span class='badge a'>reached</span>" : (M(v.min) + " USDT")) + "</div></div>";
+  }
+  if (!out) { out = "<div class='note'>No VIP levels configured.</div>"; }
+  $("viplist").innerHTML = out;
+}
+
+/* ---------------- wallet lists ---------------- */
+function txName(k){
+  var m = { "signup_bonus":"Sign-up bonus", "daily_bonus":"Daily bonus", "yield":"Profit credit",
+    "invest":"Investment", "deposit":"Deposit", "withdraw":"Withdrawal", "withdraw_paid":"Payout",
+    "withdraw_refund":"Withdrawal refund", "task":"Task reward", "gift":"Gift box",
+    "admin_adjust":"Admin adjustment", "ref_l1":"L1 commission", "ref_l2":"L2 commission",
+    "ref_l3":"L3 commission", "ref_signup":"Referral bonus" };
+  var r = m[k];
+  if (!r) { return k; }
+  return r;
+}
+
+function paintTx(){
+  var tx = S.u.tx || [], out = "";
+  for (var i = 0; i < tx.length; i++) {
+    var t = tx[i];
+    var pos = (t.a >= 0);
+    var d = "";
+    try { d = new Date(t.t * 1000).toLocaleDateString(); } catch(e){ d = ""; }
+    out += "<div class='txr'><div style='min-width:0'><div class='txn'>" + E(txName(t.k)) + "</div>" +
+      "<div class='txd'>" + E(t.n) + (d ? (" · " + E(d)) : "") + "</div></div>" +
+      "<div class='txa " + (pos ? "pos" : "neg") + "'>" + (pos ? "+" : "") + M(t.a) + "</div></div>";
+  }
+  if (!out) { out = "<div class='empty'><div>📜</div>No transactions yet.</div>"; }
+  $("txlist").innerHTML = out;
+}
+
+function paintDeps(){
+  var ds = S.u.deposits || [], out = "";
+  for (var i = ds.length - 1; i >= 0; i--) {
+    var d = ds[i];
+    var b = "<span class='badge p'>pending</span>";
+    if (d.status === "approved") { b = "<span class='badge a'>approved</span>"; }
+    if (d.status === "rejected") { b = "<span class='badge r'>rejected</span>"; }
+    out += "<div class='kv'><span>dep" + E(d.id) + " · " + E(d.net) + "</span><b>" + M(d.amount) + " " + b + "</b></div>";
+  }
+  if (!out) { out = "<div class='note'>No deposit requests yet.</div>"; }
+  $("deplist").innerHTML = out;
+  var ws = S.u.withdrawals || [], o2 = "";
+  for (var k = ws.length - 1; k >= 0; k--) {
+    var w = ws[k];
+    var b2 = "<span class='badge p'>pending</span>";
+    if (w.status === "paid") { b2 = "<span class='badge a'>paid</span>"; }
+    if (w.status === "rejected") { b2 = "<span class='badge r'>rejected</span>"; }
+    o2 += "<div class='kv'><span>wd" + E(w.id) + "</span><b>" + M(w.amount) + " " + b2 + "</b></div>";
+  }
+  if (!o2) { o2 = "<div class='note'>No withdrawal requests yet.</div>"; }
+  $("wdlist").innerHTML = o2;
+}
+
+function paintKyc(){
+  var s = S.u.kyc;
+  var b = "";
+  if (s === "verified") { b = "<span class='badge a'>verified</span>"; }
+  else if (s === "pending") { b = "<span class='badge p'>under review</span>"; }
+  else if (s === "rejected") { b = "<span class='badge r'>rejected</span>"; }
+  else { b = "<span class='badge p'>not verified</span>"; }
+  $("pkyc").innerHTML = b;
+  var t = "Not submitted yet. Add a document ID to get verified.";
+  if (s === "pending") { t = "Your document is with the admin for review."; }
+  if (s === "verified") { t = "Your identity is verified. Thank you."; }
+  if (s === "rejected") { t = "Rejected: " + (S.u.kyc_note || "please resubmit."); }
+  $("kyctext").innerHTML = E(t);
+}
+
+/* ---------------- sheets ---------------- */
+function sheetDep(){
+  var pay = S.cfg.pay || [];
+  if (!pay.length) {
+    openS("<div class='sh3'>Deposit</div><div class='shp'>No deposit method yet</div><div class='empty'><div>🏦</div>An admin has not added a deposit method.</div><button class='btn gh' data-act='closeSheet'>Close</button>");
+    return;
+  }
+  var opts = "";
+  for (var i = 0; i < pay.length; i++) {
+    if (pay[i].on === 0) { continue; }
+    opts += "<option value='" + E(pay[i].id) + "'>" + E(pay[i].name) + "</option>";
+  }
+  var h = "<div class='sh3'>📥 Deposit USDT</div><div class='shp'>Minimum " + M(S.cfg.minidep) + " USDT</div>" +
+    "<div class='fl'><label>Method</label><select class='inp' id='dnet'>" + opts + "</select></div>" +
+    "<div class='fl'><label>Amount (USDT)</label><input class='inp' id='damt' type='number' inputmode='decimal' value='" + M(S.cfg.minidep) + "'></div>" +
+    "<button class='btn pri' data-act='makeDep'>Create deposit request</button>" +
+    "<div class='note' style='margin-top:9px'>Send the exact amount to the address you are given, then submit the transaction hash or a screenshot link as proof. An admin reviews it and your wallet is credited.</div>";
+  openS(h);
+}
+
+function sheetWd(){
+  var pay = S.cfg.pay || [], opts = "";
+  for (var i = 0; i < pay.length; i++) { opts += "<option value='" + E(pay[i].name) + "'>" + E(pay[i].name) + "</option>"; }
+  var h = "<div class='sh3'>📤 Withdraw USDT</div><div class='shp'>Available " + M(S.u.bal) + " USDT</div>" +
+    "<div class='fl'><label>Amount (USDT)</label><input class='inp' id='wamt' type='number' inputmode='decimal' value='" + M(S.cfg.miniwd) + "'></div>" +
+    "<div class='fl'><label>Network</label><select class='inp' id='wnet'>" + opts + "</select></div>" +
+    "<div class='fl'><label>Your wallet address</label><input class='inp' id='waddr' placeholder='paste your address' value='" + E(S.u.wallet) + "'></div>" +
+    "<button class='btn pri' data-act='doWd'>Request withdrawal</button>" +
+    "<div class='note' style='margin-top:9px'>Minimum " + M(S.cfg.miniwd) + " USDT · fee " + M(S.cfg.wdfee) + "%. The amount is held from your balance while an admin reviews it, and returned if it is rejected.</div>";
+  openS(h);
+}
+
+function sheetLang(){
+  var ls = S.cfg.langs || [], out = "<div class='sh3'>🌐 Language</div><div class='shp'>Choose your language</div><div class='row2'>";
+  for (var i = 0; i < ls.length; i++) {
+    out += "<button class='btn gh' data-lang='" + E(ls[i].c) + "'>" + E(ls[i].f) + " " + E(ls[i].n) + "</button>";
+  }
+  out += "</div>";
+  openS(out);
+}
+
+function sheetEarn(){
+  openS("<div class='sh3'>📘 How to earn</div><div class='shp'>Everything explained</div><div class='note' style='font-size:12px;line-height:1.7'>" + (S.cfg.earn || "") + "</div><div style='height:12px'></div><button class='btn gh' data-act='closeSheet'>Got it</button>");
+}
+
+function sheetSupport(){
+  var h = "<div class='sh3'>🤝 Support</div><div class='shp'>We reply as fast as we can</div>" +
+    "<div class='kv'><span>Channel</span><b>" + E(S.cfg.channel) + "</b></div>" +
+    "<div class='kv'><span>Support</span><b>" + E(S.cfg.support) + "</b></div>" +
+    "<div style='height:11px'></div><button class='btn gh' data-act='closeSheet'>Close</button>";
+  openS(h);
+}
+
+function sheetTree(){
+  var r = S.cfg.ref;
+  var h = "<div class='sh3'>🌳 Tree network</div><div class='shp'>Three levels of commission</div>" +
+    "<div class='kv'><span>Level 1 · direct invites</span><b>" + M(r.l1) + "%</b></div>" +
+    "<div class='kv'><span>Level 2 · friends of friends</span><b>" + M(r.l2) + "%</b></div>" +
+    "<div class='kv'><span>Level 3 · team node</span><b>" + M(r.l3) + "%</b></div>" +
+    "<div class='note' style='margin-top:11px'>Level 1 pays on every profit credit your direct invites receive. Level 2 pays on the profit of the people they invited. Level 3 unlocks once your total team passes " + N(r.l3team) + " members. Commission is credited automatically with nothing to claim.</div>" +
+    "<div style='height:11px'></div><button class='btn gh' data-act='closeSheet'>Close</button>";
+  openS(h);
+}
+
+/* ---------------- admin ---------------- */
+function adminShell(){
+  if (!S.adm) { return adminLogin(); }
+  var secs = [["econ","Economy"],["terms","Terms"],["cats","Projects"],["news","News"],["events","Events"],["tasks","Tasks"],["boxes","Boxes"],["pay","Deposits"],["vip","VIP"],["texts","Branding"],["users","Users"],["deps","Deposits review"],["wds","Withdrawals"],["kyc","KYC"]];
+  var nav = "";
+  for (var i = 0; i < secs.length; i++) {
+    nav += "<button class='ctab" + (S.asec === secs[i][0] ? " on" : "") + "' data-asec='" + secs[i][0] + "'>" + secs[i][1] + "</button>";
+  }
+  return "<div class='sh3'>🛠 Admin panel</div><div class='shp'>" + N(S.adm.users) + " users · every field saves to the bot</div>" +
+    "<div class='cat'>" + nav + "</div><div id='adbody'>" + adminBody() + "</div>";
+}
+
+function adminLogin(){
+  return "<div class='sh3'>🛠 Admin login</div><div class='shp'>Enter the admin password from your bot</div>" +
+    "<div class='fl'><label>Password</label><input class='inp' id='apw' type='password' placeholder='admin password'></div>" +
+    "<button class='btn pri' data-act='admLogin'>Unlock panel</button>" +
+    "<div class='note' style='margin-top:9px'>Only the bot owner's Telegram account can open this panel.</div>";
+}
+
+function adminSave(sec, val){
+  HAS();
+  api("adm", { "sec":sec, "val":val }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast("Saved");
+    if (j.r && j.r.adm) { S.adm = j.r.adm; }
+    if (j.u) { S.u = j.u; }
+    if (j.r && j.r.cfg) { S.cfg = j.r.cfg; }
+    paint();
+    $("adbody").innerHTML = adminBody();
+  });
+}
+
+function adminBody(){
+  var s = S.asec || "econ";
+  var pg = S.adm.page || {};
+  var e = S.adm.econ || {};
+  var out = "";
+  if (s === "econ") {
+    out += "<div class='row2'><div class='fl'><label>Daily bonus</label><input class='inp' id='e_daily' type='number' step='0.01' value='" + M(e.daily) + "'></div>" +
+      "<div class='fl'><label>Signup bonus</label><input class='inp' id='e_signup' type='number' step='0.01' value='" + M(e.signup) + "'></div></div>" +
+      "<div class='row2'><div class='fl'><label>Daily energy</label><input class='inp' id='e_denergy' type='number' value='" + N(e.daily_energy) + "'></div>" +
+      "<div class='fl'><label>Signup energy</label><input class='inp' id='e_senergy' type='number' value='" + N(e.signup_energy) + "'></div></div>" +
+      "<div class='row2'><div class='fl'><label>Ref L1 %</label><input class='inp' id='e_l1' type='number' step='0.1' value='" + M(e.l1) + "'></div>" +
+      "<div class='fl'><label>Ref L2 %</label><input class='inp' id='e_l2' type='number' step='0.1' value='" + M(e.l2) + "'></div></div>" +
+      "<div class='row2'><div class='fl'><label>Ref L3 %</label><input class='inp' id='e_l3' type='number' step='0.1' value='" + M(e.l3) + "'></div>" +
+      "<div class='fl'><label>L3 team need</label><input class='inp' id='e_l3t' type='number' value='" + N(e.l3team) + "'></div></div>" +
+      "<div class='row2'><div class='fl'><label>Referral signup</label><input class='inp' id='e_rs' type='number' step='0.01' value='" + M(e.refsignup) + "'></div>" +
+      "<div class='fl'><label>Min deposit</label><input class='inp' id='e_md' type='number' step='0.01' value='" + M(e.minidep) + "'></div></div>" +
+      "<div class='row2'><div class='fl'><label>Min withdraw</label><input class='inp' id='e_mw' type='number' step='0.01' value='" + M(e.miniwd) + "'></div>" +
+      "<div class='fl'><label>Withdraw fee %</label><input class='inp' id='e_fee' type='number' step='0.1' value='" + M(e.wdfee) + "'></div></div>" +
+      "<button class='btn pri' data-act='saveEcon'>Save economy</button>";
+  } else if (s === "terms") {
+    var ts = pg.terms || [];
+    for (var i = 0; i < ts.length; i++) {
+      out += "<div class='card' style='padding:10px'><div class='row2'><div class='fl'><label>Label</label><input class='inp' id='tm_n" + i + "' value='" + E(ts[i].n) + "'></div>" +
+        "<div class='fl'><label>Days</label><input class='inp' id='tm_d" + i + "' type='number' value='" + N(ts[i].d) + "'></div></div>" +
+        "<div class='row2'><button class='btn gh sm' style='width:100%' data-tsave='" + i + "'>Save</button>" +
+        "<button class='btn red sm' style='width:100%' data-tdel='" + E(ts[i].id) + "'>Delete</button></div></div>";
+    }
+    out += "<div class='card'><div class='fl'><label>New term label</label><input class='inp' id='nt_n' placeholder='2 Years'></div>" +
+      "<div class='fl'><label>Days</label><input class='inp' id='nt_d' type='number' placeholder='730'></div>" +
+      "<button class='btn pri' data-act='addTerm'>Add term</button></div>";
+  } else if (s === "cats") {
+    var cats = pg.cats || [];
+    for (var c = 0; c < cats.length; c++) {
+      var cat = cats[c];
+      out += "<div class='card'><div style='font-size:12.5px;font-weight:800'>" + E(cat.emoji) + " " + E(cat.name) + "</div>";
+      for (var k = 0; k < cat.com.length; k++) {
+        var p = cat.com[k];
+        out += "<div class='kv'><span>" + E(p.sym) + " " + E(p.name) + (p.soon === 1 ? " (soon)" : "") + "</span>" +
+          "<b><button class='btn gh sm' data-pedit='" + E(cat.id) + "|" + E(p.id) + "'>Edit</button></b></div>";
+      }
+      out += "<button class='btn gh sm' style='margin-top:8px' data-padd='" + E(cat.id) + "'>+ Add project</button></div>";
+    }
+    out += "<div class='card'><div class='fl'><label>New category name</label><input class='inp' id='nc_n' placeholder='Wind Power'></div>" +
+      "<div class='fl'><label>Emoji</label><input class='inp' id='nc_e' placeholder='🌬️'></div>" +
+      "<button class='btn pri' data-act='addCat'>Add category</button></div>";
+  } else if (s === "news" || s === "events") {
+    var key = (s === "news") ? "news" : "events";
+    var list = pg[key] || [];
+    for (var n = 0; n < list.length; n++) {
+      out += "<div class='card' style='padding:10px'><div style='font-size:12px;font-weight:800'>" + E(list[n].title) + "</div>" +
+        "<div class='note' style='margin-top:3px'>" + E(list[n].text).substring(0, 90) + "</div>" +
+        (list[n].img ? "<div class='note' style='color:var(--grn)'>image set</div>" : "") +
+        "<div class='row2' style='margin-top:7px'><button class='btn gh sm' style='width:100%' data-nedit='" + key + "|" + E(list[n].id) + "'>Edit</button>" +
+        "<button class='btn red sm' style='width:100%' data-ndel='" + key + "|" + E(list[n].id) + "'>Delete</button></div></div>";
+    }
+    out += "<button class='btn pri' data-nadd='" + key + "'>+ New " + (s === "news" ? "news item" : "event") + "</button>";
+  } else if (s === "tasks") {
+    var tks = pg.tasks || [];
+    for (var t = 0; t < tks.length; t++) {
+      out += "<div class='card' style='padding:10px'><div style='font-size:12px;font-weight:800'>" + E(tks[t].title) + "</div>" +
+        "<div class='note'>+" + M(tks[t].reward) + " USDT · " + E(tks[t].type) + "</div>" +
+        "<div class='row2' style='margin-top:7px'><button class='btn gh sm' style='width:100%' data-kedit='" + E(tks[t].id) + "'>Edit</button>" +
+        "<button class='btn red sm' style='width:100%' data-kdel='" + E(tks[t].id) + "'>Delete</button></div></div>";
+    }
+    out += "<button class='btn pri' data-kadd='1'>+ New task</button>";
+  } else if (s === "boxes") {
+    var bxs = pg.boxes || [];
+    for (var b = 0; b < bxs.length; b++) {
+      out += "<div class='card' style='padding:10px'><div class='row2'>" +
+        "<div class='fl'><label>Min</label><input class='inp' id='bx_min" + b + "' type='number' step='0.01' value='" + M(bxs[b].min) + "'></div>" +
+        "<div class='fl'><label>Max</label><input class='inp' id='bx_max" + b + "' type='number' step='0.01' value='" + M(bxs[b].max) + "'></div></div>" +
+        "<div class='note'>" + E(bxs[b].emoji) + " " + E(bxs[b].name) + " · unlocks by " + E(bxs[b].req) + " (" + N(bxs[b].need) + ")</div>" +
+        "<button class='btn gh sm' style='margin-top:7px' data-bsave='" + b + "'>Save " + E(bxs[b].name) + "</button></div>";
+    }
+  } else if (s === "pay") {
+    var pay = pg.pay || [];
+    for (var y = 0; y < pay.length; y++) {
+      out += "<div class='card' style='padding:10px'><div class='fl'><label>Label</label><input class='inp' id='pa_n" + y + "' value='" + E(pay[y].name) + "'></div>" +
+        "<div class='fl'><label>Address</label><input class='inp' id='pa_a" + y + "' value='" + E(pay[y].addr) + "'></div>" +
+        "<div class='row2'><button class='btn gh sm' style='width:100%' data-paysave='" + y + "'>Save</button>" +
+        "<button class='btn red sm' style='width:100%' data-paydel='" + E(pay[y].id) + "'>Delete</button></div></div>";
+    }
+    out += "<div class='card'><div class='fl'><label>New method label</label><input class='inp' id='np_n' placeholder='USDT · ERC20'></div>" +
+      "<div class='fl'><label>Address</label><input class='inp' id='np_a' placeholder='0x...'></div>" +
+      "<button class='btn pri' data-act='addPay'>Add method</button></div>";
+  } else if (s === "vip") {
+    var vs = pg.vip || [];
+    for (var v = 0; v < vs.length; v++) {
+      out += "<div class='row2'><div class='fl'><label>Name</label><input class='inp' id='vp_n" + v + "' value='" + E(vs[v].name) + "'></div>" +
+        "<div class='fl'><label>Min balance</label><input class='inp' id='vp_m" + v + "' type='number' value='" + N(vs[v].min) + "'></div></div>";
+    }
+    out += "<button class='btn pri' data-act='saveVip'>Save VIP levels</button>";
+  } else if (s === "texts") {
+    out += "<div class='row2'><div class='fl'><label>Logo</label><input class='inp' id='tx_logo' value='" + E(S.adm.cfg.logo) + "'></div>" +
+      "<div class='fl'><label>Brand</label><input class='inp' id='tx_brand' value='" + E(S.adm.cfg.brand) + "'></div></div>" +
+      "<div class='fl'><label>Tagline</label><input class='inp' id='tx_tag' value='" + E(S.adm.cfg.tag) + "'></div>" +
+      "<div class='fl'><label>Channel link</label><input class='inp' id='tx_chan' value='" + E(S.adm.cfg.channel) + "'></div>" +
+      "<div class='fl'><label>Support link</label><input class='inp' id='tx_sup' value='" + E(S.adm.cfg.support) + "'></div>" +
+      "<div class='fl'><label>How to earn (HTML)</label><textarea class='inp' id='tx_earn' style='min-height:120px'>" + E(pg.earn) + "</textarea></div>" +
+      "<button class='btn pri' data-act='saveTexts'>Save branding</button>";
+  } else if (s === "users") {
+    out += "<div class='fl'><label>Username or numeric ID</label><input class='inp' id='fu_q' placeholder='@name or 123456789'></div>" +
+      "<button class='btn pri' data-act='findUser'>Look up user</button><div id='fres' style='margin-top:9px'></div>";
+  } else if (s === "deps") {
+    out += depsList();
+  } else if (s === "wds") {
+    out += wdsList();
+  } else if (s === "kyc") {
+    out += "<div class='fl'><label>User ID</label><input class='inp' id='ky_uid' placeholder='123456789'></div>" +
+      "<div class='fl'><label>Note (if rejecting)</label><input class='inp' id='ky_note' placeholder='reason'></div>" +
+      "<div class='row2'><button class='btn pri' data-act='kycOk'>Approve</button><button class='btn red' data-act='kycNo'>Reject</button></div>" +
+      "<div class='note' style='margin-top:9px'>Send a user's id after they submit a document to mark them verified.</div>";
+  }
+  return out;
+}
+
+function depsList(){
+  var q = (S.adm.queues || {}).deps || [], out = "";
+  for (var i = 0; i < q.length; i++) {
+    var d = q[i];
+    out += "<div class='card' style='padding:11px'><div style='display:flex;justify-content:space-between;gap:8px'>" +
+      "<div><div style='font-size:12px;font-weight:800'>dep" + E(d.rid) + " · " + M(d.amount) + " USDT</div>" +
+      "<div class='note'>user " + E(d.u) + " · " + E(d.wname) + "</div>" +
+      (d.proof ? "<div class='note' style='word-break:break-all;color:var(--grn)'>proof: " + E(String(d.proof).substring(0,60)) + "</div>" : "<div class='note' style='color:var(--gold)'>no proof yet</div>") +
+      "</div></div><div class='row2' style='margin-top:8px'>" +
+      "<button class='btn pri sm' style='width:100%' data-rev='dep|" + E(d.rid) + "|1'>Approve</button>" +
+      "<button class='btn red sm' style='width:100%' data-rev='dep|" + E(d.rid) + "|0'>Reject</button></div></div>";
+  }
+  if (!out) { out = "<div class='empty'><div>📥</div>No pending deposits.</div>"; }
+  return out;
+}
+
+function wdsList(){
+  var q = (S.adm.queues || {}).wds || [], out = "";
+  for (var i = 0; i < q.length; i++) {
+    var d = q[i];
+    out += "<div class='card' style='padding:11px'><div style='font-size:12px;font-weight:800'>wd" + E(d.rid) + " · " + M(d.amount) + " USDT</div>" +
+      "<div class='note'>user " + E(d.u) + " · send " + M(d.net) + "</div>" +
+      "<div class='note' style='word-break:break-all'>to: " + E(d.addr) + "</div>" +
+      "<div class='row2' style='margin-top:8px'>" +
+      "<button class='btn pri sm' style='width:100%' data-rev='wd|" + E(d.rid) + "|1'>Mark paid</button>" +
+      "<button class='btn red sm' style='width:100%' data-rev='wd|" + E(d.rid) + "|0'>Reject</button></div></div>";
+  }
+  if (!out) { out = "<div class='empty'><div>📤</div>No pending withdrawals.</div>"; }
+  return out;
+}
+
+function editorForm(kind, item, catid){
+  var isNew = !item;
+  var it = item || {};
+  var h = "";
+  if (kind === "news" || kind === "events") {
+    h = "<div class='sh3'>" + (isNew ? "New " : "Edit ") + (kind === "news" ? "news" : "event") + "</div>" +
+      "<div class='fl'><label>Title</label><input class='inp' id='ed_t' value='" + E(it.title) + "'></div>" +
+      "<div class='fl'><label>Text</label><textarea class='inp' id='ed_x'>" + E(it.text) + "</textarea></div>" +
+      "<div class='fl'><label>Image URL (optional)</label><input class='inp' id='ed_i' value='" + E(it.img) + "' placeholder='https://...'></div>" +
+      "<button class='btn pri' data-save='" + kind + "|" + E(catid || it.id || "") + "'>Save</button>";
+  } else if (kind === "task") {
+    h = "<div class='sh3'>" + (isNew ? "New" : "Edit") + " task</div>" +
+      "<div class='fl'><label>Title</label><input class='inp' id='ed_t' value='" + E(it.title) + "'></div>" +
+      "<div class='fl'><label>Description</label><textarea class='inp' id='ed_x'>" + E(it.desc) + "</textarea></div>" +
+      "<div class='row2'><div class='fl'><label>Reward USDT</label><input class='inp' id='ed_r' type='number' step='0.01' value='" + M(it.reward) + "'></div>" +
+      "<div class='fl'><label>Energy</label><input class='inp' id='ed_en' type='number' value='" + N(it.energy) + "'></div></div>" +
+      "<div class='fl'><label>Category</label><input class='inp' id='ed_c' value='" + E(it.cat || "daily") + "'></div>" +
+      "<div class='fl'><label>Type (link / refs / invests)</label><input class='inp' id='ed_ty' value='" + E(it.type || "link") + "'></div>" +
+      "<div class='row2'><div class='fl'><label>URL</label><input class='inp' id='ed_u' value='" + E(it.url) + "'></div>" +
+      "<div class='fl'><label>Need count</label><input class='inp' id='ed_n' type='number' value='" + N(it.need) + "'></div></div>" +
+      "<button class='btn pri' data-save='task|" + E(it.id) + "'>Save task</button>";
+  } else if (kind === "proj") {
+    var terms = S.cfg.terms || [];
+    var yh = "";
+    for (var i = 0; i < terms.length; i++) {
+      var rv = 0;
+      if (it.y && it.y[terms[i].id] !== undefined) { rv = it.y[terms[i].id]; }
+      yh += "<div class='kv'><span>" + E(terms[i].n) + "</span><input class='inp' id='py_" + E(terms[i].id) + "' type='number' step='0.1' value='" + M(rv) + "' style='width:88px;padding:7px;text-align:right'></div>";
+    }
+    h = "<div class='sh3'>" + (isNew ? "New" : "Edit") + " project</div>" +
+      "<div class='fl'><label>Name</label><input class='inp' id='ed_t' value='" + E(it.name) + "'></div>" +
+      "<div class='row2'><div class='fl'><label>Symbol</label><input class='inp' id='ed_s' value='" + E(it.sym || "◆") + "'></div>" +
+      "<div class='fl'><label>Short</label><input class='inp' id='ed_sh' value='" + E(it.short) + "'></div></div>" +
+      "<div class='row2'><div class='fl'><label>Min USDT</label><input class='inp' id='ed_mn' type='number' step='0.01' value='" + M(it.min) + "'></div>" +
+      "<div class='fl'><label>Colour</label><input class='inp' id='ed_col' value='" + E(it.color || "#00E676") + "'></div></div>" +
+      "<div class='fl'><label>Coming soon (1 = yes, 0 = open)</label><input class='inp' id='ed_soon' type='number' value='" + N(it.soon) + "'></div>" +
+      "<div class='fl'><label>Description shown to users</label><textarea class='inp' id='ed_x'>" + E(it.text) + "</textarea></div>" +
+      "<div class='sec'><h2>Daily profit % per term</h2></div>" + yh +
+      "<button class='btn pri' data-save='proj|" + E(catid) + "' style='margin-top:9px'>Save project</button>";
+  }
+  openS(h);
+}
+
+/* ---------------- navigation ---------------- */
+function go(tab){
+  HAS();
+  S.tab = tab;
+  var vs = ["home","invest","tasks","refer","wallet","profile"];
+  for (var i = 0; i < vs.length; i++) {
+    var el = $("v-" + vs[i]);
+    if (el) { el.className = (vs[i] === tab) ? "view" : "view hide"; }
+  }
+  var nbs = document.querySelectorAll(".nb");
+  for (var k = 0; k < nbs.length; k++) {
+    if (nbs[k].getAttribute("data-tab") === tab) { nbs[k].className = "nb on"; }
+    else { nbs[k].className = "nb"; }
+  }
   window.scrollTo(0, 0);
 }
 
-function heroBlock(){
-  var u = ST.u;
-  var today = 0;
-  var hs = u.holdings || [];
-  for(var i = 0; i < hs.length; i++){
-    if(hs[i].done === 0) today += hs[i].amount * hs[i].rate / 100;
-  }
-  return "<div class='hero'>" +
-    "<div class='hlab'>Wallet balance</div>" +
-    "<div class='hbal'>" + num(u.bal) + " <small>USDT</small></div>" +
-    "<div class='hsub'>Energy " + num(u.energy, 0) + "</div>" +
-    "<div class='vip'>👑 " + esc(vipName()) + "</div>" +
-    "<div class='hrow'>" +
-      "<div class='hstat'><span>Invested</span><b>" + num(u.invest) + "</b></div>" +
-      "<div class='hstat'><span>Today</span><b>" + num(today) + "</b></div>" +
-      "<div class='hstat'><span>Team</span><b>" + (u.c1 + u.c2 + u.c3) + "</b></div>" +
-    "</div></div>";
-}
-
-function viewHome(){
-  var c = ST.cfg;
-  var u = ST.u;
-  var h = "";
-  h += heroBlock();
-
-  if(c.daily_bonus > 0){
-    if(u.daily_done === 1){
-      h += "<div class='card g' style='border-color:rgba(33,38,45,.9)'>" +
-        "<div style='display:flex;align-items:center;gap:11px'>" +
-        "<div style='font-size:26px'>✅</div>" +
-        "<div style='flex:1'><div style='font-size:13px;font-weight:800'>Daily bonus claimed</div>" +
-        "<div class='note'>Come back tomorrow for " + num(c.daily_bonus) + " USDT</div></div></div></div>";
-    }else{
-      h += "<div class='card g' style='border-color:rgba(255,179,0,.42)'>" +
-        "<div style='display:flex;align-items:center;gap:11px'>" +
-        "<div style='font-size:28px'>🎁</div>" +
-        "<div style='flex:1'><div style='font-size:13.5px;font-weight:800'>Daily login bonus</div>" +
-        "<div class='note'>Tap to claim " + num(c.daily_bonus) + " USDT</div></div>" +
-        "<button class='btn gold sm' data-act='daily'>Claim</button>" +
-        "</div></div>";
-    }
-  }
-
-  h += "<div class='sec'><h2>🎁 Gift boxes</h2><small>once a day</small></div>";
-  var bs = c.boxes || [];
-  if(bs.length === 0) h += "<div class='card'><div class='note'>No gift box yet.</div></div>";
-  for(var i = 0; i < bs.length; i++){
-    var b = bs[i];
-    var opened = u.boxes && u.boxes[b.id] === tday();
-    var locked = (b.req === "daily" && u.daily_done !== 1);
-    var can = !opened && !locked;
-    h += "<div class='cat'>" +
-      "<div class='ci'>" + esc(b.emoji || "🎁") + "</div>" +
-      "<div style='flex:1;min-width:0'><div class='cn'>" + esc(b.name) + "</div>" +
-      "<div class='cd'>" + num(b.min) + " – " + num(b.max) + " USDT</div></div>" +
-      (opened ? "<span class='badge a'>opened</span>" :
-        (can ? "<button class='btn pri sm' data-act='box' data-v='" + esc(b.id) + "'>Open</button>" :
-          "<span class='badge p'>locked</span>")) +
-      "</div>";
-  }
-
-  h += "<div class='sec'><h2>📰 News &amp; events</h2><small>" + ((c.events || []).length) + " updates</small></div>";
-  var ev = c.events || [];
-  var shown = 0;
-  for(var k = 0; k < ev.length; k++){
-    if(parseInt(ev[k].active || 1) !== 1) continue;
-    shown++;
-    h += "<div class='card'>";
-    if(ev[k].img) h += "<img src='" + esc(ev[k].img) + "' style='width:100%;border-radius:14px;margin-bottom:10px;display:block'>";
-    h += "<div style='font-size:13.5px;font-weight:800;margin-bottom:4px'>" + esc(ev[k].title) + "</div>" +
-      "<div class='note'>" + esc(ev[k].text) + "</div></div>";
-  }
-  if(shown === 0) h += "<div class='card'><div class='note'>No updates yet.</div></div>";
-
-  h += "<div class='card'><div style='display:flex;justify-content:space-between;align-items:center'>" +
-    "<div style='font-size:13px;font-weight:800'>📖 How to earn</div>" +
-    "<button class='btn ghost sm' data-act='howto'>Read</button></div></div>";
-
-  h += "<div class='card' style='text-align:center'>" +
-    "<div class='note' style='margin-bottom:9px'>🔒 256-bit encrypted · smart contract validated · asset backed</div>" +
-    "<button class='btn ghost sm' data-act='chan'>Official channel</button></div>";
-  return h;
-}
-
-function tday(){
-  var d = new Date();
-  var m = d.getUTCMonth() + 1;
-  var da = d.getUTCDate();
-  return d.getUTCFullYear() + "-" + (m < 10 ? "0" + m : "" + m) + "-" + (da < 10 ? "0" + da : "" + da);
-}
-
-function viewInvest(){
-  var c = ST.cfg;
-  if(ST.co){ return viewCompany(ST.co); }
-  var h = "<div class='sec'><h2>📈 Invest</h2><small>" + num(ST.u.bal) + " USDT available</small></div>";
-  var cats = c.cats || [];
-  for(var i = 0; i < cats.length; i++){
-    var ct = cats[i];
-    var n = 0;
-    var pl = c.plans || [];
-    for(var j = 0; j < pl.length; j++){ if(pl[j].cat === ct.id) n++; }
-    h += "<div class='cat' data-act='cat' data-v='" + esc(ct.id) + "'>" +
-      "<div class='ci'>" + esc(ct.emoji || "📁") + "</div>" +
-      "<div style='flex:1;min-width:0'><div class='cn'>" + esc(ct.name) + "</div>" +
-      "<div class='cd'>" + esc(ct.desc || "") + "</div>" +
-      "<div class='cc'>" + n + " companies</div></div>" +
-      "<div class='ar'>›</div></div>";
-  }
-  if(cats.length === 0) h += "<div class='card'><div class='note'>No sections yet.</div></div>";
-  return h;
-}
-
-function viewCompany(pid){
-  var c = ST.cfg;
-  var p = null;
-  var pl = c.plans || [];
-  for(var i = 0; i < pl.length; i++){ if(pl[i].id === pid) p = pl[i]; }
-  if(!p) return "<div class='card'><div class='note'>Company not found.</div></div>";
-  var h = "<button class='btn ghost sm' data-act='back' style='margin:14px 0 12px'>‹ Back</button>";
-  h += "<div class='card g'>" +
-    "<div style='display:flex;align-items:center;gap:11px'>" +
-    "<div style='width:44px;height:44px;border-radius:13px;display:grid;place-items:center;font-weight:800;border:1px solid " + esc(p.color || "#00E676") + "55;color:" + esc(p.color || "#00E676") + "'>" + esc((p.name || "?").charAt(0)) + "</div>" +
-    "<div style='flex:1;min-width:0'><div style='font-size:15px;font-weight:800'>" + esc(p.name) + "</div>" +
-    "<div style='font-size:10.5px;color:var(--dim);font-weight:700;letter-spacing:.4px'>" + esc(p.ticker || "") + "</div></div></div>" +
-    "<div class='note' style='margin-top:11px'>" + esc(p.desc || "Details coming soon.") + "</div></div>";
-
-  if(parseInt(p.soon || 0) === 1){
-    h += "<div class='card' style='text-align:center'><div style='font-size:28px;margin-bottom:6px'>⏳</div>" +
-      "<div style='font-weight:800;font-size:13px'>Coming soon</div>" +
-      "<div class='note'>This company is not open for investment yet.</div></div>";
-    return h;
-  }
-
-  var ts = c.terms || [];
-  h += "<div class='sec'><h2>Choose a term</h2><small>profit per day</small></div>";
-  h += "<div class='chips'>";
-  for(var k = 0; k < ts.length; k++){
-    var on = (ts[k].id === ST.term) ? " on" : "";
-    h += "<button class='chip" + on + "' data-act='term' data-v='" + esc(ts[k].id) + "'>" +
-      esc(ts[k].label) + " · " + num((p.yields || {})[ts[k].id] || 0, 1) + "%</button>";
-  }
-  h += "</div>";
-
-  var rate = parseFloat((p.yields || {})[ST.term] || 0);
-  var days = 1;
-  for(var t = 0; t < ts.length; t++){ if(ts[t].id === ST.term) days = parseInt(ts[t].days || 1); }
-  var mn = parseFloat(p.min || 1);
-  if(!ST.amt || ST.amt < mn) ST.amt = mn;
-  var amt = parseFloat(ST.amt);
-  var daily = amt * rate / 100;
-  var total = daily * days;
-
-  h += "<div class='card'>" +
-    "<div class='field'><label>Amount to invest (USDT)</label>" +
-    "<input class='inp' id='amtbox' type='number' inputmode='decimal' min='" + mn + "' value='" + amt.toFixed(2) + "' data-act='amt' data-v='" + esc(p.id) + "'></div>" +
-    "<div class='kv'><span>Minimum</span><b>" + num(mn) + " USDT</b></div>" +
-    "<div class='kv'><span>Daily profit rate</span><b style='color:var(--green)'>" + num(rate, 1) + "%</b></div>" +
-    "<div class='kv'><span>Profit per day</span><b id='pday'>" + num(daily) + " USDT</b></div>" +
-    "<div class='kv'><span>Term</span><b>" + days + " days</b></div>" +
-    "<div class='kv'><span>Total profit</span><b id='ptot' style='color:var(--green)'>" + num(total) + " USDT</b></div>" +
-    "</div>";
-
-  h += "<button class='btn pri' data-act='invest'>Activate " + esc(p.name) + "</button>";
-  h += "<div class='note' style='text-align:center;margin-top:9px'>Profit is credited to your wallet every 24 hours.</div>";
-  return h;
-}
-
-function viewTasks(){
-  var u = ST.u;
-  var h = "<div class='sec'><h2>✅ Daily tasks</h2><small>claim once</small></div>";
-  var tk = ST.cfg.tasks || [];
-  if(tk.length === 0) h += "<div class='card'><div class='note'>No tasks yet.</div></div>";
-  for(var i = 0; i < tk.length; i++){
-    var t = tk[i];
-    var done = u.tasks && u.tasks[t.id];
-    var okNeed = 1;
-    if(t.type === "refs" && u.c1 < parseInt(t.need || 0)) okNeed = 0;
-    var icon = t.type === "refs" ? "👥" : "🌐";
-    h += "<div class='card' style='display:flex;gap:11px;align-items:center" + (done ? ";opacity:.6" : "") + "'>" +
-      "<div style='width:38px;height:38px;flex:0 0 38px;border-radius:11px;display:grid;place-items:center;font-size:17px;background:rgba(0,230,118,.1);border:1px solid rgba(0,230,118,.2)'>" + icon + "</div>" +
-      "<div style='flex:1;min-width:0'>" +
-      "<div style='font-size:13px;font-weight:800'>" + esc(t.title) + "</div>" +
-      "<div class='note'>" + esc(t.desc || "") + "</div>" +
-      "<div style='font-size:11.5px;font-weight:800;color:var(--green);margin-top:4px'>+" + num(t.reward) + " USDT" +
-      (parseFloat(t.energy || 0) > 0 ? " · +" + num(t.energy, 0) + " energy" : "") + "</div>" +
-      (t.type === "refs" && !done ? "<div style='font-size:10.5px;color:var(--gold);font-weight:700;margin-top:2px'>" + u.c1 + " / " + parseInt(t.need || 0) + " friends</div>" : "") +
-      "</div>" +
-      (done ? "<span class='badge a'>claimed</span>" :
-        (okNeed ? "<button class='btn pri sm' data-act='task' data-v='" + esc(t.id) + "'>Claim</button>" :
-          "<span class='badge p'>locked</span>")) +
-      "</div>";
-  }
-  return h;
-}
-
-function viewTeam(){
-  var u = ST.u;
-  var c = ST.cfg;
-  var link = "https://t.me/" + BOT + "?startapp=" + u.uid;
-  var r = c.ref || {l1: 10, l2: 5, l3: 2};
-  var h = "<div class='sec'><h2>🌳 My team</h2><small>" + (u.c1 + u.c2 + u.c3) + " members</small></div>";
-  h += "<div class='card g'>" +
-    "<div style='display:flex;justify-content:space-between;text-align:center'>" +
-    "<div style='flex:1'><div style='font-size:20px;font-weight:800'>" + u.c1 + "</div><div class='note'>Level 1</div><div style='font-size:10px;color:var(--green);font-weight:800'>" + num(r.l1, 0) + "%</div></div>" +
-    "<div style='flex:1'><div style='font-size:20px;font-weight:800'>" + u.c2 + "</div><div class='note'>Level 2</div><div style='font-size:10px;color:var(--green);font-weight:800'>" + num(r.l2, 0) + "%</div></div>" +
-    "<div style='flex:1'><div style='font-size:20px;font-weight:800'>" + u.c3 + "</div><div class='note'>Level 3</div><div style='font-size:10px;color:var(--green);font-weight:800'>" + num(r.l3, 0) + "%</div></div>" +
-    "</div>" +
-    "<div class='kv' style='margin-top:8px'><span>Commission earned</span><b>" + num(u.ref_earned) + " USDT</b></div>" +
-    "</div>";
-  h += "<div class='card'>" +
-    "<div style='font-size:12.5px;font-weight:800;margin-bottom:8px'>Your referral link</div>" +
-    "<input class='inp' readonly value='" + esc(link) + "' style='font-size:11px;margin-bottom:9px'>" +
-    "<div class='row2'>" +
-    "<button class='btn pri sm' style='width:100%' data-act='copy' data-v='" + esc(link) + "'>Copy link</button>" +
-    "<button class='btn ghost sm' style='width:100%' data-act='share'>Share</button></div></div>";
-
-  h += "<div class='sec'><h2>👑 VIP levels</h2><small>balance based</small></div>";
-  var vs = c.vip || [];
-  var cur = vipName();
-  for(var i = 0; i < vs.length; i++){
-    var isCur = (vs[i].name === cur);
-    h += "<div class='card' style='display:flex;justify-content:space-between;align-items:center;margin-bottom:8px" + (isCur ? ";border-color:rgba(255,179,0,.5)" : "") + "'>" +
-      "<div><div style='font-size:12.5px;font-weight:800'>" + esc(vs[i].name) + "</div>" +
-      "<div class='note'>from " + num(vs[i].min) + " USDT</div></div>" +
-      (isCur ? "<span class='badge a'>current</span>" : "") + "</div>";
-  }
-  return h;
-}
-
-function viewWallet(){
-  var u = ST.u;
-  var h = heroBlock();
-  h += "<div class='row2' style='margin-bottom:12px'>" +
-    "<button class='btn pri' data-act='deposit'>📥 Deposit</button>" +
-    "<button class='btn gold' data-act='withdraw'>📤 Withdraw</button></div>";
-
-  h += "<div class='sec'><h2>📊 Portfolio</h2><small>" + ((u.holdings || []).length) + " positions</small></div>";
-  var hs = u.holdings || [];
-  if(hs.length === 0){
-    h += "<div class='card'><div class='empty'><div>📈</div>No investment yet.</div></div>";
-  }
-  for(var i = 0; i < hs.length; i++){
-    var x = hs[i];
-    var nm = x.pid;
-    var pl = ST.cfg.plans || [];
-    for(var j = 0; j < pl.length; j++){ if(pl[j].id === x.pid) nm = pl[j].name; }
-    var left = Math.max(0, Math.ceil((x.end - Math.floor(Date.now() / 1000)) / 86400));
-    h += "<div class='card' style='margin-bottom:8px'>" +
-      "<div style='display:flex;justify-content:space-between;align-items:center'>" +
-      "<div style='min-width:0'><div style='font-size:12.5px;font-weight:800'>" + esc(nm) + "</div>" +
-      "<div class='note'>" + num(x.amount) + " USDT · " + num(x.rate, 1) + "%/day · " + (x.done === 1 ? "finished" : left + "d left") + "</div></div>" +
-      "<div style='text-align:right'><div style='font-size:13px;font-weight:800;color:var(--green)'>+" + num(x.earned) + "</div>" +
-      "<div style='font-size:9px;color:var(--dim);font-weight:700'>EARNED</div></div></div></div>";
-  }
-
-  h += "<div class='sec'><h2>📜 History</h2><small>latest</small></div>";
-  h += "<div class='card'>" + txRows(6) + "</div>";
-  h += "<button class='btn ghost' data-act='history'>Full history</button>";
-
-  h += "<div class='sec'><h2>Deposit methods</h2></div><div class='card'>";
-  var wl = ST.cfg.wallets || [];
-  var n = 0;
-  for(var k = 0; k < wl.length; k++){
-    if(parseInt(wl[k].active || 1) !== 1) continue;
-    n++;
-    h += "<div class='kv'><span style='color:" + esc(wl[k].color || "#26A17B") + "'>" + esc(wl[k].name) + "</span><b style='font-size:10px'>" + esc((wl[k].address || "").substring(0, 14)) + "…</b></div>";
-  }
-  if(n === 0) h += "<div class='note'>No method yet.</div>";
-  h += "</div>";
-  return h;
-}
-
-function txName(k){
-  var m = {};
-  m["signup_bonus"] = "Signup bonus";
-  m["daily_bonus"] = "Daily bonus";
-  m["yield"] = "Profit credit";
-  m["invest"] = "Investment";
-  m["deposit"] = "Deposit";
-  m["gift"] = "Gift box";
-  m["task"] = "Task reward";
-  m["ref_l1"] = "L1 commission";
-  m["ref_l2"] = "L2 commission";
-  m["ref_l3"] = "L3 commission";
-  m["wd_hold"] = "Withdrawal";
-  m["wd_paid"] = "Payout sent";
-  m["wd_refund"] = "Refund";
-  m["admin_adjust"] = "Adjustment";
-  return m[k] || k;
-}
-
-function txRows(limit){
-  var tx = ST.u.tx || [];
-  if(tx.length === 0) return "<div class='empty'><div>📜</div>Nothing yet.</div>";
-  var h = "";
-  var max = Math.min(limit, tx.length);
-  for(var i = 0; i < max; i++){
-    var r = tx[i];
-    var pos = parseFloat(r.a) >= 0;
-    h += "<div class='kv'><span>" + esc(txName(r.k)) + "<br><span style='font-size:10px;color:var(--dim)'>" + esc(r.n || "") + "</span></span>" +
-      "<b style='color:" + (pos ? "#00E676" : "#FF8A8A") + "'>" + (pos ? "+" : "") + num(r.a) + "</b></div>";
-  }
-  return h;
-}
-
-function viewProfile(){
-  var u = ST.u;
-  var h = "<div class='sec'><h2>👤 Profile</h2></div>";
-  var kycBadge = u.kyc === "verified" ? "<span class='badge a'>verified</span>" :
-    (u.kyc === "pending" ? "<span class='badge p'>in review</span>" :
-      (u.kyc === "rejected" ? "<span class='badge r'>rejected</span>" : "<span class='badge p'>not verified</span>"));
-  h += "<div class='card g'>" +
-    "<div style='display:flex;align-items:center;gap:12px'>" +
-    "<div style='width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:22px;background:linear-gradient(140deg,rgba(0,230,118,.2),rgba(0,136,204,.14));border:1px solid rgba(0,230,118,.3)'>👤</div>" +
-    "<div style='flex:1;min-width:0'><div style='font-size:14.5px;font-weight:800'>" + esc(u.name || "Your name") + "</div>" +
-    "<div class='note'>ID " + esc(u.uid) + "</div></div>" + kycBadge + "</div>" +
-    "<div class='kv' style='margin-top:9px'><span>Level</span><b>" + esc(vipName()) + "</b></div>" +
-    "<div class='kv'><span>Balance</span><b>" + num(u.bal) + " USDT</b></div>" +
-    "<div class='kv'><span>Invested</span><b>" + num(u.invest) + " USDT</b></div>" +
-    "<div class='kv'><span>Referral earned</span><b>" + num(u.ref_earned) + " USDT</b></div>" +
-    "</div>";
-  h += "<div class='row2' style='margin-bottom:12px'>" +
-    "<button class='btn ghost' data-act='profile'>Edit details</button>" +
-    "<button class='btn ghost' data-act='kyc'>Verify ID</button></div>";
-  h += "<div class='card'><div style='font-size:12.5px;font-weight:800;margin-bottom:7px'>Account</div>" +
-    "<div class='kv'><span>Email</span><b>" + esc(u.email || "not set") + "</b></div>" +
-    "<div class='kv'><span>Country</span><b>" + esc(u.country || "not set") + "</b></div>" +
-    "<div class='kv'><span>Phone</span><b>" + esc(u.phone || "not set") + "</b></div></div>";
-  h += "<div class='card'><div style='font-size:12.5px;font-weight:800;margin-bottom:7px'>Language</div>" +
-    "<button class='btn ghost sm' data-act='lang'>Change language</button></div>";
-  return h;
-}
-
-function openLang(){
-  var ls = ST.cfg.langs || [];
-  var h = "<h3>🌐 Language</h3><p class='sub'>Choose your language</p><div class='row2'>";
-  for(var i = 0; i < ls.length; i++){
-    var on = (ST.u.lang === ls[i].c) ? ";border-color:rgba(0,230,118,.6)" : "";
-    h += "<button class='btn ghost' style='" + on + "' data-act='setlang' data-v='" + esc(ls[i].c) + "'>" + esc(ls[i].f) + " " + esc(ls[i].n) + "</button>";
-  }
-  h += "</div>";
-  openSheet(h);
-}
-
-function openWallet(){
-  ST.tab = "wallet";
-  draw();
-}
-
-function openHistory(){
-  var h = "<h3>📜 History</h3><p class='sub'>All wallet movements</p>";
-  h += txRows(40);
-  var deps = ST.u.deps || [];
-  h += "<div class='sec'><h2>Deposits</h2></div>";
-  if(deps.length === 0) h += "<div class='note'>None.</div>";
-  for(var i = 0; i < deps.length; i++){
-    var d = deps[i];
-    var st = d.status === "approved" ? "<span class='badge a'>approved</span>" :
-      (d.status === "rejected" ? "<span class='badge r'>rejected</span>" : "<span class='badge p'>pending</span>");
-    h += "<div class='kv'><span>" + esc(d.id) + " · " + esc(d.wname || "") + "</span><b>" + num(d.amount) + " " + st + "</b></div>";
-  }
-  var wd = ST.u.wds || [];
-  h += "<div class='sec'><h2>Withdrawals</h2></div>";
-  if(wd.length === 0) h += "<div class='note'>None.</div>";
-  for(var k = 0; k < wd.length; k++){
-    var w = wd[k];
-    var s2 = w.status === "paid" ? "<span class='badge a'>paid</span>" :
-      (w.status === "rejected" ? "<span class='badge r'>rejected</span>" : "<span class='badge p'>pending</span>");
-    h += "<div class='kv'><span>" + esc(w.id) + " · " + esc(w.method || "") + "</span><b>" + num(w.amount) + " " + s2 + "</b></div>";
-  }
-  openSheet(h);
-}
-
-function openDeposit(){
-  var wl = ST.cfg.wallets || [];
-  var h = "<h3>📥 Deposit</h3><p class='sub'>Choose a payment method, send, then upload proof</p>";
-  if(wl.length === 0){ openSheet(h + "<div class='note'>No method configured yet.</div>"); return; }
-  h += "<div class='field'><label>Payment method</label><select class='inp' id='dmethod'>";
-  for(var i = 0; i < wl.length; i++){
-    if(parseInt(wl[i].active || 1) !== 1) continue;
-    h += "<option value='" + esc(wl[i].id) + "'>" + esc(wl[i].name) + "</option>";
-  }
-  h += "</select></div>";
-  h += "<div class='field'><label>Amount (USDT)</label><input class='inp' id='damount' type='number' inputmode='decimal' value='" + num(ST.cfg.min_deposit) + "'></div>";
-  h += "<button class='btn pri' data-act='depnew'>Continue</button>";
-  h += "<div class='note' style='margin-top:10px'>Minimum " + num(ST.cfg.min_deposit) + " USDT. Your balance is credited after an admin confirms your proof.</div>";
-  openSheet(h);
-}
-
-function doDeposit(){
-  var m = $("dmethod");
-  var a = $("damount");
-  if(!m || !a) return;
-  var d = {};
-  d["wid"] = m.value;
-  d["amount"] = parseFloat(a.value || 0);
-  api("dep_new", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Failed", true); return; }
-    var h = "<h3>Send your deposit</h3><p class='sub'>" + esc(j.r.wname) + " · " + num(j.r.amount !== undefined ? j.r.amount : 0) + "</p>";
-    h += "<div class='card' style='border-color:rgba(0,230,118,.4)'>" +
-      "<div class='note'>Send the exact amount to this address</div>" +
-      "<div style='font-family:monospace;font-size:12px;word-break:break-all;margin:7px 0'>" + esc(j.r.addr) + "</div>" +
-      "<button class='btn ghost sm' data-act='copy' data-v='" + esc(j.r.addr) + "'>Copy address</button></div>";
-    h += "<div class='card'><div class='note'>After sending, tap below and paste your transaction hash. You can also send the screenshot to the bot chat.</div>" +
-      "<button class='btn pri' style='margin-top:9px' data-act='proof' data-v='" + esc(j.r.id) + "'>I have paid</button></div>";
-    openSheet(h);
-    if(j.r.u) refresh(j.r.u);
-  });
-}
-
-function openProof(rid){
-  if(!rid){ say("Deposit id missing", true); return; }
-  var h = "<h3>Upload proof</h3><p class='sub'>Request " + esc(rid) + "</p>";
-  h += "<div class='field'><label>Transaction hash or screenshot link</label>" +
-    "<input class='inp' id='pfval' placeholder='paste tx hash or image link'></div>";
-  h += "<button class='btn pri' data-act='proofsend' data-v='" + esc(rid) + "'>Submit proof</button>";
-  h += "<div class='note' style='margin-top:10px'>The admin reviews your payment and credits the wallet automatically.</div>";
-  openSheet(h);
-}
-
-function doProof(rid){
-  var f = $("pfval");
-  if(!f) return;
-  if(f.value.length < 4){ say("Paste the transaction hash first", true); return; }
-  var d = {};
-  d["id"] = rid;
-  d["proof"] = f.value;
-  api("dep_proof", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Failed", true); return; }
-    say("Proof sent for review");
-    closeSheet();
-    if(j.r.u) refresh(j.r.u);
-  });
-}
-
-function openWithdraw(){
-  var wl = ST.cfg.wallets || [];
-  var h = "<h3>📤 Withdraw</h3><p class='sub'>Available " + num(ST.u.bal) + " USDT</p>";
-  h += "<div class='field'><label>Amount (USDT)</label><input class='inp' id='wamount' type='number' inputmode='decimal' value='" + num(ST.cfg.min_withdraw) + "'></div>";
-  h += "<div class='field'><label>Method</label><select class='inp' id='wmethod'>";
-  for(var i = 0; i < wl.length; i++){ h += "<option value='" + esc(wl[i].name) + "'>" + esc(wl[i].name) + "</option>"; }
-  if(wl.length === 0) h += "<option value='Other'>Other</option>";
-  h += "</select></div>";
-  h += "<div class='field'><label>Your address or payment details</label>" +
-    "<input class='inp' id='waddr' placeholder='wallet address or account' value='" + esc(ST.u.waddr || "") + "'></div>";
-  h += "<button class='btn pri' data-act='wdnew'>Request withdrawal</button>";
-  h += "<div class='note' style='margin-top:10px'>Minimum " + num(ST.cfg.min_withdraw) + " USDT · fee " + num(ST.cfg.withdraw_fee, 0) + "%. The amount is held while an admin reviews it and returned if rejected.</div>";
-  openSheet(h);
-}
-
-function doWithdraw(){
-  var a = $("wamount");
-  var m = $("wmethod");
-  var w = $("waddr");
-  if(!a || !w) return;
-  var d = {};
-  d["amount"] = parseFloat(a.value || 0);
-  d["method"] = m ? m.value : "";
-  d["addr"] = w.value;
-  api("wd_new", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Failed", true); return; }
-    say("Withdrawal requested");
-    closeSheet();
-    if(j.r.u) refresh(j.r.u);
-  });
-}
-
-function openProfile(){
-  var u = ST.u;
-  var h = "<h3>👤 Edit profile</h3><p class='sub'>Your details are only visible to admins</p>";
-  h += "<div class='field'><label>Full name</label><input class='inp' id='pname' value='" + esc(u.name || "") + "'></div>";
-  h += "<div class='field'><label>Email</label><input class='inp' id='pemail' value='" + esc(u.email || "") + "'></div>";
-  h += "<div class='field'><label>Country</label><input class='inp' id='pcountry' value='" + esc(u.country || "") + "'></div>";
-  h += "<div class='field'><label>Phone</label><input class='inp' id='pphone' value='" + esc(u.phone || "") + "'></div>";
-  h += "<button class='btn pri' data-act='profilesave'>Save</button>";
-  openSheet(h);
-}
-
-function doProfile(){
-  var d = {};
-  if($("pname")) d["pname"] = $("pname").value;
-  if($("pemail")) d["pemail"] = $("pemail").value;
-  if($("pcountry")) d["pcountry"] = $("pcountry").value;
-  if($("pphone")) d["pphone"] = $("pphone").value;
-  api("profile", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Failed", true); return; }
-    say("Profile saved");
-    closeSheet();
-    if(j.r.u) refresh(j.r.u);
-  });
-}
-
-function openKyc(){
-  var u = ST.u;
-  var h = "<h3>🛡 Verify identity</h3><p class='sub'>Required for withdrawals above the daily limit</p>";
-  if(u.kyc === "verified"){
-    h += "<div class='card' style='text-align:center'><div style='font-size:30px'>✅</div>" +
-      "<div style='font-weight:800;margin-top:6px'>You are verified</div>" +
-      "<div class='note'>Name: " + esc(u.kyc_name || "") + "</div></div>";
-    openSheet(h);
-    return;
-  }
-  h += "<div class='field'><label>Full legal name</label><input class='inp' id='kname' value='" + esc(u.kyc_name || "") + "'></div>";
-  h += "<div class='field'><label>ID or passport number</label><input class='inp' id='kid' value='" + esc(u.kyc_id || "") + "'></div>";
-  h += "<button class='btn pri' data-act='kycsave'>Submit for review</button>";
-  h += "<div class='note' style='margin-top:10px'>After submitting, send a photo of your ID to the bot chat. The admin will see it and mark you verified.</div>";
-  openSheet(h);
-}
-
-function doKyc(){
-  var d = {};
-  if($("kname")) d["name"] = $("kname").value;
-  if($("kid")) d["idnum"] = $("kid").value;
-  api("kyc", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Failed", true); return; }
-    say("Sent for review");
-    closeSheet();
-    if(j.r.u) refresh(j.r.u);
-  });
-}
-
-function openHowto(){
-  var h = "<h3>📖 How to earn</h3><p class='sub'>Everything in one place</p>";
-  h += ST.cfg.earn_html || "<div class='note'>No guide yet.</div>";
-  h += "<div style='height:12px'></div><button class='btn ghost' data-act='close'>Close</button>";
-  openSheet(h);
-}
-
+/* ---------------- actions ---------------- */
 function doInvest(){
-  var pid = ST.co;
-  var amt = parseFloat(ST.amt || 0);
-  if(!pid) return;
-  if(!(amt > 0)){ say("Enter an amount", true); return; }
-  var d = {};
-  d["pid"] = pid;
-  d["tid"] = ST.term;
-  d["amount"] = amt;
-  api("invest", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Failed", true); return; }
-    say("Investment activated");
-    ST.co = "";
-    if(j.r.u) refresh(j.r.u);
-    ST.tab = "wallet";
-    draw();
+  var p = curProj();
+  if (!p) { return; }
+  var amt = parseFloat(S.amt);
+  if (isNaN(amt) || amt <= 0) { toast("Enter an amount first", true); return; }
+  var inp = $("amtin");
+  if (inp) { amt = parseFloat(inp.value); }
+  if (isNaN(amt) || amt <= 0) { toast("Enter a valid amount", true); return; }
+  if (amt > parseFloat(S.u.bal)) { BADH(); toast("Not enough balance — deposit first", true); return; }
+  if (S.busy) { return; }
+  S.busy = true;
+  HAS();
+  api("invest", { "com":p.id, "term":S.term, "amt":amt }, function(j){
+    S.busy = false;
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast(j.r && j.r.msg ? j.r.msg : "Invested");
+    if (j.r && j.r.u) { S.u = j.r.u; }
+    paint();
   });
 }
 
-function doTask(tid){
-  var d = {};
-  d["id"] = tid;
-  api("task", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Not available", true); return; }
-    say("+" + num(j.r.gain) + " USDT claimed");
-    if(j.r.u) refresh(j.r.u);
+function claimDaily(){
+  HAS();
+  api("daily", {}, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast("+" + M(j.r.gain) + " USDT added to your wallet");
+    sparkle(window.innerWidth / 2, 190, 16);
+    if (j.r.u) { S.u = j.r.u; }
+    paint();
   });
 }
 
-function openAdmin(){
-  if(ST.pw) { renderAdmin(); return; }
-  var h = "<h3>🛠 Admin</h3><p class='sub'>Enter the admin password</p>";
-  h += "<div class='field'><label>Password</label><input class='inp' id='admpw' type='password' placeholder='admin password'></div>";
-  h += "<button class='btn pri' data-act='admlogin'>Unlock</button>";
-  h += "<div class='note' style='margin-top:10px'>Only the bot owner can open this panel.</div>";
-  openSheet(h);
-}
-
-function doAdminLogin(){
-  var f = $("admpw");
-  if(!f) return;
-  var d = {};
-  d["pw"] = f.value;
-  api("admin_page", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Wrong password", true); return; }
-    ST.pw = f.value;
-    ST.adm = j.r.adm;
-    ST.admTab = "main";
-    say("Admin unlocked");
-    renderAdmin();
-  });
-}
-
-function admReload(){
-  var d = {};
-  d["pw"] = ST.pw;
-  api("admin_page", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Session lost", true); return; }
-    ST.adm = j.r.adm;
-    renderAdmin();
-  });
-}
-
-function renderAdmin(){
-  if(!ST.adm){ openAdmin(); return; }
-  var tabs = [["main", "Economy"], ["cats", "Sections"], ["plans", "Companies"], ["terms", "Terms"], ["events", "News"], ["tasks", "Tasks"], ["wallets", "Payments"], ["boxes", "Boxes"], ["vip", "VIP"], ["review", "Review"], ["users", "Users"]];
-  var h = "<h3>🛠 Admin panel</h3><p class='sub'>" + ST.adm.users + " users · " + ((ST.adm.deps || []).length + (ST.adm.wds || []).length + (ST.adm.kycs || []).length) + " waiting</p>";
-  h += "<div class='chips' style='padding-bottom:10px'>";
-  for(var i = 0; i < tabs.length; i++){
-    var on = (ST.admTab === tabs[i][0]) ? " on" : "";
-    h += "<button class='chip" + on + "' data-act='admtab' data-v='" + tabs[i][0] + "'>" + tabs[i][1] + "</button>";
+function openBox(id){
+  var el = $("bx" + id);
+  if (el && el.className.indexOf("lock") >= 0) { BADH(); toast("Locked or already opened today", true); return; }
+  HAS();
+  if (el) {
+    el.className = el.className + " shake";
+    setTimeout(function(){ if (el) { el.className = el.className.split(" shake").join(""); } }, 640);
   }
-  h += "</div>";
-  var b = ST.admTab;
-  if(b === "main") h += admMain();
-  else if(b === "cats") h += admList("cat", "Sections", "cats", ["name", "emoji", "desc"]);
-  else if(b === "plans") h += admPlans();
-  else if(b === "terms") h += admList("term", "Terms", "terms", ["label", "days"]);
-  else if(b === "events") h += admList("event", "News", "events", ["title", "text", "img"]);
-  else if(b === "tasks") h += admList("task", "Tasks", "tasks", ["title", "desc", "url", "reward", "need"]);
-  else if(b === "wallets") h += admList("wallet", "Payment methods", "wallets", ["name", "address", "note"]);
-  else if(b === "boxes") h += admList("box", "Gift boxes", "boxes", ["name", "emoji", "min", "max"]);
-  else if(b === "vip") h += admList("vip", "VIP levels", "vip", ["name", "min"]);
-  else if(b === "review") h += admReview();
-  else if(b === "users") h += admUsers();
-  openSheet(h);
-}
-
-function fid(kind, id, field){ return "f_" + kind + "_" + id + "_" + field; }
-
-function admField(kind, id, field, label, value, isNum){
-  var iid = fid(kind, id, field);
-  return "<div class='field'><label>" + esc(label) + "</label>" +
-    "<input class='inp' id='" + esc(iid) + "' type='" + (isNum ? "number" : "text") + "' value='" + esc(value) + "'></div>";
-}
-
-function admSaveBtn(kind, id){
-  return "<button class='btn pri sm' data-act='admsave' data-dk='" + esc(kind) + "' data-di='" + esc(id) + "' data-fields='1'>Save</button>";
-}
-
-function readField(kind, id, field){
-  var e = $(fid(kind, id, field));
-  if(!e) return "";
-  return e.value;
-}
-
-function admMain(){
-  var e = ST.adm.econ;
-  var h = "<div class='card'>";
-  h += admField("econ", "x", "daily_bonus", "Daily bonus (USDT)", e.daily_bonus, 1);
-  h += admField("econ", "x", "signup_bonus", "Signup bonus (USDT)", e.signup_bonus, 1);
-  h += admField("econ", "x", "min_deposit", "Minimum deposit", e.min_deposit, 1);
-  h += admField("econ", "x", "min_withdraw", "Minimum withdraw", e.min_withdraw, 1);
-  h += admField("econ", "x", "withdraw_fee", "Withdraw fee %", e.withdraw_fee, 1);
-  h += admField("econ", "x", "ref_l1", "Referral L1 %", e.ref_l1, 1);
-  h += admField("econ", "x", "ref_l2", "Referral L2 %", e.ref_l2, 1);
-  h += admField("econ", "x", "ref_l3", "Referral L3 %", e.ref_l3, 1);
-  h += admField("econ", "x", "ref_signup", "Signup referral bonus", e.ref_signup, 1);
-  h += admField("econ", "x", "paused", "Paused (1 = on)", e.paused, 1);
-  h += admField("econ", "x", "admin_pw", "Admin password", e.admin_pw, 0);
-  h += "<div class='field'><label>How to earn text (HTML allowed)</label>" +
-    "<textarea class='inp' id='" + esc(fid("econ", "x", "earn_html")) + "' style='min-height:130px'>" + esc(e.earn_html) + "</textarea></div>";
-  h += "<button class='btn pri' data-act='admecon'>Save economy</button>";
-  h += "</div>";
-  return h;
-}
-
-function adminEcon(node){
-  var fields = ["daily_bonus", "signup_bonus", "min_deposit", "min_withdraw", "withdraw_fee", "ref_l1", "ref_l2", "ref_l3", "ref_signup", "paused", "admin_pw", "earn_html"];
-  var d = {};
-  d["pw"] = ST.pw;
-  d["kind"] = "econ";
-  for(var i = 0; i < fields.length; i++){
-    var e = $(fid("econ", "x", fields[i]));
-    if(e) d[fields[i]] = e.value;
-  }
-  api("admin_econ", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Failed", true); return; }
-    say("Saved");
-    admReload();
-  });
-}
-
-function admList(kind, title, key, fields){
-  var lst = ST.adm[key] || [];
-  var h = "<div class='sec'><h2>" + esc(title) + "</h2><small>" + lst.length + " items</small></div>";
-  var labels = {};
-  labels["name"] = "Name";
-  labels["emoji"] = "Emoji";
-  labels["desc"] = "Description";
-  labels["label"] = "Label";
-  labels["days"] = "Days";
-  labels["title"] = "Title";
-  labels["text"] = "Text";
-  labels["img"] = "Image URL";
-  labels["url"] = "Link";
-  labels["reward"] = "Reward USDT";
-  labels["need"] = "Needed count";
-  labels["address"] = "Address";
-  labels["note"] = "Note";
-  labels["min"] = "Minimum USDT";
-  labels["max"] = "Maximum USDT";
-  for(var i = 0; i < lst.length; i++){
-    var r = lst[i];
-    h += "<div class='card'>";
-    h += "<div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:8px'>" +
-      "<div style='font-size:12px;font-weight:800'>" + esc(r.name || r.title || r.label || r.id) + "</div>" +
-      "<span style='font-size:9px;color:var(--dim)'>" + esc(r.id) + "</span></div>";
-    for(var f = 0; f < fields.length; f++){
-      var fl = fields[f];
-      var isN = (fl === "days" || fl === "reward" || fl === "need" || fl === "min" || fl === "max");
-      h += admField(kind, r.id, fl, labels[fl] || fl, r[fl] === undefined ? "" : r[fl], isN);
+  api("unbox", { "bid":id }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    if (el) {
+      var r = el.getBoundingClientRect();
+      sparkle(r.left + r.width / 2, r.top + r.height / 2, 20);
     }
-    h += "<div class='row2'>" + admSaveBtn(kind, r.id) +
-      "<button class='btn red sm' style='width:100%' data-act='admdel' data-dk='" + esc(kind) + "' data-di='" + esc(r.id) + "'>Delete</button></div>";
-    h += "</div>";
-  }
-  h += "<button class='btn ghost' data-act='admadd' data-v='" + esc(kind) + "'>+ Add new</button>";
-  return h;
+    setTimeout(function(){
+      toast("You won " + M(j.r.win) + " USDT");
+      if (j.r.u) { S.u = j.r.u; }
+      paint();
+    }, 380);
+  });
 }
 
-function admPlans(){
-  var lst = ST.adm.plans || [];
-  var terms = ST.cfg.terms || [];
-  var cats = ST.cfg.cats || [];
-  var h = "<div class='sec'><h2>Companies</h2><small>" + lst.length + "</small></div>";
-  for(var i = 0; i < lst.length; i++){
-    var p = lst[i];
-    h += "<div class='card'>";
-    h += "<div style='display:flex;justify-content:space-between;align-items:center;margin-bottom:8px'>" +
-      "<div style='font-size:12px;font-weight:800'>" + esc(p.name) + "</div>" +
-      "<span style='font-size:9px;color:var(--dim)'>" + esc(p.id) + "</span></div>";
-    h += "<div class='field'><label>Section</label><select class='inp' id='" + esc(fid("plan", p.id, "cat")) + "'>";
-    for(var c = 0; c < cats.length; c++){
-      var sel = (cats[c].id === p.cat) ? " selected" : "";
-      h += "<option value='" + esc(cats[c].id) + "'" + sel + ">" + esc(cats[c].name) + "</option>";
+function sparkle(x, y, n){
+  for (var i = 0; i < n; i++) {
+    var s = document.createElement("div");
+    s.className = "spark";
+    var a = Math.random() * Math.PI * 2;
+    var d = 35 + Math.random() * 85;
+    s.style.left = x + "px";
+    s.style.top = y + "px";
+    s.style.setProperty("--dx", (Math.cos(a) * d).toFixed(0) + "px");
+    s.style.setProperty("--dy", (Math.sin(a) * d).toFixed(0) + "px");
+    s.style.background = (Math.random() > 0.5) ? "#FFB300" : "#00E676";
+    document.body.appendChild(s);
+    (function(node){ setTimeout(function(){ if (node.parentNode) { node.parentNode.removeChild(node); } }, 980); })(s);
+  }
+}
+
+function claimTask(id){
+  HAS();
+  api("task", { "id":id }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast("Task claimed");
+    if (j.r.u) { S.u = j.r.u; }
+    paint();
+  });
+}
+
+function copyRef(){
+  HAS();
+  var v = $("reflink").value;
+  try { navigator.clipboard.writeText(v); } catch(e){}
+  try {
+    var ta = document.createElement("textarea");
+    ta.value = v;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+  } catch(e){}
+  toast("Referral link copied");
+}
+
+function shareRef(){
+  HAS();
+  var v = $("reflink").value;
+  var txt = "Join me on Green Earn and earn daily profit from solar, EV, mining and AI projects:";
+  var sh = "https://t.me/share/url?url=" + encodeURIComponent(v) + "&text=" + encodeURIComponent(txt);
+  try { if (TG) { TG.openTelegramLink(sh); } else { window.open(sh, "_blank"); } } catch(e){ window.open(sh, "_blank"); }
+}
+
+function makeDep(){
+  var net = $("dnet").value;
+  var amt = parseFloat($("damt").value);
+  if (isNaN(amt) || amt <= 0) { toast("Enter an amount", true); return; }
+  HAS();
+  api("dep_new", { "net":net, "amount":amt }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    var h = "<div class='sh3'>Send your deposit</div><div class='shp'>Request dep" + E(j.r.id) + " · " + M(amt) + " USDT</div>" +
+      "<div class='card' style='border-color:rgba(0,230,118,.4)'><div class='note'>" + E(j.r.wname) + "</div>" +
+      "<div style='font-family:monospace;font-size:11.5px;word-break:break-all;margin-top:6px'>" + E(j.r.addr) + "</div></div>" +
+      "<div class='fl'><label>Proof (transaction hash or screenshot link)</label><input class='inp' id='pf' placeholder='paste tx hash'></div>" +
+      "<button class='btn pri' data-act='sendProof' data-id='" + E(j.r.id) + "'>Submit proof</button>" +
+      "<div class='note' style='margin-top:9px'>You can also send the screenshot to the bot chat.</div>";
+    openS(h);
+    if (j.r.u) { S.u = j.r.u; }
+    paint();
+  });
+}
+
+function sendProof(id){
+  var p = $("pf").value || "";
+  if (p.length < 4) { toast("Paste the transaction hash first", true); return; }
+  HAS();
+  api("dep_proof", { "id":id, "proof":p }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast("Proof sent — awaiting admin confirmation");
+    if (j.r.u) { S.u = j.r.u; }
+    paint();
+    closeSheet();
+  });
+}
+
+function doWd(){
+  var amt = parseFloat($("wamt").value);
+  var addr = $("waddr").value || "";
+  var net = $("wnet") ? $("wnet").value : "";
+  if (isNaN(amt) || amt <= 0) { toast("Enter an amount", true); return; }
+  if (addr.length < 8) { toast("Enter a valid wallet address", true); return; }
+  HAS();
+  api("wd", { "amount":amt, "addr":addr, "net":net }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast("Withdrawal requested");
+    if (j.r.u) { S.u = j.r.u; }
+    paint();
+    closeSheet();
+  });
+}
+
+function saveProfile(){
+  var nm = $("fname").value;
+  var wl = $("fwallet").value;
+  HAS();
+  api("profile", { "name":nm, "wallet":wl }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast("Profile saved");
+    if (j.r.u) { S.u = j.r.u; }
+    paint();
+  });
+}
+
+function sendKyc(){
+  var d = $("fdoc").value || "";
+  if (d.length < 4) { toast("Add a document ID or link", true); return; }
+  HAS();
+  api("kyc", { "doc":d }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast("Sent for verification");
+    if (j.r.u) { S.u = j.r.u; }
+    paint();
+  });
+}
+
+function setLang(lc){
+  HAS();
+  var dd = {};
+  dd["lang"] = lc;
+  api("lang", dd, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    toast("Language saved");
+    if (j.r.u) { S.u = j.r.u; }
+    paint();
+    closeSheet();
+  });
+}
+
+function doLogout(){
+  try { localStorage.clear(); } catch(e){}
+  if (TG) { try { TG.close(); } catch(e){} }
+  document.body.innerHTML = "<div style='padding:44px 24px;text-align:center'><div style='font-size:38px'>👋</div><div style='font-size:15px;font-weight:800;margin-top:10px'>You are logged out</div><div class='note' style='margin-top:7px'>Open the app again from your bot chat to come back. Your balance is safe.</div></div>";
+}
+
+/* ---------------- admin actions ---------------- */
+function admLogin(){
+  var pw = $("apw").value || "";
+  HAS();
+  var dd = {};
+  dd["pw"] = pw;
+  api("adm_in", dd, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    S.adm = j.r;
+    S.asec = "econ";
+    OKH();
+    openS(adminShell());
+  });
+}
+
+function saveEcon(){
+  var o = {};
+  o["daily"] = parseFloat($("e_daily").value);
+  o["signup"] = parseFloat($("e_signup").value);
+  o["daily_energy"] = parseFloat($("e_denergy").value);
+  o["signup_energy"] = parseFloat($("e_senergy").value);
+  o["l1"] = parseFloat($("e_l1").value);
+  o["l2"] = parseFloat($("e_l2").value);
+  o["l3"] = parseFloat($("e_l3").value);
+  o["l3team"] = parseFloat($("e_l3t").value);
+  o["refsignup"] = parseFloat($("e_rs").value);
+  o["minidep"] = parseFloat($("e_md").value);
+  o["miniwd"] = parseFloat($("e_mw").value);
+  o["wdfee"] = parseFloat($("e_fee").value);
+  adminSave("econ", o);
+}
+
+function saveTexts(){
+  var o = {};
+  o["logo"] = $("tx_logo").value;
+  o["brand"] = $("tx_brand").value;
+  o["tag"] = $("tx_tag").value;
+  o["channel"] = $("tx_chan").value;
+  o["support"] = $("tx_sup").value;
+  o["earn"] = $("tx_earn").value;
+  adminSave("texts", o);
+}
+
+function findUser(){
+  var q = $("fu_q").value;
+  HAS();
+  api("adm_user", { "q":q }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    var u = j.r.user;
+    S.adm = j.r.adm;
+    var h = "<div class='card'><div style='font-size:12.5px;font-weight:800'>" + E(u.name || u.uid) + "</div>" +
+      "<div class='kv'><span>Balance</span><b>" + M(u.bal) + " USDT</b></div>" +
+      "<div class='kv'><span>Invested</span><b>" + M(u.invest) + "</b></div>" +
+      "<div class='kv'><span>Profit</span><b>" + M(u.profit) + "</b></div>" +
+      "<div class='kv'><span>Referrals L1</span><b>" + N(u.c1) + "</b></div>" +
+      "<div class='kv'><span>KYC</span><b>" + E(u.kyc) + "</b></div>" +
+      (u.doc ? "<div class='note' style='word-break:break-all'>doc: " + E(u.doc) + "</div>" : "") +
+      "<div class='row2' style='margin-top:8px'>" +
+      "<button class='btn pri sm' style='width:100%' data-bal='" + E(u.uid) + "|1'>Credit</button>" +
+      "<button class='btn red sm' style='width:100%' data-bal='" + E(u.uid) + "|-1'>Debit</button></div></div>";
+    $("fres").innerHTML = h;
+  });
+}
+
+function adjBal(uid, sign){
+  var a = parseFloat(prompt("Amount in USDT:"));
+  if (isNaN(a) || a <= 0) { return; }
+  HAS();
+  api("adm_bal", { "uid":uid, "amount":(a * sign) }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast(j.r.msg);
+    S.adm = j.r.adm;
+    findUser();
+  });
+}
+
+function review(kind, rid, ok){
+  HAS();
+  api("adm_review", { "kind":kind, "id":rid, "ok":ok }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast("Updated");
+    S.adm = j.r.adm;
+    if (j.r.u) { S.u = j.r.u; }
+    if (j.r.cfg) { S.cfg = j.r.cfg; }
+    paint();
+    $("adbody").innerHTML = adminBody();
+  });
+}
+
+/* ---------------- one click handler for everything ---------------- */
+document.addEventListener("click", function(ev){
+  var el = ev.target;
+  var guard = 0;
+  while (el && el !== document.body && guard < 8) {
+    guard = guard + 1;
+    if (el.getAttribute) {
+      var act = el.getAttribute("data-act");
+      var tab = el.getAttribute("data-tab");
+      var cat = el.getAttribute("data-cat");
+      var proj = el.getAttribute("data-proj");
+      var term = el.getAttribute("data-term");
+      var box = el.getAttribute("data-box");
+      var tcat = el.getAttribute("data-tcat");
+      var task = el.getAttribute("data-task");
+      var lang = el.getAttribute("data-lang");
+      var add = el.getAttribute("data-add");
+      var maxb = el.getAttribute("data-max");
+      var asec = el.getAttribute("data-asec");
+      var rev = el.getAttribute("data-rev");
+      var bal = el.getAttribute("data-bal");
+      var tsave = el.getAttribute("data-tsave");
+      var tdel = el.getAttribute("data-tdel");
+      var saved = el.getAttribute("data-save");
+      var padd = el.getAttribute("data-padd");
+      var pedit = el.getAttribute("data-pedit");
+      var nadd = el.getAttribute("data-nadd");
+      var nedit = el.getAttribute("data-nedit");
+      var ndel = el.getAttribute("data-ndel");
+      var kadd = el.getAttribute("data-kadd");
+      var kedit = el.getAttribute("data-kedit");
+      var kdel = el.getAttribute("data-kdel");
+      var bsave = el.getAttribute("data-bsave");
+      var paysave = el.getAttribute("data-paysave");
+      var paydel = el.getAttribute("data-paydel");
+      var id = el.getAttribute("data-id");
+
+      if (tab) { go(tab); return; }
+      if (cat !== null) { HAS(); S.cat = parseInt(cat); var cc = curCat(); if (cc && cc.com.length) { S.proj = cc.com[0].id; } paintCats(); paintProjects(); return; }
+      if (proj) { HAS(); S.proj = proj; paintProjects(); return; }
+      if (term) { HAS(); S.term = term; paintCalc(); return; }
+      if (box) { openBox(box); return; }
+      if (tcat) { HAS(); S.tcat = tcat; paintTasks(); return; }
+      if (task) { claimTask(task); return; }
+      if (lang) { setLang(lang); return; }
+      if (asec) { HAS(); S.asec = asec; $("adbody").innerHTML = adminBody(); return; }
+      if (rev) { var rp = rev.split("|"); review(rp[0], rp[1], parseInt(rp[2])); return; }
+      if (bal) { var bp = bal.split("|"); adjBal(bp[0], parseInt(bp[1])); return; }
+      if (tsave !== null) { var i2 = parseInt(tsave); var tg = (S.adm.page.terms || [])[i2]; adminSave("term", { "id":tg.id, "n":$("tm_n" + i2).value, "d":parseInt($("tm_d" + i2).value) }); return; }
+      if (tdel) { adminSave("term_del", tdel); return; }
+      if (padd) { S.editing = { "kind":"proj", "cat":padd }; editorForm("proj", null, padd); return; }
+      if (pedit) { var pp = pedit.split("|"); var cc2 = catof(pp[0]); var ob = cof(cc2, pp[1]); S.editing = { "kind":"proj", "cat":pp[0], "item":ob }; editorForm("proj", ob, pp[0]); return; }
+      if (nadd) { S.editing = { "kind":nadd }; editorForm(nadd, null, ""); return; }
+      if (nedit) { var np = nedit.split("|"); var lst = S.adm.page[np[0]] || []; var ob2 = null; for (var z = 0; z < lst.length; z++) { if (lst[z].id === np[1]) { ob2 = lst[z]; } } editorForm(np[0], ob2, ""); return; }
+      if (ndel) { var dp = ndel.split("|"); adminSave((dp[0] === "news" ? "news_del" : "event_del"), dp[1]); return; }
+      if (kadd) { editorForm("task", null, ""); return; }
+      if (kedit) { var kl = S.adm.page.tasks || []; var ob3 = null; for (var y = 0; y < kl.length; y++) { if (kl[y].id === kedit) { ob3 = kl[y]; } } editorForm("task", ob3, ""); return; }
+      if (kdel) { adminSave("task_del", kdel); return; }
+      if (bsave !== null) { var bi = parseInt(bsave); var bx = (S.adm.page.boxes || [])[bi]; adminSave("box", { "id":bx.id, "name":bx.name, "emoji":bx.emoji, "req":bx.req, "need":bx.need, "min":parseFloat($("bx_min" + bi).value), "max":parseFloat($("bx_max" + bi).value) }); return; }
+      if (paysave !== null) { var pi = parseInt(paysave); var pm = (S.adm.page.pay || [])[pi]; adminSave("pay", { "id":pm.id, "name":$("pa_n" + pi).value, "addr":$("pa_a" + pi).value, "color":pm.color, "on":1 }); return; }
+      if (paydel) { adminSave("pay_del", paydel); return; }
+      if (saved) { saveEditor(saved, id); return; }
+      if (add) { S.amt = (parseFloat(S.amt) || 0) + parseFloat(add); paintCalc(); return; }
+      if (maxb) { S.amt = parseFloat(S.u.bal); paintCalc(); return; }
+
+      if (act) { runAct(act, id); return; }
     }
-    h += "</select></div>";
-    h += admField("plan", p.id, "name", "Company name", p.name, 0);
-    h += admField("plan", p.id, "ticker", "Ticker label", p.ticker, 0);
-    h += admField("plan", p.id, "desc", "Details", p.desc, 0);
-    h += admField("plan", p.id, "min", "Minimum USDT", p.min, 1);
-    h += admField("plan", p.id, "soon", "Coming soon (1 = yes)", p.soon, 1);
-    h += "<div style='font-size:11px;text-transform:uppercase;letter-spacing:.6px;color:var(--dim);font-weight:800;margin:6px 0 4px'>Daily % per term</div>";
-    for(var t = 0; t < terms.length; t++){
-      var val = (p.yields || {})[terms[t].id];
-      h += "<div class='kv'><span>" + esc(terms[t].label) + "</span>" +
-        "<input class='inp' id='" + esc(fid("plan", p.id, "y:" + terms[t].id)) + "' type='number' step='0.1' value='" + (val === undefined ? 0 : val) + "' style='width:88px;padding:7px;text-align:right'></div>";
-    }
-    h += "<div class='row2' style='margin-top:8px'>" + admSaveBtn("plan", p.id) +
-      "<button class='btn red sm' style='width:100%' data-act='admdel' data-dk='plan' data-di='" + esc(p.id) + "'>Delete</button></div>";
-    h += "</div>";
+    el = el.parentNode;
   }
-  h += "<button class='btn ghost' data-act='admadd' data-v='plan'>+ Add company</button>";
-  return h;
+}, false);
+
+function catof(cid){
+  var cs = (S.adm.page.cats) || [];
+  for (var i = 0; i < cs.length; i++) { if (cs[i].id === cid) { return cs[i]; } }
+  return null;
+}
+function cof(cat, cid){
+  if (!cat) { return null; }
+  for (var i = 0; i < cat.com.length; i++) { if (cat.com[i].id === cid) { return cat.com[i]; } }
+  return null;
 }
 
-function adminSave(node){
-  var kind = node.getAttribute("data-dk");
-  var id = node.getAttribute("data-di");
-  var payload = {};
-  payload["pw"] = ST.pw;
-  payload["kind"] = kind;
-  payload["id"] = id;
-  if(kind === "plan"){
-    var terms = ST.cfg.terms || [];
-    for(var t = 0; t < terms.length; t++){
-      payload["y:" + terms[t].id] = readField("plan", id, "y:" + terms[t].id);
-    }
-    var simple = ["name", "ticker", "desc", "min", "soon", "cat"];
-    for(var i = 0; i < simple.length; i++){ payload[simple[i]] = readField("plan", id, simple[i]); }
-  }else{
-    var flds = [];
-    if(kind === "cat") flds = ["name", "emoji", "desc"];
-    else if(kind === "term") flds = ["label", "days"];
-    else if(kind === "event") flds = ["title", "text", "img"];
-    else if(kind === "task") flds = ["title", "desc", "url", "reward", "need"];
-    else if(kind === "wallet") flds = ["name", "address", "note"];
-    else if(kind === "box") flds = ["name", "emoji", "min", "max"];
-    else if(kind === "vip") flds = ["name", "min"];
-    for(var k = 0; k < flds.length; k++){ payload[flds[k]] = readField(kind, id, flds[k]); }
-  }
-  api("admin_set", payload, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Failed", true); return; }
-    say("Saved");
-    admReload();
-  });
-}
-
-function adminAdd(kind){
-  var d = {};
-  d["pw"] = ST.pw;
-  d["kind"] = kind;
-  api("admin_add", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Failed", true); return; }
-    say("Added");
-    admReload();
-  });
-}
-
-function adminDel(kind){
-  var d = {};
-  d["pw"] = ST.pw;
-  d["kind"] = kind;
-  d["id"] = "";
-  api("admin_del", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Failed", true); return; }
-    say("Removed");
-    admReload();
-  });
-}
-
-function admReview(){
-  var h = "";
-  var deps = ST.adm.deps || [];
-  h += "<div class='sec'><h2>📥 Deposits</h2><small>" + deps.length + "</small></div>";
-  if(deps.length === 0) h += "<div class='card'><div class='note'>None waiting.</div></div>";
-  for(var i = 0; i < deps.length; i++){
-    var d = deps[i];
-    h += "<div class='card'><div style='display:flex;justify-content:space-between'>" +
-      "<div><div style='font-size:12px;font-weight:800'>" + num(d.amount) + " USDT</div>" +
-      "<div class='note'>user " + esc(d.u) + " · " + esc(d.wname || "") + "</div>" +
-      (d.proof ? "<div class='note' style='word-break:break-all'>proof: " + esc(d.proof) + "</div>" : "<div class='note'>no proof yet</div>") +
-      "</div><span class='badge p'>" + esc(d.id) + "</span></div>" +
-      "<div class='row2' style='margin-top:9px'>" +
-      "<button class='btn pri sm' style='width:100%' data-act='admdecide' data-dk='dep' data-di='" + esc(d.id) + "' data-ok='1'>Approve</button>" +
-      "<button class='btn red sm' style='width:100%' data-act='admdecide' data-dk='dep' data-di='" + esc(d.id) + "' data-ok='0'>Reject</button></div></div>";
-  }
-  var wds = ST.adm.wds || [];
-  h += "<div class='sec'><h2>📤 Withdrawals</h2><small>" + wds.length + "</small></div>";
-  if(wds.length === 0) h += "<div class='card'><div class='note'>None waiting.</div></div>";
-  for(var k = 0; k < wds.length; k++){
-    var w = wds[k];
-    h += "<div class='card'><div style='display:flex;justify-content:space-between'>" +
-      "<div><div style='font-size:12px;font-weight:800'>" + num(w.amount) + " USDT</div>" +
-      "<div class='note'>user " + esc(w.u) + " · net " + num(w.net) + "</div>" +
-      "<div class='note'>" + esc(w.method || "") + "</div>" +
-      "<div class='note' style='word-break:break-all'>" + esc(w.addr || "") + "</div></div>" +
-      "<span class='badge p'>" + esc(w.id) + "</span></div>" +
-      "<div class='row2' style='margin-top:9px'>" +
-      "<button class='btn pri sm' style='width:100%' data-act='admdecide' data-dk='wd' data-di='" + esc(w.id) + "' data-ok='1'>Paid</button>" +
-      "<button class='btn red sm' style='width:100%' data-act='admdecide' data-dk='wd' data-di='" + esc(w.id) + "' data-ok='0'>Reject</button></div></div>";
-  }
-  var ks = ST.adm.kycs || [];
-  h += "<div class='sec'><h2>🛡 ID checks</h2><small>" + ks.length + "</small></div>";
-  if(ks.length === 0) h += "<div class='card'><div class='note'>None waiting.</div></div>";
-  for(var z = 0; z < ks.length; z++){
-    var y = ks[z];
-    h += "<div class='card'><div style='font-size:12px;font-weight:800'>" + esc(y.name) + "</div>" +
-      "<div class='note'>user " + esc(y.u) + " · ID " + esc(y.idnum) + "</div>" +
-      "<div class='row2' style='margin-top:9px'>" +
-      "<button class='btn pri sm' style='width:100%' data-act='admdecide' data-dk='kyc' data-di='" + esc(y.id) + "' data-ok='1'>Verify</button>" +
-      "<button class='btn red sm' style='width:100%' data-act='admdecide' data-dk='kyc' data-di='" + esc(y.id) + "' data-ok='0'>Reject</button></div></div>";
-  }
-  return h;
-}
-
-function adminDecide(node){
-  var d = {};
-  d["pw"] = ST.pw;
-  d["kind"] = node.getAttribute("data-dk");
-  d["id"] = node.getAttribute("data-di");
-  d["ok"] = parseInt(node.getAttribute("data-ok") || "0");
-  api("admin_decide", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Failed", true); return; }
-    say("Done");
-    admReload();
-  });
-}
-
-function admUsers(){
-  var h = "<div class='sec'><h2>👤 Find user</h2></div>";
-  h += "<div class='field'><label>Username or numeric id</label><input class='inp' id='uq' placeholder='@username or 123456789'></div>";
-  h += "<div class='row2'><button class='btn ghost' data-act='admuser'>Look up</button>" +
-    "<button class='btn ghost' data-act='admbal' data-sign='1'>Credit</button></div>";
-  h += "<div class='field' style='margin-top:10px'><label>Amount for credit / debit</label>" +
-    "<input class='inp' id='uamt' type='number' placeholder='10'></div>";
-  h += "<button class='btn red' data-act='admbal' data-sign='-1' style='margin-top:8px'>Debit user</button>";
-  h += "<div id='uout' style='margin-top:12px'></div>";
-  return h;
-}
-
-function adminUser(){
-  var q = $("uq");
-  if(!q) return;
-  var d = {};
-  d["pw"] = ST.pw;
-  d["q"] = q.value;
-  api("admin_user", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Not found", true); return; }
-    var u = j.r.usr;
-    var h = "<div class='card'><div style='font-size:12.5px;font-weight:800'>User " + esc(u.uid) + "</div>" +
-      "<div class='kv'><span>Balance</span><b>" + num(u.bal) + "</b></div>" +
-      "<div class='kv'><span>Invested</span><b>" + num(u.invest) + "</b></div>" +
-      "<div class='kv'><span>Team</span><b>" + (u.c1 + u.c2 + u.c3) + "</b></div>" +
-      "<div class='kv'><span>Verification</span><b>" + esc(u.kyc) + "</b></div>" +
-      "<div class='kv'><span>Joined</span><b>" + esc((u.tx || []).length) + " tx</b></div></div>";
-    var o = $("uout");
-    if(o) o.innerHTML = h;
-  });
-}
-
-function adminBal(node){
-  var q = $("uq");
-  var a = $("uamt");
-  if(!q || !a) return;
-  var sign = parseInt(node.getAttribute("data-sign") || "1");
-  var d = {};
-  d["pw"] = ST.pw;
-  d["q"] = q.value;
-  d["amount"] = sign * Math.abs(parseFloat(a.value || 0));
-  api("admin_bal", d, function(j){
-    if(!j.ok){ buzz(); say(j.e || "Failed", true); return; }
-    say("New balance " + num(j.r.bal));
-    admReload();
-  });
-}
-
-var routeBase = route;
-route = function(a, node){
-  if(a === "howto"){ openHowto(); return; }
-  if(a === "admdel"){
-    var dk = node.getAttribute("data-dk");
-    var di = node.getAttribute("data-di");
-    var d = {};
-    d["pw"] = ST.pw;
-    d["kind"] = dk;
-    d["id"] = di;
-    api("admin_del", d, function(j){
-      if(!j.ok){ buzz(); say(j.e || "Failed", true); return; }
-      say("Removed");
-      admReload();
-    });
+function runAct(a, id){
+  if (a === "closeSheet") { closeSheet(); return; }
+  if (a === "lang") { sheetLang(); return; }
+  if (a === "earn") { sheetEarn(); return; }
+  if (a === "support") { sheetSupport(); return; }
+  if (a === "treeInfo") { sheetTree(); return; }
+  if (a === "wallet") { go("wallet"); return; }
+  if (a === "depSheet") { sheetDep(); return; }
+  if (a === "wdSheet") { sheetWd(); return; }
+  if (a === "claimDaily") { claimDaily(); return; }
+  if (a === "doInvest") { doInvest(); return; }
+  if (a === "copyRef") { copyRef(); return; }
+  if (a === "shareRef") { shareRef(); return; }
+  if (a === "saveProfile") { saveProfile(); return; }
+  if (a === "sendKyc") { sendKyc(); return; }
+  if (a === "logout") { doLogout(); return; }
+  if (a === "makeDep") { makeDep(); return; }
+  if (a === "sendProof") { sendProof(id); return; }
+  if (a === "doWd") { doWd(); return; }
+  if (a === "adminSheet") { HAS(); if (S.adm) { openS(adminShell()); } else { openS(adminLogin()); } return; }
+  if (a === "admLogin") { admLogin(); return; }
+  if (a === "saveEcon") { saveEcon(); return; }
+  if (a === "saveTexts") { saveTexts(); return; }
+  if (a === "findUser") { findUser(); return; }
+  if (a === "addTerm") { adminSave("term", { "n":$("nt_n").value, "d":parseInt($("nt_d").value) }); return; }
+  if (a === "addCat") { adminSave("cat", { "name":$("nc_n").value, "emoji":$("nc_e").value }); return; }
+  if (a === "addPay") { adminSave("pay", { "name":$("np_n").value, "addr":$("np_a").value, "color":"#26A17B", "on":1 }); return; }
+  if (a === "saveVip") {
+    var vs = (S.adm.page.vip) || [], arr = [];
+    for (var i = 0; i < vs.length; i++) { arr.push({ "name":$("vp_n" + i).value, "min":parseFloat($("vp_m" + i).value) }); }
+    adminSave("vip", arr);
     return;
   }
-  if(a === "amt"){ return; }
-  routeBase(a, node);
-};
-
-document.addEventListener("input", function(ev){
-  var n = ev.target;
-  if(!n || !n.getAttribute) return;
-  var a = n.getAttribute("data-act");
-  if(a !== "amt") return;
-  var v = parseFloat(n.value || 0);
-  if(isNaN(v)) v = 0;
-  ST.amt = v;
-  var p = null;
-  var pl = ST.cfg.plans || [];
-  for(var i = 0; i < pl.length; i++){ if(pl[i].id === ST.co) p = pl[i]; }
-  if(!p) return;
-  var rate = parseFloat((p.yields || {})[ST.term] || 0);
-  var days = 1;
-  var ts = ST.cfg.terms || [];
-  for(var k = 0; k < ts.length; k++){ if(ts[k].id === ST.term) days = parseInt(ts[k].days || 1); }
-  var pd = $("pday");
-  var pt = $("ptot");
-  if(pd) pd.textContent = num(v * rate / 100) + " USDT";
-  if(pt) pt.textContent = num(v * rate / 100 * days) + " USDT";
-});
-
-document.addEventListener("DOMContentLoaded", function(){
-  try{ boot(); }catch(e){ err("Boot error: " + (e && e.message ? e.message : e)); }
-});
-
-if(document.readyState === "complete" || document.readyState === "interactive"){
-  setTimeout(function(){ try{ boot(); }catch(e){ err("Boot error: " + (e && e.message ? e.message : e)); } }, 0);
+  if (a === "kycOk") { admKyc(1); return; }
+  if (a === "kycNo") { admKyc(0); return; }
+  toast("Unknown action", true);
 }
 
-setInterval(function(){
-  var b = $("adminbtn");
-  if(b && ST.u){
-    if(ST.u.is_admin === 1) b.classList.remove("hide");
-    else b.classList.add("hide");
+function admKyc(ok){
+  var u = $("ky_uid").value;
+  var n = $("ky_note").value;
+  HAS();
+  api("adm_kyc", { "uid":u, "ok":ok, "note":n }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast("KYC updated");
+    S.adm = j.r.adm;
+  });
+}
+
+function saveEditor(key, id){
+  var parts = key.split("|");
+  var kind = parts[0];
+  var ref = parts[1] || "";
+  if (kind === "news" || kind === "events") {
+    adminSave(kind, { "id":ref, "title":$("ed_t").value, "text":$("ed_x").value, "img":$("ed_i").value, "on":1 });
+    closeSheet();
+    return;
   }
-}, 1500);
+  if (kind === "task") {
+    adminSave("task", { "id":ref, "title":$("ed_t").value, "desc":$("ed_x").value, "reward":parseFloat($("ed_r").value), "energy":parseFloat($("ed_en").value), "cat":$("ed_c").value, "type":$("ed_ty").value, "url":$("ed_u").value, "need":parseInt($("ed_n").value), "active":1 });
+    closeSheet();
+    return;
+  }
+  if (kind === "proj") {
+    var terms = S.cfg.terms || [], y = {};
+    for (var i = 0; i < terms.length; i++) {
+      var el = $("py_" + terms[i].id);
+      if (el) { y[terms[i].id] = parseFloat(el.value); }
+    }
+    var item = (S.editing && S.editing.item) ? S.editing.item : null;
+    var pid = item ? item.id : "";
+    adminSave("com", { "id":pid, "cat":ref, "name":$("ed_t").value, "sym":$("ed_s").value, "short":$("ed_sh").value, "min":parseFloat($("ed_mn").value), "color":$("ed_col").value, "soon":parseInt($("ed_soon").value), "text":$("ed_x").value, "y":y });
+    closeSheet();
+    return;
+  }
+}
+
+/* slider + input wiring */
+document.addEventListener("input", function(ev){
+  var id = ev.target.id;
+  if (id === "amtsl") {
+    S.amt = parseFloat(ev.target.value);
+    var inp = $("amtin");
+    if (inp) { inp.value = parseFloat(ev.target.value).toFixed(2); }
+  }
+  if (id === "amtin") {
+    S.amt = parseFloat(ev.target.value);
+  }
+}, false);
+
+/* ---------------- crash-proof rendering ---------------- */
+function setT(id, v){
+  var e = document.getElementById(id);
+  if (e) { e.innerHTML = v; }
+}
+function setV(id, v){
+  var e = document.getElementById(id);
+  if (e) { e.value = v; }
+}
+function safe(fn){
+  try { fn(); } catch(err){ }
+}
+
+function paint(){
+  if (!S.cfg || !S.u) { return; }
+  var c = S.cfg, u = S.u;
+  setT("brand", E(c.brand));
+  setT("logo", E(c.logo));
+  var at = document.getElementById("admtab");
+  if (at) { at.style.display = (u.is_admin === 1) ? "grid" : "none"; }
+  setT("hbal", M(u.bal));
+  setT("hvip", E(u.vip));
+  setT("hen", N(u.energy));
+  setT("hinv", M(u.invest));
+  setT("hprof", M(u.profit));
+  setT("hact", N(u.active));
+  setT("wbal", M(u.bal));
+  setT("winv", M(u.invest));
+  setT("wprof", M(u.profit));
+  setT("wtotinv", M(u.total_invested));
+  setT("wcurinv", M(u.invest));
+  setT("wprofit", M(u.profit));
+  setT("wactive", N(u.active));
+  setT("wref", M(u.ref_earned));
+  setT("pname", E(u.name || "Guest"));
+  setT("puser", u.user ? ("@" + E(u.user)) : "no username");
+  setT("puid", E(u.uid));
+  setT("pvip", E(u.vip));
+  setT("ptot", M(u.total_invested));
+  setT("pprof", M(u.profit));
+  setT("pteam", N(u.team.total));
+  setT("pen", N(u.energy));
+  setV("fname", u.name || "");
+  setV("fwallet", u.wallet || "");
+  safe(paintDaily);
+  safe(paintBoxes);
+  safe(paintNews);
+  safe(paintEvents);
+  safe(paintEarn);
+  safe(paintCats);
+  safe(paintProjects);
+  safe(paintHoldings);
+  safe(paintTasks);
+  safe(paintRefer);
+  safe(paintTx);
+  safe(paintDeps);
+  safe(paintKyc);
+}
+
+/* ---------------- start ---------------- */
+function bootApp(){
+  if (TG) {
+    try { TG.ready(); } catch(e){}
+    try { TG.expand(); } catch(e){}
+    try { TG.setHeaderColor("#070A0F"); } catch(e){}
+    try { TG.setBackgroundColor("#070A0F"); } catch(e){}
+    try { TG.enableClosingConfirmation(); } catch(e){}
+  }
+  if (!INIT) {
+    fatal("Please open this app from inside Telegram — tap the button in your bot chat.");
+    return;
+  }
+  if (!API) {
+    fatal("Setup missing: the API link was not written into this file. Send /getapp to your bot to get a ready file.");
+    return;
+  }
+  try {
+    var sp = TG && TG.initDataUnsafe ? TG.initDataUnsafe.start_param : "";
+    if (sp) { localStorage.setItem("ref", sp); }
+  } catch(e){}
+  loadApp();
+}
+
+if (document.readyState === "complete" || document.readyState === "interactive") {
+  setTimeout(bootApp, 30);
+} else {
+  document.addEventListener("DOMContentLoaded", bootApp, false);
+}
 </script>
 </body>
 </html>
