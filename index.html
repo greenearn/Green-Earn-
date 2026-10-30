@@ -260,6 +260,15 @@ max-width:88vw;text-align:center;box-shadow:0 14px 34px -14px #000}
 .empty{text-align:center;padding:24px 10px;color:var(--dim);font-size:12px}
 .empty div{font-size:29px;margin-bottom:7px;opacity:.55}
 .note{font-size:11px;color:var(--dim);line-height:1.55}
+.lrow{display:flex;align-items:center;gap:10px;width:100%;padding:11px 12px;border-radius:12px;
+background:#0C1219;border:1px solid var(--bd);margin-bottom:6px;text-align:left;transition:all .13s}
+.lrow:active{transform:scale(.985)}
+.lrow.on{border-color:rgba(0,230,118,.6);background:linear-gradient(135deg,rgba(0,230,118,.16),rgba(0,230,118,.04))}
+.lfl{font-size:19px;flex:0 0 24px;line-height:1}
+.lnm{flex:1;min-width:0;font-size:12.5px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lcd{font-size:9px;font-weight:900;letter-spacing:.6px;color:var(--dim);
+background:rgba(255,255,255,.05);padding:3px 6px;border-radius:5px;flex:0 0 auto}
+.lrow.on .lcd{background:rgba(0,230,118,.2);color:var(--grn)}
 .skel{height:12px;border-radius:8px;margin:8px 0;
 background:linear-gradient(90deg,#141B24 25%,#1C2530 50%,#141B24 75%);
 background-size:200% 100%;animation:sh 1.3s infinite}
@@ -284,16 +293,15 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
 
 <div class="wrap">
 
-<!-- ============ HOME ============ -->
 <div id="v-home" class="view">
   <div class="hero">
-    <div class="hl">Total balance</div>
+    <div class="hl" data-i18n="s.balance">Total balance</div>
     <div class="hb"><span id="hbal">0.00</span> <small>USDT</small></div>
-    <div class="hs"><span id="hvip">Level 1</span> · <span id="hen">0</span> energy</div>
+    <div class="hs"><span id="hvip">Level 1</span> · <span id="hen">0</span> <span data-i18n="s.energy">Energy</span></div>
     <div class="hrow">
-      <div class="hstat"><span>Invested</span><b id="hinv">0.00</b></div>
-      <div class="hstat"><span>Profit</span><b id="hprof">0.00</b></div>
-      <div class="hstat"><span>Active</span><b id="hact">0</b></div>
+      <div class="hstat"><span data-i18n="s.invested">Invested</span><b id="hinv">0.00</b></div>
+      <div class="hstat"><span data-i18n="s.profit">Profit</span><b id="hprof">0.00</b></div>
+      <div class="hstat"><span data-i18n="s.active">Active</span><b id="hact">0</b></div>
     </div>
   </div>
 
@@ -301,26 +309,26 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
     <div class="dailyin">
       <div class="dgift">🎁</div>
       <div style="flex:1;min-width:0">
-        <div class="dt">Daily login bonus</div>
+        <div class="dt" data-i18n="d.title">Daily login bonus</div>
         <div class="dsub" id="dailysub">Claim once every 24 hours</div>
       </div>
       <button class="btn gold sm" id="dailybtn" data-act="claimDaily">Claim</button>
     </div>
   </div>
 
-  <div class="sec"><h2>🎁 Gift boxes</h2><small id="boxnote">once per day</small></div>
+  <div class="sec"><h2 data-i18n="g.boxes">Gift boxes</h2><small id="boxnote" data-i18n="d.sub">once per day</small></div>
   <div class="boxes" id="boxgrid"></div>
 
-  <div class="sec"><h2>🔥 Live events</h2><small>from the team</small></div>
+  <div class="sec"><h2 data-i18n="g.events">Live events</h2><small>&nbsp;</small></div>
   <div id="events"></div>
 
-  <div class="sec"><h2>📰 News & new projects</h2><small>latest</small></div>
+  <div class="sec"><h2 data-i18n="g.news">News and new projects</h2><small>&nbsp;</small></div>
   <div id="news"></div>
 
   <div class="card">
-    <div style="font-size:12.5px;font-weight:800;margin-bottom:6px">📘 How to earn here</div>
-    <div class="note" id="earnbox">Loading…</div>
-    <button class="btn gh" style="margin-top:10px" data-act="earn">Read the full guide</button>
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:6px" data-i18n="g.guide">How to earn here</div>
+    <div class="note" id="earnbox"></div>
+    <button class="btn gh" style="margin-top:10px" data-act="earn" data-i18n="g.read">Read the full guide</button>
   </div>
 
   <div class="trust">
@@ -328,28 +336,26 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
   </div>
 </div>
 
-<!-- ============ INVEST ============ -->
 <div id="v-invest" class="view hide">
-  <div class="sec"><h2>📈 Invest</h2><small id="invnote">choose a project</small></div>
+  <div class="sec"><h2 data-i18n="i.title">Invest</h2><small id="invnote" data-i18n="i.choose">choose a project</small></div>
   <div class="cat" id="cattabs"></div>
   <div id="projlist"></div>
   <div id="calcwrap"></div>
-  <div class="sec"><h2>🏗 My investments</h2><small id="holdnote">0 active</small></div>
+  <div class="sec"><h2 data-i18n="i.mine">My investments</h2><small id="holdnote">&nbsp;</small></div>
   <div id="holdings"></div>
 </div>
 
-<!-- ============ TASKS ============ -->
 <div id="v-tasks" class="view hide">
   <div class="card grad">
     <div style="display:flex;align-items:center;gap:11px">
       <div style="font-size:26px">✅</div>
       <div style="flex:1">
-        <div style="font-size:13.5px;font-weight:800">Daily tasks</div>
-        <div class="note" style="margin-top:1px">Complete and claim instantly</div>
+        <div style="font-size:13.5px;font-weight:800" data-i18n="t.title">Daily tasks</div>
+        <div class="note" style="margin-top:1px" data-i18n="t.sub">Complete and claim instantly</div>
       </div>
       <div style="text-align:right">
         <div style="font-size:15px;font-weight:800;color:var(--grn)" id="taskearn">0.00</div>
-        <div style="font-size:9px;color:var(--dim);font-weight:900">EARNED</div>
+        <div style="font-size:9px;color:var(--dim);font-weight:900" data-i18n="s.profit">Earned</div>
       </div>
     </div>
   </div>
@@ -357,7 +363,6 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
   <div id="tasklist"></div>
 </div>
 
-<!-- ============ REFER ============ -->
 <div id="v-refer" class="view hide">
   <div class="card grad">
     <div class="tree">
@@ -370,67 +375,64 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
       </div>
     </div>
     <div class="row2" style="margin-top:12px">
-      <div class="hstat"><span>Team size</span><b id="ttotal">0</b></div>
-      <div class="hstat"><span>Commission</span><b id="tearned">0.00</b></div>
+      <div class="hstat"><span data-i18n="r.team">Team size</span><b id="ttotal">0</b></div>
+      <div class="hstat"><span data-i18n="r.comm">Commission</span><b id="tearned">0.00</b></div>
     </div>
   </div>
 
   <div class="card">
-    <div style="font-size:12.5px;font-weight:800;margin-bottom:6px">🔗 Your referral link</div>
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:6px" data-i18n="r.link">Your referral link</div>
     <div class="refl">
       <input id="reflink" readonly value="">
-      <button class="btn pri sm" data-act="copyRef">Copy</button>
+      <button class="btn pri sm" data-act="copyRef" data-i18n="r.copy">Copy</button>
     </div>
     <div class="row2" style="margin-top:8px">
-      <button class="btn gh" data-act="shareRef">Share on Telegram</button>
-      <button class="btn gh" data-act="treeInfo">How it works</button>
+      <button class="btn gh" data-act="shareRef" data-i18n="r.share">Share on Telegram</button>
+      <button class="btn gh" data-act="treeInfo" data-i18n="r.how">How it works</button>
     </div>
   </div>
 
-  <div class="sec"><h2>👑 VIP levels</h2><small>by total balance</small></div>
+  <div class="sec"><h2 data-i18n="r.vip">VIP levels</h2><small>&nbsp;</small></div>
   <div class="card" id="viplist"></div>
 
   <div class="card">
-    <div style="font-size:12.5px;font-weight:800;margin-bottom:6px">💸 Commission rules</div>
-    <div class="kv"><span>Level 1 · direct invites</span><b id="rl1">10%</b></div>
-    <div class="kv"><span>Level 2 · friends of friends</span><b id="rl2">5%</b></div>
-    <div class="kv"><span>Level 3 · team node</span><b id="rl3">2%</b></div>
-    <div class="note" style="margin-top:8px">Commission is credited automatically every time someone in your tree receives a profit credit. Level 3 unlocks once your team passes <b id="rl3n">50</b> members.</div>
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:6px" id="commrule">Commission rules</div>
+    <div class="kv"><span>Level 1</span><b id="rl1">10%</b></div>
+    <div class="kv"><span>Level 2</span><b id="rl2">5%</b></div>
+    <div class="kv"><span>Level 3</span><b id="rl3">2%</b></div>
   </div>
 </div>
 
-<!-- ============ WALLET ============ -->
 <div id="v-wallet" class="view hide">
   <div class="hero">
-    <div class="hl">Available balance</div>
+    <div class="hl" data-i18n="w.available">Available balance</div>
     <div class="hb"><span id="wbal">0.00</span> <small>USDT</small></div>
-    <div class="hs">Invested <b id="winv">0.00</b> · Profit <b id="wprof">0.00</b></div>
+    <div class="hs"><span data-i18n="s.invested">Invested</span> <b id="winv">0.00</b> · <span data-i18n="s.profit">Profit</span> <b id="wprof">0.00</b></div>
     <div class="row2" style="margin-top:12px;position:relative">
-      <button class="btn pri" data-act="depSheet">📥 Deposit</button>
-      <button class="btn gold" data-act="wdSheet">📤 Withdraw</button>
+      <button class="btn pri" data-act="depSheet"><span data-i18n="w.deposit">Deposit</span></button>
+      <button class="btn gold" data-act="wdSheet"><span data-i18n="w.withdraw">Withdraw</span></button>
     </div>
   </div>
 
   <div class="card">
-    <div style="font-size:12.5px;font-weight:800;margin-bottom:2px">📊 Investment summary</div>
-    <div class="kv"><span>Total ever invested</span><b id="wtotinv">0.00</b></div>
-    <div class="kv"><span>Currently invested</span><b id="wcurinv">0.00</b></div>
-    <div class="kv"><span>Total profit earned</span><b class="pos" id="wprofit">0.00</b></div>
-    <div class="kv"><span>Active contracts</span><b id="wactive">0</b></div>
-    <div class="kv"><span>Referral commission</span><b class="pos" id="wref">0.00</b></div>
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:2px" data-i18n="w.summary">Investment summary</div>
+    <div class="kv"><span data-i18n="p.tot">Total invested</span><b id="wtotinv">0.00</b></div>
+    <div class="kv"><span data-i18n="s.invested">Currently invested</span><b id="wcurinv">0.00</b></div>
+    <div class="kv"><span data-i18n="p.prof">Total profit</span><b class="pos" id="wprofit">0.00</b></div>
+    <div class="kv"><span data-i18n="s.active">Active contracts</span><b id="wactive">0</b></div>
+    <div class="kv"><span data-i18n="r.comm">Referral commission</span><b class="pos" id="wref">0.00</b></div>
   </div>
 
-  <div class="sec"><h2>📜 Transaction history</h2><small id="txnote">latest 30</small></div>
+  <div class="sec"><h2 data-i18n="w.history">Transaction history</h2><small>&nbsp;</small></div>
   <div class="card" id="txlist"></div>
 
-  <div class="sec"><h2>📥 My deposits</h2><small>admin reviewed</small></div>
+  <div class="sec"><h2 data-i18n="w.dep">My deposits</h2><small>&nbsp;</small></div>
   <div class="card" id="deplist"></div>
 
-  <div class="sec"><h2>📤 My withdrawals</h2><small>admin reviewed</small></div>
+  <div class="sec"><h2 data-i18n="w.wd">My withdrawals</h2><small>&nbsp;</small></div>
   <div class="card" id="wdlist"></div>
 </div>
 
-<!-- ============ PROFILE ============ -->
 <div id="v-profile" class="view hide">
   <div class="card grad" style="text-align:center">
     <div style="width:64px;height:64px;border-radius:20px;margin:0 auto 10px;display:grid;place-items:center;
@@ -442,49 +444,48 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
   </div>
 
   <div class="card">
-    <div style="font-size:12.5px;font-weight:800;margin-bottom:9px">✏️ My details</div>
-    <div class="fl"><label>Display name</label><input class="inp" id="fname" placeholder="Your name"></div>
-    <div class="fl"><label>My wallet address (for withdrawals)</label><input class="inp" id="fwallet" placeholder="USDT / TON address"></div>
-    <button class="btn pri" data-act="saveProfile">Save details</button>
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:9px" data-i18n="p.details">My details</div>
+    <div class="fl"><label data-i18n="p.name">Display name</label><input class="inp" id="fname" placeholder="Your name"></div>
+    <div class="fl"><label data-i18n="p.wallet">Wallet address</label><input class="inp" id="fwallet" placeholder="USDT / TON address"></div>
+    <button class="btn pri" data-act="saveProfile" data-i18n="p.save">Save details</button>
   </div>
 
   <div class="card">
-    <div style="font-size:12.5px;font-weight:800;margin-bottom:4px">🪪 Identity verification</div>
-    <div class="note" id="kyctext">Not submitted yet.</div>
-    <div class="fl" style="margin-top:10px"><label>Document ID or link</label>
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:4px" data-i18n="p.kyc">Identity verification</div>
+    <div class="note" id="kyctext"></div>
+    <div class="fl" style="margin-top:10px"><label data-i18n="p.doc">Document ID or link</label>
       <input class="inp" id="fdoc" placeholder="Paste your document ID / link"></div>
-    <button class="btn gh" data-act="sendKyc">Submit for verification</button>
+    <button class="btn gh" data-act="sendKyc" data-i18n="p.submit">Submit for verification</button>
   </div>
 
   <div class="card">
-    <div style="font-size:12.5px;font-weight:800;margin-bottom:2px">📈 My stats</div>
-    <div class="kv"><span>User ID</span><b id="puid">-</b></div>
-    <div class="kv"><span>VIP level</span><b id="pvip">-</b></div>
-    <div class="kv"><span>Total invested</span><b id="ptot">0.00</b></div>
-    <div class="kv"><span>Total profit</span><b class="pos" id="pprof">0.00</b></div>
-    <div class="kv"><span>Team size</span><b id="pteam">0</b></div>
-    <div class="kv"><span>Energy</span><b id="pen">0</b></div>
-    <div class="kv"><span>App version</span><b id="pver">-</b></div>
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:2px" data-i18n="p.stats">My stats</div>
+    <div class="kv"><span data-i18n="p.uid">User ID</span><b id="puid">-</b></div>
+    <div class="kv"><span data-i18n="p.vip">VIP level</span><b id="pvip">-</b></div>
+    <div class="kv"><span data-i18n="p.tot">Total invested</span><b id="ptot">0.00</b></div>
+    <div class="kv"><span data-i18n="p.prof">Total profit</span><b class="pos" id="pprof">0.00</b></div>
+    <div class="kv"><span data-i18n="p.team">Team size</span><b id="pteam">0</b></div>
+    <div class="kv"><span data-i18n="p.energy">Energy</span><b id="pen">0</b></div>
+    <div class="kv"><span data-i18n="p.version">App version</span><b id="pver">-</b></div>
   </div>
 
   <div class="card">
-    <button class="btn gh" data-act="lang">🌐 Change language</button>
+    <button class="btn gh" data-act="lang" data-i18n="p.lang">Change language</button>
     <div style="height:8px"></div>
-    <button class="btn gh" data-act="support">🤝 Support</button>
+    <button class="btn gh" data-act="support" data-i18n="p.support">Support</button>
     <div style="height:8px"></div>
-    <button class="btn red" data-act="logout">Log out</button>
-    <div class="note" style="margin-top:8px;text-align:center">Logging out only clears this device. Your balance stays on your account.</div>
+    <button class="btn red" data-act="logout" data-i18n="p.logout">Log out</button>
   </div>
 </div>
 
 </div>
 
 <div class="nav"><div class="navin">
-  <button class="nb on" data-tab="home"><i>🏠</i>Home</button>
-  <button class="nb" data-tab="invest"><i>📈</i>Invest</button>
-  <button class="nb" data-tab="tasks"><i>✅</i>Tasks</button>
-  <button class="nb" data-tab="refer"><i>🌳</i>Refer</button>
-  <button class="nb" data-tab="profile"><i>👤</i>Profile</button>
+  <button class="nb on" data-tab="home"><i>🏠</i><span data-i18n="nav.home">Home</span></button>
+  <button class="nb" data-tab="invest"><i>📈</i><span data-i18n="nav.invest">Invest</span></button>
+  <button class="nb" data-tab="tasks"><i>✅</i><span data-i18n="nav.tasks">Tasks</span></button>
+  <button class="nb" data-tab="refer"><i>🌳</i><span data-i18n="nav.refer">Refer</span></button>
+  <button class="nb" data-tab="profile"><i>👤</i><span data-i18n="nav.profile">Profile</span></button>
 </div></div>
 
 <div class="sheet" id="sheet">
@@ -496,8 +497,8 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq48AK_gRcmjEJjYepwALaiAiTrbL3Wp67MQGDPuOJiT9CeEAUHxUZVR4Utt9eCWr9lzSbhj_13_M-WSlBDlK8IGaO6-IhBbDMZNQFBXgv_zoDuFtYT7UQgpnCHjT0zdvtirThUkFam8ConYpPynRalV21JDiRX7-Stn-z9XRF53rtVDoqHSgT4ANXegReQG16cBuj";
-var BUILD = "v4.0";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5FhKMEXuhYp9sPaoeHglh_9emFADGwWGwNb_qDwjTmBKk75Rt53i6R7sbYTN7SEHQkglLHKDUD6QkFfXV_K-aHbA0T23xGD0UwqSW1R3B5fxn0u3p77wJwQu0rOHDjF5_3HBMbBay92xO812i2qrotCkyeOwvmgH8_QhIi09NnL4HDTiXFecnloHtFNANjbghrPl";
+var BUILD = "v5.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
   try { if (window.Telegram && window.Telegram.WebApp) { return window.Telegram.WebApp; } } catch(e){ }
@@ -538,7 +539,31 @@ var TG = tgApp();
 
 var S = { "cfg":null, "u":null, "tab":"home", "cat":0, "proj":null, "term":null, "amt":0, "tcat":"all", "adm":null, "pw":"", "busy":false };
 
+var T = {};
+var LANG = "en";
+var LANGS = [];
+
 function $(id){ return document.getElementById(id); }
+function tr(k){
+  var v = T[k];
+  if (v === undefined || v === null) { return k; }
+  return v;
+}
+function applyI18n(){
+  var nodes = document.querySelectorAll("[data-i18n]");
+  for (var i = 0; i < nodes.length; i++) {
+    var k = nodes[i].getAttribute("data-i18n");
+    nodes[i].innerHTML = E(tr(k));
+  }
+  try { document.documentElement.lang = LANG; } catch(e){}
+  try {
+    if (LANG === "ar" || LANG === "fa" || LANG === "ur" || LANG === "he" || LANG === "ps" || LANG === "sd" || LANG === "yi" || LANG === "ckb") {
+      document.documentElement.setAttribute("dir", "rtl");
+    } else {
+      document.documentElement.setAttribute("dir", "ltr");
+    }
+  } catch(e){}
+}
 function E(v){ return String(v === null || v === undefined ? "" : v).split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split(String.fromCharCode(34)).join("&quot;"); }
 function M(v){ var n = parseFloat(v); if (isNaN(n)) { n = 0; } return n.toFixed(2); }
 function N(v){ var n = parseFloat(v); if (isNaN(n)) { n = 0; } return "" + Math.round(n); }
@@ -656,6 +681,9 @@ function loadApp(){
     if (!j.r || !j.r.u || !j.r.cfg) { fatal("Incomplete answer from the server."); return; }
     S.cfg = j.r.cfg;
     S.u = j.r.u;
+    if (j.r.t) { T = j.r.t; }
+    if (j.r.lang) { LANG = j.r.lang; }
+    if (S.cfg.langs && S.cfg.langs.length) { LANGS = S.cfg.langs; }
     if (!S.term && S.cfg.terms && S.cfg.terms.length) { S.term = S.cfg.terms[0].id; }
     if (S.cfg.cats && S.cfg.cats.length) {
       if (!S.proj) {
@@ -663,7 +691,9 @@ function loadApp(){
         if (first.com && first.com.length) { S.proj = first.com[0].id; }
       }
     }
+    applyI18n();
     paint();
+    if (j.r.ask_lang === 1) { sheetLang(); }
   });
 }
 
@@ -723,13 +753,13 @@ function paintDaily(){
   var b = $("dailybtn");
   if (!b) { return; }
   if (S.u.daily_done === 1) {
-    b.innerHTML = "Claimed";
+    b.innerHTML = E(tr("d.claimed"));
     b.setAttribute("disabled", "1");
-    $("dailysub").innerHTML = "Come back tomorrow for the next one";
+    $("dailysub").innerHTML = E(tr("d.back"));
   } else {
-    b.innerHTML = "Claim " + M(S.cfg.daily);
+    b.innerHTML = E(tr("d.claim")) + " " + M(S.cfg.daily);
     b.removeAttribute("disabled");
-    $("dailysub").innerHTML = "Available now · " + M(S.cfg.daily) + " USDT";
+    $("dailysub").innerHTML = E(tr("d.sub")) + " · " + M(S.cfg.daily) + " USDT";
   }
 }
 
@@ -738,9 +768,9 @@ function paintBoxes(){
   for (var i = 0; i < bx.length; i++) {
     var b = bx[i];
     var cls = "box";
-    var lab = "tap to open";
-    if (b.opened === 1) { cls += " lock"; lab = "opened"; }
-    else if (b.locked === 1) { cls += " lock"; lab = "locked"; }
+    var lab = tr("g.open");
+    if (b.opened === 1) { cls += " lock"; lab = tr("g.opened"); }
+    else if (b.locked === 1) { cls += " lock"; lab = tr("g.locked"); }
     else { cls += " ready"; }
     out += "<div class='" + cls + "' data-box='" + E(b.id) + "' id='bx" + E(b.id) + "'>" +
       "<span class='bem'>" + E(b.emoji) + "</span>" +
@@ -880,11 +910,11 @@ function paintCalc(){
   if (fill > 100) { fill = 100; }
   var html = "<div class='card grad'>" +
     "<div style='font-size:12.5px;font-weight:800;margin-bottom:2px'>" + E(p.name) + "</div>" +
-    "<div class='note'>Pick a term, enter an amount, and see your profit before you confirm.</div>" +
+    "<div class='note'>" + E(tr("i.pick")) + "</div>" +
     "<div class='terms'>" + chips + "</div>" +
     "<div class='amtin'>" +
       "<input id='amtin' type='number' inputmode='decimal' step='1' value='" + amt.toFixed(2) + "'>" +
-      "<button class='btn pri' style='width:auto;flex:0 0 auto;padding:11px 16px' data-act='doInvest'>Invest</button>" +
+      "<button class='btn pri' style='width:auto;flex:0 0 auto;padding:11px 16px' data-act='doInvest'>" + E(tr("i.invest")) + "</button>" +
     "</div>" +
     "<input type='range' class='sld' id='amtsl' min='" + mn + "' max='" + top + "' step='1' value='" + amt + "' style='--fill:" + fill.toFixed(1) + "%'>" +
     "<div class='quick'>" +
@@ -894,14 +924,14 @@ function paintCalc(){
       "<button class='qb' data-max='1'>MAX</button>" +
     "</div>" +
     "<div class='calc'>" +
-      "<div class='crow'><span>Daily rate</span><b>" + M(rate) + " %</b></div>" +
-      "<div class='crow'><span>Profit per day</span><b class='pos'>" + M(daily) + " USDT</b></div>" +
-      "<div class='crow'><span>Term length</span><b>" + N(days) + " days</b></div>" +
-      "<div class='crow'><span>Total profit</span><b class='pos'>" + M(total) + " USDT</b></div>" +
-      "<div class='crow'><span>Your balance now</span><b>" + M(bal) + " USDT</b></div>" +
-      "<div class='crow big'><span>Balance after investing</span><b>" + M(after) + " USDT</b></div>" +
+      "<div class='crow'><span>" + E(tr("i.rate")) + "</span><b>" + M(rate) + " %</b></div>" +
+      "<div class='crow'><span>" + E(tr("i.perday")) + "</span><b class='pos'>" + M(daily) + " USDT</b></div>" +
+      "<div class='crow'><span>" + E(tr("i.days")) + "</span><b>" + N(days) + "</b></div>" +
+      "<div class='crow'><span>" + E(tr("i.total")) + "</span><b class='pos'>" + M(total) + " USDT</b></div>" +
+      "<div class='crow'><span>" + E(tr("s.balance")) + "</span><b>" + M(bal) + " USDT</b></div>" +
+      "<div class='crow big'><span>" + E(tr("i.after")) + "</span><b>" + M(after) + " USDT</b></div>" +
     "</div>" +
-    "<div class='note' style='margin-top:9px'>Profit is credited to your wallet every 24 hours. Your invested amount is locked for the term you choose.</div>" +
+    "<div class='note' style='margin-top:9px'>" + E(tr("d.sub")) + "</div>" +
   "</div>";
   wrap.innerHTML = html;
 }
@@ -914,8 +944,8 @@ function paintHoldings(){
     if (h.done === 1) {
       out += "<div class='card' style='opacity:.62;padding:11px'><div style='display:flex;justify-content:space-between;gap:8px'>" +
         "<div><div style='font-size:12px;font-weight:800'>" + E(h.name) + "</div>" +
-        "<div class='note'>completed · earned " + M(h.earn) + " USDT</div></div>" +
-        "<span class='badge a'>done</span></div></div>";
+        "<div class='note'>" + E(tr("c.complete")) + " · " + E(tr("c.earned")) + " " + M(h.earn) + " USDT</div></div>" +
+        "<span class='badge a'>" + E(tr("t.done")) + "</span></div></div>";
     } else {
       act = act + 1;
       var span = h.end - h.start;
@@ -927,7 +957,7 @@ function paintHoldings(){
       if (left < 0) { left = 0; }
       out += "<div class='card' style='padding:12px'><div style='display:flex;justify-content:space-between;gap:8px;align-items:flex-start'>" +
         "<div style='min-width:0'><div style='font-size:12.5px;font-weight:800'>" + E(h.name) + "</div>" +
-        "<div class='note'>" + M(h.amt) + " USDT · " + M(h.rate) + "%/day · " + N(left) + "d left</div></div>" +
+        "<div class='note'>" + M(h.amt) + " USDT · " + M(h.rate) + "% · " + N(left) + " " + E(tr("i.days")) + " " + E(tr("c.left")) + "</div></div>" +
         "<div style='text-align:right'><div style='font-size:13px;font-weight:800;color:var(--grn)'>+" + M(h.earn) + "</div>" +
         "<div style='font-size:9px;color:var(--dim);font-weight:800'>EARNED</div></div></div>" +
         "<div style='height:5px;border-radius:99px;background:#1B2430;margin-top:9px;overflow:hidden'>" +
@@ -961,8 +991,8 @@ function paintTasks(){
     if (S.tcat !== "all" && t.cat !== S.tcat) { continue; }
     if (t.done === 1) { earned = earned + t.reward; }
     var btn = "";
-    if (t.done === 1) { btn = "<span class='badge a'>done</span>"; }
-    else { btn = "<button class='btn pri sm' data-task='" + E(t.id) + "'>Claim</button>"; }
+    if (t.done === 1) { btn = "<span class='badge a'>" + E(tr("t.done")) + "</span>"; }
+    else { btn = "<button class='btn pri sm' data-task='" + E(t.id) + "'>" + E(tr("t.claim")) + "</button>"; }
     out += "<div class='task" + (t.done === 1 ? " done" : "") + "'>" +
       "<div class='tic'>✅</div>" +
       "<div style='flex:1;min-width:0'><div class='tt'>" + E(t.title) + "</div>" +
@@ -1038,9 +1068,9 @@ function paintDeps(){
   var ds = S.u.deposits || [], out = "";
   for (var i = ds.length - 1; i >= 0; i--) {
     var d = ds[i];
-    var b = "<span class='badge p'>pending</span>";
-    if (d.status === "approved") { b = "<span class='badge a'>approved</span>"; }
-    if (d.status === "rejected") { b = "<span class='badge r'>rejected</span>"; }
+    var b = "<span class='badge p'>" + E(tr("c.pending")) + "</span>";
+    if (d.status === "approved") { b = "<span class='badge a'>" + E(tr("c.approved")) + "</span>"; }
+    if (d.status === "rejected") { b = "<span class='badge r'>" + E(tr("c.rejected")) + "</span>"; }
     out += "<div class='kv'><span>dep" + E(d.id) + " · " + E(d.net) + "</span><b>" + M(d.amount) + " " + b + "</b></div>";
   }
   if (!out) { out = "<div class='note'>No deposit requests yet.</div>"; }
@@ -1048,9 +1078,9 @@ function paintDeps(){
   var ws = S.u.withdrawals || [], o2 = "";
   for (var k = ws.length - 1; k >= 0; k--) {
     var w = ws[k];
-    var b2 = "<span class='badge p'>pending</span>";
-    if (w.status === "paid") { b2 = "<span class='badge a'>paid</span>"; }
-    if (w.status === "rejected") { b2 = "<span class='badge r'>rejected</span>"; }
+    var b2 = "<span class='badge p'>" + E(tr("c.pending")) + "</span>";
+    if (w.status === "paid") { b2 = "<span class='badge a'>" + E(tr("c.paid")) + "</span>"; }
+    if (w.status === "rejected") { b2 = "<span class='badge r'>" + E(tr("c.rejected")) + "</span>"; }
     o2 += "<div class='kv'><span>wd" + E(w.id) + "</span><b>" + M(w.amount) + " " + b2 + "</b></div>";
   }
   if (!o2) { o2 = "<div class='note'>No withdrawal requests yet.</div>"; }
@@ -1060,15 +1090,15 @@ function paintDeps(){
 function paintKyc(){
   var s = S.u.kyc;
   var b = "";
-  if (s === "verified") { b = "<span class='badge a'>verified</span>"; }
-  else if (s === "pending") { b = "<span class='badge p'>under review</span>"; }
-  else if (s === "rejected") { b = "<span class='badge r'>rejected</span>"; }
-  else { b = "<span class='badge p'>not verified</span>"; }
+  if (s === "verified") { b = "<span class='badge a'>" + E(tr("p.verified")) + "</span>"; }
+  else if (s === "pending") { b = "<span class='badge p'>" + E(tr("p.review")) + "</span>"; }
+  else if (s === "rejected") { b = "<span class='badge r'>" + E(tr("p.rejected")) + "</span>"; }
+  else { b = "<span class='badge p'>" + E(tr("p.notverified")) + "</span>"; }
   $("pkyc").innerHTML = b;
-  var t = "Not submitted yet. Add a document ID to get verified.";
-  if (s === "pending") { t = "Your document is with the admin for review."; }
-  if (s === "verified") { t = "Your identity is verified. Thank you."; }
-  if (s === "rejected") { t = "Rejected: " + (S.u.kyc_note || "please resubmit."); }
+  var t = tr("p.kycnew");
+  if (s === "pending") { t = tr("p.kycpend"); }
+  if (s === "verified") { t = tr("p.kycok"); }
+  if (s === "rejected") { t = tr("p.rejected") + ": " + (S.u.kyc_note || ""); }
   $("kyctext").innerHTML = E(t);
 }
 
@@ -1104,13 +1134,44 @@ function sheetWd(){
   openS(h);
 }
 
-function sheetLang(){
-  var ls = S.cfg.langs || [], out = "<div class='sh3'>🌐 Language</div><div class='shp'>Choose your language</div><div class='row2'>";
+function langRows(q){
+  var ls = LANGS;
+  if (!ls || !ls.length) { ls = (S.cfg && S.cfg.langs) ? S.cfg.langs : []; }
+  var out = "";
+  var ql = (q || "").toLowerCase();
+  var n = 0;
   for (var i = 0; i < ls.length; i++) {
-    out += "<button class='btn gh' data-lang='" + E(ls[i].c) + "'>" + E(ls[i].f) + " " + E(ls[i].n) + "</button>";
+    var L = ls[i];
+    if (ql !== "") {
+      if (L.n.toLowerCase().indexOf(ql) < 0 && L.c.toLowerCase().indexOf(ql) < 0) { continue; }
+    }
+    var on = (L.c === LANG) ? " on" : "";
+    out += "<button class='lrow" + on + "' data-lang='" + E(L.c) + "'>" +
+      "<span class='lfl'>" + E(L.f) + "</span>" +
+      "<span class='lnm'>" + E(L.n) + "</span>" +
+      "<span class='lcd'>" + E(L.c.toUpperCase()) + "</span></button>";
+    n = n + 1;
   }
-  out += "</div>";
-  openS(out);
+  if (n === 0) { out = "<div class='empty'><div>🔍</div>No language matches.</div>"; }
+  return out;
+}
+
+function filterLang(v){
+  var box = $("langrows");
+  if (box) { box.innerHTML = langRows(v); }
+}
+
+function sheetLang(){
+  var first = 0;
+  if (S.u && !S.picked) { first = 1; }
+  var total = 0;
+  if (LANGS && LANGS.length) { total = LANGS.length; }
+  else if (S.cfg && S.cfg.langs) { total = S.cfg.langs.length; }
+  var h = "<div class='sh3'>🌐 " + E(tr("lang.title")) + "</div>" +
+    "<div class='shp'>" + E(tr("lang.sub")) + "</div>" +
+    "<input class='inp' id='lsearch' placeholder='Search ' + total + ' languages' oninput='filterLang(this.value)' style='margin-bottom:9px'>" +
+    "<div id='langrows' style='max-height:46vh;overflow-y:auto;padding-right:3px'>" + langRows("") + "</div>";
+  openS(h);
 }
 
 function sheetEarn(){
@@ -1567,14 +1628,18 @@ function sendKyc(){
 
 function setLang(lc){
   HAS();
+  S.picked = 1;
   var dd = {};
   dd["lang"] = lc;
-  api("lang", dd, function(j){
+  api("setlang", dd, function(j){
     if (!j.ok) { BADH(); toast(j.e, true); return; }
-    toast("Language saved");
+    if (j.r.t) { T = j.r.t; }
+    if (j.r.lang) { LANG = j.r.lang; }
     if (j.r.u) { S.u = j.r.u; }
+    applyI18n();
     paint();
     closeSheet();
+    toast("Language saved");
   });
 }
 
