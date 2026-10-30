@@ -83,6 +83,65 @@ border:1px solid rgba(255,179,0,.36)}
 .dt{font-size:13.5px;font-weight:800}
 .dsub{font-size:11.5px;color:#C6B48A;margin-top:1px}
 
+/* ---------- eco impact ---------- */
+.eco{border-radius:19px;padding:14px;margin:12px 0 10px;position:relative;overflow:hidden;
+background:linear-gradient(140deg,rgba(0,230,118,.13),rgba(0,136,204,.09) 55%,var(--card));
+border:1px solid rgba(0,230,118,.28)}
+.ecotop{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.ecl{font-size:9.5px;letter-spacing:1.1px;text-transform:uppercase;color:#8FB3A1;font-weight:900}
+.ecv{font-size:26px;font-weight:800;letter-spacing:-1px;line-height:1.1;margin-top:2px}
+.ecv small{font-size:12px;color:var(--grn);font-weight:800;letter-spacing:0}
+.ecbadge{font-size:10px;font-weight:900;padding:4px 9px;border-radius:8px;
+background:rgba(0,230,118,.18);color:var(--grn);border:1px solid rgba(0,230,118,.3)}
+.ecobar{height:7px;border-radius:99px;background:rgba(0,0,0,.42);margin:11px 0 10px;overflow:hidden;
+border:1px solid rgba(255,255,255,.05)}
+.ecofill{height:7px;border-radius:99px;transition:width 1.1s cubic-bezier(.2,.9,.3,1);
+background:linear-gradient(90deg,#00E676,#0088CC);box-shadow:0 0 14px rgba(0,230,118,.7)}
+.ecorow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px}
+.eci{text-align:center;background:rgba(0,0,0,.26);border:1px solid var(--bd);
+border-radius:11px;padding:7px 3px}
+.eci span{display:block;font-size:12.5px;font-weight:800;letter-spacing:-.3px}
+.eci em{display:block;font-style:normal;font-size:8px;text-transform:uppercase;
+letter-spacing:.4px;color:var(--dim);font-weight:900;margin-top:1px}
+
+/* ---------- ticker ---------- */
+.ticker{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:13px;
+background:rgba(0,0,0,.32);border:1px solid var(--bd);margin-bottom:10px;overflow:hidden}
+.tkdot{width:6px;height:6px;border-radius:50%;background:var(--grn);flex:0 0 6px;
+box-shadow:0 0 8px var(--grn);animation:bl 1.4s infinite}
+.tkwin{flex:1;overflow:hidden;position:relative;height:15px}
+.tkrun{position:absolute;white-space:nowrap;font-size:10.5px;font-weight:700;color:var(--mut);
+animation:marq 26s linear infinite;will-change:transform}
+.tkrun b{color:var(--txt);font-weight:800}
+@keyframes marq{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+
+/* ---------- streak ---------- */
+.streakrow{display:flex;gap:5px;margin-top:11px}
+.sday{flex:1;text-align:center;padding:6px 1px;border-radius:8px;background:rgba(0,0,0,.3);
+border:1px solid var(--bd);position:relative}
+.sday b{display:block;font-size:10px;font-weight:800;line-height:1.2}
+.sday span{display:block;font-size:7px;text-transform:uppercase;letter-spacing:.2px;
+color:var(--dim);font-weight:900;margin-top:1px}
+.sday.on{background:linear-gradient(150deg,rgba(255,179,0,.28),rgba(0,230,118,.14));
+border-color:rgba(255,179,0,.55)}
+.sday.on span{color:#FFC94D}
+.sday.today{outline:2px solid rgba(0,230,118,.6);outline-offset:1px}
+
+/* ---------- plant ---------- */
+.plant{display:flex;align-items:center;gap:11px;padding:12px;border-radius:17px;margin-bottom:11px;
+background:linear-gradient(135deg,rgba(0,230,118,.1),var(--card) 70%);border:1px solid rgba(0,230,118,.2)}
+.plantart{width:52px;height:52px;flex:0 0 52px;border-radius:16px;display:grid;place-items:center;
+position:relative;background:radial-gradient(circle at 35% 30%,#12402F,#0B1A14);
+border:1px solid rgba(0,230,118,.32);overflow:hidden}
+.plantglow{position:absolute;inset:-6px;border-radius:50%;
+background:radial-gradient(circle,rgba(0,230,118,.4),transparent 68%);animation:pl2 2.8s ease-in-out infinite}
+@keyframes pl2{50%{opacity:.45;transform:scale(1.12)}}
+.plantem{font-size:26px;position:relative;transition:transform .3s;line-height:1}
+.plantbar{height:5px;border-radius:99px;background:rgba(0,0,0,.4);margin-top:6px;overflow:hidden}
+.plantfill{height:5px;border-radius:99px;background:linear-gradient(90deg,#00E676,#8BC34A);
+transition:width .5s}
+.plant.pop .plantem{transform:scale(1.28) rotate(-7deg)}
+
 /* ---------- news / events ---------- */
 .news{position:relative;border-radius:17px;overflow:hidden;margin-bottom:10px;
 background:var(--card);border:1px solid var(--bd)}
@@ -137,6 +196,32 @@ font-size:19px;font-weight:800;background:#0C1219;border:1px solid var(--bd);col
 .pmt{font-size:10.5px;color:var(--dim);font-weight:700;margin-top:2px}
 .psoon{margin-left:auto;font-size:9px;font-weight:900;padding:4px 8px;border-radius:6px;
 background:rgba(255,179,0,.15);color:#FFC94D;letter-spacing:.5px}
+.pbanner{width:100%;height:110px;object-fit:cover;border-radius:12px;margin-top:9px;
+border:1px solid var(--bd);background:#0C1219}
+.whybox{margin-top:9px;padding:10px 11px;border-radius:12px;font-size:11px;line-height:1.55;
+color:#BFD8C9;background:linear-gradient(135deg,rgba(0,230,118,.09),rgba(0,136,204,.05));
+border:1px solid rgba(0,230,118,.22)}
+.whyh{font-size:9px;letter-spacing:.9px;text-transform:uppercase;color:var(--grn);
+font-weight:900;margin-bottom:4px}
+.swt{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 12px;
+border-radius:13px;background:#0C1219;border:1px solid var(--bd);margin-top:8px}
+.swtl{font-size:12px;font-weight:800}
+.swts{font-size:10px;color:var(--dim);margin-top:1px;line-height:1.4}
+.sw{position:relative;width:44px;height:25px;flex:0 0 44px;border-radius:99px;
+background:#1E2833;border:1px solid var(--bd);transition:all .2s}
+.sw:after{content:'';position:absolute;left:2px;top:2px;width:19px;height:19px;border-radius:50%;
+background:#5F6B7A;transition:all .2s}
+.sw.on{background:linear-gradient(135deg,#00E676,#00B85C);border-color:rgba(0,230,118,.6)}
+.sw.on:after{left:21px;background:#fff}
+.demoTag{display:inline-block;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:900;
+letter-spacing:.5px;background:rgba(255,179,0,.18);color:#FFC94D;margin-bottom:7px}
+.restr{display:flex;align-items:center;gap:9px;padding:10px 0;border-bottom:1px solid rgba(31,40,51,.75)}
+.restr:last-child{border-bottom:0}
+.resdot{width:8px;height:8px;border-radius:50%;background:var(--grn);flex:0 0 8px;
+box-shadow:0 0 8px var(--grn)}
+.resl{font-size:12px;font-weight:800}
+.resa{font-size:10px;color:var(--dim);font-family:monospace;word-break:break-all;margin-top:1px}
+.resv{font-size:12.5px;font-weight:800;color:var(--grn);text-align:right;white-space:nowrap}
 .ptxt{font-size:11px;color:var(--mut);margin-top:9px;line-height:1.5;
 padding-top:9px;border-top:1px dashed var(--bd)}
 
@@ -305,6 +390,27 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
     </div>
   </div>
 
+  <div class="eco">
+    <div class="ecotop">
+      <div>
+        <div class="ecl">Community Eco-Impact</div>
+        <div class="ecv"><span id="ecomw">0</span> <small>MW</small></div>
+      </div>
+      <div class="ecbadge" id="ecopct">0%</div>
+    </div>
+    <div class="ecobar"><div class="ecofill" id="ecofill" style="width:0%"></div></div>
+    <div class="ecorow">
+      <div class="eci"><span id="ecoco2">0</span><em>t CO₂ offset</em></div>
+      <div class="eci"><span id="ecohomes">0</span><em>homes powered</em></div>
+      <div class="eci"><span id="ecotrees">0</span><em>trees planted</em></div>
+    </div>
+  </div>
+
+  <div class="ticker" id="tickerbox">
+    <div class="tkdot"></div>
+    <div class="tkwin"><div class="tkrun" id="tickrun"></div></div>
+  </div>
+
   <div class="daily" id="dailybox">
     <div class="dailyin">
       <div class="dgift">🎁</div>
@@ -314,6 +420,20 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
       </div>
       <button class="btn gold sm" id="dailybtn" data-act="claimDaily">Claim</button>
     </div>
+    <div class="streakrow" id="streakrow"></div>
+  </div>
+
+  <div class="plant" id="plantbox">
+    <div class="plantart" data-act="plantInfo">
+      <div class="plantglow"></div>
+      <div class="plantem" id="plantem">🌱</div>
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="dt">Virtual Green Plant</div>
+      <div class="dsub" id="plantsub">Tap the plant to boost your yield</div>
+      <div class="plantbar"><div class="plantfill" id="plantfill" style="width:0%"></div></div>
+    </div>
+    <button class="btn pri sm" data-act="plantTap" id="plantbtn">Boost</button>
   </div>
 
   <div class="sec"><h2 data-i18n="g.boxes">Gift boxes</h2><small id="boxnote" data-i18n="d.sub">once per day</small></div>
@@ -390,6 +510,9 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
       <button class="btn gh" data-act="shareRef" data-i18n="r.share">Share on Telegram</button>
       <button class="btn gh" data-act="treeInfo" data-i18n="r.how">How it works</button>
     </div>
+    <div class="row2" style="margin-top:8px">
+      <button class="btn pri" data-act="story" style="grid-column:1/-1">📸 Green Story Share</button>
+    </div>
   </div>
 
   <div class="sec"><h2 data-i18n="r.vip">VIP levels</h2><small>&nbsp;</small></div>
@@ -422,6 +545,8 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
     <div class="kv"><span data-i18n="s.active">Active contracts</span><b id="wactive">0</b></div>
     <div class="kv"><span data-i18n="r.comm">Referral commission</span><b class="pos" id="wref">0.00</b></div>
   </div>
+
+  <button class="btn gh" data-act="reserves" style="margin-bottom:11px">🔐 Proof of Reserves &amp; Audit</button>
 
   <div class="sec"><h2 data-i18n="w.history">Transaction history</h2><small>&nbsp;</small></div>
   <div class="card" id="txlist"></div>
@@ -497,8 +622,8 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5FhKMEXuhYp9sPaoeHglh_9emFADGwWGwNb_qDwjTmBKk75Rt53i6R7sbYTN7SEHQkglLHKDUD6QkFfXV_K-aHbA0T23xGD0UwqSW1R3B5fxn0u3p77wJwQu0rOHDjF5_3HBMbBay92xO812i2qrotCkyeOwvmgH8_QhIi09NnL4HDTiXFecnloHtFNANjbghrPl";
-var BUILD = "v5.0";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5HHvCysA5LbmbsQ4EC0CiQp4XA2pL9S5mnDnd-aMZg6s3Kdf2OrNWB8xfN_anMJ9LfyCu8QbxtUw3NfMKWdl7LmGY7wPI3UnwDMbRoHfJBkU5DPDJ5efGVSJ2ihZDLUisH588C-gRTyIT51V4ET1gKYQzbajrugbpITZIYaGrzjvC_rIlZN2FqZla0YW4DDP1DvY";
+var BUILD = "v6.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
   try { if (window.Telegram && window.Telegram.WebApp) { return window.Telegram.WebApp; } } catch(e){ }
@@ -683,6 +808,7 @@ function loadApp(){
     S.u = j.r.u;
     if (j.r.t) { T = j.r.t; }
     if (j.r.lang) { LANG = j.r.lang; }
+    if (j.r.ticker) { S.ticker = j.r.ticker; }
     if (S.cfg.langs && S.cfg.langs.length) { LANGS = S.cfg.langs; }
     if (!S.term && S.cfg.terms && S.cfg.terms.length) { S.term = S.cfg.terms[0].id; }
     if (S.cfg.cats && S.cfg.cats.length) {
@@ -851,7 +977,13 @@ function paintProjects(){
       "<div class='pin'><div class='pic'>" + E(p.sym) + "</div>" +
       "<div style='min-width:0'><div class='pnm'>" + E(p.name) + "</div>" +
       "<div class='pmt'>min " + M(p.min) + " USDT</div></div>" + soon + "</div>";
-    if (p.id === S.proj && p.text) { out += "<div class='ptxt'>" + E(p.text) + "</div>"; }
+    if (p.id === S.proj) {
+      if (p.banner) { out += "<img class='pbanner' src='" + E(p.banner) + "' alt='' loading='lazy'>"; }
+      if (p.text) { out += "<div class='ptxt'>" + E(p.text) + "</div>"; }
+      if (p.why) {
+        out += "<div class='whybox'><div class='whyh'>Why invest here?</div>" + E(p.why) + "</div>";
+      }
+    }
     out += "</div>";
   }
   if (!out) { out = "<div class='empty'><div>📈</div>No projects here yet.</div>"; }
@@ -893,8 +1025,16 @@ function paintCalc(){
   var days = termDays(S.term);
   var mn = parseFloat(p.min);
   if (isNaN(mn) || mn <= 0) { mn = 10; }
+  var demo = parseInt(S.u.demo);
+  if (isNaN(demo)) { demo = 0; }
+  var comp = parseInt(S.u.compound);
+  if (isNaN(comp)) { comp = 1; }
   var bal = parseFloat(S.u.bal);
   if (isNaN(bal)) { bal = 0; }
+  if (demo === 1) {
+    bal = parseFloat(S.u.demo_bal);
+    if (isNaN(bal)) { bal = 0; }
+  }
   var top = mn * 20;
   if (bal > top) { top = bal; }
   if (top < 100) { top = 100; }
@@ -908,7 +1048,27 @@ function paintCalc(){
   var fill = ((amt - mn) / (top - mn)) * 100;
   if (fill < 4) { fill = 4; }
   if (fill > 100) { fill = 100; }
+  var totComp = 0;
+  if (comp === 1 && rate > 0) {
+    var run = amt;
+    for (var ci = 0; ci < days; ci++) {
+      var gain = run * rate / 100;
+      run = run + gain;
+      totComp = totComp + gain;
+    }
+  }
+  var demoT = "";
+  if (demo === 1) {
+    demoT = "<div class='demoTag'>DEMO SANDBOX · no real funds</div>";
+  }
+  var swComp = "<div class='swt' data-act='toggleComp'><div><div class='swtl'>Auto-Compound Vault</div>" +
+    "<div class='swts'>Profit is reinvested automatically instead of paid to your wallet.</div></div>" +
+    "<div class='sw" + (comp === 1 ? " on" : "") + "'></div></div>";
+  var swDemo = "<div class='swt' data-act='toggleDemo'><div><div class='swtl'>Demo Sandbox</div>" +
+    "<div class='swts'>Practise with " + M(S.cfg.demo_amt) + " sandbox USDT. Nothing is charged.</div></div>" +
+    "<div class='sw" + (demo === 1 ? " on" : "") + "'></div></div>";
   var html = "<div class='card grad'>" +
+    demoT +
     "<div style='font-size:12.5px;font-weight:800;margin-bottom:2px'>" + E(p.name) + "</div>" +
     "<div class='note'>" + E(tr("i.pick")) + "</div>" +
     "<div class='terms'>" + chips + "</div>" +
@@ -928,9 +1088,12 @@ function paintCalc(){
       "<div class='crow'><span>" + E(tr("i.perday")) + "</span><b class='pos'>" + M(daily) + " USDT</b></div>" +
       "<div class='crow'><span>" + E(tr("i.days")) + "</span><b>" + N(days) + "</b></div>" +
       "<div class='crow'><span>" + E(tr("i.total")) + "</span><b class='pos'>" + M(total) + " USDT</b></div>" +
+      (comp === 1 ? "<div class='crow'><span>Compounded total</span><b class='pos'>" + M(totComp) + " USDT</b></div>" : "") +
       "<div class='crow'><span>" + E(tr("s.balance")) + "</span><b>" + M(bal) + " USDT</b></div>" +
       "<div class='crow big'><span>" + E(tr("i.after")) + "</span><b>" + M(after) + " USDT</b></div>" +
     "</div>" +
+    swComp +
+    swDemo +
     "<div class='note' style='margin-top:9px'>" + E(tr("d.sub")) + "</div>" +
   "</div>";
   wrap.innerHTML = html;
@@ -967,6 +1130,135 @@ function paintHoldings(){
   if (!out) { out = "<div class='empty'><div>🏗</div>No investment yet.<br>Pick a project above to start.</div>"; }
   $("holdings").innerHTML = out;
   $("holdnote").innerHTML = act + " active";
+}
+
+/* ---------------- eco impact ---------------- */
+function paintEco(){
+  var e = (S.cfg && S.cfg.eco) ? S.cfg.eco : null;
+  if (!e) { return; }
+  var mw = parseFloat(e.mw); if (isNaN(mw)) { mw = 0; }
+  var tg = parseFloat(e.target); if (isNaN(tg) || tg <= 0) { tg = 10000; }
+  var pct = (mw / tg) * 100;
+  if (pct < 0) { pct = 0; }
+  if (pct > 100) { pct = 100; }
+  setT("ecomw", N(mw));
+  setT("ecopct", pct.toFixed(1) + "%");
+  setT("ecoco2", N(e.co2));
+  setT("ecohomes", N(e.homes));
+  setT("ecotrees", N(e.trees));
+  var f = document.getElementById("ecofill");
+  if (f) { f.style.width = pct.toFixed(1) + "%"; }
+}
+
+/* ---------------- ticker ---------------- */
+function paintTicker(){
+  var box = document.getElementById("tickrun");
+  if (!box) { return; }
+  var ls = S.ticker || [];
+  var out = "";
+  if (!ls.length) {
+    out = "<span>Be the first to invest today with <b>Green Earn</b></span>";
+  } else {
+    for (var i = 0; i < ls.length; i++) {
+      var t = ls[i];
+      out += "<span><b>" + E(t.n) + "</b> " + E(t.x) + "</span>";
+      if (i < ls.length - 1) { out += " &nbsp;·&nbsp; "; }
+    }
+  }
+  box.innerHTML = out;
+}
+
+/* ---------------- streak ---------------- */
+function paintStreak(){
+  var row = document.getElementById("streakrow");
+  if (!row) { return; }
+  var u = S.u;
+  var mx = parseInt(u.streak_max); if (isNaN(mx) || mx < 1) { mx = 7; }
+  var cur = parseInt(u.streak); if (isNaN(cur)) { cur = 0; }
+  var step = parseFloat(u.streak_step); if (isNaN(step)) { step = 10; }
+  var base = parseFloat(u.streak_base); if (isNaN(base)) { base = 0; }
+  var td = parseInt(u.streak_today); if (isNaN(td)) { td = 0; }
+  var html = "";
+  for (var i = 1; i <= mx; i++) {
+    var amt = base * (1 + (i - 1) * step / 100);
+    var cls = "sday";
+    if (i <= cur) { cls += " on"; }
+    if (i === cur + 1 && td === 0) { cls += " today"; }
+    html += "<div class='" + cls + "'><b>" + M(amt) + "</b><span>D" + i + "</span></div>";
+  }
+  row.innerHTML = html;
+}
+
+/* ---------------- plant ---------------- */
+var PSTAGE = ["🌱", "🌿", "🪴", "🌳", "🌲"];
+
+function paintPlant(){
+  var em = document.getElementById("plantem");
+  if (!em) { return; }
+  var u = S.u;
+  var st = parseInt(u.plant_stage); if (isNaN(st) || st < 0 || st > 4) { st = 0; }
+  em.innerHTML = PSTAGE[st];
+  var g = parseInt(u.plant_growth); if (isNaN(g)) { g = 0; }
+  var next = 5;
+  if (st === 1) { next = 20; }
+  if (st === 2) { next = 50; }
+  if (st === 3) { next = 100; }
+  if (st === 4) { next = 100; }
+  var pct = (g / next) * 100;
+  if (pct > 100) { pct = 100; }
+  if (pct < 0) { pct = 0; }
+  var f = document.getElementById("plantfill");
+  if (f) { f.style.width = pct.toFixed(0) + "%"; }
+  var left = parseFloat(u.plant_left); if (isNaN(left)) { left = 0; }
+  setT("plantsub", "Growth " + g + " · " + M(left) + " USDT left today");
+  var b = document.getElementById("plantbtn");
+  if (b) {
+    if (left <= 0) { b.innerHTML = "Full"; b.setAttribute("disabled", "1"); }
+    else { b.innerHTML = "+" + M(u.plant_tap); b.removeAttribute("disabled"); }
+  }
+}
+
+function plantPop(){
+  var p = document.getElementById("plantbox");
+  if (!p) { return; }
+  p.className = "plant pop";
+  setTimeout(function(){ p.className = "plant"; }, 330);
+}
+
+function plantTap(){
+  HAS();
+  api("plant", {}, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    plantPop();
+    var p = document.getElementById("plantbox");
+    if (p) {
+      var r = p.getBoundingClientRect();
+      sparkle(r.left + 34, r.top + r.height / 2, 12);
+    }
+    toast("+" + M(j.r.gain) + " USDT from your plant");
+    if (j.r.u) { S.u = j.r.u; }
+    paint();
+  });
+}
+
+function plantInfo(){
+  HAS();
+  var u = S.u;
+  var g = parseInt(u.plant_growth); if (isNaN(g)) { g = 0; }
+  var st = parseInt(u.plant_stage); if (isNaN(st)) { st = 0; }
+  var names = ["Seed", "Sprout", "Young plant", "Growing tree", "Full tree"];
+  var nm = names[st];
+  if (!nm) { nm = names[0]; }
+  var h = "<div class='sh3'>🌱 Virtual Green Plant</div><div class='shp'>Your personal eco companion</div>" +
+    "<div style='text-align:center;font-size:52px;margin:6px 0 10px'>" + PSTAGE[st] + "</div>" +
+    "<div class='kv'><span>Stage</span><b>" + E(nm) + "</b></div>" +
+    "<div class='kv'><span>Growth points</span><b>" + N(g) + "</b></div>" +
+    "<div class='kv'><span>Boost per tap</span><b>" + M(u.plant_tap) + " USDT</b></div>" +
+    "<div class='kv'><span>Remaining today</span><b>" + M(u.plant_left) + " USDT</b></div>" +
+    "<div class='note' style='margin-top:11px'>Every tap grows your plant and credits real USDT to your wallet. Stages unlock at 5 points for Sprout, 20 for Young plant, 50 for Growing tree and 100 for a Full tree. Your daily limit resets at midnight UTC.</div>" +
+    "<div style='height:11px'></div><button class='btn gh' data-act='closeSheet'>Close</button>";
+  openS(h);
 }
 
 /* ---------------- tasks ---------------- */
@@ -1200,7 +1492,7 @@ function sheetTree(){
 /* ---------------- admin ---------------- */
 function adminShell(){
   if (!S.adm) { return adminLogin(); }
-  var secs = [["econ","Economy"],["terms","Terms"],["cats","Projects"],["news","News"],["events","Events"],["tasks","Tasks"],["boxes","Boxes"],["pay","Deposits"],["vip","VIP"],["texts","Branding"],["users","Users"],["deps","Deposits review"],["wds","Withdrawals"],["kyc","KYC"]];
+  var secs = [["econ","Economy"],["streak","Gamification"],["eco","Eco impact"],["terms","Terms"],["cats","Projects"],["news","News"],["events","Events"],["tasks","Tasks"],["boxes","Boxes"],["pay","Deposits"],["vip","VIP"],["reserves","Reserves"],["texts","Branding"],["users","Users"],["deps","Deposits review"],["wds","Withdrawals"],["kyc","KYC"]];
   var nav = "";
   for (var i = 0; i < secs.length; i++) {
     nav += "<button class='ctab" + (S.asec === secs[i][0] ? " on" : "") + "' data-asec='" + secs[i][0] + "'>" + secs[i][1] + "</button>";
@@ -1249,6 +1541,42 @@ function adminBody(){
       "<div class='row2'><div class='fl'><label>Min withdraw</label><input class='inp' id='e_mw' type='number' step='0.01' value='" + M(e.miniwd) + "'></div>" +
       "<div class='fl'><label>Withdraw fee %</label><input class='inp' id='e_fee' type='number' step='0.1' value='" + M(e.wdfee) + "'></div></div>" +
       "<button class='btn pri' data-act='saveEcon'>Save economy</button>";
+  } else if (s === "streak") {
+    out += "<div class='note' style='margin-bottom:9px'>Daily bonus grows with each consecutive day. Day 1 pays the base, and each further day adds the percentage below, up to the maximum streak.</div>" +
+      "<div class='row2'><div class='fl'><label>Day 1 base (USDT)</label><input class='inp' id='g_base' type='number' step='0.01' value='" + M(e.streak_base) + "'></div>" +
+      "<div class='fl'><label>Increase per day %</label><input class='inp' id='g_pct' type='number' step='0.1' value='" + M(e.streak_pct) + "'></div></div>" +
+      "<div class='row2'><div class='fl'><label>Max streak days</label><input class='inp' id='g_max' type='number' value='" + N(e.streak_max) + "'></div>" +
+      "<div class='fl'><label>Fallback daily (USDT)</label><input class='inp' id='g_daily' type='number' step='0.01' value='" + M(e.daily) + "'></div></div>" +
+      "<div class='note' style='margin-bottom:9px'>Virtual Green Plant: each tap credits real USDT and grows the plant. Cap is the total a user can earn per day.</div>" +
+      "<div class='row2'><div class='fl'><label>Plant per tap</label><input class='inp' id='g_tap' type='number' step='0.01' value='" + M(e.plant_tap) + "'></div>" +
+      "<div class='fl'><label>Plant daily cap</label><input class='inp' id='g_cap' type='number' step='0.01' value='" + M(e.plant_cap) + "'></div></div>" +
+      "<div class='row2'><div class='fl'><label>Demo sandbox funds</label><input class='inp' id='g_demo' type='number' value='" + N(e.demo_amt) + "'></div>" +
+      "<div class='fl'><label>Auto-compound default (1/0)</label><input class='inp' id='g_comp' type='number' value='" + N(e.compound) + "'></div></div>" +
+      "<button class='btn pri' data-act='saveStreak'>Save gamification</button>";
+  } else if (s === "eco") {
+    var eo = pg.eco || {};
+    out += "<div class='note' style='margin-bottom:9px'>These figures drive the Community Eco-Impact bar on the home screen. Update them whenever the community output changes.</div>" +
+      "<div class='row2'><div class='fl'><label>Current output (MW)</label><input class='inp' id='ec_mw' type='number' step='0.1' value='" + M(eo.mw) + "'></div>" +
+      "<div class='fl'><label>Target (MW)</label><input class='inp' id='ec_tg' type='number' step='1' value='" + M(eo.mw_target) + "'></div></div>" +
+      "<div class='row2'><div class='fl'><label>CO₂ offset (tonnes)</label><input class='inp' id='ec_co2' type='number' step='0.1' value='" + M(eo.co2) + "'></div>" +
+      "<div class='fl'><label>Homes powered</label><input class='inp' id='ec_h' type='number' value='" + N(eo.homes) + "'></div></div>" +
+      "<div class='fl'><label>Trees planted</label><input class='inp' id='ec_tr' type='number' value='" + N(eo.trees) + "'></div>" +
+      "<button class='btn pri' data-act='saveEco'>Save eco impact</button>";
+  } else if (s === "reserves") {
+    var rs = pg.reserves || [];
+    for (var ri = 0; ri < rs.length; ri++) {
+      out += "<div class='card' style='padding:10px'><div class='fl'><label>Label</label><input class='inp' id='rs_l" + ri + "' value='" + E(rs[ri].label) + "'></div>" +
+        "<div class='fl'><label>Address</label><input class='inp' id='rs_a" + ri + "' value='" + E(rs[ri].addr) + "'></div>" +
+        "<div class='row2'><div class='fl'><label>Amount USDT</label><input class='inp' id='rs_m" + ri + "' type='number' step='0.01' value='" + M(rs[ri].amount) + "'></div>" +
+        "<div class='fl'><label>Audit ref</label><input class='inp' id='rs_h" + ri + "' value='" + E(rs[ri].hash) + "'></div></div>" +
+        "<div class='row2'><button class='btn gh sm' style='width:100%' data-rssave='" + ri + "'>Save</button>" +
+        "<button class='btn red sm' style='width:100%' data-rsdel='" + E(rs[ri].id) + "'>Delete</button></div></div>";
+    }
+    out += "<div class='card'><div class='fl'><label>New entry label</label><input class='inp' id='nr_l' placeholder='Treasury cold wallet'></div>" +
+      "<div class='fl'><label>Address / hash</label><input class='inp' id='nr_a' placeholder='T...'></div>" +
+      "<div class='row2'><div class='fl'><label>Amount</label><input class='inp' id='nr_m' type='number' step='0.01' value='0'></div>" +
+      "<div class='fl'><label>Audit ref</label><input class='inp' id='nr_h' placeholder='audit-2026-04'></div></div>" +
+      "<button class='btn pri' data-act='addReserve'>Add reserve entry</button></div>";
   } else if (s === "terms") {
     var ts = pg.terms || [];
     for (var i = 0; i < ts.length; i++) {
@@ -1414,6 +1742,8 @@ function editorForm(kind, item, catid){
       "<div class='fl'><label>Colour</label><input class='inp' id='ed_col' value='" + E(it.color || "#00E676") + "'></div></div>" +
       "<div class='fl'><label>Coming soon (1 = yes, 0 = open)</label><input class='inp' id='ed_soon' type='number' value='" + N(it.soon) + "'></div>" +
       "<div class='fl'><label>Description shown to users</label><textarea class='inp' id='ed_x'>" + E(it.text) + "</textarea></div>" +
+      "<div class='fl'><label>Why invest here? (rationale)</label><textarea class='inp' id='ed_w'>" + E(it.why) + "</textarea></div>" +
+      "<div class='fl'><label>Banner image URL (optional)</label><input class='inp' id='ed_bn' value='" + E(it.banner) + "' placeholder='https://...'></div>" +
       "<div class='sec'><h2>Daily profit % per term</h2></div>" + yh +
       "<button class='btn pri' data-save='proj|" + E(catid) + "' style='margin-top:9px'>Save project</button>";
   }
@@ -1458,6 +1788,101 @@ function doInvest(){
     if (j.r && j.r.u) { S.u = j.r.u; }
     paint();
   });
+}
+
+function toggleComp(){
+  HAS();
+  var cur = parseInt(S.u.compound);
+  if (isNaN(cur)) { cur = 1; }
+  var nx = (cur === 1) ? 0 : 1;
+  api("compound", { "on": nx }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    if (j.r.u) { S.u = j.r.u; }
+    paint();
+    toast(nx === 1 ? "Auto-compound on" : "Auto-compound off");
+  });
+}
+
+function toggleDemo(){
+  HAS();
+  var cur = parseInt(S.u.demo);
+  if (isNaN(cur)) { cur = 0; }
+  var nx = (cur === 1) ? 0 : 1;
+  api("demo", { "on": nx }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    if (j.r.u) { S.u = j.r.u; }
+    paint();
+    toast(nx === 1 ? "Demo sandbox on" : "Back to real balance");
+  });
+}
+
+function sheetReserves(){
+  HAS();
+  var rs = (S.cfg && S.cfg.reserves) ? S.cfg.reserves : [];
+  var tot = 0, out = "";
+  for (var i = 0; i < rs.length; i++) {
+    var r = rs[i];
+    var amt = parseFloat(r.amount); if (isNaN(amt)) { amt = 0; }
+    tot = tot + amt;
+    out += "<div class='restr'><div class='resdot'></div><div style='flex:1;min-width:0'>" +
+      "<div class='resl'>" + E(r.label) + "</div>" +
+      "<div class='resa'>" + E(r.addr) + "</div>" +
+      "<div class='resa' style='color:var(--grn)'>audit " + E(r.hash) + "</div></div>" +
+      "<div class='resv'>" + M(amt) + "</div></div>";
+  }
+  if (!out) { out = "<div class='empty'><div>🔐</div>No reserve entries published yet.</div>"; }
+  var h = "<div class='sh3'>🔐 Proof of Reserves & Audit</div>" +
+    "<div class='shp'>Published treasury positions</div>" +
+    "<div class='card grad' style='text-align:center;margin-bottom:10px'>" +
+    "<div class='hl'>Total verified reserves</div>" +
+    "<div class='hb'>" + M(tot) + " <small>USDT</small></div></div>" +
+    "<div class='card'>" + out + "</div>" +
+    "<div class='note'>Every entry above is a treasury position with its on chain address and audit reference. Balances are reconciled against the audit ledger. This page is informational and does not constitute financial advice.</div>" +
+    "<div style='height:11px'></div><button class='btn gh' data-act='closeSheet'>Close</button>";
+  openS(h);
+}
+
+function greenStory(){
+  HAS();
+  var u = S.u;
+  var txt = "I am building green energy with Green Earn. " +
+    "Balance " + M(u.bal) + " USDT · Total profit " + M(u.profit) + " USDT · " +
+    u.team.total + " friends in my team.";
+  var link = "https://t.me/" + BOTU + "?startapp=" + u.ref_code;
+  var sh = "https://t.me/share/url?url=" + encodeURIComponent(link) + "&text=" + encodeURIComponent(txt);
+  var h = "<div class='sh3'>📸 Green Story Card</div>" +
+    "<div class='shp'>Share your progress to Telegram Stories</div>" +
+    "<div class='card grad' style='text-align:center'>" +
+    "<div style='font-size:34px'>🌱</div>" +
+    "<div style='font-size:15px;font-weight:800;margin-top:6px'>Green Earn</div>" +
+    "<div class='note' style='margin-top:2px'>Solar · EV · Mining · AI</div>" +
+    "<div class='hrow' style='margin-top:12px'>" +
+    "<div class='hstat'><span>Balance</span><b>" + M(u.bal) + "</b></div>" +
+    "<div class='hstat'><span>Profit</span><b>" + M(u.profit) + "</b></div>" +
+    "<div class='hstat'><span>Team</span><b>" + N(u.team.total) + "</b></div>" +
+    "</div></div>" +
+    "<div class='note'>" + E(txt) + "</div>" +
+    "<div style='height:11px'></div>" +
+    "<button class='btn pri' data-act='shareStory' data-link='" + E(sh) + "'>Share to Stories</button>" +
+    "<div style='height:8px'></div>" +
+    "<button class='btn gh' data-act='copyStory' data-txt='" + E(txt) + "'>Copy the text</button>";
+  openS(h);
+}
+
+function copyStory(t){
+  HAS();
+  try { navigator.clipboard.writeText(t); } catch(e){}
+  try {
+    var ta = document.createElement("textarea");
+    ta.value = t;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+  } catch(e){}
+  toast("Story text copied");
 }
 
 function claimDaily(){
@@ -1682,6 +2107,29 @@ function saveEcon(){
   adminSave("econ", o);
 }
 
+function saveStreak(){
+  var o = {};
+  o["streak_base"] = parseFloat($("g_base").value);
+  o["streak_pct"] = parseFloat($("g_pct").value);
+  o["streak_max"] = parseFloat($("g_max").value);
+  o["daily"] = parseFloat($("g_daily").value);
+  o["plant_tap"] = parseFloat($("g_tap").value);
+  o["plant_cap"] = parseFloat($("g_cap").value);
+  o["demo_amt"] = parseFloat($("g_demo").value);
+  o["compound"] = parseFloat($("g_comp").value);
+  adminSave("streak", o);
+}
+
+function saveEco(){
+  var o = {};
+  o["mw"] = parseFloat($("ec_mw").value);
+  o["mw_target"] = parseFloat($("ec_tg").value);
+  o["co2"] = parseFloat($("ec_co2").value);
+  o["homes"] = parseFloat($("ec_h").value);
+  o["trees"] = parseFloat($("ec_tr").value);
+  adminSave("eco", o);
+}
+
 function saveTexts(){
   var o = {};
   o["logo"] = $("tx_logo").value;
@@ -1776,6 +2224,8 @@ document.addEventListener("click", function(ev){
       var bsave = el.getAttribute("data-bsave");
       var paysave = el.getAttribute("data-paysave");
       var paydel = el.getAttribute("data-paydel");
+      var rssave = el.getAttribute("data-rssave");
+      var rsdel = el.getAttribute("data-rsdel");
       var id = el.getAttribute("data-id");
 
       if (tab) { go(tab); return; }
@@ -1802,7 +2252,26 @@ document.addEventListener("click", function(ev){
       if (bsave !== null) { var bi = parseInt(bsave); var bx = (S.adm.page.boxes || [])[bi]; adminSave("box", { "id":bx.id, "name":bx.name, "emoji":bx.emoji, "req":bx.req, "need":bx.need, "min":parseFloat($("bx_min" + bi).value), "max":parseFloat($("bx_max" + bi).value) }); return; }
       if (paysave !== null) { var pi = parseInt(paysave); var pm = (S.adm.page.pay || [])[pi]; adminSave("pay", { "id":pm.id, "name":$("pa_n" + pi).value, "addr":$("pa_a" + pi).value, "color":pm.color, "on":1 }); return; }
       if (paydel) { adminSave("pay_del", paydel); return; }
+      if (rssave !== null) {
+        var rr = parseInt(rssave);
+        var rl = (S.adm.page.reserves || [])[rr];
+        adminSave("reserve", { "id": rl.id, "label": $("rs_l" + rr).value, "addr": $("rs_a" + rr).value, "amount": parseFloat($("rs_m" + rr).value), "hash": $("rs_h" + rr).value, "on": 1 });
+        return;
+      }
+      if (rsdel) { adminSave("reserve_del", rsdel); return; }
       if (saved) { saveEditor(saved, id); return; }
+      var slink = el.getAttribute("data-link");
+      var stxt = el.getAttribute("data-txt");
+      if (slink) {
+        try {
+          var tg2 = tgApp();
+          if (tg2 && slink.indexOf("/share/url") < 0) { tg2.openTelegramLink(slink); }
+          else if (tg2) { tg2.openLink(slink); }
+          else { window.open(slink, "_blank"); }
+        } catch(e){ window.open(slink, "_blank"); }
+        return;
+      }
+      if (stxt) { copyStory(stxt); return; }
       if (add) { S.amt = (parseFloat(S.amt) || 0) + parseFloat(add); paintCalc(); return; }
       if (maxb) { S.amt = parseFloat(S.u.bal); paintCalc(); return; }
 
@@ -1833,6 +2302,12 @@ function runAct(a, id){
   if (a === "depSheet") { sheetDep(); return; }
   if (a === "wdSheet") { sheetWd(); return; }
   if (a === "claimDaily") { claimDaily(); return; }
+  if (a === "plantTap") { plantTap(); return; }
+  if (a === "plantInfo") { plantInfo(); return; }
+  if (a === "toggleComp") { toggleComp(); return; }
+  if (a === "toggleDemo") { toggleDemo(); return; }
+  if (a === "reserves") { sheetReserves(); return; }
+  if (a === "story") { greenStory(); return; }
   if (a === "doInvest") { doInvest(); return; }
   if (a === "copyRef") { copyRef(); return; }
   if (a === "shareRef") { shareRef(); return; }
@@ -1845,6 +2320,12 @@ function runAct(a, id){
   if (a === "adminSheet") { HAS(); if (S.adm) { openS(adminShell()); } else { openS(adminLogin()); } return; }
   if (a === "admLogin") { admLogin(); return; }
   if (a === "saveEcon") { saveEcon(); return; }
+  if (a === "saveStreak") { saveStreak(); return; }
+  if (a === "saveEco") { saveEco(); return; }
+  if (a === "addReserve") {
+    adminSave("reserve", { "label":$("nr_l").value, "addr":$("nr_a").value, "amount":parseFloat($("nr_m").value), "hash":$("nr_h").value, "on":1 });
+    return;
+  }
   if (a === "saveTexts") { saveTexts(); return; }
   if (a === "findUser") { findUser(); return; }
   if (a === "addTerm") { adminSave("term", { "n":$("nt_n").value, "d":parseInt($("nt_d").value) }); return; }
@@ -1895,7 +2376,13 @@ function saveEditor(key, id){
     }
     var item = (S.editing && S.editing.item) ? S.editing.item : null;
     var pid = item ? item.id : "";
-    adminSave("com", { "id":pid, "cat":ref, "name":$("ed_t").value, "sym":$("ed_s").value, "short":$("ed_sh").value, "min":parseFloat($("ed_mn").value), "color":$("ed_col").value, "soon":parseInt($("ed_soon").value), "text":$("ed_x").value, "y":y });
+    var whv = "";
+    var bnv = "";
+    var wEl = $("ed_w");
+    var bEl = $("ed_bn");
+    if (wEl) { whv = wEl.value; }
+    if (bEl) { bnv = bEl.value; }
+    adminSave("com", { "id":pid, "cat":ref, "name":$("ed_t").value, "sym":$("ed_s").value, "short":$("ed_sh").value, "min":parseFloat($("ed_mn").value), "color":$("ed_col").value, "soon":parseInt($("ed_soon").value), "text":$("ed_x").value, "why":whv, "banner":bnv, "y":y });
     closeSheet();
     return;
   }
@@ -1959,6 +2446,10 @@ function paint(){
   setT("pver", BUILD);
   setV("fname", u.name || "");
   setV("fwallet", u.wallet || "");
+  safe(paintEco);
+  safe(paintTicker);
+  safe(paintStreak);
+  safe(paintPlant);
   safe(paintDaily);
   safe(paintBoxes);
   safe(paintNews);
