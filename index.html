@@ -196,6 +196,46 @@ font-size:19px;font-weight:800;background:#0C1219;border:1px solid var(--bd);col
 .pmt{font-size:10.5px;color:var(--dim);font-weight:700;margin-top:2px}
 .psoon{margin-left:auto;font-size:9px;font-weight:900;padding:4px 8px;border-radius:6px;
 background:rgba(255,179,0,.15);color:#FFC94D;letter-spacing:.5px}
+.avwrap{position:relative;width:78px;height:78px;margin:0 auto 10px}
+.avimg{width:78px;height:78px;border-radius:24px;object-fit:cover;display:block;
+border:1px solid rgba(0,230,118,.4);background:#0C1219}
+.avph{width:78px;height:78px;border-radius:24px;display:grid;place-items:center;font-size:32px;
+background:linear-gradient(150deg,rgba(0,230,118,.22),rgba(0,136,204,.12));
+border:1px solid rgba(0,230,118,.35)}
+.avcam{position:absolute;right:-4px;bottom:-4px;width:27px;height:27px;border-radius:50%;
+display:grid;place-items:center;font-size:12px;background:linear-gradient(135deg,#00E676,#00B85C);
+color:#04150C;border:2px solid var(--bg);box-shadow:0 3px 10px rgba(0,0,0,.5)}
+.uplbl{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.6px;
+color:var(--dim);font-weight:900;margin:11px 0 5px}
+.upbox{position:relative;border:1.5px dashed #2A3644;border-radius:14px;padding:16px 12px;
+text-align:center;background:#0C1219;transition:all .15s;overflow:hidden;min-height:96px;
+display:flex;align-items:center;justify-content:center}
+.upbox:active{border-color:rgba(0,230,118,.6);background:rgba(0,230,118,.05)}
+.upbox.filled{border-style:solid;border-color:rgba(0,230,118,.55);padding:0}
+.upic{font-size:24px;line-height:1;margin-bottom:5px;opacity:.75}
+.upt{font-size:11.5px;font-weight:800}
+.ups{font-size:9.5px;color:var(--dim);margin-top:2px}
+.upprev{width:100%;max-height:170px;object-fit:contain;border-radius:12px;display:block}
+.tmsg{max-width:84%;padding:8px 11px;border-radius:13px;font-size:11.5px;line-height:1.45;
+margin-bottom:6px;word-break:break-word}
+.tmsg.u{background:linear-gradient(135deg,rgba(0,230,118,.2),rgba(0,230,118,.08));
+border:1px solid rgba(0,230,118,.32);margin-left:auto}
+.tmsg.a{background:var(--card2);border:1px solid var(--bd)}
+.tmsg .tmi{font-size:9px;color:var(--dim);margin-top:3px;display:block;font-weight:800}
+.tmsg em{font-style:normal;font-size:9px;color:var(--dim);display:block;margin-top:3px}
+.pindots{display:flex;gap:9px;justify-content:center;margin:14px 0 6px}
+.pindot{width:13px;height:13px;border-radius:50%;background:#1E2833;border:1px solid var(--bd);
+transition:all .15s}
+.pindot.on{background:var(--grn);border-color:var(--grn);box-shadow:0 0 10px rgba(0,230,118,.8)}
+.keypad{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:14px}
+.key{height:52px;border-radius:13px;background:var(--card2);border:1px solid var(--bd);
+font-size:19px;font-weight:800;display:grid;place-items:center;transition:all .1s}
+.key:active{background:rgba(0,230,118,.16);border-color:rgba(0,230,118,.5);transform:scale(.95)}
+.key.act{background:rgba(0,230,118,.18);border-color:rgba(0,230,118,.5);font-size:14px}
+.docview{width:100%;border-radius:12px;border:1px solid var(--bd);margin-bottom:8px;background:#0C1219}
+.invbox{display:flex;justify-content:space-between;gap:8px;padding:8px 0;
+border-bottom:1px solid rgba(31,40,51,.75);font-size:11.5px}
+.invbox:last-child{border-bottom:0}
 .pbanner{width:100%;height:110px;object-fit:cover;border-radius:12px;margin-top:9px;
 border:1px solid var(--bd);background:#0C1219}
 .whybox{margin-top:9px;padding:10px 11px;border-radius:12px;font-size:11px;line-height:1.55;
@@ -560,12 +600,23 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
 
 <div id="v-profile" class="view hide">
   <div class="card grad" style="text-align:center">
-    <div style="width:64px;height:64px;border-radius:20px;margin:0 auto 10px;display:grid;place-items:center;
-    font-size:28px;background:linear-gradient(150deg,rgba(0,230,118,.22),rgba(0,136,204,.12));
-    border:1px solid rgba(0,230,118,.35)" id="pav">👤</div>
+    <div class="avwrap" data-act="pickAv">
+      <div class="avph" id="pav">👤</div>
+      <div class="avcam">📷</div>
+      <input type="file" accept="image/*" id="fileav" style="display:none">
+    </div>
     <div style="font-size:15px;font-weight:800" id="pname">Guest</div>
     <div class="note" id="puser">@user</div>
     <div style="margin-top:9px" id="pkyc"></div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:4px">Account security</div>
+    <div class="note" id="secnote">Protect your account with a PIN so nobody else who picks up your phone can open your wallet.</div>
+    <div class="row2" style="margin-top:9px">
+      <button class="btn pri" data-act="pinSheet" id="pinbtn">Set PIN</button>
+      <button class="btn gh" data-act="changePinSheet">Change PIN</button>
+    </div>
   </div>
 
   <div class="card">
@@ -576,11 +627,75 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
   </div>
 
   <div class="card">
-    <div style="font-size:12.5px;font-weight:800;margin-bottom:4px" data-i18n="p.kyc">Identity verification</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px">
+      <div style="font-size:12.5px;font-weight:800" data-i18n="p.kyc">Identity verification</div>
+      <div id="kycbadge"></div>
+    </div>
     <div class="note" id="kyctext"></div>
-    <div class="fl" style="margin-top:10px"><label data-i18n="p.doc">Document ID or link</label>
-      <input class="inp" id="fdoc" placeholder="Paste your document ID / link"></div>
-    <button class="btn gh" data-act="sendKyc" data-i18n="p.submit">Submit for verification</button>
+
+    <div id="kycform" style="margin-top:12px">
+      <div class="row2">
+        <div class="fl"><label>First name</label><input class="inp" id="kfn" placeholder="As on your document"></div>
+        <div class="fl"><label>Last name</label><input class="inp" id="kln" placeholder="Family name"></div>
+      </div>
+      <div class="row2">
+        <div class="fl"><label>Age</label><input class="inp" id="kage" type="number" inputmode="numeric" placeholder="18+"></div>
+        <div class="fl"><label>Gender</label>
+          <select class="inp" id="kgender">
+            <option value="">Select</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      <div class="fl"><label>Nationality</label><input class="inp" id="knat" placeholder="Country"></div>
+      <div class="row2">
+        <div class="fl"><label>Phone number</label><input class="inp" id="kphone" type="tel" placeholder="+1 555 000"></div>
+        <div class="fl"><label>Email</label><input class="inp" id="kemail" type="email" placeholder="you@mail.com"></div>
+      </div>
+      <div class="fl"><label>Document type</label>
+        <select class="inp" id="kdtype">
+          <option value="">Select a document</option>
+          <option value="national_id">National ID card</option>
+          <option value="passport">Passport</option>
+          <option value="citizenship">Citizenship certificate</option>
+          <option value="driving_license">Driving licence</option>
+          <option value="residence_permit">Residence permit</option>
+          <option value="other">Other government ID</option>
+        </select>
+      </div>
+
+      <label class="uplbl">Front of document</label>
+      <div class="upbox" id="upfront" data-act="pickFront">
+        <input type="file" accept="image/*" id="filefront" style="display:none">
+        <div id="upfrontin"><div class="upic">📄</div><div class="upt">Tap to upload the front</div><div class="ups">JPG or PNG · max 5 MB</div></div>
+        <img id="prevfront" class="upprev" style="display:none" alt="">
+      </div>
+
+      <label class="uplbl">Back of document</label>
+      <div class="upbox" id="upback" data-act="pickBack">
+        <input type="file" accept="image/*" id="fileback" style="display:none">
+        <div id="upbackin"><div class="upic">📄</div><div class="upt">Tap to upload the back</div><div class="ups">JPG or PNG · max 5 MB</div></div>
+        <img id="prevback" class="upprev" style="display:none" alt="">
+      </div>
+
+      <button class="btn pri" data-act="sendKyc" style="margin-top:11px" data-i18n="p.submit">Submit for verification</button>
+      <div class="note" style="margin-top:8px">Your documents are shown only to the admin for review. They are stored against your account and never posted publicly.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:4px">Support chat</div>
+    <div class="note">Message the team directly. You will get the reply in this chat and in Telegram.</div>
+    <div id="threadbox" style="margin-top:10px;max-height:230px;overflow-y:auto"></div>
+    <div class="fl" style="margin-top:9px"><input class="inp" id="msgtext" placeholder="Type your message"></div>
+    <div class="row2">
+      <button class="btn gh" data-act="pickMsg">📎 Attach photo</button>
+      <button class="btn pri" data-act="sendMsg">Send</button>
+    </div>
+    <input type="file" accept="image/*" id="filemsg" style="display:none">
+    <img id="prevmsg" class="upprev" style="display:none;margin-top:9px" alt="">
   </div>
 
   <div class="card">
@@ -622,8 +737,8 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5HHvCysA5LbmbsQ4EC0CiQp4XA2pL9S5mnDnd-aMZg6s3Kdf2OrNWB8xfN_anMJ9LfyCu8QbxtUw3NfMKWdl7LmGY7wPI3UnwDMbRoHfJBkU5DPDJ5efGVSJ2ihZDLUisH588C-gRTyIT51V4ET1gKYQzbajrugbpITZIYaGrzjvC_rIlZN2FqZla0YW4DDP1DvY";
-var BUILD = "v6.0";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5JlxzK29MlfYOBz8QnfbNrL9YQomZyfzwCFxsciRrig__tldqhDr-ScyhRSkrDjVco7AF0oj92ODv9zadY18cgAw5ALUfxVZa85B7zWWsWNwWr9BFtDqy4MjzOEybAP5gZ9aw2IkHYJ2XQKTI6RyJWAnfSeu8Jr0i7uPghlUaHdtbxz64Rkl1RQ3dIvlL4io13iW";
+var BUILD = "v7.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
   try { if (window.Telegram && window.Telegram.WebApp) { return window.Telegram.WebApp; } } catch(e){ }
@@ -819,7 +934,11 @@ function loadApp(){
     }
     applyI18n();
     paint();
-    if (j.r.ask_lang === 1) { sheetLang(); }
+    if (j.r.ask_lang === 1) {
+      sheetLang();
+    } else if (S.u && S.u.pin === 1 && S.locked !== 0) {
+      loginSheet();
+    }
   });
 }
 
@@ -1386,12 +1505,30 @@ function paintKyc(){
   else if (s === "pending") { b = "<span class='badge p'>" + E(tr("p.review")) + "</span>"; }
   else if (s === "rejected") { b = "<span class='badge r'>" + E(tr("p.rejected")) + "</span>"; }
   else { b = "<span class='badge p'>" + E(tr("p.notverified")) + "</span>"; }
-  $("pkyc").innerHTML = b;
+  if ($("pkyc")) { $("pkyc").innerHTML = b; }
+  if ($("kycbadge")) { $("kycbadge").innerHTML = b; }
   var t = tr("p.kycnew");
   if (s === "pending") { t = tr("p.kycpend"); }
   if (s === "verified") { t = tr("p.kycok"); }
   if (s === "rejected") { t = tr("p.rejected") + ": " + (S.u.kyc_note || ""); }
-  $("kyctext").innerHTML = E(t);
+  if ($("kyctext")) { $("kyctext").innerHTML = E(t); }
+  var frm = $("kycform");
+  if (frm) { frm.style.display = (s === "pending" || s === "verified") ? "none" : "block"; }
+  var u = S.u;
+  var fill = { "kfn":"kfn", "kln":"kln", "kage":"kage", "knat":"knat", "kphone":"kphone", "kemail":"kemail" };
+  if ($("kfn") && u.kfn) { $("kfn").value = u.kfn; }
+  if ($("kln") && u.kln) { $("kln").value = u.kln; }
+  if ($("kage") && u.kage > 0) { $("kage").value = u.kage; }
+  if ($("knat") && u.knat) { $("knat").value = u.knat; }
+  if ($("kphone") && u.kphone) { $("kphone").value = u.kphone; }
+  if ($("kemail") && u.kemail) { $("kemail").value = u.kemail; }
+  if ($("kgender") && u.kgender) { $("kgender").value = u.kgender; }
+  if ($("kdtype") && u.ktype) { $("kdtype").value = u.ktype; }
+  if ($("pinbtn")) { $("pinbtn").innerHTML = (u.pin === 1) ? "PIN is set" : "Set PIN"; }
+  if ($("secnote")) {
+    if (u.pin === 1) { $("secnote").innerHTML = "Your account is protected with a PIN. Keep it private."; }
+    else { $("secnote").innerHTML = "Protect your account with a PIN so nobody else who picks up your phone can open your wallet."; }
+  }
 }
 
 /* ---------------- sheets ---------------- */
@@ -1492,7 +1629,7 @@ function sheetTree(){
 /* ---------------- admin ---------------- */
 function adminShell(){
   if (!S.adm) { return adminLogin(); }
-  var secs = [["econ","Economy"],["streak","Gamification"],["eco","Eco impact"],["terms","Terms"],["cats","Projects"],["news","News"],["events","Events"],["tasks","Tasks"],["boxes","Boxes"],["pay","Deposits"],["vip","VIP"],["reserves","Reserves"],["texts","Branding"],["users","Users"],["deps","Deposits review"],["wds","Withdrawals"],["kyc","KYC"]];
+  var secs = [["econ","Economy"],["streak","Gamification"],["eco","Eco impact"],["terms","Terms"],["cats","Projects"],["news","News"],["events","Events"],["tasks","Tasks"],["boxes","Boxes"],["pay","Deposits"],["vip","VIP"],["reserves","Reserves"],["texts","Branding"],["users","Users"],["inv","Investments"],["inbox","Inbox"],["deps","Deposits review"],["wds","Withdrawals"],["kyc","KYC"]];
   var nav = "";
   for (var i = 0; i < secs.length; i++) {
     nav += "<button class='ctab" + (S.asec === secs[i][0] ? " on" : "") + "' data-asec='" + secs[i][0] + "'>" + secs[i][1] + "</button>";
@@ -1666,10 +1803,83 @@ function adminBody(){
   } else if (s === "wds") {
     out += wdsList();
   } else if (s === "kyc") {
-    out += "<div class='fl'><label>User ID</label><input class='inp' id='ky_uid' placeholder='123456789'></div>" +
-      "<div class='fl'><label>Note (if rejecting)</label><input class='inp' id='ky_note' placeholder='reason'></div>" +
-      "<div class='row2'><button class='btn pri' data-act='kycOk'>Approve</button><button class='btn red' data-act='kycNo'>Reject</button></div>" +
-      "<div class='note' style='margin-top:9px'>Send a user's id after they submit a document to mark them verified.</div>";
+    var q = S.kycq || [];
+    out += "<div class='note' style='margin-bottom:9px'>Applicants waiting for review. Tap a document to view it full size.</div>";
+    for (var ki = 0; ki < q.length; ki++) {
+      var k = q[ki];
+      out += "<div class='card' style='padding:11px'>" +
+        "<div style='display:flex;justify-content:space-between;gap:8px;align-items:flex-start'>" +
+        "<div style='min-width:0'><div style='font-size:12.5px;font-weight:800'>" + E(k.fn) + " " + E(k.ln) + "</div>" +
+        "<div class='note'>id <b>" + E(k.uid) + "</b> · " + E(k.dtype) + "</div></div>" +
+        "<span class='badge p'>" + E(k.st) + "</span></div>" +
+        "<div class='kv'><span>Age</span><b>" + N(k.age) + "</b></div>" +
+        "<div class='kv'><span>Gender</span><b>" + E(k.gender) + "</b></div>" +
+        "<div class='kv'><span>Nationality</span><b>" + E(k.nat) + "</b></div>" +
+        "<div class='kv'><span>Phone</span><b>" + E(k.phone) + "</b></div>" +
+        "<div class='kv'><span>Email</span><b style='font-size:10px'>" + E(k.email) + "</b></div>" +
+        "<div class='row2' style='margin-top:8px'>" +
+        "<button class='btn gh sm' style='width:100%' data-doc='" + E(k.uid) + "|front'>Front</button>" +
+        "<button class='btn gh sm' style='width:100%' data-doc='" + E(k.uid) + "|back'>Back</button></div>" +
+        "<div class='fl' style='margin-top:8px'><label>Note (if rejecting)</label><input class='inp' id='kyn_" + E(k.uid) + "' placeholder='reason'></div>" +
+        "<div class='row2'><button class='btn pri sm' style='width:100%' data-krev='" + E(k.uid) + "|1'>Approve</button>" +
+        "<button class='btn red sm' style='width:100%' data-krev='" + E(k.uid) + "|0'>Reject</button></div></div>";
+    }
+    if (!out) { out = "<div class='empty'><div>🪪</div>No applicants waiting.</div>"; }
+    out += "<div class='card'><div class='fl'><label>Look up a verified user by ID</label><input class='inp' id='ky_uid' placeholder='123456789'></div>" +
+      "<div class='row2'><button class='btn gh' data-act='kycLook'>Load</button>" +
+      "<button class='btn red' data-act='kycReset'>Reset KYC</button></div>" +
+      "<div id='kylook' style='margin-top:9px'></div></div>";
+  } else if (s === "inv") {
+    var inv = S.inv || null;
+    if (!inv) {
+      out += "<div class='empty'><div>📊</div>Loading investments…</div>";
+    } else {
+      out += "<div class='card grad'><div class='hl'>Total invested by all users</div>" +
+        "<div class='hb'>" + M(inv.grand) + " <small>USDT</small></div>" +
+        "<div class='hs'>" + N(inv.count) + " investors</div></div>";
+      var rows = inv.rows || [];
+      for (var ii = 0; ii < rows.length; ii++) {
+        var r = rows[ii];
+        out += "<div class='card' style='padding:11px'><div style='display:flex;justify-content:space-between;gap:8px'>" +
+          "<div style='min-width:0'><div style='font-size:12.5px;font-weight:800'>" + E(r.name || "User") + "</div>" +
+          "<div class='note'>id <b>" + E(r.uid) + "</b></div></div>" +
+          "<b style='font-size:13px;color:var(--grn)'>" + M(r.total) + "</b></div>";
+        var its = r.items || [];
+        for (var ji = 0; ji < its.length; ji++) {
+          var it = its[ji];
+          out += "<div class='invbox'><span>" + E(it.name) + "</span><span>" + M(it.amt) + " · " + M(it.rate) + "%</span></div>";
+        }
+        out += "<div class='row2' style='margin-top:8px'><button class='btn gh sm' style='width:100%' data-msgto='" + E(r.uid) + "'>Message</button>" +
+          "<button class='btn gh sm' style='width:100%' data-credit='" + E(r.uid) + "'>Adjust balance</button></div></div>";
+      }
+      if (!rows.length) { out += "<div class='empty'><div>📊</div>Nobody has invested yet.</div>"; }
+    }
+    out += "<button class='btn gh' data-act='loadInv' style='margin-top:9px'>Refresh</button>";
+  } else if (s === "inbox") {
+    var ch = S.chat || null;
+    out += "<div class='fl'><label>Find a user</label><input class='inp' id='in_q' placeholder='name, @username or user id'></div>" +
+      "<button class='btn gh' data-act='findUser'>Search</button>" +
+      "<div id='inres' style='margin-top:9px'></div>";
+    if (ch && ch.uid) {
+      var th = ch.thread || [];
+      out += "<div class='card' style='margin-top:11px'><div style='font-size:12.5px;font-weight:800;margin-bottom:6px'>Chat with " + E(ch.name || ch.uid) + "</div>" +
+        "<div style='max-height:210px;overflow-y:auto'>";
+      for (var mi = 0; mi < th.length; mi++) {
+        var m = th[mi];
+        var cls = (m.f === "u") ? "a" : "u";
+        var who = (m.f === "u") ? (ch.name || "User") : "You";
+        out += "<div class='tmsg " + cls + "'>" + E(m.t);
+        if (m.i === 1) { out += "<em>photo</em>"; }
+        out += "<span class='tmi'>" + E(who) + "</span></div>";
+      }
+      if (!th.length) { out += "<div class='note'>No messages yet.</div>"; }
+      out += "</div>" +
+        "<div class='fl' style='margin-top:9px'><input class='inp' id='ad_msg' placeholder='Reply to this user'></div>" +
+        "<button class='btn gh' data-act='admPickImg'>📎 Attach photo</button>" +
+        "<img id='adprev' class='upprev' style='display:none;margin-top:8px' alt=''>" +
+        "<input type='file' accept='image/*' id='adfile' style='display:none'>" +
+        "<div style='height:8px'></div><button class='btn pri' data-act='admSend'>Send message</button></div>";
+    }
   }
   return out;
 }
@@ -1787,6 +1997,309 @@ function doInvest(){
     toast(j.r && j.r.msg ? j.r.msg : "Invested");
     if (j.r && j.r.u) { S.u = j.r.u; }
     paint();
+  });
+}
+
+/* ---------------- images ---------------- */
+var IMG = { "avatar":"", "front":"", "back":"", "msg":"", "adm":"" };
+
+function shrink(file, maxpx, q, cb){
+  try {
+    if (!file) { cb(""); return; }
+    if (file.size > 14000000) { toast("That image is too large", true); cb(""); return; }
+    var rd = new FileReader();
+    rd.onload = function(){
+      var im = new Image();
+      im.onload = function(){
+        try {
+          var w = im.width, h = im.height;
+          if (w > h && w > maxpx) { h = Math.round(h * maxpx / w); w = maxpx; }
+          else if (h >= w && h > maxpx) { w = Math.round(w * maxpx / h); h = maxpx; }
+          var cv = document.createElement("canvas");
+          cv.width = w;
+          cv.height = h;
+          var cx = cv.getContext("2d");
+          cx.drawImage(im, 0, 0, w, h);
+          cb(cv.toDataURL("image/jpeg", q));
+        } catch(e){ cb(""); }
+      };
+      im.onerror = function(){ cb(""); };
+      im.src = rd.result;
+    };
+    rd.onerror = function(){ cb(""); };
+    rd.readAsDataURL(file);
+  } catch(e){ cb(""); }
+}
+
+function showPrev(key, data){
+  var map = { "avatar":"prevav", "front":"prevfront", "back":"prevback", "msg":"prevmsg" };
+  var box = { "front":"upfront", "back":"upback" };
+  var inn = { "front":"upfrontin", "back":"upbackin" };
+  var el = document.getElementById(map[key]);
+  if (el) {
+    if (data) { el.src = data; el.style.display = "block"; }
+    else { el.src = ""; el.style.display = "none"; }
+  }
+  if (box[key]) {
+    var b = document.getElementById(box[key]);
+    var i2 = document.getElementById(inn[key]);
+    if (b && i2) {
+      if (data) { b.className = "upbox filled"; i2.style.display = "none"; }
+      else { b.className = "upbox"; i2.style.display = "block"; }
+    }
+  }
+}
+
+function pickAv(){ var f = $("fileav"); if (f) { f.click(); } }
+function pickFront(){ var f = $("filefront"); if (f) { f.click(); } }
+function pickBack(){ var f = $("fileback"); if (f) { f.click(); } }
+function pickMsg(){ var f = $("filemsg"); if (f) { f.click(); } }
+
+function bindFiles(){
+  var fa = $("fileav");
+  if (fa) {
+    fa.onchange = function(){
+      var fl = fa.files[0];
+      shrink(fl, 240, 0.8, function(d){
+        if (!d) { toast("Could not read that image", true); return; }
+        IMG.avatar = d;
+        var av = $("pav");
+        if (av) { av.innerHTML = "<img class='avimg' src='" + d + "'>"; }
+        api("avatar", { "img": d }, function(j){
+          if (!j.ok) { BADH(); toast(j.e, true); return; }
+          OKH();
+          toast("Photo updated");
+          if (j.r.u) { S.u = j.r.u; }
+        });
+      });
+    };
+  }
+  var ff = $("filefront");
+  if (ff) {
+    ff.onchange = function(){
+      shrink(ff.files[0], 820, 0.5, function(d){
+        if (!d) { toast("Could not read that image", true); return; }
+        IMG.front = d;
+        showPrev("front", d);
+      });
+    };
+  }
+  var fb = $("fileback");
+  if (fb) {
+    fb.onchange = function(){
+      shrink(fb.files[0], 820, 0.5, function(d){
+        if (!d) { toast("Could not read that image", true); return; }
+        IMG.back = d;
+        showPrev("back", d);
+      });
+    };
+  }
+  var fm = $("filemsg");
+  if (fm) {
+    fm.onchange = function(){
+      shrink(fm.files[0], 800, 0.55, function(d){
+        if (!d) { toast("Could not read that image", true); return; }
+        IMG.msg = d;
+        showPrev("msg", d);
+      });
+    };
+  }
+}
+
+function paintAvatar(){
+  var av = $("pav");
+  if (!av) { return; }
+  var pic = S.u.avatar || IMG.avatar;
+  if (pic) { av.innerHTML = "<img class='avimg' src='" + E(pic) + "'>"; }
+  else { av.innerHTML = "👤"; }
+}
+
+/* ---------------- PIN security ---------------- */
+var PIN = { "mode":"", "val":"", "old":"" };
+
+function pinDots(){
+  var d = "";
+  for (var i = 0; i < PIN.val.length; i++) { d += "<div class='pindot on'></div>"; }
+  var total = PIN.val.length + 2;
+  if (total < 6) { total = 6; }
+  for (var k = PIN.val.length; k < total; k++) { d += "<div class='pindot'></div>"; }
+  return d;
+}
+
+function pinPaint(){
+  var box = $("pinbox");
+  if (!box) { return; }
+  box.innerHTML = "<div class='pindots'>" + pinDots() + "</div>";
+}
+
+function pinPress(n){
+  HAS();
+  if (PIN.val.length >= 8) { return; }
+  PIN.val = PIN.val + n;
+  pinPaint();
+}
+
+function pinBack(){
+  HAS();
+  if (PIN.val.length > 0) { PIN.val = PIN.val.substring(0, PIN.val.length - 1); }
+  pinPaint();
+}
+
+function pinDone(){
+  var p = PIN.val;
+  if (p.length < 4) { BADH(); toast("Use at least 4 digits", true); return; }
+  if (PIN.mode === "set") {
+    var dd = {};
+    dd["pin"] = p;
+    dd["name"] = S.u.name || "";
+    api("reg", dd, function(j){
+      if (!j.ok) { BADH(); toast(j.e, true); PIN.val = ""; pinPaint(); return; }
+      OKH();
+      if (j.r.u) { S.u = j.r.u; }
+      closeSheet();
+      toast("PIN saved. Your account is protected.");
+      paint();
+    });
+    return;
+  }
+  if (PIN.mode === "login") {
+    var d2 = {};
+    d2["pin"] = p;
+    api("login", d2, function(j){
+      if (!j.ok) { BADH(); toast(j.e, true); PIN.val = ""; pinPaint(); return; }
+      OKH();
+      if (j.r.u) { S.u = j.r.u; }
+      S.locked = 0;
+      closeSheet();
+      toast("Welcome back");
+      paint();
+    });
+    return;
+  }
+  if (PIN.mode === "change") {
+    var d3 = {};
+    d3["old"] = PIN.old;
+    d3["new"] = p;
+    api("chpin", d3, function(j){
+      if (!j.ok) { BADH(); toast(j.e, true); PIN.val = ""; pinPaint(); return; }
+      OKH();
+      closeSheet();
+      toast("PIN changed");
+    });
+    return;
+  }
+  if (PIN.mode === "changeOld") {
+    PIN.old = p;
+    PIN.val = "";
+    PIN.mode = "change";
+    pinScreen();
+    return;
+  }
+}
+
+function pinScreen(){
+  var title = "Set your PIN";
+  var sub = "Choose 4 to 8 digits. You will need it to open the app again.";
+  if (PIN.mode === "login") { title = "Enter your PIN"; sub = "Welcome back. Unlock your wallet."; }
+  if (PIN.mode === "changeOld") { title = "Current PIN"; sub = "Confirm your existing PIN first."; }
+  if (PIN.mode === "change") { title = "New PIN"; sub = "Choose your new 4 to 8 digit PIN."; }
+  var keys = "";
+  var rows = [["1","2","3"],["4","5","6"],["7","8","9"]];
+  for (var r = 0; r < 3; r++) {
+    for (var c = 0; c < 3; c++) {
+      keys += "<button class='key' data-pnum='" + rows[r][c] + "'>" + rows[r][c] + "</button>";
+    }
+  }
+  keys += "<button class='key act' data-pact='back'>⌫</button>";
+  keys += "<button class='key' data-pnum='0'>0</button>";
+  keys += "<button class='key act' data-pact='done'>OK</button>";
+  var h = "<div class='sh3'>🔐 " + E(title) + "</div><div class='shp'>" + E(sub) + "</div>" +
+    "<div id='pinbox'><div class='pindots'>" + pinDots() + "</div></div>" +
+    "<div class='keypad'>" + keys + "</div>" +
+    "<div class='note' style='margin-top:11px;text-align:center'>Never share your PIN. Support will never ask for it.</div>";
+  openS(h);
+}
+
+function pinSheet(){
+  PIN.mode = "set";
+  PIN.val = "";
+  PIN.old = "";
+  pinScreen();
+}
+
+function changePinSheet(){
+  PIN.mode = "changeOld";
+  PIN.val = "";
+  PIN.old = "";
+  pinScreen();
+}
+
+function loginSheet(){
+  PIN.mode = "login";
+  PIN.val = "";
+  pinScreen();
+}
+
+/* ---------------- KYC ---------------- */
+function sendKyc(){
+  var fn = $("kfn") ? $("kfn").value : "";
+  var ln = $("kln") ? $("kln").value : "";
+  var age = $("kage") ? $("kage").value : "";
+  var ge = $("kgender") ? $("kgender").value : "";
+  var na = $("knat") ? $("knat").value : "";
+  var ph = $("kphone") ? $("kphone").value : "";
+  var em = $("kemail") ? $("kemail").value : "";
+  var ty = $("kdtype") ? $("kdtype").value : "";
+  if (fn.length < 2) { toast("Enter your first name", true); return; }
+  if (ln.length < 2) { toast("Enter your last name", true); return; }
+  if (ge === "") { toast("Choose your gender", true); return; }
+  if (ty === "") { toast("Choose a document type", true); return; }
+  if (!IMG.front) { toast("Upload the front of your document", true); return; }
+  if (!IMG.back) { toast("Upload the back of your document", true); return; }
+  HAS();
+  var dd = { "fn":fn, "ln":ln, "age":age, "gender":ge, "nat":na, "phone":ph, "email":em, "dtype":ty, "front":IMG.front, "back":IMG.back };
+  api("kycfull", dd, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast(j.r && j.r.msg ? j.r.msg : "Sent for verification");
+    if (j.r.u) { S.u = j.r.u; }
+    paint();
+  });
+}
+
+/* ---------------- support chat ---------------- */
+function loadThread(){
+  api("thread", {}, function(j){
+    var box = $("threadbox");
+    if (!box || !j.ok) { return; }
+    var ls = j.r.thread || [], out = "";
+    for (var i = 0; i < ls.length; i++) {
+      var m = ls[i];
+      var cls = (m.f === "u") ? "u" : "a";
+      var who = (m.f === "u") ? "You" : "Support";
+      out += "<div class='tmsg " + cls + "'>" + E(m.t);
+      if (m.i === 1) { out += "<em>photo sent</em>"; }
+      out += "<span class='tmi'>" + E(who) + "</span></div>";
+    }
+    if (!out) { out = "<div class='note'>No messages yet. Ask us anything.</div>"; }
+    box.innerHTML = out;
+    box.scrollTop = box.scrollHeight;
+  });
+}
+
+function sendMsg(){
+  var el = $("msgtext");
+  var t = el ? el.value : "";
+  if (t.length < 1 && !IMG.msg) { toast("Type a message first", true); return; }
+  HAS();
+  api("msg", { "text":t, "img":IMG.msg }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    if (el) { el.value = ""; }
+    IMG.msg = "";
+    showPrev("msg", "");
+    toast("Message sent");
+    loadThread();
   });
 }
 
@@ -2038,19 +2551,6 @@ function saveProfile(){
   });
 }
 
-function sendKyc(){
-  var d = $("fdoc").value || "";
-  if (d.length < 4) { toast("Add a document ID or link", true); return; }
-  HAS();
-  api("kyc", { "doc":d }, function(j){
-    if (!j.ok) { BADH(); toast(j.e, true); return; }
-    OKH();
-    toast("Sent for verification");
-    if (j.r.u) { S.u = j.r.u; }
-    paint();
-  });
-}
-
 function setLang(lc){
   HAS();
   S.picked = 1;
@@ -2088,6 +2588,163 @@ function admLogin(){
     OKH();
     openS(adminShell());
   });
+}
+
+function loadKycQ(){
+  api("adm_kycqueue", { "st":"pending" }, function(j){
+    if (!j.ok) { toast(j.e, true); return; }
+    S.kycq = j.r.list || [];
+    if ($("adbody") && S.asec === "kyc") { $("adbody").innerHTML = adminBody(); }
+  });
+}
+
+function loadInv(){
+  api("adm_inv", {}, function(j){
+    if (!j.ok) { toast(j.e, true); return; }
+    S.inv = j.r;
+    if ($("adbody") && S.asec === "inv") { $("adbody").innerHTML = adminBody(); }
+  });
+}
+
+function viewDoc(target, side){
+  HAS();
+  api("adm_docview", { "uid":target, "side":side }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    var img = j.r.img || "";
+    var av = j.r.avatar || "";
+    var h = "<div class='sh3'>Document · " + E(side) + "</div>" +
+      "<div class='shp'>User " + E(target) + "</div>";
+    if (img) { h += "<img class='docview' src='" + E(img) + "'>"; }
+    else { h += "<div class='empty'><div>📄</div>No image stored for this side.</div>"; }
+    if (av) { h += "<div class='note'>Profile photo on file:</div><img class='docview' src='" + E(av) + "'>"; }
+    h += "<button class='btn gh' data-act='closeSheet'>Close</button>";
+    openS(h);
+  });
+}
+
+function kycReview(target, approve){
+  HAS();
+  var note = "";
+  var ni = $("kyn_" + target);
+  if (ni) { note = ni.value; }
+  api("adm_kyc", { "uid":target, "ok":approve, "note":note }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast(approve === 1 ? "Approved" : "Rejected");
+    if (j.r && j.r.adm) { S.adm = j.r.adm; }
+    loadKycQ();
+  });
+}
+
+function kycLook(){
+  var v = $("ky_uid") ? $("ky_uid").value : "";
+  if (v === "") { toast("Enter a user id", true); return; }
+  HAS();
+  api("adm_kycqueue", { "st":"all" }, function(j){
+    if (!j.ok) { toast(j.e, true); return; }
+    var ls = j.r.list || [], found = null;
+    for (var i = 0; i < ls.length; i++) {
+      if (String(ls[i].uid) === String(v)) { found = ls[i]; }
+    }
+    var box = $("kylook");
+    if (!box) { return; }
+    if (!found) { box.innerHTML = "<div class='note'>No KYC record for that user.</div>"; return; }
+    box.innerHTML = "<div class='kv'><span>Name</span><b>" + E(found.fn) + " " + E(found.ln) + "</b></div>" +
+      "<div class='kv'><span>Status</span><b>" + E(found.st) + "</b></div>" +
+      "<div class='kv'><span>Document</span><b>" + E(found.dtype) + "</b></div>" +
+      "<div class='row2' style='margin-top:8px'>" +
+      "<button class='btn gh sm' style='width:100%' data-doc='" + E(found.uid) + "|front'>Front</button>" +
+      "<button class='btn gh sm' style='width:100%' data-doc='" + E(found.uid) + "|back'>Back</button></div>";
+  });
+}
+
+function kycReset(){
+  var v = $("ky_uid") ? $("ky_uid").value : "";
+  if (v === "") { toast("Enter a user id", true); return; }
+  HAS();
+  api("adm_kyc", { "uid":v, "ok":0, "note":"Please resubmit your documents." }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast("KYC reset");
+    loadKycQ();
+  });
+}
+
+function findUser(){
+  var q = $("in_q") ? $("in_q").value : "";
+  if (q === "") { toast("Type a name or id", true); return; }
+  HAS();
+  api("adm_find", { "q":q }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    var hits = j.r.hits || [], out = "";
+    for (var i = 0; i < hits.length; i++) {
+      var h = hits[i];
+      out += "<div class='card' style='padding:10px'><div style='display:flex;justify-content:space-between;gap:8px'>" +
+        "<div style='min-width:0'><div style='font-size:12px;font-weight:800'>" + E(h.name || "User") + "</div>" +
+        "<div class='note'>id <b>" + E(h.uid) + "</b> · @" + E(h.uname) + "</div></div>" +
+        "<b style='font-size:12px;color:var(--grn)'>" + M(h.bal) + "</b></div>" +
+        "<div class='row2' style='margin-top:8px'>" +
+        "<button class='btn pri sm' style='width:100%' data-msgto='" + E(h.uid) + "'>Message</button>" +
+        "<button class='btn gh sm' style='width:100%' data-credit='" + E(h.uid) + "'>Adjust</button></div></div>";
+    }
+    if (!out) { out = "<div class='note'>No user matches that.</div>"; }
+    if ($("inres")) { $("inres").innerHTML = out; }
+  });
+}
+
+function openChat(target){
+  HAS();
+  S.chat = { "uid":target, "name":"", "thread":[] };
+  api("adm_msgs", { "uid":target }, function(j){
+    if (!j.ok) { toast(j.e, true); return; }
+    S.chat.thread = j.r.thread || [];
+    S.asec = "inbox";
+    $("adbody").innerHTML = adminBody();
+    bindAdmFile();
+    api("adm_find", { "q":target }, function(k){
+      if (k.ok) {
+        var hits = k.r.hits || [];
+        if (hits.length > 0) { S.chat.name = hits[0].name; }
+      }
+      $("adbody").innerHTML = adminBody();
+    });
+  });
+}
+
+function admSend(){
+  if (!S.chat || !S.chat.uid) { toast("Open a user first", true); return; }
+  var t = $("ad_msg") ? $("ad_msg").value : "";
+  if (t.length < 1 && !IMG.adm) { toast("Type a message", true); return; }
+  HAS();
+  api("adm_send", { "uid":S.chat.uid, "text":t, "img":IMG.adm }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    if ($("ad_msg")) { $("ad_msg").value = ""; }
+    IMG.adm = "";
+    if ($("adprev")) { $("adprev").style.display = "none"; }
+    toast("Sent");
+    openChat(S.chat.uid);
+  });
+}
+
+function admPickImg(){
+  var f = $("adfile");
+  if (f) { f.click(); }
+}
+
+function bindAdmFile(){
+  var f = $("adfile");
+  if (!f) { return; }
+  if (f.dataset.bound === "1") { return; }
+  f.dataset.bound = "1";
+  f.onchange = function(){
+    shrink(f.files[0], 800, 0.55, function(d){
+      if (!d) { toast("Could not read that image", true); return; }
+      IMG.adm = d;
+      var p = $("adprev");
+      if (p) { p.src = d; p.style.display = "block"; }
+    });
+  };
 }
 
 function saveEcon(){
@@ -2192,6 +2849,8 @@ function review(kind, rid, ok){
 /* ---------------- one click handler for everything ---------------- */
 document.addEventListener("click", function(ev){
   var el = ev.target;
+  if (el && el.tagName === "INPUT") { return; }
+  if (el && el.tagName === "SELECT") { return; }
   var guard = 0;
   while (el && el !== document.body && guard < 8) {
     guard = guard + 1;
@@ -2226,6 +2885,10 @@ document.addEventListener("click", function(ev){
       var paydel = el.getAttribute("data-paydel");
       var rssave = el.getAttribute("data-rssave");
       var rsdel = el.getAttribute("data-rsdel");
+      var docv = el.getAttribute("data-doc");
+      var krev = el.getAttribute("data-krev");
+      var msgto = el.getAttribute("data-msgto");
+      var creditx = el.getAttribute("data-credit");
       var id = el.getAttribute("data-id");
 
       if (tab) { go(tab); return; }
@@ -2236,7 +2899,18 @@ document.addEventListener("click", function(ev){
       if (tcat) { HAS(); S.tcat = tcat; paintTasks(); return; }
       if (task) { claimTask(task); return; }
       if (lang) { setLang(lang); return; }
-      if (asec) { HAS(); S.asec = asec; $("adbody").innerHTML = adminBody(); return; }
+      if (asec) {
+        HAS();
+        S.asec = asec;
+        $("adbody").innerHTML = adminBody();
+        if (asec === "kyc") { loadKycQ(); }
+        if (asec === "inv") { loadInv(); }
+        return;
+      }
+      if (docv) { var dp = docv.split("|"); viewDoc(dp[0], dp[1]); return; }
+      if (krev) { var kp = krev.split("|"); kycReview(kp[0], parseInt(kp[1])); return; }
+      if (msgto) { openChat(msgto); return; }
+      if (creditx) { adjBal(creditx, 1); return; }
       if (rev) { var rp = rev.split("|"); review(rp[0], rp[1], parseInt(rp[2])); return; }
       if (bal) { var bp = bal.split("|"); adjBal(bp[0], parseInt(bp[1])); return; }
       if (tsave !== null) { var i2 = parseInt(tsave); var tg = (S.adm.page.terms || [])[i2]; adminSave("term", { "id":tg.id, "n":$("tm_n" + i2).value, "d":parseInt($("tm_d" + i2).value) }); return; }
@@ -2260,6 +2934,11 @@ document.addEventListener("click", function(ev){
       }
       if (rsdel) { adminSave("reserve_del", rsdel); return; }
       if (saved) { saveEditor(saved, id); return; }
+      var pnum = el.getAttribute("data-pnum");
+      var pact = el.getAttribute("data-pact");
+      if (pnum !== null && pnum !== "") { pinPress(pnum); return; }
+      if (pact === "back") { pinBack(); return; }
+      if (pact === "done") { pinDone(); return; }
       var slink = el.getAttribute("data-link");
       var stxt = el.getAttribute("data-txt");
       if (slink) {
@@ -2307,6 +2986,20 @@ function runAct(a, id){
   if (a === "toggleComp") { toggleComp(); return; }
   if (a === "toggleDemo") { toggleDemo(); return; }
   if (a === "reserves") { sheetReserves(); return; }
+  if (a === "pickAv") { pickAv(); return; }
+  if (a === "pickFront") { pickFront(); return; }
+  if (a === "pickBack") { pickBack(); return; }
+  if (a === "pickMsg") { pickMsg(); return; }
+  if (a === "pinSheet") { pinSheet(); return; }
+  if (a === "changePinSheet") { changePinSheet(); return; }
+  if (a === "loginSheet") { loginSheet(); return; }
+  if (a === "sendMsg") { sendMsg(); return; }
+  if (a === "loadInv") { HAS(); S.inv = null; $("adbody").innerHTML = adminBody(); loadInv(); return; }
+  if (a === "findUser") { findUser(); return; }
+  if (a === "kycLook") { kycLook(); return; }
+  if (a === "kycReset") { kycReset(); return; }
+  if (a === "admSend") { admSend(); return; }
+  if (a === "admPickImg") { admPickImg(); return; }
   if (a === "story") { greenStory(); return; }
   if (a === "doInvest") { doInvest(); return; }
   if (a === "copyRef") { copyRef(); return; }
@@ -2463,6 +3156,9 @@ function paint(){
   safe(paintTx);
   safe(paintDeps);
   safe(paintKyc);
+  safe(paintAvatar);
+  safe(bindFiles);
+  safe(loadThread);
 }
 
 /* ---------------- start ---------------- */
