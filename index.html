@@ -205,6 +205,63 @@ border:1px solid rgba(0,230,118,.35)}
 .avcam{position:absolute;right:-4px;bottom:-4px;width:27px;height:27px;border-radius:50%;
 display:grid;place-items:center;font-size:12px;background:linear-gradient(135deg,#00E676,#00B85C);
 color:#04150C;border:2px solid var(--bg);box-shadow:0 3px 10px rgba(0,0,0,.5)}
+/* ---------- admin user cards ---------- */
+.admstat{display:flex;gap:6px;margin-bottom:11px}
+.admstat>div{flex:1;min-width:0;background:rgba(0,0,0,.32);border:1px solid var(--bd);
+border-radius:12px;padding:9px 3px;text-align:center}
+.admstat b{display:block;font-size:13px;font-weight:800;color:var(--grn);font-variant-numeric:tabular-nums;
+overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.admstat span{display:block;font-size:7.5px;font-weight:900;letter-spacing:.4px;text-transform:uppercase;
+color:var(--dim);margin-top:3px}
+.ucard{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:12px;margin-bottom:9px}
+.uhead{display:flex;align-items:center;gap:8px}
+.udot{width:9px;height:9px;flex:0 0 9px;border-radius:50%}
+.udot.on{background:#00E676;box-shadow:0 0 8px rgba(0,230,118,.7)}
+.udot.off{background:#FF5252}
+.uname2{flex:1;min-width:0;display:flex;align-items:baseline;gap:6px;overflow:hidden}
+.uname2 b{font-size:13px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.uname2 span{font-size:10px;color:var(--dim);font-weight:700;overflow:hidden;text-overflow:ellipsis;
+white-space:nowrap}
+.kbadge{font-size:8px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;padding:3px 7px;
+border-radius:6px;flex:0 0 auto;background:rgba(255,255,255,.07);color:var(--mut)}
+.kbadge.v{background:rgba(0,230,118,.16);color:#00E676}
+.kbadge.p{background:rgba(255,179,0,.16);color:#FFB300}
+.kbadge.j{background:rgba(255,82,82,.16);color:#FF5252}
+.uidrow{font-size:9.5px;color:var(--dim);margin-top:6px;font-weight:700;overflow:hidden;
+text-overflow:ellipsis;white-space:nowrap}
+.uidrow code{background:rgba(0,0,0,.35);padding:1px 5px;border-radius:5px;font-size:9.5px}
+.ugrid{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-top:10px}
+.uc{background:rgba(0,0,0,.3);border:1px solid rgba(31,40,51,.7);border-radius:10px;padding:7px 3px;
+text-align:center;min-width:0}
+.uc b{display:block;font-size:11.5px;font-weight:800;font-variant-numeric:tabular-nums;overflow:hidden;
+text-overflow:ellipsis;white-space:nowrap}
+.uc b.g{color:var(--grn)}
+.uc span{display:block;font-size:7px;font-weight:900;letter-spacing:.3px;text-transform:uppercase;
+color:var(--dim);margin-top:2px}
+.uacts{display:flex;gap:6px;margin-top:10px}
+.uacts .btn{flex:1;min-width:0}
+
+/* ---------- live per-second earnings ---------- */
+.livehdr{display:flex;align-items:center;justify-content:space-between;gap:10px;
+border-color:rgba(125,249,255,.32)}
+.livebig{font-size:16px;font-weight:800;color:#7DF9FF;font-variant-numeric:tabular-nums;
+text-shadow:0 0 16px rgba(125,249,255,.35);margin-top:2px}
+.livebig small{font-size:9px;color:var(--dim);font-weight:800}
+.livebig.g{color:var(--grn);text-shadow:0 0 16px rgba(0,230,118,.3)}
+.posrow{display:flex;align-items:center;justify-content:space-between;gap:9px;padding:9px 0;
+border-bottom:1px solid rgba(31,40,51,.7)}
+.posrow:last-child{border-bottom:0}
+.posrow b{font-size:12px;font-weight:800}
+.posrow b.g{color:var(--grn);font-variant-numeric:tabular-nums}
+.posrow span{display:block;font-size:9.5px;color:var(--dim);font-weight:700;margin-top:2px}
+.livebox{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:9px;
+padding-top:9px;border-top:1px solid rgba(31,40,51,.7)}
+.liveacc{font-size:9px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;color:var(--dim)}
+.liverval{font-size:12.5px;font-weight:800;color:#7DF9FF;font-variant-numeric:tabular-nums;
+text-shadow:0 0 14px rgba(125,249,255,.35)}
+.liverval em{font-style:normal;font-size:8.5px;color:var(--dim);font-weight:800;margin-left:3px}
+.liveps{font-size:9.5px;font-weight:800;color:var(--grn);margin-top:2px;font-variant-numeric:tabular-nums}
+
 /* ---------- task progress ---------- */
 .tneed{font-size:9.5px;font-weight:900;letter-spacing:.3px;color:#FFB300;margin-top:4px}
 .tprog{display:flex;align-items:center;gap:7px}
@@ -753,6 +810,12 @@ width:0;transition:width 1s ease}
   <div id="projlist"></div>
   <div id="calcwrap"></div>
   <div class="sec"><h2 data-i18n="i.mine">My investments</h2><small id="holdnote">&nbsp;</small></div>
+  <div class="card livehdr" id="livehdr" style="display:none">
+    <div><div class="liveacc">Earning right now</div>
+      <div class="livebig" id="lvtotal">+0.00000000 <small>USDT / second</small></div></div>
+    <div style="text-align:right"><div class="liveacc">Live earned</div>
+      <div class="livebig g" id="lvsum">+0.000000</div></div>
+  </div>
   <div id="holdings"></div>
 </div>
 
@@ -1027,7 +1090,7 @@ width:0;transition:width 1s ease}
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5Zl8K5ic_ThCL22BD3JaVyhC0hGce86KsSjzQOWgZiVNnzYyEhc1wesyGLz9w_199ZhZqBW0brAp4r-VmV2EZNetexLGHnXWOOU8QhRCyY_lkgKfK9k_Jt8pW7nOM2WtKCUjnRpq2tAhXGn3y2wke_urWMXcpvawq7F1s3yMKi4vGCVCIzUZ8kQqzf1roQOdqpZ7";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5b2AUBMNDUy45Yh5Npg_u5hStktGl6ZN7FtH5Dg1TO_Ix6DhDb1qZkCDlvd6L5e0ZEkfsOjmV6F6-xtuJm1WbGKYJEGo8Zia1OB_Tv_uexokYkNPOsp__CzG9cGimk8f3Y9lqaL5Sg-VSZ9jaajTkQVz4qQVBZNC4dJZvxMp4OKVj0n5T1QaeQyBC456eR2qS-XC";
 var BUILD = "v7.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
@@ -1543,15 +1606,32 @@ function paintHoldings(){
       out += "<div class='card' style='padding:12px'><div style='display:flex;justify-content:space-between;gap:8px;align-items:flex-start'>" +
         "<div style='min-width:0'><div style='font-size:12.5px;font-weight:800'>" + E(h.name) + "</div>" +
         "<div class='note'>" + M(h.amt) + " USDT · " + M(h.rate) + "% · " + N(left) + " " + E(tr("i.days")) + " " + E(tr("c.left")) + "</div></div>" +
-        "<div style='text-align:right'><div style='font-size:13px;font-weight:800;color:var(--grn)'>+" + M(h.earn) + "</div>" +
-        "<div style='font-size:9px;color:var(--dim);font-weight:800'>EARNED</div></div></div>" +
+        "<div class='liveacc'><div class='liverval' data-earn='" + E(h.earn) + "' data-per='" + E(h.per) + "' data-last='" + E(h.last) + "' data-end='" + E(h.end) + "'>+" + N4(h.earn) + "<em>USDT</em></div>" +
+        "<div class='liveps'>+" + (parseFloat(h.per) || 0).toFixed(8) + " / sec</div></div></div>" +
         "<div style='height:5px;border-radius:99px;background:#1B2430;margin-top:9px;overflow:hidden'>" +
         "<div style='height:5px;width:" + prog.toFixed(0) + "%;background:linear-gradient(90deg,#00E676,#0088CC);border-radius:99px'></div></div></div>";
     }
   }
   if (!out) { out = "<div class='empty'><div>🏗</div>No investment yet.<br>Pick a project above to start.</div>"; }
   $("holdings").innerHTML = out;
-  $("holdnote").innerHTML = act + " active";
+  if ($("holdnote")) { $("holdnote").innerHTML = act + " active"; }
+  var rate = 0;
+  for (var z = 0; z < hs.length; z++) {
+    if (hs[z].done !== 1) { rate = rate + (parseFloat(hs[z].per) || 0); }
+  }
+  var hb = document.getElementById("livehdr");
+  if (hb) {
+    if (act > 0) {
+      hb.style.display = "";
+      var t1 = document.getElementById("lvtotal");
+      if (t1) { t1.innerHTML = "+" + rate.toFixed(8) + " <small>USDT / second</small>"; }
+      var t2 = document.getElementById("lvsum");
+      if (t2) { t2.innerHTML = "+" + rate.toFixed(6) + " <small>USDT / sec</small>"; }
+    } else {
+      hb.style.display = "none";
+    }
+  }
+  setTimeout(liveTick, 60);
 }
 
 /* ---------------- eco impact ---------------- */
@@ -2205,8 +2285,53 @@ function adminBody(){
       "<button class='btn gh' data-act='addContact'>+ Add contact</button></div>" +
       "<div class='note' style='margin-top:9px'>Examples — Telegram: <code>https://t.me/yourname</code> · WhatsApp: <code>https://wa.me/919876543210</code> · Email: <code>mailto:you@mail.com</code></div>";
   } else if (s === "users") {
-    out += "<div class='fl'><label>Username or numeric ID</label><input class='inp' id='fu_q' placeholder='@name or 123456789'></div>" +
-      "<button class='btn pri' data-act='findUser'>Look up user</button><div id='fres' style='margin-top:9px'></div>";
+    var ul = S.ulist || null;
+    out += "<div class='fl'><label>Filter by name, id or @username (optional)</label><input class='inp' id='fu_q' placeholder='leave empty to see everyone' oninput='userFilter()'></div>";
+    if (!ul) {
+      out += "<div class='empty'><div>👥</div>Loading all users…</div>" +
+        "<button class='btn gh' data-act='loadUsers' style='margin-top:9px'>Load users</button>";
+    } else {
+      out += "<div class='admstat'>" +
+        "<div><b>" + N(ul.count) + "</b><span>Users</span></div>" +
+        "<div><b>" + M(ul.inv) + "</b><span>Invested now</span></div>" +
+        "<div><b>" + M(ul.all) + "</b><span>Invested total</span></div>" +
+        "<div><b>" + M(ul.bal) + "</b><span>In wallets</span></div>" +
+        "<div><b>" + M(ul.profit) + "</b><span>Profit paid</span></div></div>";
+      var urs = ul.rows || [];
+      for (var ui = 0; ui < urs.length; ui++) {
+        var r = urs[ui];
+        var hay = (String(r.uid) + " " + (r.name || "") + " " + (r.uname || "") + " " + (r.mail || "")).toLowerCase();
+        var kb = "n";
+        if (r.kyc === "verified") { kb = "v"; }
+        else if (r.kyc === "pending") { kb = "p"; }
+        else if (r.kyc === "rejected") { kb = "j"; }
+        out += "<div class='ucard' data-hay='" + E(hay) + "'>" +
+          "<div class='uhead'>" +
+          "<span class='udot " + (r.online === 1 ? "on" : "off") + "'></span>" +
+          "<div class='uname2'><b>" + E(r.name || "User") + "</b>" + (r.uname ? ("<span>@" + E(r.uname) + "</span>") : "") + "</div>" +
+          "<span class='kbadge " + kb + "'>" + E(r.kyc) + "</span></div>" +
+          "<div class='uidrow'>id <code>" + E(r.uid) + "</code> · joined " + dtxt(r.joined) + " · " + E(r.vip || "—") + (r.mail ? (" · " + E(r.mail)) : "") + "</div>" +
+          "<div class='ugrid'>" +
+          "<div class='uc'><span>Balance</span><b class='g'>" + M(r.bal) + "</b></div>" +
+          "<div class='uc'><span>Invested now</span><b>" + M(r.invest) + "</b></div>" +
+          "<div class='uc'><span>Invested total</span><b>" + M(r.total_inv) + "</b></div>" +
+          "<div class='uc'><span>Profit paid</span><b class='g'>" + M(r.profit) + "</b></div>" +
+          "<div class='uc'><span>Active</span><b>" + N(r.active) + "</b></div>" +
+          "<div class='uc'><span>Projects</span><b>" + N(r.uniq) + "</b></div>" +
+          "<div class='uc'><span>Referrals</span><b>" + N(r.c1) + "</b></div>" +
+          "<div class='uc'><span>Team</span><b>" + N(r.team) + "</b></div>" +
+          "<div class='uc'><span>Ref earned</span><b>" + M(r.ref_earned) + "</b></div>" +
+          "<div class='uc'><span>Energy</span><b>" + N(r.energy) + "</b></div></div>" +
+          "<div class='uacts'>" +
+          "<button class='btn gh sm' data-ucredit='" + E(r.uid) + "'>+ Credit</button>" +
+          "<button class='btn gh sm' data-udebit='" + E(r.uid) + "'>− Debit</button>" +
+          "<button class='btn gh sm' data-msgto='" + E(r.uid) + "'>Message</button>" +
+          "<button class='btn gh sm' data-usInv='" + E(r.uid) + "'>Positions</button>" +
+          "</div></div>";
+      }
+      out += "<div class='empty' id='unomatch' style='display:none'><div>🔍</div>No user matches that filter.</div>";
+      out += "<button class='btn gh' data-act='loadUsers' style='margin-top:9px'>Refresh</button>";
+    }
   } else if (s === "deps") {
     out += depsList();
   } else if (s === "wds") {
@@ -2243,23 +2368,31 @@ function adminBody(){
     if (!inv) {
       out += "<div class='empty'><div>📊</div>Loading investments…</div>";
     } else {
-      out += "<div class='card grad'><div class='hl'>Total invested by all users</div>" +
-        "<div class='hb'>" + M(inv.grand) + " <small>USDT</small></div>" +
-        "<div class='hs'>" + N(inv.count) + " investors</div></div>";
+      out += "<div class='admstat'>" +
+        "<div><b>" + M(inv.live) + "</b><span>Invested now</span></div>" +
+        "<div><b>" + M(inv.grand) + "</b><span>Ever invested</span></div>" +
+        "<div><b>" + M(inv.paid) + "</b><span>Profit credited</span></div>" +
+        "<div><b>" + N(inv.count) + "</b><span>Investors</span></div>" +
+        "<div><b>" + N(inv.pos) + "</b><span>Positions</span></div></div>";
       var rows = inv.rows || [];
       for (var ii = 0; ii < rows.length; ii++) {
         var r = rows[ii];
-        out += "<div class='card' style='padding:11px'><div style='display:flex;justify-content:space-between;gap:8px'>" +
-          "<div style='min-width:0'><div style='font-size:12.5px;font-weight:800'>" + E(r.name || "User") + "</div>" +
-          "<div class='note'>id <b>" + E(r.uid) + "</b></div></div>" +
-          "<b style='font-size:13px;color:var(--grn)'>" + M(r.total) + "</b></div>";
+        out += "<div class='ucard'><div class='uhead'>" +
+          "<div class='uname2'><b>" + E(r.name || "User") + "</b>" + (r.uname ? ("<span>@" + E(r.uname) + "</span>") : "") + "</div>" +
+          "<b style='font-size:13px;color:var(--grn);flex:0 0 auto'>" + M(r.live) + " <span style='font-size:8px;color:var(--dim)'>LIVE</span></b></div>" +
+          "<div class='uidrow'>id <code>" + E(r.uid) + "</code> · wallet " + M(r.bal) + " · ever " + M(r.total) + " · earned " + M(r.earn) + "</div>";
         var its = r.items || [];
         for (var ji = 0; ji < its.length; ji++) {
           var it = its[ji];
-          out += "<div class='invbox'><span>" + E(it.name) + "</span><span>" + M(it.amt) + " · " + M(it.rate) + "%</span></div>";
+          out += "<div class='posrow'><div style='min-width:0'><b>" + E(it.name) + "</b>" +
+            "<span>" + M(it.amt) + " USDT · " + M(it.rate) + "% · " + N(it.days) + "d · " +
+            (it.done === 1 ? "closed" : "active") + " · +" + (parseFloat(it.per) || 0).toFixed(8) + "/s</span></div>" +
+            "<b class='g'>+" + N4(it.earn) + "</b></div>";
         }
-        out += "<div class='row2' style='margin-top:8px'><button class='btn gh sm' style='width:100%' data-msgto='" + E(r.uid) + "'>Message</button>" +
-          "<button class='btn gh sm' style='width:100%' data-credit='" + E(r.uid) + "'>Adjust balance</button></div></div>";
+        out += "<div class='uacts'>" +
+          "<button class='btn gh sm' data-msgto='" + E(r.uid) + "'>Message</button>" +
+          "<button class='btn gh sm' data-ucredit='" + E(r.uid) + "'>+ Credit</button>" +
+          "<button class='btn gh sm' data-udebit='" + E(r.uid) + "'>− Debit</button></div></div>";
       }
       if (!rows.length) { out += "<div class='empty'><div>📊</div>Nobody has invested yet.</div>"; }
     }
@@ -3163,6 +3296,132 @@ function loadInv(){
   });
 }
 
+function loadUsers(){
+  HAS();
+  api("adm_users", {}, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    S.ulist = j.r;
+    if ($("adbody") && S.asec === "users") { $("adbody").innerHTML = adminBody(); }
+  });
+}
+
+// Filter the already-rendered rows in the DOM. Re-rendering adminBody() on
+// every keystroke would rebuild the input and steal keyboard focus.
+function userFilter(){
+  var el = document.getElementById("fu_q");
+  var q = el ? String(el.value).toLowerCase().trim() : "";
+  S.uq = q;
+  var box = document.getElementById("adbody");
+  if (!box) { return; }
+  var rows = box.querySelectorAll(".ucard");
+  var shown = 0;
+  for (var i = 0; i < rows.length; i++) {
+    var hay = rows[i].getAttribute("data-hay") || "";
+    if (q === "" || hay.indexOf(q) >= 0) {
+      rows[i].style.display = "";
+      shown = shown + 1;
+    } else {
+      rows[i].style.display = "none";
+    }
+  }
+  var nm = document.getElementById("unomatch");
+  if (nm) { nm.style.display = (shown === 0 && q !== "") ? "" : "none"; }
+}
+
+function dtxt(ts){
+  var t = parseInt(ts) || 0;
+  if (t <= 0) { return "never"; }
+  var d = new Date(t * 1000);
+  var m = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return d.getDate() + " " + m[d.getMonth()] + " " + d.getFullYear();
+}
+
+function adjUser(uid, sign){
+  var a = parseFloat(prompt("Amount in USDT:"));
+  if (isNaN(a) || a <= 0) { return; }
+  HAS();
+  api("adm_bal", { "uid":uid, "amount":(a * sign) }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast(j.r.msg);
+    loadUsers();
+  });
+}
+
+function userPositions(uid){
+  var inv = S.inv;
+  var show = function(){
+    var rows = (inv && inv.rows) ? inv.rows : [];
+    var r = null;
+    for (var i = 0; i < rows.length; i++) { if (String(rows[i].uid) === String(uid)) { r = rows[i]; break; } }
+    var nm = "User " + uid;
+    var ul = (S.ulist && S.ulist.rows) ? S.ulist.rows : [];
+    for (var k = 0; k < ul.length; k++) { if (String(ul[k].uid) === String(uid)) { nm = ul[k].name || uid; break; } }
+    var h = "<div class='sh3'>Positions</div><div class='shp'>" + E(nm) + " · id " + E(uid) + "</div>";
+    if (!r) { h += "<div class='empty'><div>📊</div>No investments from this user.</div>"; openS(h); return; }
+    h += "<div class='kv'><span>Invested now</span><b>" + M(r.live) + " USDT</b></div>" +
+      "<div class='kv'><span>Ever invested</span><b>" + M(r.total) + " USDT</b></div>" +
+      "<div class='kv'><span>Profit credited</span><b>" + M(r.earn) + " USDT</b></div>" +
+      "<div class='kv'><span>Wallet balance</span><b>" + M(r.bal) + " USDT</b></div>";
+    var its = r.items || [];
+    for (var j2 = 0; j2 < its.length; j2++) {
+      var it = its[j2];
+      h += "<div class='posrow'><div><b>" + E(it.name) + "</b>" +
+        "<span>" + M(it.amt) + " · " + M(it.rate) + "% · " + N(it.days) + "d · " +
+        (it.done === 1 ? "closed" : "active") + "</span></div>" +
+        "<b class='g'>+" + N4(it.earn) + "</b></div>";
+    }
+    h += "<div style='height:11px'></div><button class='btn gh' data-act='closeSheet'>Close</button>";
+    openS(h);
+  };
+  if (!inv) {
+    api("adm_inv", {}, function(j){
+      if (j.ok) { S.inv = j.r; }
+      inv = S.inv;
+      show();
+    });
+    return;
+  }
+  show();
+}
+
+function liveVal(el){
+  var earn = parseFloat(el.getAttribute("data-earn")) || 0;
+  var per = parseFloat(el.getAttribute("data-per")) || 0;
+  var last = parseFloat(el.getAttribute("data-last")) || 0;
+  var end = parseFloat(el.getAttribute("data-end")) || 0;
+  var now = Math.floor(Date.now() / 1000);
+  var upTo = now;
+  if (end > 0 && end < upTo) { upTo = end; }
+  var gap = upTo - last;
+  if (gap < 0) { gap = 0; }
+  return earn + gap * per;
+}
+
+function N4(v){
+  var n = parseFloat(v) || 0;
+  return n.toFixed(4);
+}
+
+function liveTick(){
+  var els = document.querySelectorAll(".liverval");
+  var sum = 0;
+  var rate = 0;
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    var v = liveVal(el);
+    sum = sum + v;
+    rate = rate + (parseFloat(el.getAttribute("data-per")) || 0);
+    el.innerHTML = "+" + v.toFixed(6) + "<em>USDT</em>";
+  }
+  var t = document.getElementById("lvtotal");
+  if (t) { t.innerHTML = "+" + rate.toFixed(8) + " <small>USDT / second</small>"; }
+  var s = document.getElementById("lvsum");
+  if (s) { s.innerHTML = "+" + sum.toFixed(6); }
+}
+setInterval(liveTick, 1000);
+
 function viewDoc(target, side){
   HAS();
   api("adm_docview", { "uid":target, "side":side }, function(j){
@@ -3478,6 +3737,9 @@ document.addEventListener("click", function(ev){
       var krev = el.getAttribute("data-krev");
       var msgto = el.getAttribute("data-msgto");
       var creditx = el.getAttribute("data-credit");
+      var ucre = el.getAttribute("data-ucredit");
+      var udeb = el.getAttribute("data-udebit");
+      var upos = el.getAttribute("data-usInv");
       var id = el.getAttribute("data-id");
 
       if (tab) { go(tab); return; }
@@ -3497,6 +3759,7 @@ document.addEventListener("click", function(ev){
         $("adbody").innerHTML = adminBody();
         if (asec === "kyc") { loadKycQ(); }
         if (asec === "inv") { loadInv(); }
+        if (asec === "users") { loadUsers(); }
         if (asec === "staff") { loadStaff(); }
         return;
       }
@@ -3504,6 +3767,9 @@ document.addEventListener("click", function(ev){
       if (krev) { var kp = krev.split("|"); kycReview(kp[0], parseInt(kp[1])); return; }
       if (msgto) { openChat(msgto); return; }
       if (creditx) { adjBal(creditx, 1); return; }
+      if (ucre) { adjUser(ucre, 1); return; }
+      if (udeb) { adjUser(udeb, -1); return; }
+      if (upos) { userPositions(upos); return; }
       if (rev) { var rp = rev.split("|"); review(rp[0], rp[1], parseInt(rp[2])); return; }
       if (bal) { var bp = bal.split("|"); adjBal(bp[0], parseInt(bp[1])); return; }
       if (tsave !== null) { var i2 = parseInt(tsave); var tg = (S.adm.page.terms || [])[i2]; adminSave("term", { "id":tg.id, "n":$("tm_n" + i2).value, "d":parseInt($("tm_d" + i2).value) }); return; }
@@ -3601,6 +3867,7 @@ function runAct(a, id){
   if (a === "loginSheet") { loginSheet(); return; }
   if (a === "sendMsg") { sendMsg(); return; }
   if (a === "loadInv") { HAS(); S.inv = null; $("adbody").innerHTML = adminBody(); loadInv(); return; }
+  if (a === "loadUsers") { HAS(); S.ulist = null; $("adbody").innerHTML = adminBody(); loadUsers(); return; }
   if (a === "findUser") { findUser(); return; }
   if (a === "kycLook") { kycLook(); return; }
   if (a === "kycReset") { kycReset(); return; }
