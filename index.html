@@ -404,6 +404,157 @@ border:1px solid var(--bd);border-radius:7px;padding:4px 8px}
 .spin{width:17px;height:17px;border-radius:50%;border:2.5px solid rgba(255,255,255,.2);
 border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;vertical-align:-3px}
 @keyframes rot{to{transform:rotate(360deg)}}
+
+/* ---------- auth screen ---------- */
+.authmask{position:fixed;inset:0;z-index:900;display:none;align-items:center;justify-content:center;
+padding:22px 16px;overflow-y:auto;
+background:radial-gradient(circle at 50% 0%,#0E2A20 0%,#070B0E 55%,#04070A 100%)}
+.authmask.on{display:flex;animation:afade .4s ease}
+@keyframes afade{from{opacity:0}to{opacity:1}}
+.authcard{width:100%;max-width:390px;border-radius:26px;padding:26px 22px 22px;position:relative;
+background:linear-gradient(165deg,rgba(0,230,118,.10),rgba(8,14,18,.94) 45%);
+border:1px solid rgba(0,230,118,.30);box-shadow:0 26px 70px rgba(0,0,0,.6),0 0 44px rgba(0,230,118,.10) inset;
+animation:arise .5s cubic-bezier(.2,.9,.3,1)}
+@keyframes arise{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+.authlogo{width:66px;height:66px;border-radius:19px;margin:0 auto 14px;display:grid;place-items:center;
+font-size:31px;background:linear-gradient(150deg,rgba(0,230,118,.30),rgba(0,136,204,.12));
+border:1px solid rgba(0,230,118,.42);box-shadow:0 0 26px rgba(0,230,118,.28);animation:aglow 3.4s ease-in-out infinite}
+@keyframes aglow{50%{box-shadow:0 0 40px rgba(0,230,118,.46)}}
+.authtitle{text-align:center;font-size:23px;font-weight:800;letter-spacing:-.6px;line-height:1.15}
+.authtitle em{font-style:normal;color:var(--grn)}
+.authsub{text-align:center;font-size:11.5px;color:#8FB3A1;margin-top:5px;line-height:1.5}
+.segtab{display:flex;gap:4px;margin:18px 0 14px;padding:4px;border-radius:14px;
+background:rgba(0,0,0,.42);border:1px solid var(--bd)}
+.segtab button{flex:1;padding:10px 4px;border-radius:11px;font-size:12.5px;font-weight:800;color:var(--mut);
+background:transparent;transition:all .18s}
+.segtab button.on{color:#04110B;background:linear-gradient(135deg,#00E676,#00B259);
+box-shadow:0 6px 18px rgba(0,230,118,.3)}
+.authlbl{font-size:11px;font-weight:800;color:#9FD3B4;margin:0 0 6px 2px}
+.authin{width:100%;padding:13px 14px;border-radius:14px;font-size:13px;color:var(--txt);
+background:rgba(0,0,0,.40);border:1px solid rgba(0,230,118,.22);margin-bottom:13px;transition:all .18s}
+.authin:focus{outline:0;border-color:rgba(0,230,118,.62);background:rgba(0,0,0,.55);
+box-shadow:0 0 0 3px rgba(0,230,118,.10)}
+.authgo{width:100%;padding:15px;border-radius:15px;font-size:14px;font-weight:800;color:#04110B;
+background:linear-gradient(135deg,#00E676,#00B259);box-shadow:0 10px 26px rgba(0,230,118,.32);
+transition:transform .12s;margin-top:3px}
+.authgo:active{transform:scale(.98)}
+.authalt{text-align:center;font-size:11px;color:var(--dim);margin-top:14px;line-height:1.6}
+.authalt b{color:var(--grn);font-weight:800;text-decoration:underline}
+.autherr{font-size:11.5px;color:#FF8A80;background:rgba(255,82,82,.12);border:1px solid rgba(255,82,82,.3);
+border-radius:11px;padding:9px 11px;margin-bottom:12px;display:none;line-height:1.45}
+.autherr.on{display:block;animation:ashake .34s}
+@keyframes ashake{25%{transform:translateX(-6px)}50%{transform:translateX(6px)}75%{transform:translateX(-3px)}}
+.authok{font-size:11.5px;color:#8CFFB5;background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.3);
+border-radius:11px;padding:9px 11px;margin-bottom:12px;display:none;line-height:1.45}
+.authok.on{display:block}
+
+/* ---------- admin roles ---------- */
+.permgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:3px}
+.permrow{display:flex;align-items:center;gap:7px;padding:8px 9px;border-radius:10px;
+background:rgba(0,0,0,.32);border:1px solid var(--bd);font-size:11px;font-weight:800}
+.permrow input{width:15px;height:15px;accent-color:#00E676;flex:0 0 15px}
+.permrow span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.strow{display:flex;align-items:center;gap:9px;padding:9px 0;border-bottom:1px solid rgba(31,40,51,.75)}
+.strow:last-child{border-bottom:0}
+.stnm{font-size:12px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stid{font-size:9.5px;color:var(--dim);font-weight:800;margin-top:2px;overflow:hidden;
+text-overflow:ellipsis;white-space:nowrap}
+
+/* ---------- notification bell ---------- */
+.ib{position:relative}
+.nbadge{position:absolute;top:-4px;right:-4px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;
+font-size:9.5px;font-weight:900;color:#04110B;background:linear-gradient(135deg,#FFD24A,#FF8F00);
+display:grid;place-items:center;border:1.5px solid #070B0E;box-shadow:0 0 10px rgba(255,143,0,.6)}
+.nbadge.zero{display:none}
+.bellring{animation:bring .9s ease-in-out infinite}
+@keyframes bring{0%,100%{transform:none}10%{transform:rotate(14deg)}20%{transform:rotate(-12deg)}
+30%{transform:rotate(8deg)}40%{transform:rotate(-6deg)}}
+.nrow{display:flex;gap:10px;align-items:flex-start;padding:11px 0;border-bottom:1px solid rgba(31,40,51,.75)}
+.nrow:last-child{border-bottom:0}
+.nico{width:32px;height:32px;flex:0 0 32px;border-radius:11px;display:grid;place-items:center;font-size:15px;
+background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.26)}
+.nico.dep{background:rgba(0,136,204,.14);border-color:rgba(0,136,204,.34)}
+.nico.wd{background:rgba(255,179,0,.14);border-color:rgba(255,179,0,.34)}
+.nico.kyc{background:rgba(156,39,176,.14);border-color:rgba(156,39,176,.34)}
+.nico.msg{background:rgba(0,230,118,.14);border-color:rgba(0,230,118,.34)}
+.ntx{flex:1;min-width:0;font-size:12px;font-weight:700;line-height:1.4}
+.nmt{font-size:9.5px;color:var(--dim);font-weight:800;margin-top:2px}
+
+/* ---------- invest animation ---------- */
+.ivx{position:fixed;inset:0;z-index:950;display:none;align-items:center;justify-content:center;
+flex-direction:column;background:rgba(4,7,10,.93);backdrop-filter:blur(7px)}
+.ivx.on{display:flex;animation:afade .25s ease}
+.ivart{position:relative;width:150px;height:150px;display:grid;place-items:center}
+.ivring{position:absolute;inset:0;border-radius:50%;border:2px dashed rgba(0,230,118,.4);
+animation:rot 5.5s linear infinite}
+.ivring2{position:absolute;inset:16px;border-radius:50%;border:2px solid rgba(0,230,118,.16);
+animation:rot 3.2s linear infinite reverse}
+.ivcore{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;font-size:44px;position:relative;
+background:radial-gradient(circle at 34% 28%,rgba(0,230,118,.34),rgba(6,12,16,.9));
+border:1px solid rgba(0,230,118,.5);box-shadow:0 0 42px rgba(0,230,118,.34);
+animation:acore 1.25s ease-in-out infinite}
+@keyframes acore{50%{transform:scale(1.08);box-shadow:0 0 62px rgba(0,230,118,.5)}}
+.ivp{position:absolute;font-size:15px;animation:afly 1.5s ease-in infinite}
+@keyframes afly{0%{transform:translateY(0) scale(.6);opacity:0}
+25%{opacity:1}100%{transform:translateY(-58px) scale(1.15);opacity:0}}
+.ivttl{font-size:15px;font-weight:800;margin-top:20px;letter-spacing:-.2px;text-align:center}
+.ivsub{font-size:11.5px;color:var(--mut);margin-top:6px;text-align:center;min-height:16px}
+.ivbar{width:210px;height:5px;border-radius:99px;background:rgba(255,255,255,.09);margin-top:16px;overflow:hidden}
+.ivfill{height:5px;width:0;border-radius:99px;background:linear-gradient(90deg,#00E676,#FFD24A);
+transition:width .3s linear;box-shadow:0 0 12px rgba(0,230,118,.7)}
+.ivnum{font-size:27px;font-weight:800;color:var(--grn);margin-top:14px;letter-spacing:-1px;
+font-variant-numeric:tabular-nums}
+
+/* ---------- membership tiers ---------- */
+.tierhero{border-radius:22px;padding:16px;margin-bottom:12px;position:relative;overflow:hidden;
+border:1px solid var(--tbd,rgba(0,230,118,.3));
+background:linear-gradient(150deg,var(--tc1,rgba(0,230,118,.22)),rgba(8,13,17,.94) 62%);
+box-shadow:0 16px 40px rgba(0,0,0,.45)}
+.tiershine{position:absolute;top:0;left:-60%;width:45%;height:100%;transform:skewX(-22deg);
+background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);
+animation:ashine 3.6s ease-in-out infinite}
+@keyframes asshine{0%{left:-60%}55%,100%{left:130%}}
+.tiertop{display:flex;align-items:center;gap:12px;position:relative}
+.tieremb{width:56px;height:56px;flex:0 0 56px;border-radius:18px;display:grid;place-items:center;font-size:28px;
+background:rgba(0,0,0,.34);border:1px solid rgba(255,255,255,.18);
+box-shadow:0 0 24px var(--tglow,rgba(0,230,118,.4));animation:atier 2.6s ease-in-out infinite}
+@keyframes atier{50%{transform:translateY(-3px) rotate(-4deg)}}
+.tiernm{font-size:19px;font-weight:800;letter-spacing:-.5px}
+.tierst{font-size:10px;color:var(--dim);font-weight:800;text-transform:uppercase;letter-spacing:.8px;margin-top:2px}
+.tiernw{font-size:12.5px;font-weight:800;color:var(--grn);margin-top:5px}
+.tierprog{height:6px;border-radius:99px;background:rgba(0,0,0,.42);margin-top:13px;overflow:hidden;position:relative}
+.tierfillbar{height:6px;border-radius:99px;background:linear-gradient(90deg,var(--tc1,#00E676),#fff8);
+width:0;transition:width 1.2s cubic-bezier(.2,.9,.3,1);box-shadow:0 0 12px var(--tglow,rgba(0,230,118,.6))}
+.tierhint{font-size:10.5px;color:var(--mut);margin-top:7px;line-height:1.5;position:relative}
+.tierscroll{display:flex;gap:8px;overflow-x:auto;padding:3px 0 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tierscroll::-webkit-scrollbar{display:none}
+.tcard{flex:0 0 104px;border-radius:16px;padding:12px 8px;text-align:center;position:relative;
+background:#0C1219;border:1px solid var(--bd);transition:all .2s}
+.tcard.got{border-color:var(--tbd2,rgba(0,230,118,.4))}
+.tcard.now{transform:translateY(-4px);
+background:linear-gradient(160deg,var(--tc1a,rgba(0,230,118,.2)),#0C1219 70%);
+box-shadow:0 12px 26px rgba(0,0,0,.45),0 0 20px var(--tglow2,rgba(0,230,118,.25))}
+.tcard b{display:block;font-size:21px;line-height:1}
+.tcard span{display:block;font-size:10.5px;font-weight:800;margin-top:5px}
+.tcard em{display:block;font-style:normal;font-size:9px;color:var(--dim);font-weight:800;margin-top:3px}
+.tcard .tlock{position:absolute;top:6px;right:7px;font-size:9px;opacity:.65}
+.tcard.now .tlock{opacity:1;color:var(--grn)}
+.refhero{border-radius:22px;padding:18px 14px;margin-bottom:12px;position:relative;overflow:hidden;text-align:center;
+background:linear-gradient(160deg,rgba(0,230,118,.16),rgba(0,136,204,.08) 50%,var(--card));
+border:1px solid rgba(0,230,118,.28)}
+.reftree{font-size:44px;display:inline-block;animation:atier 2.8s ease-in-out infinite;
+filter:drop-shadow(0 0 18px rgba(0,230,118,.5))}
+.refpulse{position:absolute;border-radius:50%;border:1px solid rgba(0,230,118,.28);
+animation:apulse 3.4s ease-out infinite;pointer-events:none}
+@keyframes apulse{0%{transform:scale(.4);opacity:.85}100%{transform:scale(2.6);opacity:0}}
+.reflvl{display:flex;align-items:center;gap:9px;padding:10px 0;border-bottom:1px solid rgba(31,40,51,.7)}
+.reflvl:last-child{border-bottom:0}
+.refdot{width:34px;height:34px;flex:0 0 34px;border-radius:12px;display:grid;place-items:center;
+font-size:14px;font-weight:900;background:linear-gradient(150deg,rgba(0,230,118,.24),rgba(0,136,204,.1));
+border:1px solid rgba(0,230,118,.32);color:var(--grn)}
+.refbar{height:5px;border-radius:99px;background:rgba(0,0,0,.4);margin-top:6px;overflow:hidden}
+.refbarfill{height:5px;border-radius:99px;background:linear-gradient(90deg,#00E676,#0088CC);
+width:0;transition:width 1s ease}
 </style>
 </head>
 <body>
@@ -737,7 +888,7 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5MPyVUgkMnlyVNaM2QIyZEeeInUngpCbvfHarVBR3VVUrwXNfwoysnWHGwnjwTmLppyq3Hl_OFF5Xc4IH1X7WLFC0SgVDUHo75yprVismljrS49TggndZ5hYeU7DH8cNLYrhN-nqSsUtfoWUoAj2hgMvwzmYfOcNo2hi-LjzEZ6mvL0vTRK-3ta6K0yNu9ViUsjt";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5U8jnNVZUxs_66O_ODEwCaJtpV_5qGvmZOBlty2wXbbc8muLyZME7RdUDQDBnDfIEr3NvrZYtz8UXfqdHk-A_WmM0CIeBvD4fgbcgEb_P7wtUBiWOohDvkq8iCTwNr_RkW4w1LmCxR4YJIQ_6FLO8nFHJ5Ar-Arf73jPJx_H1rKC7B79yBhJJxZNpdqdhLNFauJF";
 var BUILD = "v7.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
@@ -777,7 +928,7 @@ function tgUser(){
 }
 var TG = tgApp();
 
-var S = { "cfg":null, "u":null, "tab":"home", "cat":0, "proj":null, "term":null, "amt":0, "tcat":"all", "adm":null, "pw":"", "busy":false };
+var S = { "cfg":null, "u":null, "tab":"home", "cat":0, "proj":null, "term":null, "amt":0, "tcat":"all", "adm":null, "pw":"", "busy":false, "sess":"", "meta":null };
 
 var T = {};
 var LANG = "en";
@@ -866,6 +1017,7 @@ function api(action, data, cb){
     inner["un"] = uu.username || "";
   }
   inner["d"] = data || {};
+  inner["sess"] = S.sess || "";
   var body = "";
   try {
     var outer = {};
@@ -916,9 +1068,15 @@ function fatal(msg, detail){
 }
 
 function loadApp(){
+  try { var sv = localStorage.getItem("ge_sess"); if (sv) { S.sess = sv; } } catch(e){}
   api("boot", {}, function(j){
     if (!j.ok) { fatal(j.e || "Could not load your account."); return; }
+    if (j.r && j.r.gate && j.r.gate !== "ok") { showAuth(j.r); return; }
     if (!j.r || !j.r.u || !j.r.cfg) { fatal("Incomplete answer from the server."); return; }
+    if (j.r.sess) {
+      S.sess = j.r.sess;
+      try { localStorage.setItem("ge_sess", S.sess); } catch(e){}
+    }
     S.cfg = j.r.cfg;
     S.u = j.r.u;
     if (j.r.t) { T = j.r.t; }
@@ -936,8 +1094,6 @@ function loadApp(){
     paint();
     if (j.r.ask_lang === 1) {
       sheetLang();
-    } else if (S.u && S.u.pin === 1 && S.locked !== 0) {
-      loginSheet();
     }
   });
 }
@@ -1629,7 +1785,7 @@ function sheetTree(){
 /* ---------------- admin ---------------- */
 function adminShell(){
   if (!S.adm) { return adminLogin(); }
-  var secs = [["econ","Economy"],["streak","Gamification"],["eco","Eco impact"],["terms","Terms"],["cats","Projects"],["news","News"],["events","Events"],["tasks","Tasks"],["boxes","Boxes"],["pay","Deposits"],["vip","VIP"],["reserves","Reserves"],["texts","Branding"],["users","Users"],["inv","Investments"],["inbox","Inbox"],["deps","Deposits review"],["wds","Withdrawals"],["kyc","KYC"]];
+  var secs = [["econ","Economy"],["streak","Gamification"],["eco","Eco impact"],["terms","Terms"],["cats","Projects"],["news","News"],["events","Events"],["tasks","Tasks"],["boxes","Boxes"],["pay","Deposits"],["vip","VIP"],["reserves","Reserves"],["texts","Branding"],["users","Users"],["inv","Investments"],["inbox","Inbox"],["deps","Deposits review"],["wds","Withdrawals"],["kyc","KYC"],["staff","Roles"]];
   var nav = "";
   for (var i = 0; i < secs.length; i++) {
     nav += "<button class='ctab" + (S.asec === secs[i][0] ? " on" : "") + "' data-asec='" + secs[i][0] + "'>" + secs[i][1] + "</button>";
@@ -1855,6 +2011,53 @@ function adminBody(){
       if (!rows.length) { out += "<div class='empty'><div>📊</div>Nobody has invested yet.</div>"; }
     }
     out += "<button class='btn gh' data-act='loadInv' style='margin-top:9px'>Refresh</button>";
+  } else if (s === "staff") {
+    var st = S.staff || null;
+    if (!st) {
+      out += "<div class='empty'><div>👥</div>Loading roles…</div>" +
+        "<button class='btn gh' data-act='staffLoad' style='margin-top:9px'>Load roles</button>";
+    } else {
+      var pr = PERMS;
+      var cbs = "";
+      for (var pi = 0; pi < pr.length; pi++) {
+        cbs += "<label class='permrow'><input type='checkbox' id='pm_" + pr[pi][0] + "'>" +
+          "<span>" + E(pr[pi][1]) + "</span></label>";
+      }
+      out += "<div class='card'>" +
+        "<div style='font-size:12.5px;font-weight:800;margin-bottom:4px'>Sub admin · limited rights</div>" +
+        "<div class='note' style='margin-bottom:9px'>A sub admin only sees the sections you tick. They cannot add or remove other admins.</div>" +
+        "<div class='fl'><label>Telegram ID of the sub admin</label><input class='inp' id='st_uid' placeholder='123456789'></div>" +
+        "<div class='permgrid'>" + cbs + "</div>" +
+        "<button class='btn pri' data-act='staffAdd' style='margin-top:9px'>Add as sub admin</button>" +
+        "</div>" +
+        "<div class='card'>" +
+        "<div style='font-size:12.5px;font-weight:800;margin-bottom:4px'>Equal admin · full rights</div>" +
+        "<div class='note' style='margin-bottom:9px'>An equal admin has exactly the same powers as you, including managing other admins. Use the same ID field above.</div>" +
+        "<button class='btn gold' data-act='staffPromote'>Make equal admin</button>" +
+        "</div>";
+      var subs = st.list || [];
+      out += "<div class='sec'><h2>Current sub admins</h2><small>&nbsp;</small></div><div class='card'>";
+      for (var si = 0; si < subs.length; si++) {
+        var sb = subs[si];
+        var pl = sb.perms || [];
+        out += "<div class='strow'><div style='min-width:0;flex:1'>" +
+          "<div class='stnm'>" + E(sb.name || sb.uid) + "</div>" +
+          "<div class='stid'>id " + E(sb.uid) + " · " + E(pl.length ? pl.join(", ") : "no rights") + "</div></div>" +
+          "<button class='btn red sm' data-stdel='" + E(sb.uid) + "'>Remove</button></div>";
+      }
+      if (!subs.length) { out += "<div class='note'>No sub admins yet.</div>"; }
+      out += "</div>";
+      var ads = st.admins || [];
+      out += "<div class='sec'><h2>Equal admins</h2><small>&nbsp;</small></div><div class='card'>";
+      for (var ai = 0; ai < ads.length; ai++) {
+        out += "<div class='strow'><div style='min-width:0;flex:1'>" +
+          "<div class='stnm'>Admin " + E(ads[ai]) + "</div>" +
+          "<div class='stid'>full access</div></div>" +
+          "<button class='btn red sm' data-stdem='" + E(ads[ai]) + "'>Demote</button></div>";
+      }
+      if (!ads.length) { out += "<div class='note'>Only you, the main admin.</div>"; }
+      out += "</div><button class='btn gh' data-act='staffLoad' style='margin-top:9px'>Refresh</button>";
+    }
   } else if (s === "inbox") {
     var ch = S.chat || null;
     out += "<div class='fl'><label>Find a user</label><input class='inp' id='in_q' placeholder='name, @username or user id'></div>" +
@@ -1990,11 +2193,17 @@ function doInvest(){
   if (S.busy) { return; }
   S.busy = true;
   HAS();
+  investFx(p, amt);
   api("invest", { "com":p.id, "term":S.term, "amt":amt }, function(j){
     S.busy = false;
-    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    if (!j.ok) {
+      BADH();
+      ivxClose();
+      toast(j.e, true);
+      return;
+    }
     OKH();
-    toast(j.r && j.r.msg ? j.r.msg : "Invested");
+    IVMSG = (j.r && j.r.msg) ? j.r.msg : "Investment confirmed";
     if (j.r && j.r.u) { S.u = j.r.u; }
     paint();
   });
@@ -2569,10 +2778,20 @@ function setLang(lc){
 }
 
 function doLogout(){
-  try { localStorage.clear(); } catch(e){}
-  var t = tgApp();
-  if (t) { try { t.close(); } catch(e){} }
-  document.body.innerHTML = "<div style='padding:44px 24px;text-align:center'><div style='font-size:38px'>👋</div><div style='font-size:15px;font-weight:800;margin-top:10px'>You are logged out</div><div class='note' style='margin-top:7px'>Open the app again from your bot chat to come back. Your balance is safe.</div></div>";
+  HAS();
+  api("signout", {}, function(j){
+    S.sess = "";
+    S.u = null;
+    S.adm = null;
+    try { localStorage.removeItem("ge_sess"); } catch(e){}
+    try {
+      var el = document.getElementById("authmask");
+      if (el) { el.parentNode.removeChild(el); }
+    } catch(e){}
+    AUTH.mode = "signin";
+    authShow("signin");
+    toast("Signed out. Your balance is safe.");
+  });
 }
 
 /* ---------------- admin actions ---------------- */
@@ -2885,6 +3104,10 @@ document.addEventListener("click", function(ev){
       var paydel = el.getAttribute("data-paydel");
       var rssave = el.getAttribute("data-rssave");
       var rsdel = el.getAttribute("data-rsdel");
+      var stDel = el.getAttribute("data-stdel");
+      var stDem = el.getAttribute("data-stdem");
+      if (stDel) { staffDel(stDel); return; }
+      if (stDem) { staffDemote(stDem); return; }
       var docv = el.getAttribute("data-doc");
       var krev = el.getAttribute("data-krev");
       var msgto = el.getAttribute("data-msgto");
@@ -2905,6 +3128,7 @@ document.addEventListener("click", function(ev){
         $("adbody").innerHTML = adminBody();
         if (asec === "kyc") { loadKycQ(); }
         if (asec === "inv") { loadInv(); }
+        if (asec === "staff") { loadStaff(); }
         return;
       }
       if (docv) { var dp = docv.split("|"); viewDoc(dp[0], dp[1]); return; }
@@ -2973,6 +3197,13 @@ function cof(cat, cid){
 
 function runAct(a, id){
   if (a === "closeSheet") { closeSheet(); return; }
+  if (a === "authTabUp") { AUTH.mode = "signup"; authPaint(); return; }
+  if (a === "authTabIn") { AUTH.mode = "signin"; authPaint(); return; }
+  if (a === "authGo") { authGo(); return; }
+  if (a === "notif") { notifSheet(); return; }
+  if (a === "staffAdd") { staffSub(); return; }
+  if (a === "staffPromote") { staffAdm(); return; }
+  if (a === "staffLoad") { loadStaff(); return; }
   if (a === "lang") { sheetLang(); return; }
   if (a === "earn") { sheetEarn(); return; }
   if (a === "support") { sheetSupport(); return; }
@@ -3157,6 +3388,8 @@ function paint(){
   safe(paintDeps);
   safe(paintKyc);
   safe(paintAvatar);
+  safe(paintTier);
+  safe(paintNotif);
   safe(bindFiles);
   safe(loadThread);
 }
@@ -3189,6 +3422,365 @@ function bootApp(){
     if (sp) { localStorage.setItem("ref", sp); }
   } catch(e){}
   loadApp();
+}
+
+/* ================= AUTH GATE ================= */
+var AUTH = { "mode": "signup" };
+
+/* Entry point used by loadApp() when the server asks for sign in. */
+function showAuth(r){
+  var gate = "signup";
+  if (r && r.gate) { gate = (r.gate === "signup") ? "signup" : "signin"; }
+  if (r && r.brand) { S.authBrand = r.brand; }
+  if (r && r.logo) { S.authLogo = r.logo; }
+  if (r && r.t) { T = r.t; }
+  if (r && r.lang) { LANG = r.lang; }
+  if (r && r.langs && r.langs.length) { LANGS = r.langs; }
+  authShow(gate);
+}
+
+function authShow(mode){
+  AUTH.mode = mode || "signup";
+  var el = document.getElementById("authmask");
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "authmask";
+    document.body.appendChild(el);
+  }
+  authPaint();
+  el.className = "authmask on";
+}
+
+function authHide(){
+  var el = document.getElementById("authmask");
+  if (el) { el.className = "authmask"; }
+}
+
+function authPaint(){
+  var el = document.getElementById("authmask");
+  if (!el) { return; }
+  var up = (AUTH.mode === "signup");
+  var br = "Green Earn";
+  var lg = "🌱";
+  if (S.cfg && S.cfg.brand) { br = S.cfg.brand; }
+  if (S.cfg && S.cfg.logo) { lg = S.cfg.logo; }
+  if (S.authBrand) { br = S.authBrand; }
+  if (S.authLogo) { lg = S.authLogo; }
+  var h = "<div class='authcard'>" +
+    "<div class='authlogo'>" + E(lg) + "</div>" +
+    "<div class='authtitle'>" + (up ? "Create your <em>account</em>" : "Welcome <em>back</em>") + "</div>" +
+    "<div class='authsub'>" + E(br) + (up ? " · your wallet, protected" : " · sign in to continue") + "</div>" +
+    "<div class='segtab'>" +
+      "<button class='" + (up ? "on" : "") + "' data-act='authTabUp'>Sign up</button>" +
+      "<button class='" + (up ? "" : "on") + "' data-act='authTabIn'>Log in</button>" +
+    "</div>";
+  if (up) {
+    h += "<div class='authlbl'>Display name</div>";
+    h += "<input class='authin' id='a_name' placeholder='Your name' autocomplete='name'>";
+  }
+  h += "<div class='authlbl'>Email</div>";
+  h += "<input class='authin' id='a_mail' type='email' inputmode='email' placeholder='you@mail.com' autocomplete='email'>";
+  h += "<div class='authlbl'>Password</div>";
+  h += "<input class='authin' id='a_pw' type='password' placeholder='At least 6 characters' autocomplete='current-password'>";
+  if (up) {
+    h += "<div class='authlbl'>Confirm password</div>";
+    h += "<input class='authin' id='a_pw2' type='password' placeholder='Repeat your password' autocomplete='new-password'>";
+  }
+  h += "<div class='autherr' id='a_err'></div>";
+  h += "<button class='authgo' data-act='authGo'>" + (up ? "Create account" : "Log in") + "</button>";
+  h += "<div class='authalt'>" + (up ? "Already have an account?" : "New here?") +
+    " <b data-act='" + (up ? "authTabIn" : "authTabUp") + "'>" + (up ? "Log in" : "Create an account") + "</b></div>";
+  h += "</div>";
+  el.innerHTML = h;
+}
+
+function authErr(t){
+  var e = document.getElementById("a_err");
+  if (!e) { return; }
+  e.className = "autherr on";
+  e.innerHTML = E(t);
+}
+
+function authGo(){
+  var mail = document.getElementById("a_mail") ? document.getElementById("a_mail").value.trim() : "";
+  var pw = document.getElementById("a_pw") ? document.getElementById("a_pw").value : "";
+  var nm = document.getElementById("a_name") ? document.getElementById("a_name").value.trim() : "";
+  var pw2 = document.getElementById("a_pw2") ? document.getElementById("a_pw2").value : "";
+  var up = (AUTH.mode === "signup");
+  if (mail.length < 6 || mail.indexOf("@") < 1 || mail.indexOf(".") < 0) { authErr("Enter a valid email address."); return; }
+  if (pw.length < 6) { authErr("Your password must be at least 6 characters."); return; }
+  if (up && pw !== pw2) { authErr("The two passwords do not match."); return; }
+  var dd = {};
+  dd["email"] = mail;
+  dd["pw"] = pw;
+  if (up && nm.length > 0) { dd["name"] = nm; }
+  HAS();
+  var btn = document.querySelector("[data-act='authGo']");
+  if (btn) { btn.innerHTML = "Please wait…"; }
+  api(up ? "signup" : "signin", dd, function(j){
+    if (!j.ok) {
+      BADH();
+      if (btn) { btn.innerHTML = up ? "Create account" : "Log in"; }
+      authErr(j.e || "Could not sign you in.");
+      return;
+    }
+    OKH();
+    if (j.r && j.r.sess) { S.sess = j.r.sess; }
+    try { if (S.sess) { localStorage.setItem("ge_sess", S.sess); } } catch(e){}
+    applyPack(j.r);
+  });
+}
+
+function applyPack(r){
+  if (!r) { fatal("Incomplete answer from the server."); return; }
+  if (r.cfg) { S.cfg = r.cfg; }
+  if (r.u) { S.u = r.u; }
+  if (r.sess) { S.sess = r.sess; try { localStorage.setItem("ge_sess", S.sess); } catch(e){} }
+  if (r.t) { T = r.t; }
+  if (r.lang) { LANG = r.lang; }
+  if (r.ticker) { S.ticker = r.ticker; }
+  if (S.cfg && S.cfg.langs && S.cfg.langs.length) { LANGS = S.cfg.langs; }
+  if (!S.term && S.cfg && S.cfg.terms && S.cfg.terms.length) { S.term = S.cfg.terms[0].id; }
+  if (S.cfg && S.cfg.cats && S.cfg.cats.length && !S.proj) {
+    var f1 = S.cfg.cats[0];
+    if (f1.com && f1.com.length) { S.proj = f1.com[0].id; }
+  }
+  authHide();
+  applyI18n();
+  paint();
+  if (r.ask_lang === 1) { sheetLang(); }
+}
+
+/* ================= INVEST ANIMATION ================= */
+var IVMSG = "";
+
+function ivxEmoji(p){
+  var id = (p && p.id) ? ("" + p.id) : "";
+  if (id.indexOf("btc") >= 0 || id.indexOf("sui") >= 0 || id.indexOf("tao") >= 0 || id.indexOf("arb") >= 0) { return "⛏"; }
+  if (id.indexOf("midong") >= 0 || id.indexOf("bhadla") >= 0 || id.indexOf("huanghe") >= 0 || id.indexOf("solar") >= 0) { return "☀"; }
+  if (id.indexOf("chpt") >= 0 || id.indexOf("blnk") >= 0 || id.indexOf("wbx") >= 0 || id.indexOf("charge") >= 0) { return "🔌"; }
+  if (id.indexOf("pltr") >= 0 || id.indexOf("msft") >= 0 || id.indexOf("googl") >= 0 || id.indexOf("orcl") >= 0 || id.indexOf("eco") >= 0) { return "🤖"; }
+  if (id.indexOf("byd") >= 0 || id.indexOf("tesla") >= 0 || id.indexOf("geely") >= 0 || id.indexOf("xiaomi") >= 0 || id.indexOf("vw") >= 0) { return "🚗"; }
+  if (id.indexOf("sovereign") >= 0 || id.indexOf("muni") >= 0 || id.indexOf("bond") >= 0) { return "🏛"; }
+  return "🌱";
+}
+
+function ivxClose(){
+  var el = document.getElementById("ivx");
+  if (el) { el.className = "ivx"; }
+}
+
+function investFx(p, amount){
+  var el = document.getElementById("ivx");
+  if (!el) {
+    el = document.createElement("div");
+    el.id = "ivx";
+    document.body.appendChild(el);
+  }
+  var nm = (p && p.name) ? p.name : "your project";
+  var em = ivxEmoji(p);
+  var target = parseFloat(amount);
+  if (isNaN(target)) { target = 0; }
+  el.innerHTML = "<div class='ivart'>" +
+    "<div class='ivring'></div><div class='ivring2'></div>" +
+    "<div class='ivcore'>" + em + "</div>" +
+    "<div class='ivp' style='left:16px;top:22px'>💠</div>" +
+    "<div class='ivp' style='right:14px;top:36px;animation-delay:.45s'>⚡</div>" +
+    "<div class='ivp' style='left:40px;bottom:14px;animation-delay:.9s'>🌿</div>" +
+    "</div>" +
+    "<div class='ivttl'>Processing your investment</div>" +
+    "<div class='ivsub' id='ivsub'>Connecting to " + E(nm) + "…</div>" +
+    "<div class='ivbar'><div class='ivfill' id='ivfill'></div></div>" +
+    "<div class='ivnum' id='ivnum'>0.00</div>";
+  el.className = "ivx on";
+  IVMSG = "";
+  var steps = ["Allocating capacity…", "Locking your term…", "Crediting your contract…"];
+  var si = 0;
+  var pct = 0;
+  var timer = setInterval(function(){
+    pct = pct + 8;
+    if (pct > 92) { pct = 92; }
+    var f = document.getElementById("ivfill");
+    if (f) { f.style.width = pct + "%"; }
+    var n = document.getElementById("ivnum");
+    if (n) { n.innerHTML = M(target * pct / 100); }
+    if (pct > (si + 1) * 28 && si < steps.length - 1) {
+      si = si + 1;
+      var s2 = document.getElementById("ivsub");
+      if (s2) { s2.innerHTML = E(steps[si]); }
+    }
+  }, 95);
+  setTimeout(function(){
+    clearInterval(timer);
+    var f2 = document.getElementById("ivfill");
+    if (f2) { f2.style.width = "100%"; }
+    var n2 = document.getElementById("ivnum");
+    if (n2) { n2.innerHTML = M(target); }
+    var s3 = document.getElementById("ivsub");
+    if (s3) { s3.innerHTML = "Contract activated"; }
+    setTimeout(function(){
+      ivxClose();
+      toast(IVMSG ? IVMSG : "Investment confirmed");
+    }, 620);
+  }, 1900);
+}
+
+/* ================= MEMBERSHIP TIERS ================= */
+function paintTier(){
+  var t = (S.u && S.u.tier) ? S.u.tier : null;
+  if (!t) { return; }
+  var hb = document.getElementById("tierhero");
+  var sb = document.getElementById("tierscroll");
+  if (hb) {
+    var pc = parseFloat(t.pct);
+    if (isNaN(pc)) { pc = 0; }
+    if (pc < 0) { pc = 0; }
+    if (pc > 100) { pc = 100; }
+    hb.style.setProperty("--tc1", t.c1);
+    hb.style.setProperty("--tbd", t.c1);
+    var hint = "";
+    if (t.top === 1) { hint = "You have reached the highest membership tier."; }
+    else { hint = M(t.gap) + " USDT more to unlock " + E(t.next) + "."; }
+    hb.innerHTML = "<div class='tiershine'></div>" +
+      "<div class='tiertop'><div class='tieremb'>" + E(t.emoji) + "</div>" +
+      "<div style='flex:1;min-width:0'>" +
+      "<div class='tiernm'>" + E(t.name) + "</div>" +
+      "<div class='tierst'>" + (t.top === 1 ? "Top tier" : "Next · " + E(t.next)) + "</div>" +
+      "<div class='tiernw'>Net worth " + M(t.nw) + " USDT</div></div></div>" +
+      "<div class='tierprog'><div class='tierfillbar' id='tierfill' style='width:0%'></div></div>" +
+      "<div class='tierhint'>" + hint + "</div>";
+    setTimeout(function(){
+      var f = document.getElementById("tierfill");
+      if (f) { f.style.width = pc.toFixed(1) + "%"; }
+    }, 90);
+  }
+  if (sb) {
+    var rows = t.rows || [];
+    var out = "";
+    for (var i = 0; i < rows.length; i++) {
+      var r = rows[i];
+      var cls = "tcard";
+      if (r.on === 1) { cls = "tcard now"; }
+      else if (r.got === 1) { cls = "tcard got"; }
+      out += "<div class='" + cls + "' style='--tbd2:" + E(r.c1) + "'>" +
+        "<div style='font-size:22px'>" + E(r.emoji) + "</div>" +
+        "<b>" + E(r.name) + "</b><span>" + M(r.need) + "</span>" +
+        "<em>" + (r.got === 1 ? "unlocked" : "locked") + "</em></div>";
+    }
+    sb.innerHTML = out;
+  }
+}
+
+/* ================= NOTIFICATIONS ================= */
+function paintNotif(){
+  var b = document.getElementById("notifbtn");
+  if (!b) { return; }
+  var u = S.u || {};
+  var staff = 0;
+  if (u.is_admin === 1 || u.is_main === 1) { staff = 1; }
+  if (u.perms && u.perms.length > 0) { staff = 1; }
+  b.style.display = staff ? "grid" : "none";
+  var n = parseInt(u.notif);
+  if (isNaN(n)) { n = 0; }
+  var bd = document.getElementById("nbadge");
+  if (bd) {
+    bd.innerHTML = n > 99 ? "99+" : ("" + n);
+    bd.className = n > 0 ? "nbadge" : "nbadge zero";
+    if (n > 0) { b.className = "ib bell bellring"; }
+    else { b.className = "ib bell"; }
+  }
+}
+
+function notifSheet(){
+  HAS();
+  api("notif", {}, function(j){
+    if (!j.ok) { toast(j.e, true); return; }
+    var ls = j.r.list || [];
+    var out = "";
+    for (var i = 0; i < ls.length; i++) {
+      var n = ls[i];
+      var cls = "nico";
+      if (n.t === "deposit") { cls = "nico dep"; }
+      if (n.t === "withdraw") { cls = "nico wd"; }
+      if (n.t === "kyc") { cls = "nico kyc"; }
+      out += "<div class='nrow'><div class='" + cls + "'>" + E(n.i) + "</div>" +
+        "<div class='ntx'>" + E(n.x) + "<div class='nmt'>user " + E(n.u) + "</div></div></div>";
+    }
+    if (!out) { out = "<div class='empty'><div>🔔</div>Nothing needs your attention.</div>"; }
+    openS("<div class='sh3'>🔔 Notifications</div><div class='shp'>Requests waiting for you</div>" +
+      "<div class='card'>" + out + "</div>" +
+      "<div style='height:10px'></div><button class='btn gh' data-act='closeSheet'>Close</button>");
+  });
+}
+
+/* ================= ADMIN STAFF / ROLES ================= */
+var PERMS = [["economy","Economy"],["projects","Projects"],["content","Content"],["deposits","Deposits"],["withdrawals","Withdrawals"],["kyc","KYC"],["users","Users"],["messages","Messages"],["settings","Settings"]];
+
+function loadStaff(){
+  HAS();
+  api("staff", {}, function(j){
+    if (!j.ok) { toast(j.e, true); return; }
+    S.staff = j.r;
+    if ($("adbody")) { $("adbody").innerHTML = adminBody(); }
+  });
+}
+
+function staffSub(){
+  var el = document.getElementById("st_uid");
+  var target = el ? el.value.trim() : "";
+  if (target.length < 4) { toast("Enter the numeric Telegram ID", true); return; }
+  var ps = [];
+  for (var i = 0; i < PERMS.length; i++) {
+    var cb = document.getElementById("pm_" + PERMS[i][0]);
+    if (cb && cb.checked) { ps.push(PERMS[i][0]); }
+  }
+  if (ps.length === 0) { toast("Tick at least one permission", true); return; }
+  HAS();
+  api("staff_add", { "uid": target, "perms": ps }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast("Sub admin saved");
+    S.staff.list = j.r.list || [];
+    S.staff.perms = j.r.perms || [];
+    if ($("adbody")) { $("adbody").innerHTML = adminBody(); }
+  });
+}
+
+function staffAdm(){
+  var el = document.getElementById("st_uid");
+  var target = el ? el.value.trim() : "";
+  if (target.length < 4) { toast("Enter the numeric Telegram ID", true); return; }
+  HAS();
+  api("staff_promote", { "uid": target }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast("Equal admin added");
+    S.staff.admins = j.r.admins || [];
+    S.staff.list = j.r.list || [];
+    if ($("adbody")) { $("adbody").innerHTML = adminBody(); }
+  });
+}
+
+function staffDel(uidv){
+  HAS();
+  api("staff_del", { "uid": uidv }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast("Removed");
+    S.staff.list = j.r.list || [];
+    if ($("adbody")) { $("adbody").innerHTML = adminBody(); }
+  });
+}
+
+function staffDemote(uidv){
+  HAS();
+  api("staff_demote", { "uid": uidv }, function(j){
+    if (!j.ok) { BADH(); toast(j.e, true); return; }
+    OKH();
+    toast("Admin access removed");
+    S.staff.admins = j.r.admins || [];
+    if ($("adbody")) { $("adbody").innerHTML = adminBody(); }
+  });
 }
 
 if (document.readyState === "complete" || document.readyState === "interactive") {
