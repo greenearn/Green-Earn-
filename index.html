@@ -888,7 +888,7 @@ width:0;transition:width 1s ease}
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5U8jnNVZUxs_66O_ODEwCaJtpV_5qGvmZOBlty2wXbbc8muLyZME7RdUDQDBnDfIEr3NvrZYtz8UXfqdHk-A_WmM0CIeBvD4fgbcgEb_P7wtUBiWOohDvkq8iCTwNr_RkW4w1LmCxR4YJIQ_6FLO8nFHJ5Ar-Arf73jPJx_H1rKC7B79yBhJJxZNpdqdhLNFauJF";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5WteazJYLGDD9QLo7D47qF8QOAXFFHUcsp1yqOdzptzAwmCE77cnk5K_8IJbp_8COgyhi6VEZjvgKrNOw1o7o2bPFEUtbd0ZOP_4KpGbhUC-Q0Qs4P3YAPKLO6RfmhgLiSjRUrhByJQWtKLoWOwLfSjcWNHGacg4YkcJ_Jw0oGIWha7QpjEnC_nh-oz-SrmssHr4";
 var BUILD = "v7.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
@@ -1030,14 +1030,22 @@ function api(action, data, cb){
   var xhr = new XMLHttpRequest();
   xhr.open("POST", API, true);
   xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.onreadystatechange = function(){
-    if (xhr.readyState !== 4 || sent) { return; }
+  xhr.timeout = 25000;
+  var finish = function(p){
+    if (sent) { return; }
     sent = true;
-    var p = null;
-    try { p = unwrap(JSON.parse(xhr.responseText)); } catch(e){ p = { "ok":false, "e":"Bad answer from the server." }; }
     if (cb) { cb(p); }
   };
-  try { xhr.send(body); } catch(e) { if (cb) { cb({ "ok":false, "e":"Network error." }); } }
+  xhr.onreadystatechange = function(){
+    if (xhr.readyState !== 4) { return; }
+    var p = null;
+    try { p = unwrap(JSON.parse(xhr.responseText)); } catch(e){ p = { "ok":false, "e":"The server did not answer properly. Please try again." }; }
+    if (!p || typeof p !== "object") { p = { "ok":false, "e":"The server did not answer properly. Please try again." }; }
+    finish(p);
+  };
+  xhr.ontimeout = function(){ finish({ "ok":false, "e":"The server took too long. Check your connection and try again." }); };
+  xhr.onerror = function(){ finish({ "ok":false, "e":"Network error. Check your connection and try again." }); };
+  try { xhr.send(body); } catch(e) { finish({ "ok":false, "e":"Network error. Please try again." }); }
 }
 
 function diagText(){
@@ -3199,7 +3207,10 @@ function runAct(a, id){
   if (a === "closeSheet") { closeSheet(); return; }
   if (a === "authTabUp") { AUTH.mode = "signup"; authPaint(); return; }
   if (a === "authTabIn") { AUTH.mode = "signin"; authPaint(); return; }
+  if (a === "authForgot") { AUTH.mode = "forgot"; authPaint(); return; }
   if (a === "authGo") { authGo(); return; }
+  if (a === "authSendCode") { authSendCode(); return; }
+  if (a === "authDoReset") { authDoReset(); return; }
   if (a === "notif") { notifSheet(); return; }
   if (a === "staffAdd") { staffSub(); return; }
   if (a === "staffPromote") { staffAdm(); return; }
@@ -3459,37 +3470,70 @@ function authHide(){
 function authPaint(){
   var el = document.getElementById("authmask");
   if (!el) { return; }
-  var up = (AUTH.mode === "signup");
+  var mode = AUTH.mode || "signup";
+  var up = (mode === "signup");
+  var inl = (mode === "signin");
+  var fg = (mode === "forgot");
+  var rs = (mode === "reset");
   var br = "Green Earn";
   var lg = "🌱";
   if (S.cfg && S.cfg.brand) { br = S.cfg.brand; }
   if (S.cfg && S.cfg.logo) { lg = S.cfg.logo; }
   if (S.authBrand) { br = S.authBrand; }
   if (S.authLogo) { lg = S.authLogo; }
+  var title = "Create your <em>account</em>";
+  var sub = E(br) + " · your wallet, protected";
+  if (inl) { title = "Welcome <em>back</em>"; sub = E(br) + " · sign in to continue"; }
+  if (fg) { title = "Reset your <em>password</em>"; sub = "We send a code to your bot chat"; }
+  if (rs) { title = "Enter your <em>code</em>"; sub = "Then choose a new password"; }
   var h = "<div class='authcard'>" +
     "<div class='authlogo'>" + E(lg) + "</div>" +
-    "<div class='authtitle'>" + (up ? "Create your <em>account</em>" : "Welcome <em>back</em>") + "</div>" +
-    "<div class='authsub'>" + E(br) + (up ? " · your wallet, protected" : " · sign in to continue") + "</div>" +
-    "<div class='segtab'>" +
+    "<div class='authtitle'>" + title + "</div>" +
+    "<div class='authsub'>" + sub + "</div>";
+  if (!fg && !rs) {
+    h += "<div class='segtab'>" +
       "<button class='" + (up ? "on" : "") + "' data-act='authTabUp'>Sign up</button>" +
-      "<button class='" + (up ? "" : "on") + "' data-act='authTabIn'>Log in</button>" +
-    "</div>";
+      "<button class='" + (inl ? "on" : "") + "' data-act='authTabIn'>Log in</button>" +
+      "</div>";
+  }
   if (up) {
     h += "<div class='authlbl'>Display name</div>";
     h += "<input class='authin' id='a_name' placeholder='Your name' autocomplete='name'>";
   }
-  h += "<div class='authlbl'>Email</div>";
-  h += "<input class='authin' id='a_mail' type='email' inputmode='email' placeholder='you@mail.com' autocomplete='email'>";
-  h += "<div class='authlbl'>Password</div>";
-  h += "<input class='authin' id='a_pw' type='password' placeholder='At least 6 characters' autocomplete='current-password'>";
+  if (rs) {
+    h += "<div class='authlbl'>Code from the bot chat</div>";
+    h += "<input class='authin' id='a_code' inputmode='numeric' placeholder='6-digit code' autocomplete='one-time-code'>";
+    h += "<div class='authlbl'>New password</div>";
+    h += "<input class='authin' id='a_pw' type='password' placeholder='At least 6 characters' autocomplete='new-password'>";
+    h += "<div class='authlbl'>Confirm new password</div>";
+    h += "<input class='authin' id='a_pw2' type='password' placeholder='Repeat your password' autocomplete='new-password'>";
+  } else {
+    h += "<div class='authlbl'>Email</div>";
+    h += "<input class='authin' id='a_mail' type='email' inputmode='email' placeholder='you@mail.com' autocomplete='email'>";
+  }
+  if (up || inl) {
+    h += "<div class='authlbl'>Password</div>";
+    h += "<input class='authin' id='a_pw' type='password' placeholder='At least 6 characters' autocomplete='" + (up ? "new-password" : "current-password") + "'>";
+  }
   if (up) {
     h += "<div class='authlbl'>Confirm password</div>";
     h += "<input class='authin' id='a_pw2' type='password' placeholder='Repeat your password' autocomplete='new-password'>";
   }
   h += "<div class='autherr' id='a_err'></div>";
-  h += "<button class='authgo' data-act='authGo'>" + (up ? "Create account" : "Log in") + "</button>";
-  h += "<div class='authalt'>" + (up ? "Already have an account?" : "New here?") +
-    " <b data-act='" + (up ? "authTabIn" : "authTabUp") + "'>" + (up ? "Log in" : "Create an account") + "</b></div>";
+  var goLabel = "Create account";
+  var goAct = "authGo";
+  if (inl) { goLabel = "Log in"; }
+  if (fg) { goLabel = "Send me a code"; goAct = "authSendCode"; }
+  if (rs) { goLabel = "Set new password"; goAct = "authDoReset"; }
+  h += "<button class='authgo' data-act='" + goAct + "'>" + goLabel + "</button>";
+  if (inl) {
+    h += "<div class='authalt'><b data-act='authForgot'>Forgot your password?</b></div>";
+    h += "<div class='authalt'>New here? <b data-act='authTabUp'>Create an account</b></div>";
+  } else if (up) {
+    h += "<div class='authalt'>Already have an account? <b data-act='authTabIn'>Log in</b></div>";
+  } else {
+    h += "<div class='authalt'><b data-act='authTabIn'>Back to log in</b></div>";
+  }
   h += "</div>";
   el.innerHTML = h;
 }
@@ -3528,6 +3572,63 @@ function authGo(){
     if (j.r && j.r.sess) { S.sess = j.r.sess; }
     try { if (S.sess) { localStorage.setItem("ge_sess", S.sess); } } catch(e){}
     applyPack(j.r);
+  });
+}
+
+function authSendCode(){
+  var el = document.getElementById("a_mail");
+  var mail = el ? el.value.trim() : "";
+  if (mail.length < 6 || mail.indexOf("@") < 1 || mail.indexOf(".") < 0) { authErr("Enter a valid email address."); return; }
+  var btn = document.querySelector("[data-act='authSendCode']");
+  if (btn) { btn.innerHTML = "Sending…"; }
+  HAS();
+  var dd = {};
+  dd["email"] = mail;
+  api("pwreset_req", dd, function(j){
+    if (!j.ok) {
+      BADH();
+      if (btn) { btn.innerHTML = "Send me a code"; }
+      authErr(j.e || "Could not send the code.");
+      return;
+    }
+    OKH();
+    AUTH.mail = mail;
+    AUTH.mode = "reset";
+    authPaint();
+    var e2 = document.getElementById("a_err");
+    if (e2) {
+      e2.className = "authok on";
+      e2.innerHTML = "Code sent. Check your bot chat, then enter it below.";
+    }
+  });
+}
+
+function authDoReset(){
+  var code = document.getElementById("a_code") ? document.getElementById("a_code").value.trim() : "";
+  var pw = document.getElementById("a_pw") ? document.getElementById("a_pw").value : "";
+  var pw2 = document.getElementById("a_pw2") ? document.getElementById("a_pw2").value : "";
+  if (code.length < 4) { authErr("Enter the code from the bot chat."); return; }
+  if (pw.length < 6) { authErr("Your new password must be at least 6 characters."); return; }
+  if (pw !== pw2) { authErr("The two passwords do not match."); return; }
+  var btn = document.querySelector("[data-act='authDoReset']");
+  if (btn) { btn.innerHTML = "Saving…"; }
+  HAS();
+  var dd = {};
+  dd["email"] = AUTH.mail || "";
+  dd["code"] = code;
+  dd["pw"] = pw;
+  api("pwreset_do", dd, function(j){
+    if (!j.ok) {
+      BADH();
+      if (btn) { btn.innerHTML = "Set new password"; }
+      authErr(j.e || "Could not reset your password.");
+      return;
+    }
+    OKH();
+    if (j.r && j.r.sess) { S.sess = j.r.sess; }
+    try { if (S.sess) { localStorage.setItem("ge_sess", S.sess); } } catch(e){}
+    applyPack(j.r);
+    toast("Password changed. You are signed in.");
   });
 }
 
