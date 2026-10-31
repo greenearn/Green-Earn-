@@ -1177,7 +1177,7 @@ width:0;transition:width 1s ease}
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5lomU2e9iChZ3xC2t-9S7g3oZfpMLmfZjHMQCxP4Eg5H2aPWXE-gPSeD0_AwF-bt7htQhGhWmbn6F_H1W5Yu9FVoZk43FP_bxMkI4jVwSKe3D9k-aOA7W0WWAnBOtCJXvNaEHgDpkxLk96hfgam1k1Y_5DnVmUjlMR-JPMmrEuBtVLmN3gJDvaDNMXsGyTGtFzaF";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5l_P7Hp7a8mrU9d3OK7MLmE3MU4zo4Qm3CUteF1PsbnaBXSawuq1IhxWl54Zyt9c0gMiRus0EyeIRx2VJWy9r0Mefz7WzIXbG5bCs3nuyXd0G2_Ra_O586FQ92oyDIR7C9bt6dxkr78g-qasHq5uChWfNsddLOlkOYuNTcDC_c08i-9qrZoRO85EqWTSZqnfzX4K";
 var BUILD = "v7.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
@@ -5000,7 +5000,7 @@ function stxOpenSheet(sym, nm){
     "<div class='stxlogo big' style='background:" + E(ccol) + "'>" + stxLogo({ "s":sym, "dom":cdom }) + "</div>" +
     "<div style='min-width:0'><div class='sh3' style='margin-bottom:1px'>" + E(nm) + "</div>" +
     "<div class='shp' style='margin-bottom:0'>" + E(sym) + " · high risk · high earning</div></div></div>" +
-    "<div class='stxwarn'><b>⚡ High risk · High earning</b><span>Win pays <b>" + (parseFloat(cf.win) || 0) + "% per day</b> · win rate <b>" + (parseInt(cf.winp) || 0) + "%</b> · a losing position returns <b>" + (parseFloat(cf.keep) || 0) + "%</b> of the stake. Both outcomes are calculated for you below before you confirm.</span></div>" +
+    "<div class='stxwarn'><b>⚡ High risk · High earning</b><span>Win pays <b>" + (parseFloat(cf.win) || 0) + "% per day</b> · a losing position returns <b>" + (parseFloat(cf.keep) || 0) + "%</b> of the stake. Both outcomes are calculated for you below before you confirm.</span></div>" +
     "<div class='fl'><label>How many days</label></div><div class='cat' id='stxdays'>" + dh + "</div>" +
     "<div class='fl'><label>Amount in USDT (min " + (parseFloat(cf.mn) || 0) + ")</label>" +
     "<input class='inp' id='stx_amt' type='number' inputmode='decimal' placeholder='" + (parseFloat(cf.mn) || 10) + "' oninput='stxCalc()'></div>" +
@@ -5045,7 +5045,7 @@ function stxCalc(){
   var loseAmt = amt * (parseFloat(cf.keep) || 0) / 100;
   out.innerHTML = "<div class='kv'><span>If it wins</span><b class='stxup'>+" + stxMoney(winAmt - amt) + " → " + stxMoney(winAmt) + " USDT</b></div>" +
     "<div class='kv'><span>If it loses</span><b class='stxdn'>" + stxMoney(loseAmt - amt) + " → " + stxMoney(loseAmt) + " USDT</b></div>" +
-    "<div class='kv'><span>Win chance</span><b>" + (parseInt(cf.winp) || 0) + "%</b></div>" +
+
     "<div class='note' style='margin-top:6px'>Stake is taken from your balance when you open the position.</div>";
 }
 
