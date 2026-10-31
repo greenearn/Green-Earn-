@@ -205,6 +205,24 @@ border:1px solid rgba(0,230,118,.35)}
 .avcam{position:absolute;right:-4px;bottom:-4px;width:27px;height:27px;border-radius:50%;
 display:grid;place-items:center;font-size:12px;background:linear-gradient(135deg,#00E676,#00B85C);
 color:#04150C;border:2px solid var(--bg);box-shadow:0 3px 10px rgba(0,0,0,.5)}
+/* ---------- support contacts ---------- */
+.conlist{border-radius:16px;overflow:hidden;border:1px solid var(--bd);background:rgba(0,0,0,.26)}
+.conrow{display:flex;align-items:center;gap:11px;padding:12px 12px;
+border-bottom:1px solid rgba(31,40,51,.75);transition:background .15s}
+.conrow:last-child{border-bottom:0}
+.conrow:active{background:rgba(0,230,118,.08)}
+.conic{width:36px;height:36px;flex:0 0 36px;border-radius:12px;display:grid;place-items:center;
+font-size:17px;background:linear-gradient(150deg,rgba(0,230,118,.2),rgba(0,136,204,.1));
+border:1px solid rgba(0,230,118,.26)}
+.conmid{flex:1;min-width:0}
+.conlb{font-size:12.5px;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.conur{font-size:10px;color:var(--dim);font-weight:700;margin-top:2px;overflow:hidden;
+text-overflow:ellipsis;white-space:nowrap}
+.congo{font-size:19px;color:var(--mut);flex:0 0 auto;line-height:1}
+.confoot{display:flex;align-items:center;justify-content:space-between;gap:9px;margin-top:7px}
+.sw{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:800;color:var(--mut)}
+.sw input{width:15px;height:15px;accent-color:#00E676}
+
 /* ---------- refer hero ---------- */
 .refhero2{position:relative;overflow:hidden;border-radius:24px;padding:20px 14px 16px;margin-bottom:12px;
 text-align:center;background:radial-gradient(circle at 50% -10%,rgba(0,230,118,.24),rgba(8,14,18,.96) 62%);
@@ -999,7 +1017,7 @@ width:0;transition:width 1s ease}
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5Xa3KUO0ZE4AlFq3HHB0LVQR29stWVN6-Pv0J236eVC3fSv_0sGkiDC0LPn1-8mN2BpRqcjvCBKuAJSHXbtb7R--P0iEcY9YQSO1uwagBgcZJgTKGCoCvudud_hc02NDbl1R25vljgtxp-qFsMKYJFsWBrxe2mlUmJAh9MAK0FEKmXjLdTyVVbFItyKvThLV7dte";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5YULmnqnNGR6LmsIvyUR-Fe38yXG840c-GaDhIXiVDCOs9zAkyfazINLJ2l5mmJDlunppgJ9IDjvvuEKPtVjE__UBO9zsDnFYVLj1PppsD3rQVxslLKHCDFq_fDKXCe4So3DkG1pNcDeefP5TkYq2NKzkQiNvN_5LvwP0C0cCy7ACTc2mDYEwCrXTvM4LS6qBvXY";
 var BUILD = "v7.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
@@ -1904,11 +1922,45 @@ function sheetEarn(){
 }
 
 function sheetSupport(){
-  var h = "<div class='sh3'>🤝 Support</div><div class='shp'>We reply as fast as we can</div>" +
-    "<div class='kv'><span>Channel</span><b>" + E(S.cfg.channel) + "</b></div>" +
-    "<div class='kv'><span>Support</span><b>" + E(S.cfg.support) + "</b></div>" +
-    "<div style='height:11px'></div><button class='btn gh' data-act='closeSheet'>Close</button>";
+  var cs = (S.cfg && S.cfg.contacts) ? S.cfg.contacts : [];
+  var h = "<div class='sh3'>🤝 Support</div><div class='shp'>We reply as fast as we can</div>";
+  if (cs.length > 0) {
+    h += "<div class='conlist'>";
+    for (var i = 0; i < cs.length; i++) {
+      var ct = cs[i];
+      h += "<div class='conrow' data-act='openContact' data-id='" + E(ct.id) + "'>" +
+        "<div class='conic'>" + E(ct.icon) + "</div>" +
+        "<div class='conmid'><div class='conlb'>" + E(ct.label) + "</div>" +
+        "<div class='conur'>" + E(ct.url) + "</div></div>" +
+        "<div class='congo'>›</div></div>";
+    }
+    h += "</div>";
+    h += "<div class='note' style='margin-top:10px'>Tap a channel above to open it. You can also message us from the chat box in Profile.</div>";
+  } else {
+    h += "<div class='kv'><span>Channel</span><b>" + E(S.cfg.channel) + "</b></div>" +
+      "<div class='kv'><span>Support</span><b>" + E(S.cfg.support) + "</b></div>";
+  }
+  h += "<div style='height:11px'></div><button class='btn gh' data-act='closeSheet'>Close</button>";
   openS(h);
+}
+
+function openContact(cid){
+  var cs = (S.cfg && S.cfg.contacts) ? S.cfg.contacts : [];
+  var u = "";
+  for (var i = 0; i < cs.length; i++) {
+    if (cs[i].id === cid) { u = cs[i].url || ""; break; }
+  }
+  if (!u) { toast("This contact is not set up yet", true); return; }
+  HAS();
+  try {
+    var tg = tgApp();
+    var istg = (u.indexOf("https://t.me/") === 0 || u.indexOf("t.me/") === 0 || u.indexOf("https://telegram.org") === 0);
+    if (tg && istg) { tg.openTelegramLink(u); }
+    else if (tg && tg.openLink) { tg.openLink(u); }
+    else { window.open(u, "_blank"); }
+  } catch(e){
+    try { window.open(u, "_blank"); } catch(e2){ toast("Could not open the link", true); }
+  }
 }
 
 function sheetTree(){
@@ -2091,6 +2143,28 @@ function adminBody(){
       "<div class='fl'><label>Support link</label><input class='inp' id='tx_sup' value='" + E(S.adm.cfg.support) + "'></div>" +
       "<div class='fl'><label>How to earn (HTML)</label><textarea class='inp' id='tx_earn' style='min-height:120px'>" + E(pg.earn) + "</textarea></div>" +
       "<button class='btn pri' data-act='saveTexts'>Save branding</button>";
+    var cts = S.adm.contacts_all || [];
+    out += "<div class='sec' style='margin-top:16px'><h2>Support contacts</h2><small>" + N(cts.length) + "</small></div>" +
+      "<div class='note' style='margin-bottom:9px'>These appear in the user's Support sheet. Switch one off to hide it without deleting it. A contact with no link is hidden from users automatically.</div>";
+    if (cts.length === 0) {
+      out += "<div class='note'>No contacts yet — add one below.</div>";
+    }
+    for (var ci = 0; ci < cts.length; ci++) {
+      var ct = cts[ci];
+      out += "<div class='card' style='padding:11px;margin-bottom:8px'>" +
+        "<div class='row2'>" +
+        "<div class='fl' style='flex:0 0 62px'><label>Icon</label><input class='inp' id='ct_i_" + ci + "' maxlength='4' value='" + E(ct.icon) + "'></div>" +
+        "<div class='fl'><label>Name</label><input class='inp' id='ct_l_" + ci + "' maxlength='40' value='" + E(ct.label) + "'></div>" +
+        "</div>" +
+        "<div class='fl'><label>Link</label><input class='inp' id='ct_u_" + ci + "' placeholder='https://wa.me/919876543210' value='" + E(ct.url) + "'></div>" +
+        "<div class='confoot'><label class='sw'><input type='checkbox' id='ct_o_" + ci + "'" + (ct.on === 1 ? " checked" : "") + "> Show to users</label>" +
+        "<button class='btn red sm' data-ctdel='" + E(ct.id) + "'>Delete</button></div>" +
+        "</div>";
+    }
+    out += "<div class='row2' style='margin-top:9px'>" +
+      "<button class='btn pri' data-act='saveContacts'>Save contacts</button>" +
+      "<button class='btn gh' data-act='addContact'>+ Add contact</button></div>" +
+      "<div class='note' style='margin-top:9px'>Examples — Telegram: <code>https://t.me/yourname</code> · WhatsApp: <code>https://wa.me/919876543210</code> · Email: <code>mailto:you@mail.com</code></div>";
   } else if (s === "users") {
     out += "<div class='fl'><label>Username or numeric ID</label><input class='inp' id='fu_q' placeholder='@name or 123456789'></div>" +
       "<button class='btn pri' data-act='findUser'>Look up user</button><div id='fres' style='margin-top:9px'></div>";
@@ -3169,6 +3243,29 @@ function saveEco(){
   adminSave("eco", o);
 }
 
+function saveContacts(){
+  var cts = S.adm.contacts_all || [];
+  var arr = [];
+  for (var i = 0; i < cts.length; i++) {
+    var lb = document.getElementById("ct_l_" + i);
+    var ic = document.getElementById("ct_i_" + i);
+    var u = document.getElementById("ct_u_" + i);
+    var on = document.getElementById("ct_o_" + i);
+    arr.push({
+      "id": cts[i].id,
+      "label": lb ? lb.value : cts[i].label,
+      "icon": ic ? ic.value : cts[i].icon,
+      "url": u ? u.value : cts[i].url,
+      "on": (on && on.checked) ? 1 : 0
+    });
+  }
+  adminSave("contacts", arr);
+}
+
+function addContact(){
+  adminSave("contact", { "label": "New contact", "icon": "🔗", "url": "", "on": 0 });
+}
+
 function saveTexts(){
   var o = {};
   o["logo"] = $("tx_logo").value;
@@ -3269,8 +3366,10 @@ document.addEventListener("click", function(ev){
       var rsdel = el.getAttribute("data-rsdel");
       var stDel = el.getAttribute("data-stdel");
       var stDem = el.getAttribute("data-stdem");
+      var ctdel = el.getAttribute("data-ctdel");
       if (stDel) { staffDel(stDel); return; }
       if (stDem) { staffDemote(stDem); return; }
+      if (ctdel) { adminSave("contact_del", ctdel); return; }
       var docv = el.getAttribute("data-doc");
       var krev = el.getAttribute("data-krev");
       var msgto = el.getAttribute("data-msgto");
@@ -3366,6 +3465,9 @@ function runAct(a, id){
   if (a === "authGo") { authGo(); return; }
   if (a === "authSendCode") { authSendCode(); return; }
   if (a === "authDoReset") { authDoReset(); return; }
+  if (a === "openContact") { openContact(id); return; }
+  if (a === "saveContacts") { saveContacts(); return; }
+  if (a === "addContact") { addContact(); return; }
   if (a === "notif") { notifSheet(); return; }
   if (a === "staffAdd") { staffSub(); return; }
   if (a === "staffPromote") { staffAdm(); return; }
