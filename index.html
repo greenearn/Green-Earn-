@@ -205,6 +205,16 @@ border:1px solid rgba(0,230,118,.35)}
 .avcam{position:absolute;right:-4px;bottom:-4px;width:27px;height:27px;border-radius:50%;
 display:grid;place-items:center;font-size:12px;background:linear-gradient(135deg,#00E676,#00B85C);
 color:#04150C;border:2px solid var(--bg);box-shadow:0 3px 10px rgba(0,0,0,.5)}
+/* ---------- task progress ---------- */
+.tneed{font-size:9.5px;font-weight:900;letter-spacing:.3px;color:#FFB300;margin-top:4px}
+.tprog{display:flex;align-items:center;gap:7px}
+.tprog b{font-size:11px;font-weight:800;color:var(--grn);font-variant-numeric:tabular-nums}
+.tbar{display:block;width:52px;height:5px;border-radius:99px;background:rgba(0,0,0,.42);overflow:hidden}
+.tbar i{display:block;height:5px;border-radius:99px;
+background:linear-gradient(90deg,#00E676,#7DF9FF);transition:width .8s cubic-bezier(.2,.9,.3,1)}
+.btn.sm{padding:7px 11px;font-size:11px}
+.tbtn{display:flex;flex-direction:column;align-items:flex-end;flex:0 0 auto}
+
 /* ---------- support contacts ---------- */
 .conlist{border-radius:16px;overflow:hidden;border:1px solid var(--bd);background:rgba(0,0,0,.26)}
 .conrow{display:flex;align-items:center;gap:11px;padding:12px 12px;
@@ -1017,7 +1027,7 @@ width:0;transition:width 1s ease}
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5YULmnqnNGR6LmsIvyUR-Fe38yXG840c-GaDhIXiVDCOs9zAkyfazINLJ2l5mmJDlunppgJ9IDjvvuEKPtVjE__UBO9zsDnFYVLj1PppsD3rQVxslLKHCDFq_fDKXCe4So3DkG1pNcDeefP5TkYq2NKzkQiNvN_5LvwP0C0cCy7ACTc2mDYEwCrXTvM4LS6qBvXY";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5Zl8K5ic_ThCL22BD3JaVyhC0hGce86KsSjzQOWgZiVNnzYyEhc1wesyGLz9w_199ZhZqBW0brAp4r-VmV2EZNetexLGHnXWOOU8QhRCyY_lkgKfK9k_Jt8pW7nOM2WtKCUjnRpq2tAhXGn3y2wke_urWMXcpvawq7F1s3yMKi4vGCVCIzUZ8kQqzf1roQOdqpZ7";
 var BUILD = "v7.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
@@ -1694,13 +1704,37 @@ function paintTasks(){
     if (t.active === 0) { continue; }
     if (S.tcat !== "all" && t.cat !== S.tcat) { continue; }
     if (t.done === 1) { earned = earned + t.reward; }
+    var ty = t.type || "link";
+    var ready = (t.ready === 1);
+    var have = parseInt(t.have) || 0;
+    var want = parseInt(t.want) || 1;
+    if (want < 1) { want = 1; }
     var btn = "";
-    if (t.done === 1) { btn = "<span class='badge a'>" + E(tr("t.done")) + "</span>"; }
-    else { btn = "<button class='btn pri sm' data-task='" + E(t.id) + "'>" + E(tr("t.claim")) + "</button>"; }
+    var prog = "";
+    if (t.done === 1) {
+      btn = "<span class='badge a'>" + E(tr("t.done")) + "</span>";
+    } else if (ready) {
+      btn = "<button class='btn pri sm' data-tclaim='" + E(t.id) + "'>" + E(tr("t.claim")) + "</button>";
+    } else if (ty === "channel") {
+      btn = "<button class='btn gh sm' data-topen='" + E(t.id) + "'>Open</button>" +
+            "<button class='btn pri sm' data-tcheck='" + E(t.id) + "' style='margin-top:6px'>Check</button>";
+      prog = "Not subscribed yet";
+    } else if (ty === "link") {
+      btn = "<button class='btn gh sm' data-topen='" + E(t.id) + "'>Open</button>";
+      prog = "Open the link first";
+    } else if (ty === "kyc") {
+      btn = "<button class='btn gh sm' data-tclaim='" + E(t.id) + "'>Verify</button>";
+      prog = "Verify in Profile";
+    } else {
+      btn = "<div class='tprog'><b>" + N(have) + "/" + N(want) + "</b>" +
+            "<span class='tbar'><i style='width:" + Math.round(have * 100 / want) + "%'></i></span></div>";
+      prog = ty === "share" ? "Refer 1 friend" : "Keep going";
+    }
     out += "<div class='task" + (t.done === 1 ? " done" : "") + "'>" +
-      "<div class='tic'>✅</div>" +
+      "<div class='tic'>" + (ready || t.done === 1 ? "✅" : "⭕") + "</div>" +
       "<div style='flex:1;min-width:0'><div class='tt'>" + E(t.title) + "</div>" +
       "<div class='td'>" + E(t.desc) + "</div>" +
+      (prog ? ("<div class='tneed'>" + E(prog) + "</div>") : "") +
       "<div class='tr'>+" + M(t.reward) + " USDT" + (t.energy > 0 ? (" · +" + N(t.energy) + " energy") : "") + "</div></div>" +
       "<div class='tbtn'>" + btn + "</div></div>";
   }
@@ -2005,6 +2039,11 @@ function adminSave(sec, val){
     paint();
     $("adbody").innerHTML = adminBody();
   });
+}
+
+function topt(v, lbl, cur){
+  var s = (cur === undefined || cur === null || cur === "") ? "" : String(cur);
+  return "<option value='" + v + "'" + (s === v ? " selected" : "") + ">" + lbl + "</option>";
 }
 
 function adminBody(){
@@ -2349,9 +2388,18 @@ function editorForm(kind, item, catid){
       "<div class='row2'><div class='fl'><label>Reward USDT</label><input class='inp' id='ed_r' type='number' step='0.01' value='" + M(it.reward) + "'></div>" +
       "<div class='fl'><label>Energy</label><input class='inp' id='ed_en' type='number' value='" + N(it.energy) + "'></div></div>" +
       "<div class='fl'><label>Category</label><input class='inp' id='ed_c' value='" + E(it.cat || "daily") + "'></div>" +
-      "<div class='fl'><label>Type (link / refs / invests)</label><input class='inp' id='ed_ty' value='" + E(it.type || "link") + "'></div>" +
+      "<div class='fl'><label>How it is verified</label><select class='inp' id='ed_ty'>" +
+      topt("link", "Open a link (must tap Open first)", it.type) +
+      topt("channel", "Telegram channel membership (checked live)", it.type) +
+      topt("share", "Refer 1 friend who registers", it.type) +
+      topt("refs", "Refer N friends who register", it.type) +
+      topt("invests", "Make N investments", it.type) +
+      topt("kyc", "Identity verified", it.type) +
+      "</select></div>" +
+      "<div class='fl'><label>Channel @username — only for channel tasks</label><input class='inp' id='ed_ch' value='" + E(it.chat || "") + "' placeholder='@GreenEarnDaily'></div>" +
       "<div class='row2'><div class='fl'><label>URL</label><input class='inp' id='ed_u' value='" + E(it.url) + "'></div>" +
       "<div class='fl'><label>Need count</label><input class='inp' id='ed_n' type='number' value='" + N(it.need) + "'></div></div>" +
+      "<div class='note' style='margin-bottom:9px'>Channel tasks need the bot added as an administrator of that channel, otherwise membership cannot be read and nobody can claim.</div>" +
       "<button class='btn pri' data-save='task|" + E(it.id) + "'>Save task</button>";
   } else if (kind === "proj") {
     var terms = S.cfg.terms || [];
@@ -2895,6 +2943,59 @@ function sparkle(x, y, n){
   }
 }
 
+function findTask(id){
+  var ts = (S.u && S.u.tasks) ? S.u.tasks : [];
+  for (var i = 0; i < ts.length; i++) { if (ts[i].id === id) { return ts[i]; } }
+  return null;
+}
+
+function openExt(u){
+  if (!u) { return; }
+  try {
+    var tg = tgApp();
+    if (tg && (u.indexOf("https://t.me/") === 0 || u.indexOf("t.me/") === 0)) { tg.openTelegramLink(u); }
+    else if (tg && tg.openLink) { tg.openLink(u); }
+    else { window.open(u, "_blank"); }
+  } catch(e){
+    try { window.open(u, "_blank"); } catch(e2){}
+  }
+}
+
+function taskOpen(id){
+  var t = findTask(id);
+  if (!t) { return; }
+  HAS();
+  api("task_open", { "id":id }, function(j){
+    if (j.ok && j.r && j.r.u) { S.u = j.r.u; paint(); }
+  });
+  openExt(t.url || "");
+  toast("Come back and tap Check when done.");
+}
+
+function taskCheck(id){
+  HAS();
+  var btn = document.querySelector("[data-tcheck='" + id + "']");
+  if (btn) { btn.innerHTML = "Checking…"; }
+  api("task_check", { "id":id }, function(j){
+    if (!j.ok) {
+      BADH();
+      if (btn) { btn.innerHTML = "Check"; }
+      toast(j.e || "Could not check", true);
+      return;
+    }
+    if (btn) { btn.innerHTML = "Check"; }
+    if (j.r && j.r.u) { S.u = j.r.u; }
+    paint();
+    if (j.r && j.r.good === 1) {
+      OKH();
+      toast("Verified — you can claim now.");
+    } else {
+      BADH();
+      toast((j.r && j.r.why) ? j.r.why : "Not done yet. Join the channel, then try again.", true);
+    }
+  });
+}
+
 function claimTask(id){
   HAS();
   api("task", { "id":id }, function(j){
@@ -3342,6 +3443,9 @@ document.addEventListener("click", function(ev){
       var box = el.getAttribute("data-box");
       var tcat = el.getAttribute("data-tcat");
       var task = el.getAttribute("data-task");
+      var topen = el.getAttribute("data-topen");
+      var tcheck = el.getAttribute("data-tcheck");
+      var tclaim = el.getAttribute("data-tclaim");
       var lang = el.getAttribute("data-lang");
       var add = el.getAttribute("data-add");
       var maxb = el.getAttribute("data-max");
@@ -3383,6 +3487,9 @@ document.addEventListener("click", function(ev){
       if (box) { openBox(box); return; }
       if (tcat) { HAS(); S.tcat = tcat; paintTasks(); return; }
       if (task) { claimTask(task); return; }
+      if (topen) { taskOpen(topen); return; }
+      if (tcheck) { taskCheck(tcheck); return; }
+      if (tclaim) { claimTask(tclaim); return; }
       if (lang) { setLang(lang); return; }
       if (asec) {
         HAS();
@@ -3556,7 +3663,7 @@ function saveEditor(key, id){
     return;
   }
   if (kind === "task") {
-    adminSave("task", { "id":ref, "title":$("ed_t").value, "desc":$("ed_x").value, "reward":parseFloat($("ed_r").value), "energy":parseFloat($("ed_en").value), "cat":$("ed_c").value, "type":$("ed_ty").value, "url":$("ed_u").value, "need":parseInt($("ed_n").value), "active":1 });
+    adminSave("task", { "id":ref, "title":$("ed_t").value, "desc":$("ed_x").value, "reward":parseFloat($("ed_r").value), "energy":parseFloat($("ed_en").value), "cat":$("ed_c").value, "type":$("ed_ty").value, "chat":$("ed_ch").value, "url":$("ed_u").value, "need":parseInt($("ed_n").value), "active":1 });
     closeSheet();
     return;
   }
