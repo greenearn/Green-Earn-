@@ -1159,7 +1159,7 @@ width:0;transition:width 1s ease}
 <div class="nav"><div class="navin">
   <button class="nb on" data-tab="home"><i>🏠</i><span data-i18n="nav.home">Home</span></button>
   <button class="nb" data-tab="invest"><i>📈</i><span data-i18n="nav.invest">Invest</span></button>
-  <button class="nb" data-tab="markets"><i>🎯</i><span>Market</span></button>
+  <button class="nb" data-tab="markets"><i>🎯</i><span data-i18n="nav.market">Market</span></button>
   <button class="nb" data-tab="tasks"><i>✅</i><span data-i18n="nav.tasks">Tasks</span></button>
   <button class="nb" data-tab="refer"><i>🌳</i><span data-i18n="nav.refer">Refer</span></button>
   <button class="nb" data-tab="profile"><i>👤</i><span data-i18n="nav.profile">Profile</span></button>
@@ -1177,7 +1177,7 @@ width:0;transition:width 1s ease}
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5mIWTWyvIW_t4A3TOCGscrAAaoZwQNlWWd__IBqJGGiwzQuZ4Nqo8o3mLlnOdgDhIgNl_HqSilWz4DOzhqwSXb2ZoHkph-Aeomn10TAqWTdgRKHrbjykTxKYEJEPl_23AmHkbnrzY4rTET13_E6S74wOsg-eujMidixgjOwA-AZrJQeaU7vGXdDFuhPIr1-MMmXN";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5mSjc3-tG0xgWkNFbvWAuzrGCM-XHU94OTubkaHpmhclWix3Yv1vmMim_ijZ4lQrJiYYfoz0cBYN4FJhwpvDAVMn0fmOi6e2bRpO4HGKChZQPoUPxszakcPKPR2ky51wzHTboN6dDknvkt4fS7XXGDn-wiFlQMjLMXzMwcHRf5F9Ye8zB1RE8RQfdF2-Bgk9b8uj";
 var BUILD = "v7.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
@@ -2183,7 +2183,7 @@ function sheetLang(){
   else if (S.cfg && S.cfg.langs) { total = S.cfg.langs.length; }
   var h = "<div class='sh3'>🌐 " + E(tr("lang.title")) + "</div>" +
     "<div class='shp'>" + E(tr("lang.sub")) + "</div>" +
-    "<input class='inp' id='lsearch' placeholder='Search ' + total + ' languages' oninput='filterLang(this.value)' style='margin-bottom:9px'>" +
+    "<input class='inp' id='lsearch' placeholder='" + E(tr("lang.search")) + "' oninput='filterLang(this.value)' style='margin-bottom:9px'>" +
     "<div id='langrows' style='max-height:46vh;overflow-y:auto;padding-right:3px'>" + langRows("") + "</div>";
   openS(h);
 }
