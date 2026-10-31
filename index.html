@@ -133,7 +133,7 @@ background:linear-gradient(135deg,rgba(0,230,118,.1),var(--card) 70%);border:1px
 .plantart{width:52px;height:52px;flex:0 0 52px;border-radius:16px;display:grid;place-items:center;
 position:relative;background:radial-gradient(circle at 35% 30%,#12402F,#0B1A14);
 border:1px solid rgba(0,230,118,.32);overflow:hidden}
-.plantglow{position:absolute;inset:-6px;border-radius:50%;
+.plantglow{position:absolute;top:-6px;right:-6px;bottom:-6px;left:-6px;border-radius:50%;
 background:radial-gradient(circle,rgba(0,230,118,.4),transparent 68%);animation:pl2 2.8s ease-in-out infinite}
 @keyframes pl2{50%{opacity:.45;transform:scale(1.12)}}
 .plantem{font-size:26px;position:relative;transition:transform .3s;line-height:1}
@@ -205,6 +205,25 @@ border:1px solid rgba(0,230,118,.35)}
 .avcam{position:absolute;right:-4px;bottom:-4px;width:27px;height:27px;border-radius:50%;
 display:grid;place-items:center;font-size:12px;background:linear-gradient(135deg,#00E676,#00B85C);
 color:#04150C;border:2px solid var(--bg);box-shadow:0 3px 10px rgba(0,0,0,.5)}
+/* ---------- admin KYC + alerts ---------- */
+.kgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-top:10px}
+.alertbar{font-size:11px;font-weight:800;color:#FFB300;background:rgba(255,179,0,.12);
+border:1px solid rgba(255,179,0,.3);border-radius:11px;padding:9px 11px;margin-bottom:9px}
+.trow{display:flex;align-items:center;gap:9px;padding:10px 2px;
+border-bottom:1px solid rgba(31,40,51,.7)}
+.trow:last-child{border-bottom:0}
+.tav{width:34px;height:34px;flex:0 0 34px;border-radius:12px;display:grid;place-items:center;
+font-size:13px;font-weight:900;background:linear-gradient(150deg,rgba(0,230,118,.2),rgba(0,136,204,.1));
+border:1px solid rgba(0,230,118,.28);position:relative}
+.tun{position:absolute;top:-2px;right:-2px;min-width:15px;height:15px;border-radius:99px;
+background:#FF4D5E;color:#04150C;font-size:9px;font-weight:900;display:grid;place-items:center;
+padding:0 3px;border:1.5px solid var(--bg2)}
+.tmid{flex:1;min-width:0}
+.tmid b{display:block;font-size:12.5px;font-weight:800;overflow:hidden;text-overflow:ellipsis;
+white-space:nowrap}
+.tmid span{display:block;font-size:10px;color:var(--dim);font-weight:700;overflow:hidden;
+text-overflow:ellipsis;white-space:nowrap;margin-top:1px}
+
 /* ---------- admin user cards ---------- */
 .admstat{display:flex;gap:6px;margin-bottom:11px}
 .admstat>div{flex:1;min-width:0;background:rgba(0,0,0,.32);border:1px solid var(--bd);
@@ -299,10 +318,10 @@ background:linear-gradient(90deg,transparent,rgba(0,230,118,.14),transparent);
 animation:arefscan 4.2s ease-in-out infinite}
 @keyframes arefscan{0%{left:-70%}55%,100%{left:140%}}
 .refoart{position:relative;width:104px;height:104px;margin:2px auto 12px}
-.refring{position:absolute;inset:0;border-radius:50%;border:1.5px dashed rgba(0,230,118,.42);
+.refring{position:absolute;top:0;right:0;bottom:0;left:0;border-radius:50%;border:1.5px dashed rgba(0,230,118,.42);
 animation:rot 9s linear infinite}
-.refring.r2{inset:13px;border-style:solid;border-color:rgba(0,136,204,.3);animation:rot 6s linear infinite reverse}
-.reflogo{position:absolute;inset:0;display:grid;place-items:center;font-size:46px;
+.refring.r2{top:13px;right:13px;bottom:13px;left:13px;border-style:solid;border-color:rgba(0,136,204,.3);animation:rot 6s linear infinite reverse}
+.reflogo{position:absolute;top:0;right:0;bottom:0;left:0;display:grid;place-items:center;font-size:46px;
 filter:drop-shadow(0 0 20px rgba(0,230,118,.6));animation:atree 3.2s ease-in-out infinite}
 @keyframes atree{50%{transform:translateY(-5px) scale(1.06)}}
 .refcoin{position:absolute;font-size:14px;animation:afloat 3.1s ease-in-out infinite}
@@ -521,9 +540,9 @@ transition:filter .14s,transform .14s}
 .nb.on i{filter:none;transform:translateY(-1px) scale(1.1)}
 
 /* ---------- sheet ---------- */
-.sheet{position:fixed;inset:0;z-index:70;display:none}
+.sheet{position:fixed;top:0;right:0;bottom:0;left:0;z-index:70;display:none}
 .sheet.open{display:block}
-.sheet .bd{position:absolute;inset:0;background:rgba(3,5,8,.76);backdrop-filter:blur(3px)}
+.sheet .bd{position:absolute;top:0;right:0;bottom:0;left:0;background:rgba(3,5,8,.76);backdrop-filter:blur(3px)}
 .sheet .pn{position:absolute;left:0;right:0;bottom:0;max-height:90vh;overflow-y:auto;
 -webkit-overflow-scrolling:touch;background:var(--bg2);border-top:1px solid var(--bd);
 border-radius:22px 22px 0 0;padding:7px 15px calc(env(safe-area-inset-bottom) + 20px);
@@ -562,7 +581,7 @@ border-top-color:#fff;animation:rot .7s linear infinite;display:inline-block;ver
 @keyframes rot{to{transform:rotate(360deg)}}
 
 /* ---------- auth screen ---------- */
-.authmask{position:fixed;inset:0;z-index:900;display:none;align-items:center;justify-content:center;
+.authmask{position:fixed;top:0;right:0;bottom:0;left:0;z-index:900;display:none;align-items:center;justify-content:center;
 padding:22px 16px;overflow-y:auto;
 background:radial-gradient(circle at 50% 0%,#0E2A20 0%,#070B0E 55%,#04070A 100%)}
 .authmask.on{display:flex;animation:afade .4s ease}
@@ -637,13 +656,13 @@ background:rgba(0,230,118,.12);border:1px solid rgba(0,230,118,.26)}
 .nmt{font-size:9.5px;color:var(--dim);font-weight:800;margin-top:2px}
 
 /* ---------- invest animation ---------- */
-.ivx{position:fixed;inset:0;z-index:950;display:none;align-items:center;justify-content:center;
+.ivx{position:fixed;top:0;right:0;bottom:0;left:0;z-index:950;display:none;align-items:center;justify-content:center;
 flex-direction:column;background:rgba(4,7,10,.93);backdrop-filter:blur(7px)}
 .ivx.on{display:flex;animation:afade .25s ease}
 .ivart{position:relative;width:150px;height:150px;display:grid;place-items:center}
-.ivring{position:absolute;inset:0;border-radius:50%;border:2px dashed rgba(0,230,118,.4);
+.ivring{position:absolute;top:0;right:0;bottom:0;left:0;border-radius:50%;border:2px dashed rgba(0,230,118,.4);
 animation:rot 5.5s linear infinite}
-.ivring2{position:absolute;inset:16px;border-radius:50%;border:2px solid rgba(0,230,118,.16);
+.ivring2{position:absolute;top:16px;right:16px;bottom:16px;left:16px;border-radius:50%;border:2px solid rgba(0,230,118,.16);
 animation:rot 3.2s linear infinite reverse}
 .ivcore{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;font-size:44px;position:relative;
 background:radial-gradient(circle at 34% 28%,rgba(0,230,118,.34),rgba(6,12,16,.9));
@@ -1090,7 +1109,7 @@ width:0;transition:width 1s ease}
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5b2AUBMNDUy45Yh5Npg_u5hStktGl6ZN7FtH5Dg1TO_Ix6DhDb1qZkCDlvd6L5e0ZEkfsOjmV6F6-xtuJm1WbGKYJEGo8Zia1OB_Tv_uexokYkNPOsp__CzG9cGimk8f3Y9lqaL5Sg-VSZ9jaajTkQVz4qQVBZNC4dJZvxMp4OKVj0n5T1QaeQyBC456eR2qS-XC";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5dh7acF0-qNFlLX9ykS5fy1v96N7J3c2UORmy88P1dOUssuCO6tCicgjWdOYJsOOrB7QK2fvMNUN8JHhqe3h7Ce7wNylm2pvF59BUBKDzjYWUNWKFFMAp4QS9nfCEtE9H8ZPNXkaD7owm_PuSBNgAJB3bImk3mZFvzFHznSlvH6H_ZLUN8mMgTcG2s0E9-Wrla2C";
 var BUILD = "v7.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
@@ -1123,9 +1142,32 @@ function getInit(){
   if (t && t.initData && t.initData.length > 10) { return t.initData; }
   return urlInit();
 }
+// Some Telegram clients (Telegram X, iMe, Swify, older WebViews, and the
+// in-app browser of other social apps) do not expose Telegram.WebApp, or fail
+// to load telegram-web-app.js. They still pass tgWebAppInitData in the URL, so
+// the user is read straight out of that string as a fallback.
+function parseInitUser(){
+  var s = urlInit();
+  if (!s) { return null; }
+  var q = s;
+  try { if (q.indexOf("%") >= 0) { q = decodeURIComponent(q); } } catch(e){ }
+  var parts = q.split("&");
+  for (var i = 0; i < parts.length; i++) {
+    if (parts[i].indexOf("user=") !== 0) { continue; }
+    var raw = parts[i].substring(5);
+    try { raw = decodeURIComponent(raw); } catch(e2){ }
+    try { var o = JSON.parse(raw); if (o && o.id) { return o; } } catch(e3){ }
+  }
+  return null;
+}
+
 function tgUser(){
   var t = tgApp();
   try { if (t && t.initDataUnsafe && t.initDataUnsafe.user) { return t.initDataUnsafe.user; } } catch(e){ }
+  var p = parseInitUser();
+  if (p) { return p; }
+  // Last resort: the account that booted successfully in this client before.
+  try { var sv = localStorage.getItem("tguser"); if (sv && sv.length > 3) { return { "id": sv }; } } catch(e4){ }
   return null;
 }
 var TG = tgApp();
@@ -1265,7 +1307,7 @@ function diagText(){
 
 function fatal(msg, detail){
   var d = document.createElement("div");
-  d.style.cssText = "position:fixed;inset:0;background:#070A0F;z-index:9999;display:flex;align-items:center;justify-content:center;padding:26px;text-align:center";
+  d.style.cssText = "position:fixed;top:0;right:0;bottom:0;left:0;background:#070A0F;z-index:9999;display:flex;align-items:center;justify-content:center;padding:26px;text-align:center";
   var h = "<div><div style='font-size:40px;margin-bottom:12px'>🔒</div>" +
     "<div style='font-size:15px;font-weight:800;margin-bottom:7px'>Cannot open the app</div>" +
     "<div style='font-size:12.5px;color:#8A97A8;line-height:1.6'>" + E(msg) + "</div>";
@@ -2338,27 +2380,39 @@ function adminBody(){
     out += wdsList();
   } else if (s === "kyc") {
     var q = S.kycq || [];
-    out += "<div class='note' style='margin-bottom:9px'>Applicants waiting for review. Tap a document to view it full size.</div>";
+    var pkyc = (S.alerts && S.alerts.kyc) ? S.alerts.kyc : 0;
+    out += "<div class='note' style='margin-bottom:9px'>Newest first. Tap <b>Full detail</b> to see the applicant's whole account next to their documents.</div>" +
+      (pkyc > 0 ? ("<div class='alertbar'>🔔 " + N(pkyc) + " new verification" + (pkyc > 1 ? "s" : "") + " since you last looked</div>") : "");
+    if (!q.length) {
+      out += "<div class='empty'><div>🪪</div>Nobody is waiting for review right now.</div>";
+    }
     for (var ki = 0; ki < q.length; ki++) {
       var k = q[ki];
-      out += "<div class='card' style='padding:11px'>" +
-        "<div style='display:flex;justify-content:space-between;gap:8px;align-items:flex-start'>" +
-        "<div style='min-width:0'><div style='font-size:12.5px;font-weight:800'>" + E(k.fn) + " " + E(k.ln) + "</div>" +
-        "<div class='note'>id <b>" + E(k.uid) + "</b> · " + E(k.dtype) + "</div></div>" +
-        "<span class='badge p'>" + E(k.st) + "</span></div>" +
-        "<div class='kv'><span>Age</span><b>" + N(k.age) + "</b></div>" +
-        "<div class='kv'><span>Gender</span><b>" + E(k.gender) + "</b></div>" +
-        "<div class='kv'><span>Nationality</span><b>" + E(k.nat) + "</b></div>" +
-        "<div class='kv'><span>Phone</span><b>" + E(k.phone) + "</b></div>" +
-        "<div class='kv'><span>Email</span><b style='font-size:10px'>" + E(k.email) + "</b></div>" +
+      var kb2 = "p";
+      if (k.st === "verified") { kb2 = "v"; }
+      else if (k.st === "rejected") { kb2 = "j"; }
+      out += "<div class='ucard'>" +
+        "<div class='uhead'><div class='uname2'><b>" + E((k.fn + " " + k.ln).trim() || k.name || "User") + "</b>" +
+        (k.name ? ("<span>" + E(k.name) + "</span>") : "") + "</div>" +
+        "<span class='kbadge " + kb2 + "'>" + E(k.st) + "</span></div>" +
+        "<div class='uidrow'>id <code>" + E(k.uid) + "</code> · " + E(k.dtype || "no type") + " · " + agoT(k.at) + "</div>" +
+        "<div class='kgrid'>" +
+        "<div class='uc'><span>Age</span><b>" + N(k.age) + "</b></div>" +
+        "<div class='uc'><span>Gender</span><b style='font-size:10px'>" + E(k.gender || "—") + "</b></div>" +
+        "<div class='uc'><span>Nationality</span><b style='font-size:10px'>" + E(k.nat || "—") + "</b></div>" +
+        "<div class='uc'><span>Docs</span><b>" + (k.front === 1 ? "F" : "—") + (k.back === 1 ? "/B" : "/—") + "</b></div></div>" +
+        "<div class='kv'><span>Phone</span><b>" + E(k.phone || "—") + "</b></div>" +
+        "<div class='kv'><span>Email</span><b style='font-size:10px'>" + E(k.email || "—") + "</b></div>" +
         "<div class='row2' style='margin-top:8px'>" +
-        "<button class='btn gh sm' style='width:100%' data-doc='" + E(k.uid) + "|front'>Front</button>" +
-        "<button class='btn gh sm' style='width:100%' data-doc='" + E(k.uid) + "|back'>Back</button></div>" +
+        "<button class='btn gh sm' style='width:100%' data-doc='" + E(k.uid) + "|front'>📄 Front</button>" +
+        "<button class='btn gh sm' style='width:100%' data-doc='" + E(k.uid) + "|back'>📄 Back</button></div>" +
+        "<div class='uacts' style='margin-top:6px'>" +
+        "<button class='btn gh sm' data-kydet='" + E(k.uid) + "'>Full detail</button>" +
+        "<button class='btn gh sm' data-msgto='" + E(k.uid) + "'>Message</button></div>" +
         "<div class='fl' style='margin-top:8px'><label>Note (if rejecting)</label><input class='inp' id='kyn_" + E(k.uid) + "' placeholder='reason'></div>" +
         "<div class='row2'><button class='btn pri sm' style='width:100%' data-krev='" + E(k.uid) + "|1'>Approve</button>" +
         "<button class='btn red sm' style='width:100%' data-krev='" + E(k.uid) + "|0'>Reject</button></div></div>";
     }
-    if (!out) { out = "<div class='empty'><div>🪪</div>No applicants waiting.</div>"; }
     out += "<div class='card'><div class='fl'><label>Look up a verified user by ID</label><input class='inp' id='ky_uid' placeholder='123456789'></div>" +
       "<div class='row2'><button class='btn gh' data-act='kycLook'>Load</button>" +
       "<button class='btn red' data-act='kycReset'>Reset KYC</button></div>" +
@@ -2446,9 +2500,28 @@ function adminBody(){
     }
   } else if (s === "inbox") {
     var ch = S.chat || null;
-    out += "<div class='fl'><label>Find a user</label><input class='inp' id='in_q' placeholder='name, @username or user id'></div>" +
-      "<button class='btn gh' data-act='findUser'>Search</button>" +
-      "<div id='inres' style='margin-top:9px'></div>";
+    var tu = (S.threads && S.threads.unread) ? S.threads.unread : 0;
+    if (tu > 0) { out += "<div class='alertbar'>💬 " + N(tu) + " unread message" + (tu > 1 ? "s" : "") + " from your users</div>"; }
+    var tl = (S.threads && S.threads.rows) ? S.threads.rows : [];
+    out += "<div class='card' style='padding:11px'><div style='font-size:12.5px;font-weight:800;margin-bottom:4px'>Conversations</div>" +
+      "<div class='note' style='margin-bottom:7px'>Newest first. Tap one to read and reply.</div>";
+    if (!tl.length) {
+      out += "<div class='note'>No user has written in yet.</div>";
+    }
+    for (var ti = 0; ti < tl.length; ti++) {
+      var tr2 = tl[ti];
+      var ini = String(tr2.name || tr2.uid).substring(0, 2).toUpperCase();
+      out += "<div class='trow' data-opench='" + E(tr2.uid) + "'>" +
+        "<div class='tav'>" + E(ini) + (tr2.unread > 0 ? ("<span class='tun'>" + N(tr2.unread) + "</span>") : "") + "</div>" +
+        "<div class='tmid'><b>" + E(tr2.name || ("User " + tr2.uid)) + "</b>" +
+        "<span>" + E(tr2.x || "—") + "</span></div>" +
+        "<div style='text-align:right;flex:0 0 auto'>" +
+        "<div class='note' style='font-size:9px'>" + agoT(tr2.last) + "</div>" +
+        "<div class='note' style='font-size:9px'>" + (tr2.online === 1 ? "🟢 online" : "offline") + "</div></div></div>";
+    }
+    out += "</div>";
+    out += "<div class='fl' style='margin-top:9px'><label>Or find a user</label><input class='inp' id='in_q' placeholder='name, @username or user id'></div>" +
+      "<button class='btn gh' data-act='findUser'>Search</button><div id='inres' style='margin-top:9px'></div>";
     if (ch && ch.uid) {
       var th = ch.thread || [];
       out += "<div class='card' style='margin-top:11px'><div style='font-size:12.5px;font-weight:800;margin-bottom:6px'>Chat with " + E(ch.name || ch.uid) + "</div>" +
@@ -3337,6 +3410,63 @@ function dtxt(ts){
   return d.getDate() + " " + m[d.getMonth()] + " " + d.getFullYear();
 }
 
+function agoT(ts){
+  var t = parseInt(ts) || 0;
+  if (t <= 0) { return "no date" };
+  var s = Math.floor(Date.now() / 1000) - t;
+  if (s < 0) { s = 0; }
+  if (s < 60) { return s + "s ago"; }
+  if (s === 0) { return "just now"; }
+  if (s < 3600) { return Math.floor(s / 60) + " min ago"; }
+  if (s < 86400) { return Math.floor(s / 3600) + "h ago"; }
+  if (s < 2592000) { return Math.floor(s / 86400) + "d ago"; }
+  return dtxt(t);
+}
+
+// One tap: the applicant's whole account next to their documents.
+function kycDetail(uid){
+  HAS();
+  api("adm_kycdetail", { "uid":uid }, function(j){
+    if (!j.ok) { BADH(); toast(j.e || "Not found", true); return; }
+    OKH();
+    var d = j.r.d || {};
+    var h = "<div class='sh3'>🪪 " + E(((d.fn + " " + d.ln).trim() || d.name || "User")) + "</div>" +
+      "<div class='shp'>id <code>" + E(d.uid) + "</code> · " + E(d.uname ? ("@" + d.uname) : "no username") + " · " + agoT(d.at) + "</div>";
+    h += "<div class='ugrid' style='grid-template-columns:repeat(4,1fr)'>" +
+      "<div class='uc'><span>Balance</span><b class='g'>" + M(d.bal) + "</b></div>" +
+      "<div class='uc'><span>Invested</span><b>" + M(d.invest) + "</b></div>" +
+      "<div class='uc'><span>Ever</span><b>" + M(d.total_inv) + "</b></div>" +
+      "<div class='uc'><span>Profit</span><b class='g'>" + M(d.profit) + "</b></div>" +
+      "<div class='uc'><span>Active</span><b>" + N(d.active) + "</b></div>" +
+      "<div class='uc'><span>Refs</span><b>" + N(d.c1) + "</b></div>" +
+      "<div class='uc'><span>Team</span><b>" + N(d.team) + "</b></div>" +
+      "<div class='uc'><span>Energy</span><b>" + N(d.energy) + "</b></div></div>";
+    h += "<div class='card' style='padding:11px;margin-top:9px'>" +
+      "<div class='kv'><span>Status</span><b>" + E(d.st) + "</b></div>" +
+      "<div class='kv'><span>Name</span><b>" + E((d.fn + " " + d.ln).trim() || "—") + "</b></div>" +
+      "<div class='kv'><span>Age</span><b>" + N(d.age) + " · " + E(d.gender || "—") + "</b></div>" +
+      "<div class='kv'><span>Nationality</span><b>" + E(d.nat || "—") + "</b></div>" +
+      "<div class='kv'><span>Phone</span><b>" + E(d.phone || "—") + "</b></div>" +
+      "<div class='kv'><span>Email</span><b style='font-size:10px'>" + E(d.email || "—") + "</b></div>" +
+      "<div class='kv'><span>Document</span><b>" + E(d.dtype || "—") + "</b></div>" +
+      "<div class='kv'><span>Joined</span><b>" + dtxt(d.joined) + "</b></div>" +
+      "<div class='kv'><span>Last seen</span><b>" + agoT(d.seen) + "</b></div>" +
+      "<div class='kv'><span>VIP</span><b>" + E(d.vip || "—") + "</b></div>" +
+      (d.note ? ("<div class='kv'><span>Note</span><b>" + E(d.note) + "</b></div>") : "") +
+      "</div>";
+    h += "<div class='row2' style='margin-top:9px'>" +
+      "<button class='btn gh sm' style='width:100%' data-doc='" + E(d.uid) + "|front'>📄 Front</button>" +
+      "<button class='btn gh sm' style='width:100%' data-doc='" + E(d.uid) + "|back'>📄 Back</button></div>" +
+      "<div class='row2' style='margin-top:7px'>" +
+      "<button class='btn pri sm' style='width:100%' data-krev='" + E(d.uid) + "|1'>Approve</button>" +
+      "<button class='btn red sm' style='width:100%' data-krev='" + E(d.uid) + "|0'>Reject</button></div>" +
+      "<div class='row2' style='margin-top:7px'>" +
+      "<button class='btn gh sm' style='width:100%' data-msgto='" + E(d.uid) + "'>Message</button>" +
+      "<button class='btn gh sm' style='width:100%' data-act='closeSheet'>Close</button></div>";
+    openS(h);
+  });
+}
+
 function adjUser(uid, sign){
   var a = parseFloat(prompt("Amount in USDT:"));
   if (isNaN(a) || a <= 0) { return; }
@@ -3508,6 +3638,14 @@ function findUser(){
   });
 }
 
+function loadThreads(){
+  api("adm_threads", {}, function(j){
+    if (!j.ok) { return; }
+    S.threads = j.r;
+    if ($("adbody") && S.asec === "inbox") { $("adbody").innerHTML = adminBody(); }
+  });
+}
+
 function openChat(target){
   HAS();
   S.chat = { "uid":target, "name":"", "thread":[] };
@@ -3517,6 +3655,7 @@ function openChat(target){
     S.asec = "inbox";
     $("adbody").innerHTML = adminBody();
     bindAdmFile();
+    try { api("adm_thread_open", { "uid":target }, function(){ loadThreads(); }); } catch(e){ }
     api("adm_find", { "q":target }, function(k){
       if (k.ok) {
         var hits = k.r.hits || [];
@@ -3740,6 +3879,10 @@ document.addEventListener("click", function(ev){
       var ucre = el.getAttribute("data-ucredit");
       var udeb = el.getAttribute("data-udebit");
       var upos = el.getAttribute("data-usInv");
+      var kydet = el.getAttribute("data-kydet");
+      var opench = el.getAttribute("data-opench");
+      var gotox = el.getAttribute("data-goto");
+      var ackx = el.getAttribute("data-ack");
       var id = el.getAttribute("data-id");
 
       if (tab) { go(tab); return; }
@@ -3760,6 +3903,7 @@ document.addEventListener("click", function(ev){
         if (asec === "kyc") { loadKycQ(); }
         if (asec === "inv") { loadInv(); }
         if (asec === "users") { loadUsers(); }
+        if (asec === "inbox") { loadThreads(); }
         if (asec === "staff") { loadStaff(); }
         return;
       }
@@ -3770,6 +3914,23 @@ document.addEventListener("click", function(ev){
       if (ucre) { adjUser(ucre, 1); return; }
       if (udeb) { adjUser(udeb, -1); return; }
       if (upos) { userPositions(upos); return; }
+      if (kydet) { kycDetail(kydet); return; }
+      if (opench) { openChat(opench); return; }
+      if (ackx) { ackAlerts(ackx); return; }
+      if (gotox) {
+        var gp = gotox.split("|");
+        var gsec = gp[0] || "kyc";
+        var guid = gp[1] || "";
+        S.asec = gsec;
+        // The notification sheet replaced the panel, so render the whole
+        // admin shell again with the wanted section already selected.
+        openS(adminShell());
+        if (gsec === "kyc") { loadKycQ(); }
+        if (gsec === "inbox") { loadThreads(); }
+        if (gsec === "kyc" && guid) { setTimeout(function(){ kycDetail(guid); }, 600); }
+        if (gsec === "inbox" && guid) { setTimeout(function(){ openChat(guid); }, 600); }
+        return;
+      }
       if (rev) { var rp = rev.split("|"); review(rp[0], rp[1], parseInt(rp[2])); return; }
       if (bal) { var bp = bal.split("|"); adjBal(bp[0], parseInt(bp[1])); return; }
       if (tsave !== null) { var i2 = parseInt(tsave); var tg = (S.adm.page.terms || [])[i2]; adminSave("term", { "id":tg.id, "n":$("tm_n" + i2).value, "d":parseInt($("tm_d" + i2).value) }); return; }
@@ -4035,6 +4196,7 @@ function paint(){
   safe(paintNotif);
   safe(bindFiles);
   safe(loadThread);
+  if (isStaff() && !ALERT_TIMER) { try { startAlerts(); } catch(e){ } }
 }
 
 /* ---------------- start ---------------- */
@@ -4049,13 +4211,18 @@ function bootApp(){
     try { t.setHeaderColor("#070A0F"); } catch(e){}
     try { t.setBackgroundColor("#070A0F"); } catch(e){}
   }
-  if (!init && _tries < 30) { setTimeout(bootApp, 120); return; }
+  var who = tgUser();
+  if (!init && !who && _tries < 30) { setTimeout(bootApp, 120); return; }
   if (!API) {
     fatal("The API link was not written into this file. Send /getapp to your bot and upload the file it returns.");
     return;
   }
-  if (!init) {
-    fatal("Telegram did not hand this page a login token. Close it with the X at the top right and open it again from the button in the bot chat.", diagText());
+  // Telegram X, iMe, Swify, some in-app browsers and any client that blocks
+  // telegram.org never hand the page an initData token. They still tell us
+  // which account opened it, and the server accepts that, so the app must
+  // carry on instead of showing a dead-end screen.
+  if (!init && !who) {
+    fatal("This app must be opened from inside Telegram. Ask for the bot's menu button, or send /app to the bot and tap the green button.", diagText());
     return;
   }
   try {
@@ -4413,7 +4580,10 @@ function paintNotif(){
   if (u.is_admin === 1 || u.is_main === 1) { staff = 1; }
   if (u.perms && u.perms.length > 0) { staff = 1; }
   b.style.display = staff ? "grid" : "none";
-  var n = parseInt(u.notif);
+  // Prefer the live polled count so the badge moves without a reload.
+  var n = NaN;
+  if (S.alerts && S.alerts.count !== undefined && S.alerts.count !== null) { n = parseInt(S.alerts.count); }
+  if (isNaN(n)) { n = parseInt(u.notif); }
   if (isNaN(n)) { n = 0; }
   var bd = document.getElementById("nbadge");
   if (bd) {
@@ -4424,24 +4594,99 @@ function paintNotif(){
   }
 }
 
+/* ---- instant alerts: poll while the app is open ---- */
+var ALERT_SEEN = {};
+var ALERT_TIMER = null;
+
+function isStaff(){
+  var u = S.u || {};
+  if (u.is_admin === 1 || u.is_main === 1) { return true; }
+  if (u.perms && u.perms.length > 0) { return true; }
+  return false;
+}
+
+function buzz(){
+  try {
+    HAS();
+    var OK2 = tgApp();
+    if (OK2 && OK2.HapticFeedback) { OK2.HapticFeedback.notificationOccurred("warning"); }
+  } catch(e){ }
+  try { if (navigator.vibrate) { navigator.vibrate([90, 60, 90]); } } catch(e2){ }
+}
+
+function loadAlerts(){
+  if (!isStaff()) { return; }
+  api("alerts", {}, function(j){
+    if (!j.ok) { return; }
+    var ls = j.r.list || [];
+    S.alerts = j.r;
+    var fresh = 0;
+    for (var i = 0; i < ls.length; i++) {
+      var k = ls[i].t + "|" + ls[i].u + "|" + ls[i].ts;
+      if (!ALERT_SEEN[k]) { ALERT_SEEN[k] = 1; if (ls[i].ts >= (ALERT_SEEN._t || 0)) { fresh = fresh + 1; } }
+    }
+    if (!ALERT_SEEN._t) { ALERT_SEEN._t = Math.floor(Date.now() / 1000); }
+    if (fresh > 0 && ALERT_SEEN._ready === 1) {
+      buzz();
+      var last = ls[0] || {};
+      toast((last.i || "🔔") + " " + (last.x || "New activity"), true);
+    }
+    if (ALERT_SEEN._ready !== 1) { ALERT_SEEN._ready = 1; }
+    paintNotif();
+    if ($("adbody")) {
+      if (S.asec === "kyc") { $("adbody").innerHTML = adminBody(); }
+      if (S.asec === "inbox") { loadThreads(); }
+    }
+  });
+}
+
+function startAlerts(){
+  if (ALERT_TIMER) { clearInterval(ALERT_TIMER); }
+  ALERT_TIMER = setInterval(function(){
+    // Do not hammer the server while the page is hidden.
+    try { if (document.hidden) { return; } } catch(e){ }
+    loadAlerts();
+  }, 12000);
+  loadAlerts();
+}
+
+function ackAlerts(kind){
+  api("alerts_ack", { "kind":kind }, function(j){
+    if (!j.ok) { return; }
+    if (S.alerts) { S.alerts.list = j.r.list || []; S.alerts.count = j.r.count || 0; S.alerts[kind] = 0; }
+    paintNotif();
+  });
+}
+
 function notifSheet(){
   HAS();
   api("notif", {}, function(j){
     if (!j.ok) { toast(j.e, true); return; }
     var ls = j.r.list || [];
     var out = "";
+    var nk = 0, nm = 0;
     for (var i = 0; i < ls.length; i++) {
       var n = ls[i];
       var cls = "nico";
       if (n.t === "deposit") { cls = "nico dep"; }
       if (n.t === "withdraw") { cls = "nico wd"; }
-      if (n.t === "kyc") { cls = "nico kyc"; }
+      if (n.t === "kyc") { cls = "nico kyc"; nk = nk + 1; }
+      if (n.t === "msg") { nm = nm + 1; }
       out += "<div class='nrow'><div class='" + cls + "'>" + E(n.i) + "</div>" +
-        "<div class='ntx'>" + E(n.x) + "<div class='nmt'>user " + E(n.u) + "</div></div></div>";
+        "<div class='ntx'>" + E(n.x) + "<div class='nmt'>user " + E(n.u) + " · " + agoT(n.ts) + "</div></div>" +
+        (n.t === "kyc" || n.t === "msg" ? ("<button class='btn gh sm' data-goto='" + (n.t === "kyc" ? "kyc" : "inbox") + "|" + E(n.u) + "'>Open</button>") : "") +
+        "</div>";
     }
     if (!out) { out = "<div class='empty'><div>🔔</div>Nothing needs your attention.</div>"; }
-    openS("<div class='sh3'>🔔 Notifications</div><div class='shp'>Requests waiting for you</div>" +
+    var jump = "";
+    if (nk > 0) { jump += "<button class='btn gh sm' style='width:100%' data-goto='kyc|'>🪪 KYC queue (" + N(nk) + ")</button>"; }
+    if (nm > 0) { jump += "<button class='btn gh sm' style='width:100%' data-goto='inbox|'>💬 Inbox (" + N(nm) + ")</button>"; }
+    openS("<div class='sh3'>🔔 Notifications</div><div class='shp'>Requests waiting for you · refreshed every few seconds</div>" +
       "<div class='card'>" + out + "</div>" +
+      (jump ? ("<div class='row2' style='margin-top:9px'>" + jump + "</div>") : "") +
+      "<div class='row2' style='margin-top:9px'>" +
+      "<button class='btn gh sm' style='width:100%' data-ack='kyc'>Clear KYC badge</button>" +
+      "<button class='btn gh sm' style='width:100%' data-ack='msg'>Clear inbox badge</button></div>" +
       "<div style='height:10px'></div><button class='btn gh' data-act='closeSheet'>Close</button>");
   });
 }
