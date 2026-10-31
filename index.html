@@ -205,6 +205,77 @@ border:1px solid rgba(0,230,118,.35)}
 .avcam{position:absolute;right:-4px;bottom:-4px;width:27px;height:27px;border-radius:50%;
 display:grid;place-items:center;font-size:12px;background:linear-gradient(135deg,#00E676,#00B85C);
 color:#04150C;border:2px solid var(--bg);box-shadow:0 3px 10px rgba(0,0,0,.5)}
+/* ---------- refer hero ---------- */
+.refhero2{position:relative;overflow:hidden;border-radius:24px;padding:20px 14px 16px;margin-bottom:12px;
+text-align:center;background:radial-gradient(circle at 50% -10%,rgba(0,230,118,.24),rgba(8,14,18,.96) 62%);
+border:1px solid rgba(0,230,118,.3);box-shadow:0 18px 44px rgba(0,0,0,.5)}
+.refscan{position:absolute;top:0;left:-70%;width:55%;height:100%;transform:skewX(-20deg);
+background:linear-gradient(90deg,transparent,rgba(0,230,118,.14),transparent);
+animation:arefscan 4.2s ease-in-out infinite}
+@keyframes arefscan{0%{left:-70%}55%,100%{left:140%}}
+.refoart{position:relative;width:104px;height:104px;margin:2px auto 12px}
+.refring{position:absolute;inset:0;border-radius:50%;border:1.5px dashed rgba(0,230,118,.42);
+animation:rot 9s linear infinite}
+.refring.r2{inset:13px;border-style:solid;border-color:rgba(0,136,204,.3);animation:rot 6s linear infinite reverse}
+.reflogo{position:absolute;inset:0;display:grid;place-items:center;font-size:46px;
+filter:drop-shadow(0 0 20px rgba(0,230,118,.6));animation:atree 3.2s ease-in-out infinite}
+@keyframes atree{50%{transform:translateY(-5px) scale(1.06)}}
+.refcoin{position:absolute;font-size:14px;animation:afloat 3.1s ease-in-out infinite}
+.refcoin.c1{left:-2px;top:16px}
+.refcoin.c2{right:0;top:34px;animation-delay:.9s}
+.refcoin.c3{left:30px;bottom:-2px;animation-delay:1.7s}
+@keyframes afloat{0%,100%{transform:translateY(0) rotate(0);opacity:.55}
+50%{transform:translateY(-9px) rotate(12deg);opacity:1}}
+.refearn{font-size:9.5px;font-weight:900;letter-spacing:.9px;text-transform:uppercase;color:var(--dim);
+position:relative}
+.refbig{font-size:31px;font-weight:800;letter-spacing:-1.2px;color:var(--grn);margin-top:3px;
+text-shadow:0 0 26px rgba(0,230,118,.4);font-variant-numeric:tabular-nums;position:relative}
+.refbig small{font-size:12px;font-weight:800;color:var(--mut);letter-spacing:0}
+.refchips{display:flex;gap:7px;margin-top:15px;position:relative}
+.refchip{flex:1;min-width:0;background:rgba(0,0,0,.34);border:1px solid rgba(0,230,118,.2);
+border-radius:13px;padding:9px 3px}
+.refchip b{display:block;font-size:16px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.refchip em{display:block;font-style:normal;font-size:8px;font-weight:900;letter-spacing:.5px;
+text-transform:uppercase;color:var(--dim);margin-top:4px}
+.lrow2{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(31,40,51,.7)}
+.lrow2:last-of-type{border-bottom:0}
+.lbadge{width:30px;height:30px;flex:0 0 30px;border-radius:10px;display:grid;place-items:center;
+font-size:13px;font-weight:900;color:#04150C}
+.lbadge.b1{background:linear-gradient(140deg,#00E676,#00B85C)}
+.lbadge.b2{background:linear-gradient(140deg,#7DF9FF,#0088CC)}
+.lbadge.b3{background:linear-gradient(140deg,#FFD24A,#FF8F00)}
+.lmid{flex:1;min-width:0}
+.ltop{display:flex;justify-content:space-between;gap:8px;font-size:11.5px;font-weight:800}
+.ltop span{color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ltop b{color:var(--grn);flex:0 0 auto;font-variant-numeric:tabular-nums}
+.lbar{height:5px;border-radius:99px;background:rgba(0,0,0,.42);margin-top:6px;overflow:hidden}
+.lbar i{display:block;height:5px;border-radius:99px;width:0;
+background:linear-gradient(90deg,#00E676,#7DF9FF);transition:width 1.1s cubic-bezier(.2,.9,.3,1)}
+
+/* ---------- profile header ---------- */
+.profcard{padding:16px 14px}
+.profrow{display:flex;align-items:center;gap:14px}
+.profrow .avwrap{margin:0;flex:0 0 78px}
+.profmeta{flex:1;min-width:0}
+.profname{font-size:16px;font-weight:800;letter-spacing:-.3px;overflow:hidden;
+text-overflow:ellipsis;white-space:nowrap}
+.profuser{font-size:11px;color:var(--dim);font-weight:700;margin-top:2px;overflow:hidden;
+text-overflow:ellipsis;white-space:nowrap}
+.profline{display:flex;align-items:center;gap:7px;margin-top:7px;flex-wrap:wrap}
+.profstat{font-size:9px;font-weight:900;letter-spacing:.5px;text-transform:uppercase;color:var(--dim)}
+.avdot{position:absolute;left:-3px;bottom:-3px;width:17px;height:17px;border-radius:50%;
+border:2.5px solid var(--bg);z-index:2}
+.avdot.on{background:#00E676;animation:apulse2 1.9s infinite}
+.avdot.off{background:#FF5252;box-shadow:0 0 9px rgba(255,82,82,.55)}
+@keyframes apulse2{0%{box-shadow:0 0 0 0 rgba(0,230,118,.55)}
+70%{box-shadow:0 0 0 9px rgba(0,230,118,0)}100%{box-shadow:0 0 0 0 rgba(0,230,118,0)}}
+.profbar{display:flex;gap:8px;margin-top:14px;padding-top:13px;border-top:1px solid rgba(31,40,51,.75)}
+.profs{flex:1;text-align:center;background:rgba(0,0,0,.28);border:1px solid var(--bd);
+border-radius:12px;padding:8px 4px;min-width:0}
+.profs span{display:block;font-size:13px;font-weight:800;color:var(--grn);overflow:hidden;
+text-overflow:ellipsis;white-space:nowrap}
+.profs em{display:block;font-style:normal;font-size:8.5px;font-weight:900;letter-spacing:.5px;
+text-transform:uppercase;color:var(--dim);margin-top:3px}
 .uplbl{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.6px;
 color:var(--dim);font-weight:900;margin:11px 0 5px}
 .upbox{position:relative;border:1.5px dashed #2A3644;border-radius:14px;padding:16px 12px;
@@ -564,6 +635,7 @@ width:0;transition:width 1s ease}
   <div class="spacer"></div>
   <button class="ib" data-act="wallet">💰</button>
   <button class="ib" data-act="lang">🌐</button>
+  <button class="ib bell" data-act="notif" id="notifbtn" style="display:none">🔔<span class="nbadge zero" id="nbadge">0</span></button>
   <button class="ib" data-act="adminSheet" id="admtab" style="display:none">🛠</button>
 </div></div>
 
@@ -675,20 +747,46 @@ width:0;transition:width 1s ease}
 </div>
 
 <div id="v-refer" class="view hide">
-  <div class="card grad">
-    <div class="tree">
-      <div class="tnode">🌳</div>
-      <div class="tstem"></div>
-      <div class="tlv">
-        <div class="tc"><b id="tl1">0</b><span>Level 1</span><em id="tp1">10%</em></div>
-        <div class="tc"><b id="tl2">0</b><span>Level 2</span><em id="tp2">5%</em></div>
-        <div class="tc"><b id="tl3">0</b><span>Level 3</span><em id="tp3">2%</em></div>
-      </div>
+  <div id="tierhero"></div>
+  <div class="tierscroll" id="tierscroll"></div>
+  <div class="refhero2">
+    <div class="refscan"></div>
+    <div class="refoart">
+      <span class="refring"></span>
+      <span class="refring r2"></span>
+      <span class="refcoin c1">💵</span>
+      <span class="refcoin c2">🪙</span>
+      <span class="refcoin c3">💠</span>
+      <div class="reflogo">🌳</div>
     </div>
-    <div class="row2" style="margin-top:12px">
-      <div class="hstat"><span data-i18n="r.team">Team size</span><b id="ttotal">0</b></div>
-      <div class="hstat"><span data-i18n="r.comm">Commission</span><b id="tearned">0.00</b></div>
+    <div class="refearn">Commission earned</div>
+    <div class="refbig"><span id="tearned">0.00</span> <small>USDT</small></div>
+    <div class="refchips">
+      <div class="refchip"><b id="ttotal">0</b><em>Team</em></div>
+      <div class="refchip"><b id="tl1">0</b><em>Level 1</em></div>
+      <div class="refchip"><b id="tl2">0</b><em>Level 2</em></div>
+      <div class="refchip"><b id="tl3">0</b><em>Level 3</em></div>
     </div>
+  </div>
+
+  <div class="card">
+    <div style="font-size:12.5px;font-weight:800;margin-bottom:9px">Your commission ladder</div>
+    <div class="lrow2">
+      <div class="lbadge b1">1</div>
+      <div class="lmid"><div class="ltop"><span>Direct invites</span><b><span id="tl1b">0</span> · <span id="tp1">10%</span></b></div>
+        <div class="lbar"><i id="lb1" style="width:0%"></i></div></div>
+    </div>
+    <div class="lrow2">
+      <div class="lbadge b2">2</div>
+      <div class="lmid"><div class="ltop"><span>Your team's invites</span><b><span id="tl2b">0</span> · <span id="tp2">5%</span></b></div>
+        <div class="lbar"><i id="lb2" style="width:0%"></i></div></div>
+    </div>
+    <div class="lrow2">
+      <div class="lbadge b3">3</div>
+      <div class="lmid"><div class="ltop"><span>Third level</span><b><span id="tl3b">0</span> · <span id="tp3">2%</span></b></div>
+        <div class="lbar"><i id="lb3" style="width:0%"></i></div></div>
+    </div>
+    <div class="note" style="margin-top:9px">You earn a share of what your team invests, for as long as they stay active.</div>
   </div>
 
   <div class="card">
@@ -750,15 +848,25 @@ width:0;transition:width 1s ease}
 </div>
 
 <div id="v-profile" class="view hide">
-  <div class="card grad" style="text-align:center">
-    <div class="avwrap" data-act="pickAv">
-      <div class="avph" id="pav">👤</div>
-      <div class="avcam">📷</div>
-      <input type="file" accept="image/*" id="fileav" style="display:none">
+  <div class="card profcard">
+    <div class="profrow">
+      <div class="avwrap" data-act="pickAv">
+        <div class="avph" id="pav">👤</div>
+        <span class="avdot off" id="avdot"></span>
+        <div class="avcam">📷</div>
+        <input type="file" accept="image/*" id="fileav" style="display:none">
+      </div>
+      <div class="profmeta">
+        <div class="profname" id="pname">Guest</div>
+        <div class="profuser" id="puser">@user</div>
+        <div class="profline"><span id="pkyc"></span><span class="profstat" id="pstat">Offline</span></div>
+      </div>
     </div>
-    <div style="font-size:15px;font-weight:800" id="pname">Guest</div>
-    <div class="note" id="puser">@user</div>
-    <div style="margin-top:9px" id="pkyc"></div>
+    <div class="profbar">
+      <div class="profs"><span id="pbal">0.00</span><em>Balance</em></div>
+      <div class="profs"><span id="pinv">0.00</span><em>Invested</em></div>
+      <div class="profs"><span id="ptier">—</span><em>Tier</em></div>
+    </div>
   </div>
 
   <div class="card">
@@ -886,9 +994,12 @@ width:0;transition:width 1s ease}
 
 <div id="toast"></div>
 
+<div class="authmask" id="authmask"></div>
+<div class="ivx" id="ivx"></div>
+
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5WteazJYLGDD9QLo7D47qF8QOAXFFHUcsp1yqOdzptzAwmCE77cnk5K_8IJbp_8COgyhi6VEZjvgKrNOw1o7o2bPFEUtbd0ZOP_4KpGbhUC-Q0Qs4P3YAPKLO6RfmhgLiSjRUrhByJQWtKLoWOwLfSjcWNHGacg4YkcJ_Jw0oGIWha7QpjEnC_nh-oz-SrmssHr4";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5Xa3KUO0ZE4AlFq3HHB0LVQR29stWVN6-Pv0J236eVC3fSv_0sGkiDC0LPn1-8mN2BpRqcjvCBKuAJSHXbtb7R--P0iEcY9YQSO1uwagBgcZJgTKGCoCvudud_hc02NDbl1R25vljgtxp-qFsMKYJFsWBrxe2mlUmJAh9MAK0FEKmXjLdTyVVbFItyKvThLV7dte";
 var BUILD = "v7.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
@@ -1593,6 +1704,27 @@ function paintRefer(){
   $("tp1").innerHTML = M(S.cfg.ref.l1) + "%";
   $("tp2").innerHTML = M(S.cfg.ref.l2) + "%";
   $("tp3").innerHTML = M(S.cfg.ref.l3) + "%";
+  var l1 = parseInt(u.team.l1) || 0;
+  var l2 = parseInt(u.team.l2) || 0;
+  var l3 = parseInt(u.team.l3) || 0;
+  var mx = l1;
+  if (l2 > mx) { mx = l2; }
+  if (l3 > mx) { mx = l3; }
+  if (mx < 1) { mx = 1; }
+  setT("tl1b", N(l1));
+  setT("tl2b", N(l2));
+  setT("tl3b", N(l3));
+  var w1 = Math.round(l1 * 100 / mx);
+  var w2 = Math.round(l2 * 100 / mx);
+  var w3 = Math.round(l3 * 100 / mx);
+  setTimeout(function(){
+    var b1 = document.getElementById("lb1");
+    var b2 = document.getElementById("lb2");
+    var b3 = document.getElementById("lb3");
+    if (b1) { b1.style.width = w1 + "%"; }
+    if (b2) { b2.style.width = w2 + "%"; }
+    if (b3) { b3.style.width = w3 + "%"; }
+  }, 120);
   $("rl1").innerHTML = M(S.cfg.ref.l1) + "%";
   $("rl2").innerHTML = M(S.cfg.ref.l2) + "%";
   $("rl3").innerHTML = M(S.cfg.ref.l3) + "%";
@@ -2329,6 +2461,29 @@ function paintAvatar(){
   var pic = S.u.avatar || IMG.avatar;
   if (pic) { av.innerHTML = "<img class='avimg' src='" + E(pic) + "'>"; }
   else { av.innerHTML = "👤"; }
+}
+
+/* ---------------- profile header ---------------- */
+function paintProfile(){
+  var u = S.u;
+  if (!u) { return; }
+  var on = (u.online === 1);
+  var dot = document.getElementById("avdot");
+  if (dot) { dot.className = "avdot " + (on ? "on" : "off"); }
+  var st = document.getElementById("pstat");
+  if (st) { st.innerHTML = on ? "Online" : "Offline"; }
+  var nm = document.getElementById("pname");
+  if (nm) {
+    var show = (u.name && String(u.name).length > 0) ? u.name : "Guest";
+    nm.innerHTML = E(show);
+  }
+  var us = document.getElementById("puser");
+  if (us) { us.innerHTML = u.user ? ("@" + E(u.user)) : ("id " + E(u.uid)); }
+  setT("pbal", M(u.bal));
+  setT("pinv", M(u.invest));
+  var tn = "—";
+  if (u.tier && u.tier.name) { tn = u.tier.name; }
+  setT("ptier", E(tn));
 }
 
 /* ---------------- PIN security ---------------- */
@@ -3400,6 +3555,7 @@ function paint(){
   safe(paintKyc);
   safe(paintAvatar);
   safe(paintTier);
+  safe(paintProfile);
   safe(paintNotif);
   safe(bindFiles);
   safe(loadThread);
