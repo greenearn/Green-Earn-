@@ -1177,7 +1177,7 @@ width:0;transition:width 1s ease}
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq5mSjc3-tG0xgWkNFbvWAuzrGCM-XHU94OTubkaHpmhclWix3Yv1vmMim_ijZ4lQrJiYYfoz0cBYN4FJhwpvDAVMn0fmOi6e2bRpO4HGKChZQPoUPxszakcPKPR2ky51wzHTboN6dDknvkt4fS7XXGDn-wiFlQMjLMXzMwcHRf5F9Ye8zB1RE8RQfdF2-Bgk9b8uj";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq503XHVrDGialAODjLNh2ssuRWmmB18-jCEMG0WhZHBU4Wv0YqugEO6Am9lIGzd8x4OtjPhcXc6QEsOg_tc3j7rxoLkGLqcd-oDiE6yMrig5f-Cf8Vi7EddtsruVfyxBFF9c0l-EASkKuk_A6Vltg1PU8B1IqnpBzAGd5wVp3G6QzdS_tcdgmXDkcfmIUJRUJaXJH";
 var BUILD = "v7.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
@@ -4214,6 +4214,7 @@ function runAct(a, id){
   if (a === "authGo") { authGo(); return; }
   if (a === "authSendCode") { authSendCode(); return; }
   if (a === "authDoReset") { authDoReset(); return; }
+  if (a === "authRecover") { authRecover(); return; }
   if (a === "openContact") { openContact(id); return; }
   if (a === "saveContacts") { saveContacts(); return; }
   if (a === "addContact") { addContact(); return; }
@@ -4545,11 +4546,19 @@ function authPaint(){
   h += "<button class='authgo' data-act='" + goAct + "'>" + goLabel + "</button>";
   if (inl) {
     h += "<div class='authalt'><b data-act='authForgot'>Forgot your password?</b></div>";
+    h += "<div class='authalt'>Forgotten both email and password?<br>" +
+      "<b data-act='authRecover'>Recover this account</b></div>";
     h += "<div class='authalt'>New here? <b data-act='authTabUp'>Create an account</b></div>";
   } else if (up) {
     h += "<div class='authalt'>Already have an account? <b data-act='authTabIn'>Log in</b></div>";
   } else {
     h += "<div class='authalt'><b data-act='authTabIn'>Back to log in</b></div>";
+  }
+  // Forgotten both? Without this the account was unreachable: signup refused
+  // because an email existed, and every reset path asked for that email.
+  if (fg) {
+    h += "<div class='authalt' style='margin-top:9px'>Forgotten the email too?<br>" +
+      "<b data-act='authRecover'>Recover with this Telegram account</b></div>";
   }
   h += "</div>";
   el.innerHTML = h;
@@ -4616,6 +4625,33 @@ function authSendCode(){
     if (e2) {
       e2.className = "authok on";
       e2.innerHTML = "Code sent. Check your bot chat, then enter it below.";
+    }
+  });
+}
+
+/* Recovery without the email. The code goes to this user's private bot chat,
+   which is proof of the Telegram account rather than of a forgotten address. */
+function authRecover(){
+  var btn = document.querySelector("[data-act='authRecover']");
+  if (btn) { btn.innerHTML = "Sending…"; }
+  HAS();
+  api("recover", {}, function(j){
+    if (!j.ok) {
+      BADH();
+      if (btn) { btn.innerHTML = "Recover with this Telegram account"; }
+      authErr(j.e || "Could not send the code.");
+      return;
+    }
+    OKH();
+    AUTH.mail = "";
+    AUTH.recover = 1;
+    AUTH.mode = "reset";
+    authPaint();
+    var e2 = document.getElementById("a_err");
+    if (e2) {
+      var m = (j.r && j.r.mask) ? j.r.mask : "";
+      e2.className = "authok on";
+      e2.innerHTML = "Code sent to your bot chat. Your account is " + E(m) + " — enter the code below and pick a new password.";
     }
   });
 }
