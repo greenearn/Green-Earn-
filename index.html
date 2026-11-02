@@ -608,10 +608,58 @@ border:1px solid rgba(255,179,0,.32)}
 .mineringin{width:52px;height:52px;border-radius:50%;background:#0B0F16;display:grid;place-items:center;text-align:center}
 .mineen{font-size:15px;font-weight:800;line-height:1;color:var(--gold)}
 .mnelet{font-size:8px;font-weight:900;color:var(--dim);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
-.minehamster{font-size:74px;text-align:center;line-height:1;margin:12px 0 6px;position:relative;
-cursor:pointer;user-select:none;-webkit-user-select:none;
-filter:drop-shadow(0 10px 20px rgba(255,179,0,.28));transition:transform .09s}
-.minehamster.tap{transform:scale(.9)}
+/* the hamster is drawn as inline SVG, so it stays crisp on every screen and
+   cannot break on a dead image link the way an emoji or a hosted file can */
+.mnstage{position:relative;width:176px;height:176px;margin:4px auto 0;display:grid;place-items:center;
+cursor:pointer;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.mnglow{position:absolute;top:50%;left:50%;width:152px;height:152px;margin:-76px 0 0 -76px;border-radius:50%;
+background:radial-gradient(circle,rgba(255,179,0,.34),rgba(255,179,0,0) 66%);filter:blur(6px);
+animation:mnbreathe 3.4s ease-in-out infinite;pointer-events:none}
+.mnringspin{position:absolute;top:50%;left:50%;width:164px;height:164px;margin:-82px 0 0 -82px;border-radius:50%;
+border:1px dashed rgba(255,179,0,.26);animation:mnspin 24s linear infinite;pointer-events:none}
+.mnhambody{position:relative;width:134px;height:134px;transform-origin:50% 88%;
+animation:mnbob 2.9s ease-in-out infinite;
+filter:drop-shadow(0 12px 22px rgba(0,0,0,.5));transition:transform .1s ease-out}
+.mnhambody svg{display:block;width:100%;height:100%;overflow:visible}
+.mnstage.tap .mnhambody{animation:none;transform:scale(.86) rotate(-5deg);transition:transform .06s ease-out}
+.mnstage.rel .mnhambody{animation:none;transform:scale(1.08) rotate(3deg);
+transition:transform .16s cubic-bezier(.18,1.65,.42,1)}
+.mnstage.turbo .mnringspin{border-color:rgba(0,230,118,.5);animation-duration:5s}
+.mnstage.turbo .mnglow{background:radial-gradient(circle,rgba(0,230,118,.4),rgba(0,230,118,0) 66%)}
+@keyframes mnbob{0%,100%{transform:translateY(0) rotate(-1.3deg)}50%{transform:translateY(-7px) rotate(1.3deg)}}
+@keyframes mnspin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes mnbreathe{0%,100%{opacity:.5;transform:scale(.93)}50%{opacity:1;transform:scale(1.07)}}
+@keyframes mnblink{0%,90%,100%{transform:scaleY(1)}94%{transform:scaleY(.1)}}
+.mneye{transform-origin:50% 50%;animation:mnblink 5.4s infinite}
+.mneye.b{animation-delay:.13s}
+.mnp{position:absolute;width:9px;height:9px;border-radius:50%;pointer-events:none;z-index:5;
+background:radial-gradient(circle at 32% 30%,#FFE082,#FFB300 62%,#C68400);
+box-shadow:0 0 8px rgba(255,179,0,.75)}
+.mnfloat{position:absolute;font-size:15px;font-weight:900;color:#FFD54F;pointer-events:none;z-index:6;
+text-shadow:0 2px 10px rgba(0,0,0,.8);letter-spacing:-.3px}
+.mnripple{position:absolute;border-radius:50%;pointer-events:none;z-index:3;
+border:2px solid rgba(255,179,0,.55);width:90px;height:90px;margin:-45px 0 0 -45px}
+/* ---------- live activity feed ---------- */
+.mnfeed{background:var(--card);border:1px solid var(--bd);border-radius:15px;padding:3px 11px;
+max-height:196px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.mnfr{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.mnfr:last-child{border-bottom:0}
+.mnfd{width:27px;height:27px;border-radius:9px;flex:0 0 27px;display:grid;place-items:center;font-size:13px;
+background:rgba(255,179,0,.12);border:1px solid rgba(255,179,0,.22)}
+.mnft{flex:1;min-width:0}
+.mnft b{display:block;font-size:11.5px;font-weight:800}
+.mnft span{display:block;font-size:10.5px;color:var(--mut);line-height:1.35;
+overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mnfago{font-size:9.5px;font-weight:900;color:var(--dim);flex:0 0 auto}
+.mnlive{display:inline-flex;align-items:center;gap:5px;font-size:9px;font-weight:900;
+text-transform:uppercase;letter-spacing:.7px;color:var(--grn)}
+.mndl{width:6px;height:6px;border-radius:50%;background:var(--grn);
+box-shadow:0 0 0 0 rgba(0,230,118,.6);animation:mnpulse 1.9s infinite}
+@keyframes mnpulse{0%{box-shadow:0 0 0 0 rgba(0,230,118,.55)}70%{box-shadow:0 0 0 7px rgba(0,230,118,0)}100%{box-shadow:0 0 0 0 rgba(0,230,118,0)}}
+.mnsum{display:flex;gap:7px;margin-bottom:8px}
+.mnsum div{flex:1;background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:8px 9px;text-align:center}
+.mnsum em{display:block;font-size:8.5px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;color:var(--dim);font-style:normal}
+.mnsum b{display:block;font-size:13px;font-weight:800;margin-top:2px;letter-spacing:-.3px}
 .minepend{text-align:center;position:relative}
 .minepl{font-size:9.5px;font-weight:900;text-transform:uppercase;letter-spacing:1px;color:var(--dim)}
 .minepv{font-size:21px;font-weight:800;letter-spacing:-.6px;margin-top:1px}
@@ -970,7 +1018,70 @@ width:0;transition:width 1s ease}
         </div>
       </div>
     </div>
-    <div class="minehamster" id="mnham" data-act="mnTap"><span>🐹</span></div>
+    <div class="mnstage" id="mnham" data-act="mnTap">
+      <div class="mnglow"></div>
+      <div class="mnringspin"></div>
+      <div class="mnhambody" id="mnbody">
+        <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="mnfur" cx="42%" cy="30%" r="78%">
+              <stop offset="0%" stop-color="#FFF0D6"/>
+              <stop offset="52%" stop-color="#FFC98A"/>
+              <stop offset="100%" stop-color="#E0873C"/>
+            </radialGradient>
+            <radialGradient id="mnbelly" cx="50%" cy="38%" r="70%">
+              <stop offset="0%" stop-color="#FFFFFF"/>
+              <stop offset="100%" stop-color="#FFE7C6"/>
+            </radialGradient>
+            <linearGradient id="mnear" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#F58C7B"/>
+              <stop offset="100%" stop-color="#C7503F"/>
+            </linearGradient>
+            <linearGradient id="mncoin" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#FFE082"/>
+              <stop offset="46%" stop-color="#FFB300"/>
+              <stop offset="100%" stop-color="#C68400"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="60" cy="112" rx="30" ry="5" fill="#000" opacity=".34"/>
+          <g>
+            <path d="M28 34 C20 16 34 8 44 18 C48 24 46 34 40 38 Z" fill="url(#mnear)"/>
+            <path d="M92 34 C100 16 86 8 76 18 C72 24 74 34 80 38 Z" fill="url(#mnear)"/>
+            <ellipse cx="36" cy="26" rx="5" ry="7" fill="#FFD9CF" opacity=".85"/>
+            <ellipse cx="84" cy="26" rx="5" ry="7" fill="#FFD9CF" opacity=".85"/>
+          </g>
+          <ellipse cx="60" cy="70" rx="40" ry="38" fill="url(#mnfur)"/>
+          <ellipse cx="60" cy="80" rx="27" ry="25" fill="url(#mnbelly)"/>
+          <ellipse cx="34" cy="72" rx="11" ry="10" fill="#FFC7A8" opacity=".75"/>
+          <ellipse cx="86" cy="72" rx="11" ry="10" fill="#FFC7A8" opacity=".75"/>
+          <g class="mneye">
+            <ellipse cx="46" cy="58" rx="6.2" ry="7" fill="#221708"/>
+            <circle cx="48" cy="55.5" r="2.2" fill="#FFF" opacity=".95"/>
+          </g>
+          <g class="mneye b">
+            <ellipse cx="74" cy="58" rx="6.2" ry="7" fill="#221708"/>
+            <circle cx="76" cy="55.5" r="2.2" fill="#FFF" opacity=".95"/>
+          </g>
+          <path d="M60 63 L55 69 L65 69 Z" fill="#E0748C"/>
+          <path d="M60 69 L60 74" stroke="#B4693F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M60 74 C55 79 50 77 48 74" stroke="#B4693F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M60 74 C65 79 70 77 72 74" stroke="#B4693F" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <rect x="53" y="75" width="5.4" height="7" rx="1.6" fill="#FFF"/>
+          <rect x="61.6" y="75" width="5.4" height="7" rx="1.6" fill="#FFF"/>
+          <g stroke="#C98A5A" stroke-width="1.2" opacity=".7" stroke-linecap="round">
+            <path d="M30 64 L14 60"/><path d="M30 69 L13 69"/><path d="M30 74 L15 79"/>
+            <path d="M90 64 L106 60"/><path d="M90 69 L107 69"/><path d="M90 74 L105 79"/>
+          </g>
+          <ellipse cx="40" cy="98" rx="8" ry="6" fill="#FFE3BE"/>
+          <ellipse cx="80" cy="98" rx="8" ry="6" fill="#FFE3BE"/>
+          <g id="mnheld">
+            <circle cx="60" cy="99" r="12" fill="url(#mncoin)" stroke="#8A5B00" stroke-width="1.4"/>
+            <circle cx="60" cy="99" r="7.6" fill="none" stroke="#FFF1C4" stroke-width="1.5" opacity=".75"/>
+            <text x="60" y="103.5" text-anchor="middle" font-size="11" font-weight="900" fill="#7A4E00">H</text>
+          </g>
+        </svg>
+      </div>
+    </div>
     <div class="minepend">
       <div class="minepl">Ready to collect</div>
       <div class="minepv"><span id="mnpn">0</span> <small id="mnpnc">HAM</small></div>
@@ -991,6 +1102,15 @@ width:0;transition:width 1s ease}
     <div class="mnstat"><span>Storage</span><b id="mnhours">0h</b></div>
     <div class="mnstat"><span>Total</span><b id="mntotal">0</b></div>
   </div>
+
+  <div class="sec"><h2>📡 Live activity</h2><small><span class="mnlive"><span class="mndl"></span> real events</span></small></div>
+  <div class="mnsum">
+    <div><em>Paid today</em><b><span id="mnstusd">0.00</span></b></div>
+    <div><em>Conversions</em><b id="mnstn">0</b></div>
+    <div><em>You mined</em><b id="mnstmine">0</b></div>
+  </div>
+  <div class="mnfeed" id="mnfeed"></div>
+  <div class="note" style="margin-top:7px">Names are shortened for privacy. Every line below is an event that actually happened on this bot.</div>
 
   <div class="sec"><h2>⚡ Boosters</h2><small id="mnboostnote">&nbsp;</small></div>
   <div id="mnboosters"></div>
@@ -1286,7 +1406,7 @@ width:0;transition:width 1s ease}
 
 <script>
 
-var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq6O-8AURhYmzDCS2PHuXyGABguW8xxpTKHmGtKdsvVzT7KQgQeHGujMqyX4W-eFT1RwVMN_6INs7siYe_fVlg8_LX1BU9f1svW3DximN57-MH6lV6mFWthscY_vC05qgH03gHWcKSvtCpR_H9X82MiYU5lNLJuNmvpd86b7V8uRSiNXPHcJs-VEwtpTmb4cjIHGg8";
+var API = "https://api.telebotcreator.com/new-webhook?data=gAAAAABq6Pvcv3bIvrRzKz5cWKNgJvgJYN10hwNYHb-UUk5fK3NeHUjlPF7h-lSAW_t2Yk5uCX3wO1rkddFUnv6C-rShFUbQ49HErv6pB3GAvFM5USZNg8dtnI0qFKPGXPb-NhAINpoqgUPm9IgKo8sS2Tf2vDBN8FdBCOhW1SAzmTfDlWXdAY0NHtOal8Jkzdtas3pdoPe0";
 var BUILD = "v7.0";
 var BOTU = "greenearnevbot";
 function tgApp(){
@@ -2929,7 +3049,7 @@ function go(tab){
   if (tab === "markets") { try { loadMarkets(); } catch(e){ } }
   // Hamster Mining is slotted in beside the existing tabs. The other tab names
   // and the order of the existing ones are untouched.
-  if (tab === "mining") { try { paintMining(); } catch(e){ } }
+  if (tab === "mining") { try { paintMining(); mnPollStart(); } catch(e){ } }
   var vs = ["home","invest","markets","mining","tasks","refer","wallet","profile"];
   for (var i = 0; i < vs.length; i++) {
     var el = $("v-" + vs[i]);
@@ -5509,9 +5629,47 @@ function mnBoosters(){
   el.innerHTML = h;
 }
 
+/* The feed is rendered from events the server recorded, with the age of each
+   one worked out against the server clock, so the labels cannot drift. */
+function mnAgo(t, nowv){
+  var s = parseInt(nowv, 10) - parseInt(t, 10);
+  if (isNaN(s) || s < 0) { s = 0; }
+  if (s < 60) { return s + "s"; }
+  var mi = Math.floor(s / 60);
+  if (mi < 60) { return mi + "m"; }
+  return Math.floor(mi / 60) + "h";
+}
+
+function mnFeed(m){
+  var el = document.getElementById("mnfeed");
+  if (!el) { return; }
+  var ls = m.feed || [];
+  var nowv = parseInt(m.now, 10);
+  if (isNaN(nowv)) { nowv = 0; }
+  if (!ls.length) {
+    el.innerHTML = "<div class='mnfr'><div class='mnfd'>🐹</div><div class='mnft'>" +
+      "<b>No mining events yet</b><span>Collect or convert to start the feed</span></div></div>";
+    return;
+  }
+  var h = "";
+  for (var i = 0; i < ls.length; i++) {
+    var e = ls[i];
+    var x = String(e.x || "");
+    var ic = "🐹";
+    if (x.indexOf("converted") >= 0) { ic = "💱"; }
+    else if (x.indexOf("collected") >= 0) { ic = "💰"; }
+    else if (x.indexOf("turbo") >= 0) { ic = "⚡"; }
+    h += "<div class='mnfr'><div class='mnfd'>" + ic + "</div>" +
+      "<div class='mnft'><b>" + E(e.n || "User") + "</b><span>" + E(x) + "</span></div>" +
+      "<div class='mnfago'>" + mnAgo(e.t, nowv) + "</div></div>";
+  }
+  el.innerHTML = h;
+}
+
 function paintMining(){
   var m = mnPack();
   if (!m) { return; }
+  mnBind();
   var cpw = parseFloat(m.cpw);
   if (isNaN(cpw) || cpw <= 0) { cpw = 10; }
   var coin = m.coin || "HAM";
@@ -5528,6 +5686,12 @@ function paintMining(){
   setT("mncpw", N(cpw));
   setT("mnmin", N(m.minwd));
   mnPaintRing();
+  // Today's genuine totals from the server event log.
+  var st = m.stats || {};
+  setT("mnstusd", M(st.usdt));
+  setT("mnstn", N(st.n));
+  setT("mnstmine", mnFmt(m.total));
+  mnFeed(m);
 
   var cap = parseFloat(m.cap);
   if (isNaN(cap) || cap <= 0) { cap = 1; }
@@ -5577,29 +5741,151 @@ function mnSync(j){
   paintMining();
 }
 
-function mnPop(){
-  var el = document.getElementById("mnham");
-  if (!el) { return; }
-  el.className = "minehamster tap";
-  setTimeout(function(){ el.className = "minehamster"; }, 90);
-  var m = mnPack();
-  var lbl = "+" + (m ? mnFmt(m.tap) : "1");
+/* Tap feedback: the Telegram app buzzes on a real tap, so the hamster should
+   too. HapticFeedback is only present inside Telegram, hence the guard. */
+function mnHaptic(kind){
+  // tgApp() is the project's accessor for Telegram.WebApp; it returns null
+  // outside Telegram, so this stays silent in a normal browser.
+  try {
+    var tw = tgApp();
+    if (tw && tw.HapticFeedback && tw.HapticFeedback.impactOccurred) {
+      tw.HapticFeedback.impactOccurred(kind || "light");
+    }
+  } catch(e){ }
+}
+
+function mnKill(el){
+  if (el && el.parentNode) { el.parentNode.removeChild(el); }
+}
+
+/* A ring pushes out from the tap point and fades, so the press has weight. */
+function mnRipple(st, x, y){
+  var rp = document.createElement("div");
+  rp.className = "mnripple";
+  rp.style.left = x + "px";
+  rp.style.top = y + "px";
+  st.appendChild(rp);
+  rp.style.transition = "transform .5s ease-out, opacity .5s ease-out";
+  setTimeout(function(){
+    rp.style.transform = "scale(1.9)";
+    rp.style.opacity = "0";
+  }, 10);
+  setTimeout(function(){ mnKill(rp); }, 560);
+}
+
+/* Coins scatter from the hamster like they are being knocked loose. */
+function mnBurst(st, x, y, n){
+  var i = 0;
+  for (i = 0; i < n; i++) {
+    var p = document.createElement("div");
+    p.className = "mnp";
+    p.style.left = x + "px";
+    p.style.top = y + "px";
+    st.appendChild(p);
+    var ang = (Math.random() * 150 + 15) * Math.PI / 180;
+    var dir = Math.random() < 0.5 ? -1 : 1;
+    var dist = 34 + Math.random() * 46;
+    var dx = Math.cos(ang) * dist * dir;
+    var dy = -Math.sin(ang) * dist;
+    p.pts = dx;
+    p.ptY = dy;
+    p.sz = 6 + Math.random() * 6;
+    p.style.width = p.sz + "px";
+    p.style.height = p.sz + "px";
+    (function(node){
+      setTimeout(function(){
+        node.style.transition = "transform .62s cubic-bezier(.2,.7,.4,1), opacity .62s ease-out";
+        node.style.transform = "translate(" + Math.round(node.pts) + "px," + Math.round(node.ptY + 30) + "px) scale(.4)";
+        node.style.opacity = "0";
+      }, 10);
+      setTimeout(function(){ mnKill(node); }, 700);
+    })(p);
+  }
+}
+
+function mnFloat(st, x, y, txt){
   var f = document.createElement("div");
-  f.className = "mnfly";
-  f.innerHTML = lbl;
-  var r = el.getBoundingClientRect();
-  f.style.left = Math.round(r.left + r.width / 2 - 12) + "px";
-  f.style.top = Math.round(r.top + 12) + "px";
-  f.style.opacity = "1";
-  document.body.appendChild(f);
+  f.className = "mnfloat";
+  f.innerHTML = txt;
+  f.style.left = (x - 16) + "px";
+  f.style.top = (y - 26) + "px";
+  st.appendChild(f);
   setTimeout(function(){
-    f.style.transition = "top .7s ease-out, opacity .7s ease-out";
-    f.style.top = Math.round(r.top - 42) + "px";
+    f.style.transition = "transform .8s ease-out, opacity .8s ease-out";
+    f.style.transform = "translateY(-52px) scale(1.15)";
     f.style.opacity = "0";
-  }, 12);
+  }, 14);
+  setTimeout(function(){ mnKill(f); }, 860);
+}
+
+/* The shared click dispatcher hands over only the action name, not the event,
+   so the press point is recorded here by a listener bound to the stage alone.
+   Nothing else on the page is affected. */
+var MNP = { x: 0, y: 0 };
+
+function mnBind(){
+  var st = document.getElementById("mnham");
+  if (!st) { return; }
+  if (st.dataset.mnb === "1") { return; }
+  st.dataset.mnb = "1";
+  st.addEventListener("pointerdown", function(ev){
+    var r = st.getBoundingClientRect();
+    var cx = (typeof ev.clientX === "number") ? ev.clientX : 0;
+    var cy = (typeof ev.clientY === "number") ? ev.clientY : 0;
+    if (cx > 0 || cy > 0) {
+      MNP.x = cx - r.left;
+      MNP.y = cy - r.top;
+    }
+  }, false);
+}
+
+function mnPop(){
+  var st = document.getElementById("mnham");
+  if (!st) { return; }
+  var m = mnPack();
+  var r = st.getBoundingClientRect();
+  var x = r.width / 2;
+  var y = r.height / 2;
+  // Use the recorded press point when there is one, so the coins scatter from
+  // where the finger landed instead of always the centre.
+  if (MNP.x > 4 && MNP.y > 4) {
+    x = MNP.x;
+    y = MNP.y;
+  }
+  var turbo = m && parseFloat(m.boostleft) > 0;
+
+  st.className = "mnstage tap" + (turbo ? " turbo" : "");
   setTimeout(function(){
-    if (f && f.parentNode) { f.parentNode.removeChild(f); }
-  }, 800);
+    st.className = "mnstage rel" + (turbo ? " turbo" : "");
+    setTimeout(function(){
+      st.className = "mnstage" + (turbo ? " turbo" : "");
+    }, 150);
+  }, 62);
+
+  mnRipple(st, x, y);
+  mnBurst(st, x, y, turbo ? 7 : 4);
+  mnFloat(st, x, y, "+" + (m ? mnFmt(m.tap) : "1"));
+  mnHaptic(turbo ? "heavy" : "light");
+}
+
+/* While the mining tab is open the app asks the server for the current state
+   every few seconds. This is the read-only mine_state action: it settles the
+   auto-mining so the pending figure climbs on its own, and it returns the real
+   activity feed. It spends no energy and grants nothing. */
+var MNPOLL = 0;
+
+function mnPollStart(){
+  if (MNPOLL) { return; }
+  MNPOLL = setInterval(function(){
+    if (S.tab !== "mining") { return; }
+    var m = mnPack();
+    if (!m) { return; }
+    if (parseInt(m.on, 10) !== 1) { return; }
+    if (MNT.busy === 1 || S.busyM === 1) { return; }
+    api("mine_state", {}, function(j){
+      if (j && j.ok) { mnSync(j); }
+    });
+  }, 5000);
 }
 
 var MNT = { q: 0, t: 0, busy: 0 };
